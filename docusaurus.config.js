@@ -10,7 +10,7 @@ module.exports = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'mkster', // Usually your GitHub org/user name.
+  organizationName: 'AtomontageInc', // Usually your GitHub org/user name.
   projectName: 'atomontage-docs', // Usually your repo name.
   themeConfig: {
     colorMode: {
@@ -20,7 +20,8 @@ module.exports = {
       title: 'Atomontage Documentation',
       logo: {
         alt: 'Atomontage Logo',
-        src: 'img/logo_large.png',
+        src: 'img/logo_large_light_bg.png',
+        srcDark: 'img/logo_large.png',
       },
       items: [
         /*
@@ -54,7 +55,7 @@ module.exports = {
         },
         */
         {
-          title: 'Community',
+          title: 'Social',
           items: [
             {
               label: 'Atomontage',
@@ -81,7 +82,7 @@ module.exports = {
             */
             {
               label: 'GitHub',
-              href: 'https://github.com/mkster/atomontage-docs/tree/master/',
+              href: 'https://github.com/AtomontageInc/atomontage-docs/tree/master/',
             },
           ],
         },
@@ -92,6 +93,7 @@ module.exports = {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
       additionalLanguages: ['lua'],
+      defaultLanguage: 'lua',
     },
   },
   presets: [
@@ -103,13 +105,13 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/mkster/atomontage-docs/tree/master/',
+            'https://github.com/AtomontageInc/atomontage-docs/tree/master/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/mkster/atomontage-docs/tree/master/blog/',
+            'https://github.com/AtomontageInc/atomontage-docs/tree/master/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

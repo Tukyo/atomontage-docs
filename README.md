@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f05714fa-b001-4622-9518-e5bc5f44936e/deploy-status)](https://app.netlify.com/sites/atomontagedocs/deploys)
+
 # Website
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.

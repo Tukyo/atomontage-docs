@@ -1,9 +1,21 @@
 
+--[[
+TODO
+* delete or highlight removed class files
+* write some intro/getting started thing
+* Perhaps some standard format things i.e return table contents, argument cotnent
+* make types links? or color if not link? or color everything else
+* some copy button?
+* server client seperation
+* add new methods/props/enums in correct position (after previous)
+* categorize stuff into subfolders? (and make gen work wiht it) /internal /editor
+]]
+
 print("start")
 local serpent = require("generator.serpent")
 local genDocs = {}
 
-local f = io.open("generator/serverBindings.txt", "r")
+local f = io.open("generator/serverBindingsNew.txt", "r")
 local bindingsSerialized = f:read("*all")
 f:close()
 
@@ -11,13 +23,22 @@ local fun, err = load(bindingsSerialized)
 if err then error(err) end
 local _Bindings = fun()
 
+--[[
+local name = "bal (string, string, string)"
+name = name:gsub("%s?[%P]*", function(word) 
+    print(word)
+    return word.."a"
+end)
+print("res"..name)
+]]
+
 local testBindings = {
     ["Classes"] = {
         ["Vec3"] = {
             ["Methods"] = {
                 "vec3 ()",
                 "vec3 (float, float, float)",
-                "vec3 (int32_t, int32_t, int32_t)",
+                "vec3 (uint32_t, int32_t, uint32_t)", --test
                 "vec3 (float)",
                 "vec4 __mul (Mat4, vec3)",
                 "vec3 __mul (vec3, float)",
@@ -77,9 +98,7 @@ local testBindings = {
         },
         ["BlendFactor"] = {
             "Zero",
-            "One",
             "SrcColor",
-            "OneMinusSrcColor",
             "DstColor",
             "OneMinusDstColor",
             "SrcAlpha",
@@ -89,11 +108,10 @@ local testBindings = {
         }
     }
 }
-
 --_Bindings = testBindings
 
-local docsLocation = "docs\\api\\"
-local enumsLocation = "docs\\api\\enums\\"
+local docsLocation = "docs\\90-api\\"
+local enumsLocation = "docs\\90-api\\enums\\"
 
 function genDocs:gen()
     --make directory
@@ -103,32 +121,60 @@ function genDocs:gen()
     --make category_.json
     local filename = docsLocation.."_category_.json"
     local file = io.open(filename, "w")
-    file:write('{ "label": "API", "position": 2 }')
+    file:write('{ "label": "API" }')
     file:close()
 
     local filename = enumsLocation.."_category_.json"
     local file = io.open(filename, "w")
-    file:write('{ "label": "Enums", "position": 100000 }')
+    file:write('{ "label": "Enums", "position": 1 }')
     file:close()
 
+    --filter out all the other weird stuff
+    local show = {
+        ["Quat"] = true,
+        ["V2i"] = true,
+        ["V3i"] = true,
+        ["vec2"] = true,
+        ["vec3"] = true,
+        ["vec4"] = true,
+        ["Camera"] = true,
+        ["Component"] = true,
+        ["Client"] = true,
+        ["Input"] = true,
+        ["Material"] = true,
+        ["MeshData"] = true,
+        ["MeshDataBuilder"] = true,
+        ["MeshRender"] = true,
+        ["Object"] = true,
+        ["Scene"] = true,
+        ["ScriptComponent"] = true,
+        ["Studio"] = true,
+        ["Transform"] = true,
+        ["Transformation"] = true,
+        ["VoxelDB"] = true,
+        ["VoxelData"] = true,
+        ["VoxelRender"] = true,
+    }
+
     for name,class in pairs(_Bindings.Classes) do
-        local name = genDocs:firstToLower(name)
-        --name = name:gsub("::", " ") --remove this
-        if not string.find(name, "::") then --just skip these weird internal things for now
-            genDocs:generateClassFile(name, class)
+        if (show[name]) then
+            local name = genDocs:firstToLower(name)
+            --name = name:gsub("::", " ") --remove this
+            if not string.find(name, "::") then --just skip these weird internal things for now
+                genDocs:generateClassFile(name, class)
+            end
         end
     end
 
     for name,values in pairs(_Bindings.Enums) do
         local name = genDocs:firstToLower(name)
         name = name:gsub("::", " ") --remove this?
-        --genDocs:generateEnumFile(name, values)
+        genDocs:generateEnumFile(name, values)
     end
 
     print("done")
 end
 
---get groups[header] = body then remove matches, then handle left over ones (delete, no body, flag with body)
 function genDocs:generateClassFile(name, class)
     local filename = docsLocation..name..".mdx"
     if (not genDocs:file_exists(filename)) then
@@ -136,54 +182,20 @@ function genDocs:generateClassFile(name, class)
         genDocs:addFrontMatter(name, fileW)
         fileW:close()
     end
-    local lines = self:getLines(filename)
 
     --get current sections
-    local intro, methods, properties = genDocs:getSections(filename)
-    local removedMethods = table.clone(methods)
-    local removedProperties = table.clone(properties)
+    local intro, currentMethods, currentProperties = self:getSections(filename)
+    local finalMethods = self:getFinalEntries(currentMethods, class.Methods, name)
+    local finalProperties = self:getFinalEntries(currentProperties, class.Properties, name)
+    
+    --write to file
     local file = io.open(filename, "w")
-
-    --only add if missing
-    local function addLine(line)
-        if lines[line] then return end
-        file:write(line, "\n\n")
-    end
-    local function addMethod(header)
-        if (removedMethods[header]) then
-            removedMethods[header] = nil
-            return
-        end
-        print("new!", header)
-        local entry = {header, ""}
-        methods[header] = entry
-        table.insert(methods, {name = header, entry = entry})
-    end
-    local function addProperty(header)
-        if (removedProperties[header]) then
-            removedProperties[header] = nil
-            return
-        end
-        local entry = {header , ""}
-        properties[header] = entry
-        table.insert(properties, {name = header, entry = entry})
-    end
-
-    for i,method in ipairs(class.Methods or {}) do
-        local header = genDocs:cleanUpName(method)
-        addMethod("### "..header)
-    end
-    for i,prop in ipairs(class.Properties or {}) do
-        local header = genDocs:cleanUpName(prop)
-        addProperty("### "..header)
-    end
-
     for i, line in ipairs(intro) do
         file:write(line, "\n")
     end
     if (class.Methods) then
         file:write("## List of Methods", "\n\n")
-        for i, v in ipairs(methods) do
+        for i, v in ipairs(finalMethods) do
             local lines = v.entry
             for i, line in ipairs(lines) do
                 file:write(line, "\n")
@@ -192,7 +204,7 @@ function genDocs:generateClassFile(name, class)
     end
     if (class.Properties) then
         file:write("## List of Properties", "\n\n")
-        for i, v in ipairs(properties) do
+        for i, v in ipairs(finalProperties) do
             local lines = v.entry
             for i, line in ipairs(lines) do
                 file:write(line, "\n")
@@ -200,20 +212,62 @@ function genDocs:generateClassFile(name, class)
         end
     end
 
-    for entry, lines in pairs(removedMethods) do
-        if type(entry) == "string" then
-            print(entry.." is old delete manually for now")
-            local hasDocumentation = #lines > 3
-        end
+    file:close()
+end
+
+--return final entries from current entires and new entries 
+function genDocs:getFinalEntries(currentEntries, newEntries, name)
+    local finalMethods = {}
+    
+    --get values, conert to this table
+    local updatedMethods = {}
+    for i, val in pairs(newEntries or {}) do
+        local name = genDocs:generateHeading(val)
+        updatedMethods[name] = true
     end
-    for entry, lines in pairs(removedProperties) do
-        if type(entry) == "string" then
-            print(entry.." is old delete manually for now")
-            local hasDocumentation = #lines > 3
+
+    --readd current rows in same order if still existing 
+    local i=1
+    while i <= #currentEntries do
+        local methodInfo = currentEntries[i]
+        local name = methodInfo.entry[1] 
+        if updatedMethods[name] ~= nil then
+            updatedMethods[name] = false --not nil cause there can be duplicates
+            table.remove(currentEntries, i)
+            local info = methodInfo
+            table.insert(finalMethods, info)
+        else
+            i = i + 1
         end
     end
 
-    file:close()
+    --highlight remaining tableElements as deleted or jsut delete if no info
+    for i, methodInfo in ipairs(currentEntries) do
+        local lines = methodInfo.entry
+        local header = lines[1]
+        local hasDocumentation = #lines > 2 or (lines[2] and lines[2] ~= "") --actually should also check if lines are just empty here
+        if (not hasDocumentation) then
+            --print(name, header.." is old, deleted")
+        else
+            print(name, header.." is old but has documentation, delete manually")
+            table.insert(finalMethods, methodInfo)
+        end
+    end
+
+    --add remaing (new) updatedRows in correct order (sorted by keys)
+    local tkeys = {}
+    for k in pairs(newEntries or {}) do table.insert(tkeys, k) end
+    table.sort(tkeys)
+    for _, k in ipairs(tkeys) do
+        local v = newEntries[k]
+        local header = genDocs:generateHeading(v)
+        if (updatedMethods[header]) then
+            local entry = {header , ""}
+            table.insert(finalMethods, {entry = entry})
+        end
+    end
+
+    return finalMethods
 end
 
 function genDocs:generateEnumFile(name, values)
@@ -223,21 +277,67 @@ function genDocs:generateEnumFile(name, values)
         genDocs:addFrontMatter(name, fileW)
         fileW:close()
     end
-    local lines = self:getLines(filename)
-    local file = io.open(filename, "a")
+    --get current written values
+    local intro, currentRows = genDocs:getMDTable(filename)
+    local finalRows = {}
 
-    --only add if missing
-    local function addLine(line)
-        if lines[line] then return end
+    --get values, conert to this table
+    local updatedRowsKeys = {}
+    for i, val in pairs(values) do
+        updatedRowsKeys[val] = true
+    end
+
+    --readd current rows in same order if still existing 
+    local i=1
+    while i <= #currentRows do
+        local row = currentRows[i]
+        local rowEnum = row[1] 
+        if updatedRowsKeys[rowEnum] then
+            updatedRowsKeys[rowEnum] = nil
+            table.remove(currentRows, i)
+            local info = row
+            table.insert(finalRows, info)
+        else
+            i = i + 1
+        end
+    end
+
+    --highlight remaining tableElements as deleted or jsut delete if no info
+    for i, row in ipairs(currentRows) do
+        local rowTitle = row[1]
+        local rowDesc = row[2]
+        if (rowDesc == "") then
+            print(name, rowTitle.." is old, deleted")
+        else
+            print(name, rowTitle.." is old but has documentation, delete manually")
+            table.insert(finalRows, row)
+        end
+    end
+
+    --add remaing (new) updatedRows in correct order (sorted by keys)
+    local tkeys = {}
+    for k in pairs(values) do table.insert(tkeys, k) end
+    table.sort(tkeys)
+    for _, k in ipairs(tkeys) do
+        local v = values[k]
+        if (updatedRowsKeys[v]) then
+            local info = {v, ""}
+            table.insert(finalRows, info)
+        end
+    end
+
+    --write all lines
+    local file = io.open(filename, "w")
+    for i, line in ipairs(intro) do
         file:write(line, "\n")
     end
 
-    addLine("## Properties\n")
+    file:write("## Properties\n\n")
 
-    addLine("| Name | Description |")
-    addLine("| - | - |")
-    for i,val in pairs(values) do
-        addLine("| "..val.." |  |")
+    file:write("| Name | Description |", "\n")
+    file:write("| - | - |", "\n")
+    for i,info in ipairs(finalRows) do
+        file:write("| "..info[1].." | "..info[2].." |", "\n")
     end
 
     file:close()
@@ -247,7 +347,7 @@ end
 --https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-frontmatter
 function genDocs:addFrontMatter(filename, fileWrite)
     local title = genDocs:firstToUpper(filename)
-    local id = genDocs:firstToLower(filename)
+    local id = genDocs:firstToUpper(filename)
     local frontMatter = {
         "---",
         "title: "..title,
@@ -256,6 +356,38 @@ function genDocs:addFrontMatter(filename, fileWrite)
     }
     local str = table.concat(frontMatter, "\n") .. "\n\n"
     fileWrite:write(str)
+end
+
+--get markdown table and other stuff in document
+function genDocs:getMDTable(filename)
+    local intro = {}
+    local mdTable = {}
+
+    local addingIntro = true
+    local addingTable = false
+
+    local lines = genDocs:getLines(filename)
+    for i,line in ipairs(lines) do
+        --group by headers
+        if genDocs:stringStartsWith(line, "## ") then
+            addingIntro = false
+        elseif genDocs:stringStartsWith(line, "| - | - |") then
+            addingTable = true
+        else
+            if addingIntro then
+                table.insert(intro, line)                
+            elseif addingTable then
+                --| Name | Desc |
+                --two words between these brackets with optional spaces
+                local  _, _, key, desc = string.find(line, "|%s*(%S-)%s*|%s*(.-)%s*|")
+                assert(key, "key on line: '"..line.."' not found. Does the table rows match this format? | NameNoSpace | Desc about name |")
+                local info = {key, desc}
+                table.insert(mdTable, info)                
+            end
+        end
+    end
+
+    return intro, mdTable
 end
 
 --class file sections with header body pairs
@@ -274,8 +406,7 @@ function genDocs:getSections(filename)
 
     local function addEntry(line)
         if entryName then
-            currentGroup[entryName] = entry
-            table.insert(currentGroup, {name = entryName, entry = entry})
+            table.insert(currentGroup, {entry = entry})
         end
         entryName = line
         entry = {}
@@ -290,6 +421,10 @@ function genDocs:getSections(filename)
         if genDocs:stringStartsWith(line, "## ") then
             addEntry(line)
             iCurrentGroup = iCurrentGroup + 1
+            if (iCurrentGroup == 2 and genDocs:stringStartsWith(line, "## List of Properties")) then
+                --no methods, so skip
+                iCurrentGroup = iCurrentGroup + 1
+            end
             currentGroup = groups[iCurrentGroup]
             entryName = nil
             entry = {}
@@ -302,28 +437,98 @@ function genDocs:getSections(filename)
     return intro, methods, properties
 end
 
+function genDocs:generateHeading(name)
+    local name = genDocs:cleanUpName(name)
+    local id = genDocs:getHeadingID(name)
+
+    --add link if this is a class
+    --[[
+    name = name:gsub("%(?(%S+)", function(word) 
+        print(word, _Bindings.Classes[word])
+        if _Bindings.Classes[word] then
+            word = "["..word.."](.\\"..word..".mdx)" 
+            print(word)
+        end
+        return word
+    end)
+    ]]
+
+    return "### "..name.." "..id
+end
+
+-- i.e. Angle(float, float) -> {#Angle-float-float}
+function genDocs:getHeadingID(heading)
+    heading = heading:gsub("[(]", " ") --space instead of opening braket
+    heading = heading:gsub("[%c%p]", "") --remove control chasrs
+    heading = heading:gsub("^%s*(.-)%s*$", "%1") --trim
+    heading = heading:gsub("%s+", "-") --replace spaces with lines
+    return "{#"..heading.."}"
+end
 
 function genDocs:cleanUpName(name)
-    --local UIItem = "<classae::core::UIItem,classstd::allocator<classae::core::UIItem> >"
     local table = "basic_table_core<0,classsol::basic_reference<0> >"
     local object = "basic_object<classsol::basic_reference<0> >"
-    local int8 = "uint8_t"
-    local int16 = "int16_t"
-    local uint16 = "uint16_t"
-    local int32 = "int32_t"
-    local uint32 = "uint32_t"
-    local int64 = "int64_t"
-    local uint64 = "uint64_t"
+    local unordered_map = "unordered_map<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>,classrttr::type,structstd::hash<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>>,structstd::equal_to<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>>,classstd::allocator<structstd::pair<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>const,classrttr::type>> >"
+    local unordered_set = "unordered_set<classrttr::type,structstd::hash<classrttr::type>,structstd::equal_to<classrttr::type>,classstd::allocator<classrttr::type> >"
+    local reference_wrapper = "reference_wrapper<classstd::unordered_map<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>,classrttr::type,structstd::hash<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>>,structstd::equal_to<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>>,classstd::allocator<structstd::pair<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>const,classrttr::type>>> >"
+    local tableObjects = "vector<classstd::shared_ptr<classae::scene::Object>,classstd::allocator<classstd::shared_ptr<classae::scene::Object>> >"
+    local tableObjects2 = "vector<classstd::Object,classstd::allocator<classstd::Object> >"
+    local unknown = "unordered_map<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>,classrttr::variant,structstd::hash<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>>,structstd::equal_to<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>>,classstd::allocator<structstd::pair<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>const,classrttr::variant>> >"
+    local unknown2 = "map<enumae::graphics::IShader::Type,classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>,structstd::less<enumae::graphics::IShader::Type>,classstd::allocator<structstd::pair<enumae::graphics::IShader::Typeconst,classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>>> >"
+    local u3 = "unordered_map<unsigned__int64,classae::studio::ConnectionInfo,structstd::hash<unsigned__int64>,structstd::equal_to<unsigned__int64>,classstd::allocator<structstd::pair<unsigned__int64const,classae::studio::ConnectionInfo>> >"
+    local u4 = "unordered_map<unsigned__int64,classae::studio::NetworkStat,structstd::hash<unsigned__int64>,structstd::equal_to<unsigned__int64>,classstd::allocator<structstd::pair<unsigned__int64const,classae::studio::NetworkStat>> >"
+    local u5 = "vector<classae::core::UIItem%*,classstd::allocator<classae::core::UIItem%*> >"
 
-    name = string.gsub(name, table, "table")
-    name = string.gsub(name, object, "table")
-    name = string.gsub(name, int8, "int")
-    name = string.gsub(name, int16, "int")
-    name = string.gsub(name, uint16, "int")
-    name = string.gsub(name, int32, "int")
-    name = string.gsub(name, uint32, "int")
-    name = string.gsub(name, int64, "int")
-    name = string.gsub(name, uint64, "int")
+    --this works inccorectly finding a match that is too short when there is a longer match
+    --TODO sort by key length
+    local replacements = {
+        {"uint8_t", "int"},
+        {"uint16_t", "int"},
+        {"uint32_t", "int"},
+        {"uint64_t", "int"},
+        {"int16_t", "int"},
+        {"int32_t", "int"},
+        {"int64_t", "int"},
+        {"basic_table_core<0,classsol::basic_reference<0> >", "table"},
+        {"basic_object<classsol::basic_reference<0> >", "userdata"}, --??this could be many things
+        {"shared_ptr<classae::scene::Object>", "Object"},
+        {tableObjects, "table"},--table of Objects
+        {tableObjects2, "table"},
+        {"shared_ptr<structae::scene::LuaVoxelDB>", "VoxelDB"},
+        {"shared_ptr<classae::lighting::LightingUpdate>", "LightingUpdate"},
+        {"shared_ptr<classae::scene::SystemTransform>", "userdata"}, --??? no idea what this is
+        {"shared_ptr<classae::scene::SystemMeshRender>", "MeshRender"},
+        {"shared_ptr<classae::scene::SystemMeshData>", "MeshData"},
+        
+        ---idk what these are??? need better names relevant for lua 
+        {unordered_map, "userdata"},
+        {unordered_set, "userdata"},
+        {reference_wrapper, "userdata"},
+        {unknown, "userdata"},
+        {unknown2, "userdata"},
+        {u3, "userdata"},
+        {u4, "userdata"},
+        {u5, "userdata"}, --list of UIItems?
+        {"Res<classae::renderer::Material2>", "userdata"}, ---?? is this material
+        {"vector<classae::core::UIItem,classstd::allocator<classae::core::UIItem> >", "userdata"},
+        {"vec2", "Vec2"},
+        {"vec3", "Vec3"},
+        {"vec4", "Vec4"},
+        {"V2i", "Vec2i"},
+        {"V3i", "Vec3i"},
+        {"V4i", "Vec4i"},
+        {"quat", "Quat"},
+    }
+
+    --name = name:gsub("(%S+),?", replacments)
+    for i, repl in ipairs(replacements) do
+        name = name:gsub(repl[1], repl[2])
+    end
+    
+    name = name:gsub(" %(", "(") --remove space beofre bracket opening
+    name = name:gsub(", this_state%)", ")") --remove this_state
+    name = name:gsub("%(this_state%)", "()") --remove this_state
+    
     return name
 end
 
@@ -332,7 +537,6 @@ function genDocs:file_exists(name)
    if f~=nil then io.close(f) return true else return false end
 end
 
---later get lines with and documentation below to keep and move that together, to be able to update order, or delete documentation of delted function
 function genDocs:getLines(filename)
     local lines = {}
     -- read the lines in table 'lines'

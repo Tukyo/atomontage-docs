@@ -1,0 +1,80 @@
+---
+title: ScriptComponent
+id: ScriptComponent
+---
+
+See also: [Component](Component)
+
+All script methods are optional.
+
+| Function | Description |
+| - | - |
+| `Attach(self)` | Called on script instance initialization. Usually after changing `.instance` or `.file` property |
+| `Start(self)` | Called once before the first Update |
+| `Update(self, dt, t)` | Called if updates are enabled (they are enabled automatically if attached script has this method). dt is frame time delta in seconds and t is application time in seconds. |
+| `Detach(self)` | Called on script release. Usually on object destruction or to release old script instance during change of `.instance` or `.file` property |
+
+
+```lua title="component.lua"
+local script = {}
+
+function script:Attach()
+   print("attached") 
+end
+
+function script:Detach()
+   print("detached") 
+end
+
+function script:Start()
+   print("starting") 
+end
+
+function script:Update(dt, t)
+   
+end
+
+return script
+```
+
+
+You can also set script directly as lua table assigning it to `.instance` property. For example:
+
+```lua
+function SpawnScriptObject()
+	local obj = Scene:CreateObject()
+	obj.name = "LocalScript"
+
+	local sc = obj:AddComponent('Script')
+sc.instance = {
+		n=10,
+		Update=function(self)
+			print("Self destruct in "..self.n)
+			self.n = self.n - 1
+			if self.n == 0 then
+				Scene:DestroyObject(self.component.object)
+			end
+		end
+	}	
+	return obj	
+end
+```
+
+## List of Methods
+
+### ScriptComponent() {#ScriptComponent}
+
+## List of Properties
+
+### string type {#string-type}
+
+### Object object {#Object-object}
+
+### string fileName {#string-fileName}
+
+### bool isValid {#bool-isValid}
+
+### table instance {#table-instance}
+
+### string file {#string-file}
+
