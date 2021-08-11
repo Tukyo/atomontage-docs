@@ -1,6 +1,12 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f05714fa-b001-4622-9518-e5bc5f44936e/deploy-status)](https://app.netlify.com/sites/atomontagedocs/deploys)
 
-# Website
+# Atomontage Docs
+
+http://docs.atomontage.com/
+
+Atomontage documentation website and generator for API doc pages and emmy lua annotations for the [Atomontage VS Code extension](https://github.com/AtomontageInc/vscode-atomontage-lua).
+
+Pull requests for documentation edits are welcome.
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 

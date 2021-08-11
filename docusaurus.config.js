@@ -18,6 +18,7 @@ module.exports = {
     },
     navbar: {
       title: 'Atomontage Documentation',
+      hideOnScroll: false,
       logo: {
         alt: 'Atomontage Logo',
         src: 'img/logo_large_light_bg.png',

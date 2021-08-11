@@ -11,7 +11,10 @@ TODO
 * categorize stuff into subfolders? (and make gen work wiht it) /internal /editor
 ]]
 
-print("start")
+
+
+local util = require("generator.util")
+local genEmmy = require("generator.genEmmy")
 local serpent = require("generator.serpent")
 local genDocs = {}
 
@@ -22,15 +25,6 @@ f:close()
 local fun, err = load(bindingsSerialized)
 if err then error(err) end
 local _Bindings = fun()
-
---[[
-local name = "bal (string, string, string)"
-name = name:gsub("%s?[%P]*", function(word) 
-    print(word)
-    return word.."a"
-end)
-print("res"..name)
-]]
 
 local testBindings = {
     ["Classes"] = {
@@ -113,6 +107,8 @@ local testBindings = {
 local docsLocation = "docs\\90-api\\"
 local enumsLocation = "docs\\90-api\\enums\\"
 
+local fileEmmyLua = genEmmy:createFile()
+
 function genDocs:gen()
     --make directory
     os.execute( "mkdir "..docsLocation )
@@ -138,6 +134,8 @@ function genDocs:gen()
         ["vec3"] = true,
         ["vec4"] = true,
         ["Camera"] = true,
+        ["Config"] = true,
+        ["ConfigMap"] = true,
         ["Component"] = true,
         ["Client"] = true,
         ["Input"] = true,
@@ -154,11 +152,18 @@ function genDocs:gen()
         ["VoxelDB"] = true,
         ["VoxelData"] = true,
         ["VoxelRender"] = true,
+        ["Angle"] = true,
+        ["Mat4"] = true,
+        ["Frustum"] = true,
+        ["Object3D"] = true,
+        ["LightingUpdate"] = true,
+        ["RealtimeLightingInfo"] = true,
+        ["UIItem"] = true,
     }
 
     for name,class in pairs(_Bindings.Classes) do
         if (show[name]) then
-            local name = genDocs:firstToLower(name)
+            local name = util:firstToLower(name)
             --name = name:gsub("::", " ") --remove this
             if not string.find(name, "::") then --just skip these weird internal things for now
                 genDocs:generateClassFile(name, class)
@@ -167,17 +172,17 @@ function genDocs:gen()
     end
 
     for name,values in pairs(_Bindings.Enums) do
-        local name = genDocs:firstToLower(name)
+        local name = util:firstToLower(name)
         name = name:gsub("::", " ") --remove this?
         genDocs:generateEnumFile(name, values)
     end
 
-    print("done")
+    fileEmmyLua:close()
 end
 
 function genDocs:generateClassFile(name, class)
     local filename = docsLocation..name..".mdx"
-    if (not genDocs:file_exists(filename)) then
+    if (not util:file_exists(filename)) then
         local fileW = io.open(filename, "w") --add the file if it was missing
         genDocs:addFrontMatter(name, fileW)
         fileW:close()
@@ -187,6 +192,9 @@ function genDocs:generateClassFile(name, class)
     local intro, currentMethods, currentProperties = self:getSections(filename)
     local finalMethods = self:getFinalEntries(currentMethods, class.Methods, name)
     local finalProperties = self:getFinalEntries(currentProperties, class.Properties, name)
+
+    --use final entries for emmy generator
+    genEmmy:generateEmmyLua(fileEmmyLua, name, intro, finalMethods, finalProperties)
     
     --write to file
     local file = io.open(filename, "w")
@@ -214,6 +222,7 @@ function genDocs:generateClassFile(name, class)
 
     file:close()
 end
+
 
 --return final entries from current entires and new entries 
 function genDocs:getFinalEntries(currentEntries, newEntries, name)
@@ -245,7 +254,7 @@ function genDocs:getFinalEntries(currentEntries, newEntries, name)
     for i, methodInfo in ipairs(currentEntries) do
         local lines = methodInfo.entry
         local header = lines[1]
-        local hasDocumentation = #lines > 2 or (lines[2] and lines[2] ~= "") --actually should also check if lines are just empty here
+        local hasDocumentation = util:hasDocumentation(lines)
         if (not hasDocumentation) then
             --print(name, header.." is old, deleted")
         else
@@ -272,7 +281,7 @@ end
 
 function genDocs:generateEnumFile(name, values)
     local filename = enumsLocation..name..".mdx"
-    if (not genDocs:file_exists(filename)) then
+    if (not util:file_exists(filename)) then
         local fileW = io.open(filename, "w") --add the file if it was missing
         genDocs:addFrontMatter(name, fileW)
         fileW:close()
@@ -346,8 +355,8 @@ end
 
 --https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs#markdown-frontmatter
 function genDocs:addFrontMatter(filename, fileWrite)
-    local title = genDocs:firstToUpper(filename)
-    local id = genDocs:firstToUpper(filename)
+    local title = util:firstToUpper(filename)
+    local id = util:firstToUpper(filename)
     local frontMatter = {
         "---",
         "title: "..title,
@@ -366,12 +375,12 @@ function genDocs:getMDTable(filename)
     local addingIntro = true
     local addingTable = false
 
-    local lines = genDocs:getLines(filename)
+    local lines = util:getLines(filename)
     for i,line in ipairs(lines) do
         --group by headers
-        if genDocs:stringStartsWith(line, "## ") then
+        if util:stringStartsWith(line, "## ") then
             addingIntro = false
-        elseif genDocs:stringStartsWith(line, "| - | - |") then
+        elseif util:stringStartsWith(line, "| - | - |") then
             addingTable = true
         else
             if addingIntro then
@@ -402,7 +411,7 @@ function genDocs:getSections(filename)
 
     local entryName
     local entry = currentGroup --first is just one entry
-    local lines = genDocs:getLines(filename)
+    local lines = util:getLines(filename)
 
     local function addEntry(line)
         if entryName then
@@ -414,14 +423,14 @@ function genDocs:getSections(filename)
 
     for i,line in ipairs(lines) do
         --group by headers
-        if genDocs:stringStartsWith(line, "### ") then
+        if util:stringStartsWith(line, "### ") then
             addEntry(line)
         end
         --group by sections
-        if genDocs:stringStartsWith(line, "## ") then
+        if util:stringStartsWith(line, "## ") then
             addEntry(line)
             iCurrentGroup = iCurrentGroup + 1
-            if (iCurrentGroup == 2 and genDocs:stringStartsWith(line, "## List of Properties")) then
+            if (iCurrentGroup == 2 and util:stringStartsWith(line, "## List of Properties")) then
                 --no methods, so skip
                 iCurrentGroup = iCurrentGroup + 1
             end
@@ -453,7 +462,7 @@ function genDocs:generateHeading(name)
     end)
     ]]
 
-    return "### "..name.." "..id
+    return "### "..name.." {#"..id.."}"
 end
 
 -- i.e. Angle(float, float) -> {#Angle-float-float}
@@ -462,7 +471,7 @@ function genDocs:getHeadingID(heading)
     heading = heading:gsub("[%c%p]", "") --remove control chasrs
     heading = heading:gsub("^%s*(.-)%s*$", "%1") --trim
     heading = heading:gsub("%s+", "-") --replace spaces with lines
-    return "{#"..heading.."}"
+    return heading
 end
 
 function genDocs:cleanUpName(name)
@@ -518,6 +527,11 @@ function genDocs:cleanUpName(name)
         {"V3i", "Vec3i"},
         {"V4i", "Vec4i"},
         {"quat", "Quat"},
+        {"ConfigMap", "Config"}, --the whole class has wrong name, not fixed by this
+        {"Vector_int", "userdata"},
+        {"Vector_float", "userdata"},
+        {"vec<3,bool,0>", "userdata"},
+        {"vector<structae::core::Image::MipMapImage,classstd::allocator<structae::core::Image::MipMapImage> >", "userdata"}
     }
 
     --name = name:gsub("(%S+),?", replacments)
@@ -532,41 +546,4 @@ function genDocs:cleanUpName(name)
     return name
 end
 
-function genDocs:file_exists(name)
-   local f=io.open(name,"r")
-   if f~=nil then io.close(f) return true else return false end
-end
-
-function genDocs:getLines(filename)
-    local lines = {}
-    -- read the lines in table 'lines'
-    for line in io.lines(filename) do
-        table.insert(lines, line)
-        lines[line] = true
-    end
-    return lines
-end
-
-function genDocs:firstToUpper(str)
-    return (str:gsub("^%l", string.upper))
-end
-
-function genDocs:firstToLower(str)
-    return (str:gsub("^%a", string.lower))
-end
-
-function genDocs:stringStartsWith(str, start)
-   return str:sub(1, #start) == start
-end
-
-function table.clone(tab, seen)
-  if type(tab) ~= 'table' then return tab end
-  if seen and seen[tab] then return seen[tab] end
-  local s = seen or {}
-  local res = setmetatable({}, getmetatable(tab))
-  s[tab] = res
-  for k, v in pairs(tab) do res[table.clone(k, s)] = table.clone(v, s) end
-  return res
-end
-
-genDocs:gen()
+return genDocs
