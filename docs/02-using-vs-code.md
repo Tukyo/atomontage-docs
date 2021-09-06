@@ -2,6 +2,10 @@
 
 [VS Code](https://code.visualstudio.com/) is our recommended tool for Lua programming in Atomontage. It provides API autocompletions and Lua [IntelliSense](https://code.visualstudio.com/docs/editor/intellisense) through the official Atomontage extension.
 
+## Set VS Code as your Lua editor
+Open the Lua window (`Ctrl + L`) and specify the path to your `Code.exe` of your VS Code install.
+![Set the Environment](/img/setVSCode.PNG) 
+
 ## Setting up your workspace
 
 Set up a [multi-root workspace](https://code.visualstudio.com/docs/editor/multi-root-workspaces) 

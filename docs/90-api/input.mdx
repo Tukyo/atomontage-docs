@@ -51,18 +51,6 @@ id: Input
 
 ### int MouseWheel() {#int-MouseWheel}
 
-### Vec2 MousePos() {#Vec2-MousePos}
-
-### Vec2 MousePosLast() {#Vec2-MousePosLast}
-
-### Vec2 MouseMove() {#Vec2-MouseMove}
-
-### Vec2 MousePosRel() {#Vec2-MousePosRel}
-
-### Vec2 MousePosRelLast() {#Vec2-MousePosRelLast}
-
-### Vec2 MouseMoveRel() {#Vec2-MouseMoveRel}
-
 ### userdata GetMouseButtonsDown() {#userdata-GetMouseButtonsDown}
 
 ### userdata GetMouseButtons() {#userdata-GetMouseButtons}
@@ -73,23 +61,17 @@ id: Input
 
 ### float GestureRotate() {#float-GestureRotate}
 
-### Vec2 GestureMove() {#Vec2-GestureMove}
-
 ### int NumFingers() {#int-NumFingers}
 
 ### bool FingerDown(int) {#bool-FingerDown-int}
 
 ### bool FingerUp(int) {#bool-FingerUp-int}
 
-### Vec2 FingerPos(int) {#Vec2-FingerPos-int}
-
 ### bool VrBtnDown(int, ControllerButtons) {#bool-VrBtnDown-int-ControllerButtons}
 
 ### float VrHandTrigger(int) {#float-VrHandTrigger-int}
 
 ### float VrIndexTrigger(int) {#float-VrIndexTrigger-int}
-
-### Vec2 VrThumbStick(int) {#Vec2-VrThumbStick-int}
 
 ### string GetJoyBtnName(int) {#string-GetJoyBtnName-int}
 
@@ -112,4 +94,26 @@ id: Input
 ### table GetInputEvents(Input) {#table-GetInputEvents-Input}
 
 ### userdata Fingers() {#userdata-Fingers}
+
+### bool GetRelativeMouseMode() {#bool-GetRelativeMouseMode}
+
+### void SetRelativeMouseMode(bool) {#void-SetRelativeMouseMode-bool}
+
+### Vec2 MousePos() {#Vec2-MousePos}
+
+### Vec2 MousePosLast() {#Vec2-MousePosLast}
+
+### Vec2 MouseMove() {#Vec2-MouseMove}
+
+### Vec2 MousePosRel() {#Vec2-MousePosRel}
+
+### Vec2 MousePosRelLast() {#Vec2-MousePosRelLast}
+
+### Vec2 MouseMoveRel() {#Vec2-MouseMoveRel}
+
+### Vec2 GestureMove() {#Vec2-GestureMove}
+
+### Vec2 FingerPos(int) {#Vec2-FingerPos-int}
+
+### Vec2 VrThumbStick(int) {#Vec2-VrThumbStick-int}
 

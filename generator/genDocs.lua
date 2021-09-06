@@ -18,6 +18,9 @@ local genEmmy = require("generator.genEmmy")
 local serpent = require("generator.serpent")
 local genDocs = {}
 
+local docsLocation = "docs\\90-api\\"
+local enumsLocation = "docs\\90-api\\enums\\"
+
 local f = io.open("generator/serverBindingsNew.txt", "r")
 local bindingsSerialized = f:read("*all")
 f:close()
@@ -65,7 +68,7 @@ local testBindings = {
                 "void SendMessages (basic_table_core<0,classsol::basic_reference<0> >)",
                 "basic_table_core<0,classsol::basic_reference<0> > ReceiveMessages (this_state)",
                 "string UIItemUpdate (uint32_t, UIItem, basic_object<classsol::basic_reference<0> >)",
-                "void OpenKeyboardShortcutInput (string)",
+                "void OpenKeyboardShortcutInput (string key)",
                 "void ToggleUICreatorWindow ()",
                 "Camera GetCamera ()",
                 "bool IsClient ()",
@@ -102,10 +105,55 @@ local testBindings = {
         }
     }
 }
---_Bindings = testBindings
 
-local docsLocation = "docs\\90-api\\"
-local enumsLocation = "docs\\90-api\\enums\\"
+local testBindings2 = {
+    ["Classes"] = {
+        ["Client"] = {
+            ["Methods"] = {
+                "void SendMessage (basic_table_core<0,classsol::basic_reference<0> >)",
+                "void SendMessages (basic_table_core<0,classsol::basic_reference<0> >)",
+                "basic_table_core<0,classsol::basic_reference<0> > ReceiveMessages (this_state)",
+                "string UIItemUpdate (uint32_t, UIItem, basic_object<classsol::basic_reference<0> >)",
+                "void OpenKeyboardShortcutInput (string key)",
+                "void ToggleUICreatorWindow ()",
+                "Camera GetCamera ()",
+                "bool IsClient ()",
+                "bool IsServer ()",
+            }
+        },
+        ["Camera"] = {
+            ["Methods"] = {
+                "Camera (string)",
+                "Transformation GetTransformation (Object3D)",
+                "void SetTransformation (Transformation)",
+            },
+            ["Properties"] = {
+                "Transformation transformation",
+                "Transformation transform"
+            }
+        }
+    },
+    ["Enums"] = {
+        ["AttachmentFlags"] ={
+            [2] = "Depth",
+            [4] = "DepthAndStencil",
+            [8] = "Color0",
+        },
+        ["BlendFactor"] = {
+            "Zero",
+            "SrcColor",
+            "DstColor",
+            "OneMinusDstColor",
+            "SrcAlpha",
+            "OneMinusSrcAlpha",
+            "DstAlpha",
+            "OneMinusDstAlpha",
+        }
+    }
+}
+--_Bindings = testBindings2
+
+
 
 local fileEmmyLua = genEmmy:createFile()
 
@@ -125,11 +173,32 @@ function genDocs:gen()
     file:write('{ "label": "Enums", "position": 1 }')
     file:close()
 
+    --get all files
+    local filesClasses = util:getFiles(docsLocation)
+    local filesEnums = util:getFiles(enumsLocation)
+    local fileNamesClasses = {}
+    local fileNamesEnums = {}
+    for i, k in ipairs(filesClasses) do
+        local  _, _, className = string.find(k, "(.+).mdx")
+        if className  then
+            fileNamesClasses[className] = true
+        end
+    end
+    for i, k in ipairs(filesEnums) do
+        local  _, _, className = string.find(k, "(.+).mdx")
+        if className  then
+            fileNamesEnums[className] = true
+        end
+    end
+
     --filter out all the other weird stuff
     local show = {
         ["Quat"] = true,
         ["V2i"] = true,
         ["V3i"] = true,
+        ["V2f"] = true,
+        ["V3f"] = true,
+        ["V4f"] = true,
         ["vec2"] = true,
         ["vec3"] = true,
         ["vec4"] = true,
@@ -159,22 +228,54 @@ function genDocs:gen()
         ["LightingUpdate"] = true,
         ["RealtimeLightingInfo"] = true,
         ["UIItem"] = true,
+        ["VoxelInspectData"] = true,
+        ["Rotation"] = true,
+        ["CommandLine"] = true,
+        ["ResourceReference"] = true,
     }
 
-    for name,class in pairs(_Bindings.Classes) do
+    --itterate sorted by ABC
+    local tkeys = {}
+    for k in pairs(_Bindings.Classes) do table.insert(tkeys, k) end
+    table.sort(tkeys)
+    for _, name in ipairs(tkeys) do
+        local class = _Bindings.Classes[name]
         if (show[name]) then
             local name = util:firstToLower(name)
-            --name = name:gsub("::", " ") --remove this
+            --name = name:gsub("::", " ") --remove this?
             if not string.find(name, "::") then --just skip these weird internal things for now
+                name = genEmmy:cleanUpClassName(name)
+                fileNamesClasses[name] = nil
                 genDocs:generateClassFile(name, class)
             end
         end
     end
 
-    for name,values in pairs(_Bindings.Enums) do
+    --itterate sorted by ABC
+    local tkeys = {}
+    for k in pairs(_Bindings.Enums) do table.insert(tkeys, k) end
+    table.sort(tkeys)
+    for _, name in ipairs(tkeys) do
+        local values = _Bindings.Enums[name]
         local name = util:firstToLower(name)
-        name = name:gsub("::", " ") --remove this?
-        genDocs:generateEnumFile(name, values)
+        --name = name:gsub("::", " ") --remove this?
+        if not string.find(name, "::") then --just skip these weird internal things for now
+            fileNamesEnums[name] = nil
+            genDocs:generateEnumFile(name, values)
+        end
+    end
+
+    for key, value in pairs(fileNamesClasses) do
+        if value then
+            os.remove(docsLocation..key..".mdx")
+            print("Old class file:", key..".mdx, deleted")
+        end
+    end
+    for key, value in pairs(fileNamesEnums) do
+        if value then
+            os.remove(enumsLocation..key..".mdx")
+            print("Old class file:", key..".mdx, deleted")
+        end
     end
 
     fileEmmyLua:close()
@@ -226,11 +327,12 @@ end
 
 --return final entries from current entires and new entries 
 function genDocs:getFinalEntries(currentEntries, newEntries, name)
-    local finalMethods = {}
+    local finalEntries = {}
+    newEntries = newEntries or {}
     
     --get values, conert to this table
     local updatedMethods = {}
-    for i, val in pairs(newEntries or {}) do
+    for i, val in pairs(newEntries) do
         local name = genDocs:generateHeading(val)
         updatedMethods[name] = true
     end
@@ -244,7 +346,7 @@ function genDocs:getFinalEntries(currentEntries, newEntries, name)
             updatedMethods[name] = false --not nil cause there can be duplicates
             table.remove(currentEntries, i)
             local info = methodInfo
-            table.insert(finalMethods, info)
+            table.insert(finalEntries, info)
         else
             i = i + 1
         end
@@ -259,24 +361,24 @@ function genDocs:getFinalEntries(currentEntries, newEntries, name)
             --print(name, header.." is old, deleted")
         else
             print(name, header.." is old but has documentation, delete manually")
-            table.insert(finalMethods, methodInfo)
+            table.insert(finalEntries, methodInfo)
         end
     end
 
-    --add remaing (new) updatedRows in correct order (sorted by keys)
+    --add remaing (new) updatedRows in correct order (sorted by keys ABC)
     local tkeys = {}
-    for k in pairs(newEntries or {}) do table.insert(tkeys, k) end
+    for k in pairs(newEntries) do table.insert(tkeys, k) end
     table.sort(tkeys)
     for _, k in ipairs(tkeys) do
         local v = newEntries[k]
         local header = genDocs:generateHeading(v)
         if (updatedMethods[header]) then
             local entry = {header , ""}
-            table.insert(finalMethods, {entry = entry})
+            table.insert(finalEntries, {entry = entry})
         end
     end
 
-    return finalMethods
+    return finalEntries
 end
 
 function genDocs:generateEnumFile(name, values)
@@ -335,6 +437,9 @@ function genDocs:generateEnumFile(name, values)
         end
     end
 
+    --use final entries for emmy generator
+    genEmmy:addEnum(fileEmmyLua, name, intro, finalRows)
+
     --write all lines
     local file = io.open(filename, "w")
     for i, line in ipairs(intro) do
@@ -346,7 +451,7 @@ function genDocs:generateEnumFile(name, values)
     file:write("| Name | Description |", "\n")
     file:write("| - | - |", "\n")
     for i,info in ipairs(finalRows) do
-        file:write("| "..info[1].." | "..info[2].." |", "\n")
+        file:write("| ",info[1]," | ",info[2]," |", "\n")
     end
 
     file:close()
@@ -465,6 +570,17 @@ function genDocs:generateHeading(name)
     return "### "..name.." {#"..id.."}"
 end
 
+function genEmmy:cleanUpClassName(name)
+    name = name:gsub("v2i", "vec2i")
+    name = name:gsub("v3i", "vec3i")
+    name = name:gsub("v4i", "vec4i")
+    name = name:gsub("v2f", "vec2")
+    name = name:gsub("v3f", "vec3")
+    name = name:gsub("v4f", "vec4")
+    name = name:gsub("configMap", "config")
+    return name
+end
+
 -- i.e. Angle(float, float) -> {#Angle-float-float}
 function genDocs:getHeadingID(heading)
     heading = heading:gsub("[(]", " ") --space instead of opening braket
@@ -526,12 +642,18 @@ function genDocs:cleanUpName(name)
         {"V2i", "Vec2i"},
         {"V3i", "Vec3i"},
         {"V4i", "Vec4i"},
+        {"V2f", "Vec2"},
+        {"V3f", "Vec3"},
+        {"V4f", "Vec4"},
         {"quat", "Quat"},
         {"ConfigMap", "Config"}, --the whole class has wrong name, not fixed by this
         {"Vector_int", "userdata"},
         {"Vector_float", "userdata"},
         {"vec<3,bool,0>", "userdata"},
-        {"vector<structae::core::Image::MipMapImage,classstd::allocator<structae::core::Image::MipMapImage> >", "userdata"}
+        {"vector<structae::core::Image::MipMapImage,classstd::allocator<structae::core::Image::MipMapImage> >", "userdata"},
+        {"shared_ptr<classae::scene::SystemVoxelData>", "userdata"},
+        {"shared_ptr<classae::scene::SystemVoxelRender>", "userdata"},
+        {"Vector_Vec3", "userdata"},
     }
 
     --name = name:gsub("(%S+),?", replacments)

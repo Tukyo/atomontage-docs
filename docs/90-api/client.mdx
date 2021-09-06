@@ -10,7 +10,39 @@ blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal
 
 ## List of Methods
 
-### void SendMessage(table) {#void-SendMessage-table}
+### table ReceiveMessages() {#table-ReceiveMessages}
+Recieve messages send by server scripts
+
+```lua title="Link messages to actions and do them on recieve"
+-- define your actions for network messages (good example, but user can wrok this out freely)
+net_actions = {}
+net_actions['Del'] = function(msg) Scene:ClearSphere(msg.pos, msg.rad) end
+net_actions[1] = function(msg) Scene:ClearSphere(msg[2], msg[3]) end
+
+-- receive all messages in one call and process them
+for i,msg in ipairs(Client:ReceiveMessages()) do
+    -- process message example:
+    local f = msg.act and net_actions[msg.act]
+    if type(f) == 'function' then
+        f(msg)
+    end
+end
+```
+
+### void ToggleUICreatorWindow() {#void-ToggleUICreatorWindow}
+
+### Camera GetCamera() {#Camera-GetCamera}
+Returns [`Camera`](/api/camera)
+
+### bool IsClient() {#bool-IsClient}
+
+### bool IsServer() {#bool-IsServer}
+
+### Client() {#Client}
+
+### void SendMessage(table message) {#void-SendMessage-table-message}
+
+### void SendMessages(table tableOfMessages) {#void-SendMessages-table-tableOfMessages}
 Send a message to server scripts. The message is a table
 
 ```lua
@@ -37,32 +69,9 @@ table.insert(my_msgs, {act = 'erase'})
 Client:SendMessages(my_msgs)
 ```
 
-### void SendMessages(table) {#void-SendMessages-table}
+### string UIItemUpdate(int actionID, UIItem item, userdata value) {#string-UIItemUpdate-int-actionID-UIItem-item-userdata-value}
 
-### table ReceiveMessages() {#table-ReceiveMessages}
-Recieve messages send by server scripts
-
-```lua title="Link messages to actions and do them on recieve"
--- define your actions for network messages (good example, but user can wrok this out freely)
-net_actions = {}
-net_actions['Del'] = function(msg) Scene:ClearSphere(msg.pos, msg.rad) end
-net_actions[1] = function(msg) Scene:ClearSphere(msg[2], msg[3]) end
-
--- receive all messages in one call and process them
-for i,msg in ipairs(Client:ReceiveMessages()) do
-    -- process message example:
-    local f = msg.act and net_actions[msg.act]
-    if type(f) == 'function' then
-        f(msg)
-    end
-end
-```
-
-### string UIItemUpdate(int, UIItem, userdata) {#string-UIItemUpdate-int-UIItem-userdata}
-
-### void OpenKeyboardShortcutInput(string) {#void-OpenKeyboardShortcutInput-string}
-
-### void ToggleUICreatorWindow() {#void-ToggleUICreatorWindow}
+### void OpenKeyboardShortcutInput(string keyActionID) {#void-OpenKeyboardShortcutInput-string-keyActionID}
 
 ### void ToggleUIStudioSDK() {#void-ToggleUIStudioSDK}
 
@@ -84,33 +93,33 @@ end
 
 ### void LoadDefaultLayout() {#void-LoadDefaultLayout}
 
-### void OpenUIWindow(string) {#void-OpenUIWindow-string}
+### void OpenUIWindow(string windowID) {#void-OpenUIWindow-string-windowID}
 
-### void CloseUIWindow(string) {#void-CloseUIWindow-string}
+### void CloseUIWindow(string windowID) {#void-CloseUIWindow-string-windowID}
 
-### void ToggleUIWindow(string) {#void-ToggleUIWindow-string}
+### void ToggleUIWindow(string windowID) {#void-ToggleUIWindow-string-windowID}
 
-### bool IsWindowOpen(string) {#bool-IsWindowOpen-string}
+### bool IsWindowOpen(string windowID) {#bool-IsWindowOpen-string-windowID}
 
-### void OpenScriptFile(string, int) {#void-OpenScriptFile-string-int}
+### void OpenScriptFile(string filename, int line) {#void-OpenScriptFile-string-filename-int-line}
 
-### void OpenServerScriptFile(string, int) {#void-OpenServerScriptFile-string-int}
+### void OpenServerScriptFile(string filename, int line) {#void-OpenServerScriptFile-string-filename-int-line}
 
-### void OpenZeroBraneStudio(string) {#void-OpenZeroBraneStudio-string}
+### void OpenZeroBraneStudio(string parameters) {#void-OpenZeroBraneStudio-string-parameters}
 
 ### void OpenZeroBraneStudioActions() {#void-OpenZeroBraneStudioActions}
 
-### void SetUIScale(float) {#void-SetUIScale-float}
+### void SetUIScale(float scale) {#void-SetUIScale-float-scale}
 
 ### float GetUIScale() {#float-GetUIScale}
 
 ### bool GetUIScaleAuto() {#bool-GetUIScaleAuto}
 
-### void SetUIScaleAuto(bool) {#void-SetUIScaleAuto-bool}
+### void SetUIScaleAuto(bool autoScale) {#void-SetUIScaleAuto-bool-autoScale}
 
 ### string GetMontageURL() {#string-GetMontageURL}
 
-### void SetMontageURL(string) {#void-SetMontageURL-string}
+### void SetMontageURL(string url) {#void-SetMontageURL-string-url}
 
 ### void LoadMontageByURL() {#void-LoadMontageByURL}
 
@@ -136,6 +145,8 @@ end
 
 ### int GetLogValuesCount() {#int-GetLogValuesCount}
 
+### userdata GetLogValueForPlot(string) {#userdata-GetLogValueForPlot-string}
+
 ### string GetLogStrValue(string) {#string-GetLogStrValue-string}
 
 ### string GetLogStrIValue(int) {#string-GetLogStrIValue-int}
@@ -154,13 +165,11 @@ end
 
 ### float GetFPS() {#float-GetFPS}
 
+### Config GetConfigInputActions() {#Config-GetConfigInputActions}
+
 ### void ConnectToServer(Client) {#void-ConnectToServer-Client}
 
-### void SetConnectAddr(string) {#void-SetConnectAddr-string}
-
-### string GetConnectAddr() {#string-GetConnectAddr}
-
-### bool OpenFolder(string) {#bool-OpenFolder-string}
+### bool OpenFolder(string folder) {#bool-OpenFolder-string-folder}
 
 ### int GetScriptsVersion() {#int-GetScriptsVersion}
 
@@ -168,18 +177,19 @@ end
 
 ### void ResendServerLua() {#void-ResendServerLua}
 
-### bool LuaConsole(Client, bool, bool) {#bool-LuaConsole-Client-bool-bool}
-
-### bool LuaConsole(Client, bool) {#bool-LuaConsole-Client-bool}
+### void ReloadLua() {#void-ReloadLua}
 
 ### void LuaOpenDebugger() {#void-LuaOpenDebugger}
 
-### void LuaEnableDebugging(bool) {#void-LuaEnableDebugging-bool}
+### void LuaEnableDebugging(bool enable) {#void-LuaEnableDebugging-bool-enable}
 
-### Camera GetCamera() {#Camera-GetCamera}
-Returns [`Camera`](/api/camera)
+### void OnLuaLog() {#void-OnLuaLog}
 
-### bool IsContainerEnabledAndVisible(UIItem) {#bool-IsContainerEnabledAndVisible-UIItem}
+### void ScrollToLastestLuaLog() {#void-ScrollToLastestLuaLog}
+
+### userdata GetVisibleWindows() {#userdata-GetVisibleWindows}
+
+### bool IsContainerEnabledAndVisible(UIItem uiItem) {#bool-IsContainerEnabledAndVisible-UIItem-uiItem}
 
 ### ConnectionInfo GetConnectionInfo() {#ConnectionInfo-GetConnectionInfo}
 
@@ -187,27 +197,63 @@ Returns [`Camera`](/api/camera)
 
 ### void Log(string) {#void-Log-string}
 
-### void ServerLog(string, string) {#void-ServerLog-string-string}
+### AmStreamingStats GetVoxelStreamStats() {#AmStreamingStats-GetVoxelStreamStats}
 
-### string GetAppCommandLine(Client) {#string-GetAppCommandLine-Client}
+### void SelectItemInUICreator(UIItem uiItem) {#void-SelectItemInUICreator-UIItem-uiItem}
 
-### AmStreamingStats GetVoxelStreamStats(Client) {#AmStreamingStats-GetVoxelStreamStats-Client}
+### UIItem GetUIItemByUIActionID(int uiActionID) {#UIItem-GetUIItemByUIActionID-int-uiActionID}
 
-### void OnLuaLog() {#void-OnLuaLog}
+### string GetUIActionType(int uiActionID) {#string-GetUIActionType-int-uiActionID}
 
-### bool IsClient() {#bool-IsClient}
+### string GetUIActionScript(int uiActionID) {#string-GetUIActionScript-int-uiActionID}
 
-### bool IsServer() {#bool-IsServer}
+### int GetCurrentUIActionID() {#int-GetCurrentUIActionID}
 
-### void SelectItemInUICreator(UIItem) {#void-SelectItemInUICreator-UIItem}
+### void WriteToScreen(string, Vec2, Vec2, Vec4, int, float) {#void-WriteToScreen-string-Vec2-Vec2-Vec4-int-float}
 
-### UIItem GetUIItemByUIActionID(int) {#UIItem-GetUIItemByUIActionID-int}
+### void CloseApp() {#void-CloseApp}
 
-### string GetUIActionType(int) {#string-GetUIActionType-int}
+### float GetDeltaTime() {#float-GetDeltaTime}
 
-### userdata GetVisibleWindows() {#userdata-GetVisibleWindows}
+### float GetTotalTime() {#float-GetTotalTime}
 
-### userdata GetLogValueForPlot(string) {#userdata-GetLogValueForPlot-string}
+### Camera GetMainCamera() {#Camera-GetMainCamera}
 
-### Config GetConfigInputActions() {#Config-GetConfigInputActions}
+### string GetEULA() {#string-GetEULA}
+
+### Vec2 GetViewportSize() {#Vec2-GetViewportSize}
+
+### CommandLine GetCommandLine() {#CommandLine-GetCommandLine}
+
+### Vec4 GetBGColor() {#Vec4-GetBGColor}
+
+### void SetBGColor(Vec4) {#void-SetBGColor-Vec4}
+
+### bool GetVREnabled() {#bool-GetVREnabled}
+
+### void SetVREnabled(bool, string) {#void-SetVREnabled-bool-string}
+
+### void ToggleVREnabled(string) {#void-ToggleVREnabled-string}
+
+### void TriggerCrash() {#void-TriggerCrash}
+
+### void TriggerException() {#void-TriggerException}
+
+### void TriggerCriticalError() {#void-TriggerCriticalError}
+
+### AssetManager GetResourceManScene() {#AssetManager-GetResourceManScene}
+
+### AssetManager GetResourceManUI() {#AssetManager-GetResourceManUI}
+
+### AssetManager GetResourceManSettings() {#AssetManager-GetResourceManSettings}
+
+### void ToggleChannelRendering() {#void-ToggleChannelRendering}
+
+### void SaveEntityPath() {#void-SaveEntityPath}
+
+## List of Properties
+
+### string platform {#string-platform}
+
+### string sysInfo {#string-sysInfo}
 

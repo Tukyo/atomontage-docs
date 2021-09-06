@@ -12,6 +12,15 @@ function util:file_exists(name)
    if f~=nil then io.close(f) return true else return false end
 end
 
+--only works on windows!
+function util:getFiles(path)
+    local files = {}
+    for dir in io.popen([[dir "]]..path..[[" /b]]):lines() do 
+        table.insert(files, dir)
+    end
+    return files
+end
+
 function util:getLines(filename)
     local lines = {}
     -- read the lines in table 'lines'
