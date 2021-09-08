@@ -17,8 +17,6 @@ id: VoxelDB
 
 ### float ToWorld(float) {#float-ToWorld-float}
 
-### void SetMask(Vec3i, bool) {#void-SetMask-Vec3i-bool}
-
 ### bool GetMask(Vec3i) {#bool-GetMask-Vec3i}
 
 ### userdata GetColor(Vec3i) {#userdata-GetColor-Vec3i}
@@ -78,6 +76,26 @@ id: VoxelDB
 ### void InstantiateIE(Vec3, Quat, float) {#void-InstantiateIE-Vec3-Quat-float}
 
 ### userdata TraceRayTmp(Vec3i, Vec3, float) {#userdata-TraceRayTmp-Vec3i-Vec3-float}
+
+### bool SetUnitVoxelDim(bool) {#bool-SetUnitVoxelDim-bool}
+
+### void SetMask_deprecated(Vec3i, bool) {#void-SetMaskdeprecated-Vec3i-bool}
+
+### bool GetMask(double, double, double) {#bool-GetMask-double-double-double}
+
+### int GetMaskNeighbours(double, double, double, int) {#int-GetMaskNeighbours-double-double-double-int}
+
+### int GetMaskNeighbours(Vec3i, int) {#int-GetMaskNeighbours-Vec3i-int}
+
+### int GetMaskNeighboursVN(double, double, double, int) {#int-GetMaskNeighboursVN-double-double-double-int}
+
+### int GetMaskNeighboursVN(Vec3i, int) {#int-GetMaskNeighboursVN-Vec3i-int}
+
+### void ClearVoxel(double, double, double) {#void-ClearVoxel-double-double-double}
+
+### void ClearVoxel(Vec3i) {#void-ClearVoxel-Vec3i}
+
+### void SetColor(double, double, double, Vec3) {#void-SetColor-double-double-double-Vec3}
 
 ## List of Properties
 

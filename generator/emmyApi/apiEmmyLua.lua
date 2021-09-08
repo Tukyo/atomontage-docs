@@ -106,10 +106,6 @@ function Camera:GetRight(p1) end
 function Camera:GetUp(p1) end
 
 --- @param p1 Object3D
---- @return Mat4
-function Camera:GetLtw(p1) end
-
---- @param p1 Object3D
 --- @return Vec3
 function Camera:GetPosition(p1) end
 
@@ -145,9 +141,6 @@ function Camera:GetRight() end
 --- @return Vec3
 function Camera:GetUp() end
 
---- @return Mat4
-function Camera:GetLtw() end
-
 --- @return Vec3
 function Camera:GetPosition() end
 
@@ -162,9 +155,6 @@ function Camera:GetFrustum() end
 --- @return nil
 function Camera:SetFrustum(p1) end
 
---- @return Mat4
-function Camera:GetProjection() end
-
 --- @param p1 Vec2
 --- @return Vec3
 function Camera:GetRay(p1) end
@@ -175,6 +165,16 @@ function Camera:SetFovY(p1) end
 
 --- @return number
 function Camera:GetFovY() end
+
+--- @param p1 Object3D
+--- @return Matrix4f
+function Camera:GetLtw(p1) end
+
+--- @return Matrix4f
+function Camera:GetLtw() end
+
+--- @return Matrix4f
+function Camera:GetProjection() end
 
 --[[
 
@@ -596,6 +596,8 @@ function Client:ToggleChannelRendering() end
 function Client:SaveEntityPath() end
 
 --- @class CommandLine
+--- @field type string
+--- @field object Object
 CommandLine = {}
 
 --- @param p1 string
@@ -641,6 +643,8 @@ Component = {}
 function Component() end
 
 --- @class Config
+--- @field client ClientConnectionInfo
+--- @field server ServerConnectionInfo
 Config = {}
 
 --- @return Config
@@ -770,6 +774,7 @@ function Frustum() end
 function Frustum() end
 
 --- @class Input
+--- @field realtimeLighting RealtimeLightingInfo
 Input = {}
 
 --- @return Input
@@ -985,18 +990,38 @@ function Input:VrThumbStick(p1) end
 --- @field realtimeLighting RealtimeLightingInfo
 LightingUpdate = {}
 
---- @class Mat4
-Mat4 = {}
+--- @param p1 string
+--- @param p2 FilePath
+--- @return LightingUpdate
+function Material(p1, p2) end
 
---- @return Mat4
-function Mat4() end
+--- @return boolean
+function LightingUpdate:IsValid() end
 
---- @param p1 Mat4
---- @return Mat4
-function Mat4(p1) end
+--- @return boolean
+function LightingUpdate:IsManaged() end
 
---- @return Mat4
-function Mat4() end
+--- @param p1 string
+--- @return boolean
+function LightingUpdate:HasProperty(p1) end
+
+--- @param p1 string
+--- @return Vec3
+function LightingUpdate:GetPropertyVec3(p1) end
+
+--- @param p1 string
+--- @return Vec4
+function LightingUpdate:GetPropertyVec4(p1) end
+
+--- @param p1 string
+--- @param p2 Vec4
+--- @return nil
+function LightingUpdate:SetProperty(p1, p2) end
+
+--- @param p1 string
+--- @param p2 Vec3
+--- @return nil
+function LightingUpdate:SetProperty(p1, p2) end
 
 --- @class Material
 --- @field shaderFiles ResourceReference
@@ -1046,6 +1071,50 @@ function Material:SetProperty(p1, p2) end
 --- @field type string
 --- @field object Object
 MeshData = {}
+
+--- @return MeshData
+function MeshDataBuilder() end
+
+--- @return MeshData
+function MeshDataBuilder() end
+
+--- @return nil
+function MeshData:Clear() end
+
+--- @param p1 Vec3
+--- @param p2 Vec4
+--- @return integer
+function MeshData:AddVertex(p1, p2) end
+
+--- @param p1 Vec3
+--- @param p2 Vec2
+--- @param p3 Vec4
+--- @return integer
+function MeshData:AddVertex(p1, p2, p3) end
+
+--- @param p1 Vec3
+--- @param p2 Vec2
+--- @return integer
+function MeshData:AddVertex(p1, p2) end
+
+--- @param p1 Vec3
+--- @return integer
+function MeshData:AddVertex(p1) end
+
+--- @param p1 integer
+--- @param p2 integer
+--- @param p3 integer
+--- @return nil
+function MeshData:AddIndex(p1, p2, p3) end
+
+--- @param p1 integer
+--- @param p2 integer
+--- @return nil
+function MeshData:AddIndex(p1, p2) end
+
+--- @param p1 integer
+--- @return nil
+function MeshData:AddIndex(p1) end
 
 --- @class MeshDataBuilder
 --- @field static boolean
@@ -1103,6 +1172,9 @@ function MeshDataBuilder:AddVertex(p1, p2, p3) end
 --- @field type string
 --- @field object Object
 MeshRender = {}
+
+--- @return MeshRender
+function MipMapImage() end
 
 --- @class Object
 --- @field s_id integer
@@ -1175,10 +1247,6 @@ function Object3D:MoveRight(p1) end
 --- @return nil
 function Object3D:MoveUp(p1) end
 
---- @param p1 Object3D
---- @return Mat4
-function Object3D:GetLtw(p1) end
-
 --- @param p1 Vec3
 --- @return nil
 function Object3D:Rotate(p1) end
@@ -1203,6 +1271,10 @@ function Object3D:GetPosition(p1) end
 --- @return nil
 function Object3D:SetPosition(p1) end
 
+--- @param p1 Object3D
+--- @return Matrix4f
+function Object3D:GetLtw(p1) end
+
 --- @class RealtimeLightingInfo
 --- @field diffuseSamples integer
 --- @field ambientSamples integer
@@ -1216,6 +1288,23 @@ RealtimeLightingInfo = {}
 
 --- @return RealtimeLightingInfo
 function RealtimeLightingInfo() end
+
+--- @class ResourceReference
+--- @field angles Vec3
+ResourceReference = {}
+
+--- @return ResourceReference
+function Rotation() end
+
+--- @param p1 Vec3
+--- @return ResourceReference
+function Rotation(p1) end
+
+--- @return ResourceReference
+function Rotation() end
+
+--- @return ResourceReference
+function Rotation() end
 
 --- @class Rotation
 --- @field angles Vec3
@@ -1318,6 +1407,9 @@ function Scene:CloneObject(p1) end
 --- @param p1 string
 --- @return integer
 function Scene:Merge(p1) end
+
+--- @return number
+function Scene:GetDebugTime() end
 
 --[[
 
@@ -1470,6 +1562,11 @@ function Transformation(p1) end
 function Transformation(p1, p2) end
 
 --- @class UIItem
+--- @field x number
+--- @field y number
+--- @field length number
+--- @field zero Vec2
+--- @field normalized Vec2
 UIItem = {}
 
 --- @return UIItem
@@ -2522,11 +2619,6 @@ function Vec3:Length(p1, p2) end
 --- @return number
 function Vec3:Length(p1) end
 
---- @param p1 Mat4
---- @param p2 Vec3
---- @return Vec4
-function Vec3:__mul(p1, p2) end
-
 --- @param p1 Vec3
 --- @return Vec3
 function Vec3(p1) end
@@ -2791,6 +2883,11 @@ function Vec3:IsZero(p1) end
 --- @param p2 Vec3
 --- @return number
 function Vec3:DistanceTo(p1, p2) end
+
+--- @param p1 Vec3
+--- @param p2 Matrix4f
+--- @return Vec4
+function Vec3:__mul(p1, p2) end
 
 --- @class Vec3i
 --- @field x integer
@@ -3298,11 +3395,6 @@ function Vec4() end
 --- @return Vec4
 function Vec4() end
 
---- @param p1 Mat4
---- @param p2 Vec4
---- @return Vec4
-function Vec4:__mul(p1, p2) end
-
 --- @param p1 Vec4
 --- @param p2 number
 --- @return Vec4
@@ -3566,6 +3658,11 @@ function Vec4:IsZero(p1) end
 --- @return number
 function Vec4:DistanceTo(p1, p2) end
 
+--- @param p1 Vec4
+--- @param p2 Matrix4f
+--- @return Vec4
+function Vec4:__mul(p1, p2) end
+
 --- @class VoxelDB
 --- @field autoLightingUpdate boolean
 --- @field voxelDim integer
@@ -3590,11 +3687,6 @@ function VoxelDB:FromWorld(p1) end
 --- @param p1 number
 --- @return number
 function VoxelDB:ToWorld(p1) end
-
---- @param p1 Vec3i
---- @param p2 boolean
---- @return nil
-function VoxelDB:SetMask(p1, p2) end
 
 --- @param p1 Vec3i
 --- @return boolean
@@ -3744,11 +3836,70 @@ function VoxelDB:InstantiateIE(p1, p2, p3) end
 --- @return userdata
 function VoxelDB:TraceRayTmp(p1, p2, p3) end
 
+--- @param p1 boolean
+--- @return boolean
+function VoxelDB:SetUnitVoxelDim(p1) end
+
+--- @param p1 Vec3i
+--- @param p2 boolean
+--- @return nil
+function VoxelDB:SetMask_deprecated(p1, p2) end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 number
+--- @return boolean
+function VoxelDB:GetMask(p1, p2, p3) end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 number
+--- @param p4 integer
+--- @return integer
+function VoxelDB:GetMaskNeighbours(p1, p2, p3, p4) end
+
+--- @param p1 Vec3i
+--- @param p2 integer
+--- @return integer
+function VoxelDB:GetMaskNeighbours(p1, p2) end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 number
+--- @param p4 integer
+--- @return integer
+function VoxelDB:GetMaskNeighboursVN(p1, p2, p3, p4) end
+
+--- @param p1 Vec3i
+--- @param p2 integer
+--- @return integer
+function VoxelDB:GetMaskNeighboursVN(p1, p2) end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 number
+--- @return nil
+function VoxelDB:ClearVoxel(p1, p2, p3) end
+
+--- @param p1 Vec3i
+--- @return nil
+function VoxelDB:ClearVoxel(p1) end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 number
+--- @param p4 Vec3
+--- @return nil
+function VoxelDB:SetColor(p1, p2, p3, p4) end
+
 --- @class VoxelData
 --- @field resource string
 --- @field type string
 --- @field object Object
 VoxelData = {}
+
+--- @return VoxelData
+function VoxelInspectData() end
 
 --- @class VoxelInspectData
 --- @field voxelSize number
@@ -3763,6 +3914,12 @@ function VoxelInspectData() end
 --- @field type string
 --- @field object Object
 VoxelRender = {}
+
+--- @return ae
+function VoxelRender:::graphics::Options() end
+
+--- @return ae
+function VoxelRender:::graphics::Options() end
 
 --- @class AttachmentFlags
 AttachmentFlags = {
@@ -4118,8 +4275,12 @@ TextureWrappingMode = {
 --- @class Type
 Type = {
 	Unknown = 0,
-	TopLevel = 1,
-	BottomLevel = 2,
+	Vertex = 1,
+	Index = 2,
+	Constant = 3,
+	Storage = 4,
+	ShaderBindingTable = 5,
+	Auto = 6,
 }
 
 --- @class UpdateFrequency
@@ -4132,18 +4293,11 @@ UpdateFrequency = {
 
 --- @class UsageFlagBits
 UsageFlagBits = {
-	UsageTransferSrcBIT = 0,
-	UsageTransferDstBIT = 1,
-	UsageUniformTexelBufferBIT = 2,
-	UsageStorageTexelBufferBIT = 3,
-	UsageUniformBufferBIT = 4,
-	UsageStorageBufferBIT = 5,
-	UsageIndexBufferBIT = 6,
-	UsageVertexBufferBIT = 7,
-	UsageIndirectBufferBIT = 8,
-	UsageConditionalRenderingBIT = 9,
-	UsageRayTracingBIT = 10,
-	UsageShaderDeviceAddressBIT = 11,
+	UsageAllowUpdateBIT = 0,
+	UsageAllowCompactionBIT = 1,
+	UsagePreferFastTraceBIT = 2,
+	UsagePreferFastBuildBIT = 3,
+	UsageLowMemoryBIT = 4,
 }
 
 --- @class VSyncMode
