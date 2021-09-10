@@ -91,7 +91,7 @@ function genEmmy:generateEmmyLua(file, name, intro, finalMethods, finalPropertie
     for i, prop in ipairs(finalProperties) do
         local header = prop.entry[1]
         --### Vec3 position {#Vec3-position}
-        local  _, _, returnType, name = string.find(header, "### (%w+)%s(%S+)%s*")
+        local  _, _, returnType, name = string.find(header, "### (%S+)%s(%S+)%s*")
         assert(returnType, "err")
         returnType = self:convertToEmmyLuaType(returnType)
         file:write("--- @field ",name," ",returnType, "\n")

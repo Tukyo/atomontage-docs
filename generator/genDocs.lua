@@ -232,7 +232,8 @@ function genDocs:gen()
         ["Rotation"] = true,
         ["CommandLine"] = true,
         ["ResourceReference"] = true,
-        --["Matrix4f"] = true,
+        ["Matrix4f"] = true,
+        ["AssetManager"] = true,
     }
 
     --itterate sorted by ABC

@@ -56,6 +56,47 @@ function Angle:Set(p1) end
 --- @return number
 function Angle:Get() end
 
+--- @class AssetManager
+--- @field assets userdata
+AssetManager = {}
+
+--- @param p1 AssetManager
+--- @return userdata
+function AssetManager:GetAssets(p1) end
+
+--- @param p1 string
+--- @return ResResource
+function AssetManager:Get(p1) end
+
+--- @param p1 string
+--- @param p2 string
+--- @return boolean
+function AssetManager:AddAsset(p1, p2) end
+
+--- @param p1 type
+--- @param p2 string
+--- @return boolean
+function AssetManager:AddAsset(p1, p2) end
+
+--- @param p1 ResResource
+--- @return type
+function AssetManager:GetResourceType(p1) end
+
+--- @param p1 type
+--- @return boolean
+function AssetManager:IsAssetType(p1) end
+
+--- @return userdata
+function AssetManager:GetAssetTypes() end
+
+--- @param p1 AssetManager
+--- @return string
+function AssetManager:GetAssetsPath(p1) end
+
+--- @param p1 AssetManager
+--- @return string
+function AssetManager:GetFilePath(p1) end
+
 --- @class Camera
 --- @field transformation Transformation
 --- @field transform Transformation
@@ -1064,6 +1105,23 @@ function Material:GetPropertyVec4(p1) end
 --- @param p2 Vec4
 --- @return nil
 function Material:SetProperty(p1, p2) end
+
+--- @class Matrix4f
+--- @field row Vec4[4]
+Matrix4f = {}
+
+--- @return Matrix4f
+function Matrix4f() end
+
+--- @param p1 Matrix4f
+--- @return Matrix4f
+function Matrix4f(p1) end
+
+--- @return Matrix4f
+function Matrix4f() end
+
+--- @return Matrix4f
+function Matrix4f() end
 
 --- @class MeshData
 --- @field file string
@@ -3914,12 +3972,6 @@ function VoxelInspectData() end
 --- @field type string
 --- @field object Object
 VoxelRender = {}
-
---- @return ae
-function VoxelRender:::graphics::Options() end
-
---- @return ae
-function VoxelRender:::graphics::Options() end
 
 --- @class AttachmentFlags
 AttachmentFlags = {
