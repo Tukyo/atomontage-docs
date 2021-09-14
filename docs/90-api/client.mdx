@@ -10,34 +10,6 @@ blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal
 
 ## List of Methods
 
-### table ReceiveMessages() {#table-ReceiveMessages}
-Recieve messages send by server scripts
-
-```lua title="Link messages to actions and do them on recieve"
--- define your actions for network messages (good example, but user can wrok this out freely)
-net_actions = {}
-net_actions['Del'] = function(msg) Scene:ClearSphere(msg.pos, msg.rad) end
-net_actions[1] = function(msg) Scene:ClearSphere(msg[2], msg[3]) end
-
--- receive all messages in one call and process them
-for i,msg in ipairs(Client:ReceiveMessages()) do
-    -- process message example:
-    local f = msg.act and net_actions[msg.act]
-    if type(f) == 'function' then
-        f(msg)
-    end
-end
-```
-
-### void ToggleUICreatorWindow() {#void-ToggleUICreatorWindow}
-
-### Camera GetCamera() {#Camera-GetCamera}
-Returns [`Camera`](/api/camera)
-
-### bool IsClient() {#bool-IsClient}
-
-### bool IsServer() {#bool-IsServer}
-
 ### Client() {#Client}
 
 ### void SendMessage(table message) {#void-SendMessage-table-message}
@@ -69,9 +41,30 @@ table.insert(my_msgs, {act = 'erase'})
 Client:SendMessages(my_msgs)
 ```
 
+### table ReceiveMessages() {#table-ReceiveMessages}
+Recieve messages send by server scripts
+
+```lua title="Link messages to actions and do them on recieve"
+-- define your actions for network messages (good example, but user can wrok this out freely)
+net_actions = {}
+net_actions['Del'] = function(msg) Scene:ClearSphere(msg.pos, msg.rad) end
+net_actions[1] = function(msg) Scene:ClearSphere(msg[2], msg[3]) end
+
+-- receive all messages in one call and process them
+for i,msg in ipairs(Client:ReceiveMessages()) do
+    -- process message example:
+    local f = msg.act and net_actions[msg.act]
+    if type(f) == 'function' then
+        f(msg)
+    end
+end
+```
+
 ### string UIItemUpdate(int actionID, UIItem item, userdata value) {#string-UIItemUpdate-int-actionID-UIItem-item-userdata-value}
 
 ### void OpenKeyboardShortcutInput(string keyActionID) {#void-OpenKeyboardShortcutInput-string-keyActionID}
+
+### void ToggleUICreatorWindow() {#void-ToggleUICreatorWindow}
 
 ### void ToggleUIStudioSDK() {#void-ToggleUIStudioSDK}
 
@@ -187,6 +180,9 @@ Client:SendMessages(my_msgs)
 
 ### void ScrollToLastestLuaLog() {#void-ScrollToLastestLuaLog}
 
+### Camera GetCamera() {#Camera-GetCamera}
+Returns [`Camera`](/api/camera)
+
 ### userdata GetVisibleWindows() {#userdata-GetVisibleWindows}
 
 ### bool IsContainerEnabledAndVisible(UIItem uiItem) {#bool-IsContainerEnabledAndVisible-UIItem-uiItem}
@@ -198,6 +194,10 @@ Client:SendMessages(my_msgs)
 ### void Log(string) {#void-Log-string}
 
 ### AmStreamingStats GetVoxelStreamStats() {#AmStreamingStats-GetVoxelStreamStats}
+
+### bool IsClient() {#bool-IsClient}
+
+### bool IsServer() {#bool-IsServer}
 
 ### void SelectItemInUICreator(UIItem uiItem) {#void-SelectItemInUICreator-UIItem-uiItem}
 

@@ -13,9 +13,31 @@ id: Vec4
 
 ### Vec4(float) {#Vec4-float}
 
-### Vec4() {#Vec4}
+### Vec4(Vec4) {#Vec4-Vec4}
+
+### Vec4(Vec2, float, float) {#Vec4-Vec2-float-float}
+
+### Vec4(Vec3, float) {#Vec4-Vec3-float}
 
 ### Vec4() {#Vec4}
+
+### Vec4(structAsObject) {#Vec4-structAsObject}
+
+### Vec4(structAsRawPointer) {#Vec4-structAsRawPointer}
+
+### Vec4() {#Vec4}
+
+### Vec4(structAsObject) {#Vec4-structAsObject}
+
+### Vec4(structAsRawPointer) {#Vec4-structAsRawPointer}
+
+### float __index(Vec4, int) {#float-index-Vec4-int}
+
+### void __newindex(Vec4, int, float) {#void-newindex-Vec4-int-float}
+
+### Vec4 __mul(Vec4, Quat) {#Vec4-mul-Vec4-Quat}
+
+### Vec4 __mul(Vec4, Matrix4f) {#Vec4-mul-Vec4-Matrix4f}
 
 ### Vec4 __mul(Vec4, float) {#Vec4-mul-Vec4-float}
 
@@ -32,26 +54,6 @@ id: Vec4
 ### Vec4 __sub(Vec4, Vec4) {#Vec4-sub-Vec4-Vec4}
 
 ### Vec4 __unm(Vec4, Vec4) {#Vec4-unm-Vec4-Vec4}
-
-### Vec4(Vec4) {#Vec4-Vec4}
-
-### Vec4(Vec2, float, float) {#Vec4-Vec2-float-float}
-
-### Vec4(Vec3, float) {#Vec4-Vec3-float}
-
-### Vec4(structAsObject) {#Vec4-structAsObject}
-
-### Vec4(structAsRawPointer) {#Vec4-structAsRawPointer}
-
-### Vec4(structAsObject) {#Vec4-structAsObject}
-
-### Vec4(structAsRawPointer) {#Vec4-structAsRawPointer}
-
-### float __index(Vec4, int) {#float-index-Vec4-int}
-
-### void __newindex(Vec4, int, float) {#void-newindex-Vec4-int-float}
-
-### Vec4 __mul(Vec4, Quat) {#Vec4-mul-Vec4-Quat}
 
 ### bool __eq(Vec4, Vec4) {#bool-eq-Vec4-Vec4}
 
@@ -147,8 +149,6 @@ id: Vec4
 
 ### float DistanceTo(Vec4, Vec4) {#float-DistanceTo-Vec4-Vec4}
 
-### Vec4 __mul(Vec4, Matrix4f) {#Vec4-mul-Vec4-Matrix4f}
-
 ## List of Properties
 
 ### float x {#float-x}
@@ -157,11 +157,11 @@ id: Vec4
 
 ### float z {#float-z}
 
-### float w {#float-w}
-
 ### Vec4 zero {#Vec4-zero}
 
 ### float length {#float-length}
 
 ### Vec4 normalized {#Vec4-normalized}
+
+### float w {#float-w}
 

@@ -22,73 +22,12 @@ This action is dangerous
 ## List of Methods
 
 ### Vec3() {#Vec3}
-Returns Vec3(0, 0, 0).
-
-```lua
-local vec = Vec3()
-```
 
 ### Vec3(float, float, float) {#Vec3-float-float-float}
-```lua
-local vec = Vec3(0.5, 10, 33.33)
-```
 
 ### Vec3(int, int, int) {#Vec3-int-int-int}
 
 ### Vec3(float) {#Vec3-float}
-
-### Vec3() {#Vec3}
-
-### Vec3() {#Vec3}
-
-### Vec3 __mul(Vec3, float) {#Vec3-mul-Vec3-float}
-Metamethod overload to multiply vec3 with float number 
-```lua
-local vec = Vec3(0, 10, 0)
-local res = vec * 3 --res is Vec3(0, 30, 0)
-```
-
-### Vec3 __mul(float, Vec3) {#Vec3-mul-float-Vec3}
-
-### Vec3 __mul(Vec3, Vec3) {#Vec3-mul-Vec3-Vec3}
-
-### Vec3 __div(Vec3, float) {#Vec3-div-Vec3-float}
-
-### Vec3 __div(Vec3, Vec3) {#Vec3-div-Vec3-Vec3}
-
-### Vec3 __add(Vec3, Vec3) {#Vec3-add-Vec3-Vec3}
-
-### Vec3 __sub(Vec3, Vec3) {#Vec3-sub-Vec3-Vec3}
-
-### Vec3 __unm(Vec3, Vec3) {#Vec3-unm-Vec3-Vec3}
-
-### float Dot(Vec3, Vec3) {#float-Dot-Vec3-Vec3}
-
-### Vec3 Lerp(Vec3, Vec3, float) {#Vec3-Lerp-Vec3-Vec3-float}
-
-### Vec3 Mix(Vec3, Vec3, float) {#Vec3-Mix-Vec3-Vec3-float}
-
-### void Clamp(Vec3, float, float) {#void-Clamp-Vec3-float-float}
-
-### Vec3 GetClamped(Vec3, float, float) {#Vec3-GetClamped-Vec3-float-float}
-
-### void Ceil(Vec3) {#void-Ceil-Vec3}
-
-### Vec3 GetCeiled(Vec3) {#Vec3-GetCeiled-Vec3}
-
-### void Floor(Vec3) {#void-Floor-Vec3}
-
-### Vec3 GetFloored(Vec3) {#Vec3-GetFloored-Vec3}
-
-### void Round(Vec3) {#void-Round-Vec3}
-
-### Vec3 GetRounded(Vec3) {#Vec3-GetRounded-Vec3}
-
-### void SetLength(Vec3, float) {#void-SetLength-Vec3-float}
-
-### float Length(Vec3, Vec3) {#float-Length-Vec3-Vec3}
-
-### float Length(Vec3) {#float-Length-Vec3}
 
 ### Vec3(Vec3) {#Vec3-Vec3}
 
@@ -96,9 +35,13 @@ local res = vec * 3 --res is Vec3(0, 30, 0)
 
 ### Vec3(Vec2, float) {#Vec3-Vec2-float}
 
+### Vec3() {#Vec3}
+
 ### Vec3(structAsObject) {#Vec3-structAsObject}
 
 ### Vec3(structAsRawPointer) {#Vec3-structAsRawPointer}
+
+### Vec3() {#Vec3}
 
 ### Vec3(structAsObject) {#Vec3-structAsObject}
 
@@ -112,11 +55,29 @@ local res = vec * 3 --res is Vec3(0, 30, 0)
 
 ### Vec3 __mul(Vec3, Vec3i) {#Vec3-mul-Vec3-Vec3i}
 
+### Vec4 __mul(Vec3, Matrix4f) {#Vec4-mul-Vec3-Matrix4f}
+
+### Vec3 __mul(Vec3, float) {#Vec3-mul-Vec3-float}
+
+### Vec3 __mul(float, Vec3) {#Vec3-mul-float-Vec3}
+
+### Vec3 __mul(Vec3, Vec3) {#Vec3-mul-Vec3-Vec3}
+
 ### Vec3 __div(Vec3, Vec3i) {#Vec3-div-Vec3-Vec3i}
+
+### Vec3 __div(Vec3, float) {#Vec3-div-Vec3-float}
+
+### Vec3 __div(Vec3, Vec3) {#Vec3-div-Vec3-Vec3}
 
 ### Vec3 __add(Vec3, Vec3i) {#Vec3-add-Vec3-Vec3i}
 
+### Vec3 __add(Vec3, Vec3) {#Vec3-add-Vec3-Vec3}
+
+### Vec3 __sub(Vec3, Vec3) {#Vec3-sub-Vec3-Vec3}
+
 ### Vec3 __sub(Vec3, Vec3i) {#Vec3-sub-Vec3-Vec3i}
+
+### Vec3 __unm(Vec3, Vec3) {#Vec3-unm-Vec3-Vec3}
 
 ### bool __eq(Vec3, Vec3i) {#bool-eq-Vec3-Vec3i}
 
@@ -200,9 +161,15 @@ local res = vec * 3 --res is Vec3(0, 30, 0)
 
 ### float Dot(Vec3, Vec3i) {#float-Dot-Vec3-Vec3i}
 
+### float Dot(Vec3, Vec3) {#float-Dot-Vec3-Vec3}
+
 ### Vec3 Cross(Vec3, Vec3i) {#Vec3-Cross-Vec3-Vec3i}
 
 ### Vec3 Cross(Vec3, Vec3) {#Vec3-Cross-Vec3-Vec3}
+
+### Vec3 Lerp(Vec3, Vec3, float) {#Vec3-Lerp-Vec3-Vec3-float}
+
+### Vec3 Mix(Vec3, Vec3, float) {#Vec3-Mix-Vec3-Vec3-float}
 
 ### Vec3 Normalize() {#Vec3-Normalize}
 
@@ -211,6 +178,10 @@ local res = vec * 3 --res is Vec3(0, 30, 0)
 ### Vec3 GetNormalized() {#Vec3-GetNormalized}
 
 ### Vec3 GetNormalizedSafe() {#Vec3-GetNormalizedSafe}
+
+### void Clamp(Vec3, float, float) {#void-Clamp-Vec3-float-float}
+
+### Vec3 GetClamped(Vec3, float, float) {#Vec3-GetClamped-Vec3-float-float}
 
 ### Vec3 ClampRadius(float) {#Vec3-ClampRadius-float}
 
@@ -226,27 +197,37 @@ local res = vec * 3 --res is Vec3(0, 30, 0)
 
 ### Vec3i GetVec3i() {#Vec3i-GetVec3i}
 
+### void Ceil(Vec3) {#void-Ceil-Vec3}
+
+### Vec3 GetCeiled(Vec3) {#Vec3-GetCeiled-Vec3}
+
+### void Floor(Vec3) {#void-Floor-Vec3}
+
+### Vec3 GetFloored(Vec3) {#Vec3-GetFloored-Vec3}
+
+### void Round(Vec3) {#void-Round-Vec3}
+
+### Vec3 GetRounded(Vec3) {#Vec3-GetRounded-Vec3}
+
+### void SetLength(Vec3, float) {#void-SetLength-Vec3-float}
+
+### float Length(Vec3, Vec3) {#float-Length-Vec3-Vec3}
+
+### float Length(Vec3) {#float-Length-Vec3}
+
 ### Vec3 IsNaN(Vec3) {#Vec3-IsNaN-Vec3}
 
 ### bool IsZero(Vec3) {#bool-IsZero-Vec3}
 
 ### float DistanceTo(Vec3, Vec3) {#float-DistanceTo-Vec3-Vec3}
 
-### Vec4 __mul(Vec3, Matrix4f) {#Vec4-mul-Vec3-Matrix4f}
-
 ## List of Properties
 
 ### float x {#float-x}
-The x component of the vector
-```lua
-local x = vec.x
-```
 
 ### float y {#float-y}
 
 ### float z {#float-z}
-
-### float length {#float-length}
 
 ### Vec3 zero {#Vec3-zero}
 
@@ -256,11 +237,13 @@ local x = vec.x
 
 ### Vec3 forward {#Vec3-forward}
 
-### Vec3 normalized {#Vec3-normalized}
-
 ### Vec3 down {#Vec3-down}
 
 ### Vec3 left {#Vec3-left}
 
 ### Vec3 back {#Vec3-back}
+
+### float length {#float-length}
+
+### Vec3 normalized {#Vec3-normalized}
 

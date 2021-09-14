@@ -331,10 +331,12 @@ end
 function genDocs:getFinalEntries(currentEntries, newEntries, name)
     local finalEntries = {}
     newEntries = newEntries or {}
+
+    local currentEntiesKeys = {}
     
     --get values, conert to this table
     local updatedMethods = {}
-    for i, val in pairs(newEntries) do
+    for i, val in ipairs(newEntries) do
         local name = genDocs:generateHeading(val)
         updatedMethods[name] = true
     end
@@ -345,10 +347,16 @@ function genDocs:getFinalEntries(currentEntries, newEntries, name)
         local methodInfo = currentEntries[i]
         local name = methodInfo.entry[1] 
         if updatedMethods[name] ~= nil then
-            updatedMethods[name] = false --not nil cause there can be duplicates
-            table.remove(currentEntries, i)
             local info = methodInfo
-            table.insert(finalEntries, info)
+            local hasDocumentation = util:hasDocumentation(info.entry)
+            --ignore without docs cause that would set incorrect info in currentEntiesKeys for duplicate bindings 
+            if hasDocumentation then
+                updatedMethods[name] = false --not nil cause there can be duplicates
+                table.remove(currentEntries, i)
+                currentEntiesKeys[name] = info
+            else
+                i = i + 1
+            end
         else
             i = i + 1
         end
@@ -367,9 +375,9 @@ function genDocs:getFinalEntries(currentEntries, newEntries, name)
         end
     end
 
-    --add remaing (new) updatedRows in correct order (sorted by keys ABC)
+    --add remaing (new) updatedRows in correct order (sorted by keys order)
     local tkeys = {}
-    for k in pairs(newEntries) do table.insert(tkeys, k) end
+    for k in ipairs(newEntries) do table.insert(tkeys, k) end
     table.sort(tkeys)
     for _, k in ipairs(tkeys) do
         local v = newEntries[k]
@@ -377,6 +385,9 @@ function genDocs:getFinalEntries(currentEntries, newEntries, name)
         if (updatedMethods[header]) then
             local entry = {header , ""}
             table.insert(finalEntries, {entry = entry})
+        else
+            local info = currentEntiesKeys[header]
+            table.insert(finalEntries, info)
         end
     end
 
