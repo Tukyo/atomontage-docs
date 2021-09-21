@@ -28,9 +28,6 @@ function script:Start() end
 --- @param t number total time passed
 function script:Update(dt, t) end
 
---- @class Quat
-Quat = {}
-
 --- @class ControllerButtons
 ControllerButtons = {}
 ]]
@@ -91,6 +88,7 @@ function genEmmy:generateEmmyLua(file, name, intro, finalMethods, finalPropertie
     for i, prop in ipairs(finalProperties) do
         local header = prop.entry[1]
         --### Vec3 position {#Vec3-position}
+        header = header:gsub("const ", "") --for now just remove that
         local  _, _, returnType, name = string.find(header, "### (%S+)%s(%S+)%s*")
         assert(returnType, "err")
         returnType = self:convertToEmmyLuaType(returnType)
@@ -102,6 +100,7 @@ function genEmmy:generateEmmyLua(file, name, intro, finalMethods, finalPropertie
     for i, prop in ipairs(finalMethods) do
         local lines = prop.entry
         local header = lines[1]
+        header = header:gsub("const ", "") --for now just remove that
         local  _, _, returnType, name, paramsStr = string.find(header, "### (%w*)%s?(%S*)%((.*)%).+")
         local params = {}
         for word in string.gmatch(paramsStr, '%s?([^,]+)') do
@@ -185,6 +184,7 @@ function genEmmy:convertToEmmyLuaType(strType)
     strType = strType:gsub("int", "integer")
     strType = strType:gsub("float", "number")
     strType = strType:gsub("double", "number")
+    strType = strType:gsub("char", "string")
     strType = strType:gsub("void", "nil")
     return strType
 end

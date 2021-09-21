@@ -1,7 +1,9 @@
 ---
-title: UIClientContext
-id: UIClientContext
+title: ServerConnectionInfo
+id: ServerConnectionInfo
 ---
+`Client`
+`Server`
 
 ## List of Methods
 
@@ -13,6 +15,10 @@ id: UIClientContext
 
 ### string GetUIActionType(int) {#string-GetUIActionType-int}
 
+### string GetUIActionScript(int) {#string-GetUIActionScript-int}
+
+### int GetCurrentUIActionID() {#int-GetCurrentUIActionID}
+
 ### void OnLuaLog() {#void-OnLuaLog}
 
 ### bool IsServer() {#bool-IsServer}
@@ -20,6 +26,10 @@ id: UIClientContext
 ### bool IsClient() {#bool-IsClient}
 
 ### void OpenScriptFile(string, int) {#void-OpenScriptFile-string-int}
+
+### void ClearLuaLogClient() {#void-ClearLuaLogClient}
+
+### void ScrollToLastestLuaLog() {#void-ScrollToLastestLuaLog}
 
 ### float GetFPS() {#float-GetFPS}
 
@@ -29,7 +39,7 @@ id: UIClientContext
 
 ### void SetLogValue(string, float) {#void-SetLogValue-string-float}
 
-### Vector_float GetLogValueForPlot(string) {#Vectorfloat-GetLogValueForPlot-string}
+### userdata GetLogValueForPlot(string) {#userdata-GetLogValueForPlot-string}
 
 ### float GetLogIValue(int) {#float-GetLogIValue-int}
 
@@ -41,11 +51,13 @@ id: UIClientContext
 
 ### int GetLogValuesCount() {#int-GetLogValuesCount}
 
-### V2i GetVideoRange() {#V2i-GetVideoRange}
+### Vec2i GetVideoRange() {#Vec2i-GetVideoRange}
 
 ### int GetCurrentFrame() {#int-GetCurrentFrame}
 
 ### void SetCurrentFrame(int) {#void-SetCurrentFrame-int}
+
+### userdata GetVisibleWindows() {#userdata-GetVisibleWindows}
 
 ### bool IsContainerEnabledAndVisible(UIItem) {#bool-IsContainerEnabledAndVisible-UIItem}
 
@@ -53,5 +65,15 @@ id: UIClientContext
 
 ### void LuaEnableDebugging(bool) {#void-LuaEnableDebugging-bool}
 
-### userdata GetVisibleWindows() {#userdata-GetVisibleWindows}
+## List of Properties
+
+### string networkState {#string-networkState}
+
+### string name {#string-name}
+
+### string IP {#string-IP}
+
+### int port {#int-port}
+
+### string streamingVersion {#string-streamingVersion}
 

@@ -1,0 +1,59 @@
+---
+title: Server
+id: Server
+---
+`Server`
+:::info Server Only
+This class is only available on server
+:::
+
+## List of Methods
+
+### table GetClients() {#table-GetClients}
+
+### void SendMessages(int toClientID, table messages) {#void-SendMessages-int-toClientID-table-messages}
+
+### table ReceiveMessages() {#table-ReceiveMessages}
+
+### int GetScriptsVersion() {#int-GetScriptsVersion}
+
+### void ResendScripts() {#void-ResendScripts}
+
+### bool ReloadScripts() {#bool-ReloadScripts}
+
+### userdata GetVoxelClientIDs() {#userdata-GetVoxelClientIDs}
+
+### AmStreamingStats GetVoxelStreamStats(int clientID) {#AmStreamingStats-GetVoxelStreamStats-int-clientID}
+
+### ServerConnectionInfo GetServerConnectionInfo() {#ServerConnectionInfo-GetServerConnectionInfo}
+
+### userdata GetConnectionInfos() {#userdata-GetConnectionInfos}
+
+### NetworkStat GetNetworkStat() {#NetworkStat-GetNetworkStat}
+
+### userdata GetNetworkStats() {#userdata-GetNetworkStats}
+
+### void OnLuaLog() {#void-OnLuaLog}
+
+### bool IsClient() {#bool-IsClient}
+
+### bool IsServer() {#bool-IsServer}
+
+### int GetCurrentUIActionID() {#int-GetCurrentUIActionID}
+
+### void ScrollToLastestLuaLog() {#void-ScrollToLastestLuaLog}
+
+### CommandLine GetCommandLine() {#CommandLine-GetCommandLine}
+
+## List of Properties
+
+### string networkState {#string-networkState}
+
+### string name {#string-name}
+
+### string IP {#string-IP}
+
+### int port {#int-port}
+
+### string streamingVersion {#string-streamingVersion}
+

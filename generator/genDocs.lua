@@ -1,7 +1,6 @@
 
 --[[
 TODO
-* delete or highlight removed class files
 * write some intro/getting started thing
 * Perhaps some standard format things i.e return table contents, argument cotnent
 * make types links? or color if not link? or color everything else
@@ -21,13 +20,21 @@ local genDocs = {}
 local docsLocation = "docs\\90-api\\"
 local enumsLocation = "docs\\90-api\\enums\\"
 
-local f = io.open("generator/serverBindingsNew.txt", "r")
+local f = io.open("generator/bindingDumpServer.txt", "r")
 local bindingsSerialized = f:read("*all")
 f:close()
 
 local fun, err = load(bindingsSerialized)
 if err then error(err) end
-local _Bindings = fun()
+local _BindingsServer = fun()
+
+local f = io.open("generator/bindingDumpClient.txt", "r")
+local bindingsSerialized = f:read("*all")
+f:close()
+
+local fun, err = load(bindingsSerialized)
+if err then error(err) end
+local _BindingsClient = fun()
 
 local testBindings = {
     ["Classes"] = {
@@ -106,52 +113,7 @@ local testBindings = {
     }
 }
 
-local testBindings2 = {
-    ["Classes"] = {
-        ["Client"] = {
-            ["Methods"] = {
-                "void SendMessage (basic_table_core<0,classsol::basic_reference<0> >)",
-                "void SendMessages (basic_table_core<0,classsol::basic_reference<0> >)",
-                "basic_table_core<0,classsol::basic_reference<0> > ReceiveMessages (this_state)",
-                "string UIItemUpdate (uint32_t, UIItem, basic_object<classsol::basic_reference<0> >)",
-                "void OpenKeyboardShortcutInput (string key)",
-                "void ToggleUICreatorWindow ()",
-                "Camera GetCamera ()",
-                "bool IsClient ()",
-                "bool IsServer ()",
-            }
-        },
-        ["Camera"] = {
-            ["Methods"] = {
-                "Camera (string)",
-                "Transformation GetTransformation (Object3D)",
-                "void SetTransformation (Transformation)",
-            },
-            ["Properties"] = {
-                "Transformation transformation",
-                "Transformation transform"
-            }
-        }
-    },
-    ["Enums"] = {
-        ["AttachmentFlags"] ={
-            [2] = "Depth",
-            [4] = "DepthAndStencil",
-            [8] = "Color0",
-        },
-        ["BlendFactor"] = {
-            "Zero",
-            "SrcColor",
-            "DstColor",
-            "OneMinusDstColor",
-            "SrcAlpha",
-            "OneMinusSrcAlpha",
-            "DstAlpha",
-            "OneMinusDstAlpha",
-        }
-    }
-}
---_Bindings = testBindings2
+--_BindingsServer = testBindings
 
 
 
@@ -165,7 +127,7 @@ function genDocs:gen()
     --make category_.json
     local filename = docsLocation.."_category_.json"
     local file = io.open(filename, "w")
-    file:write('{ "label": "API" }')
+    file:write('{ "label": "API", "collapsed": false }')
     file:close()
 
     local filename = enumsLocation.."_category_.json"
@@ -194,6 +156,7 @@ function genDocs:gen()
     --filter out all the other weird stuff
     local show = {
         ["Quat"] = true,
+        ["quat"] = true,
         ["V2i"] = true,
         ["V3i"] = true,
         ["V2f"] = true,
@@ -234,31 +197,65 @@ function genDocs:gen()
         ["ResourceReference"] = true,
         ["Matrix4f"] = true,
         ["AssetManager"] = true,
+        ["Server"] = true,
+        ["FilePath"] = true,
+        ["Matrix3f"] = true,
+        ["ResResource"] = true,
+        ["ConnectionInfo"] = true,
+        ["NetworkStat"] = true,
+        ["AmStreamingStats"] = true,
+        ["AmStreamingStatsTotal"] = true,
+        ["AmStreamingStatsStatPerFrame"] = true,
+        ["AmStreamingStatsStatPerInterval"] = true,
+        ["AmStreamingStatsStatPerMessage"] = true,
+        ["AmStreamingStatsSlot"] = true,
+        ["ClientConnectionInfo"] = true,
+        ["ServerConnectionInfo"] = true,
     }
 
-    --itterate sorted by ABC
+    --find out whats on client and server
+    local classLocations = {}
+    for k in pairs(_BindingsServer.Classes) do 
+        classLocations[k] = {client=false, server=true}
+    end
+    for k in pairs(_BindingsClient.Classes) do 
+        if (classLocations[k]) then 
+            classLocations[k] = {client=true, server=true}
+        else
+            classLocations[k] = {client=true, server=false}
+        end
+    end
+
+    --itterate sorted by ABC for emmy order
     local tkeys = {}
-    for k in pairs(_Bindings.Classes) do table.insert(tkeys, k) end
+    for k in pairs(classLocations) do table.insert(tkeys, k) end
     table.sort(tkeys)
-    for _, name in ipairs(tkeys) do
-        local class = _Bindings.Classes[name]
-        if (show[name]) then
-            local name = util:firstToLower(name)
+    for _, nameOrig in ipairs(tkeys) do
+        local serverClass = _BindingsServer.Classes[nameOrig]
+        local clientClass = _BindingsClient.Classes[nameOrig]
+        local class = serverClass or clientClass
+        if serverClass and clientClass then
+            --TODO doesnt pass in both classes so if they are different something is missing, so warning here for now
+            assert(#serverClass.Methods == #clientClass.Methods and #serverClass.Properties == #clientClass.Properties, nameOrig..": Server/Client is different")
+        end
+        if (show[nameOrig]) then
+            local name = util:firstToLower(nameOrig)
             --name = name:gsub("::", " ") --remove this?
             if not string.find(name, "::") then --just skip these weird internal things for now
+                local location = classLocations[nameOrig]
                 name = genEmmy:cleanUpClassName(name)
                 fileNamesClasses[name] = nil
-                genDocs:generateClassFile(name, class)
+                genDocs:generateClassFile(name, class, location.client, location.server)
             end
         end
     end
 
     --itterate sorted by ABC
     local tkeys = {}
-    for k in pairs(_Bindings.Enums) do table.insert(tkeys, k) end
+    for k in pairs(_BindingsServer.Enums) do table.insert(tkeys, k) end
     table.sort(tkeys)
     for _, name in ipairs(tkeys) do
-        local values = _Bindings.Enums[name]
+        local values = _BindingsServer.Enums[name]
         local name = util:firstToLower(name)
         --name = name:gsub("::", " ") --remove this?
         if not string.find(name, "::") then --just skip these weird internal things for now
@@ -283,7 +280,7 @@ function genDocs:gen()
     fileEmmyLua:close()
 end
 
-function genDocs:generateClassFile(name, class)
+function genDocs:generateClassFile(name, class, onClient, onServer)
     local filename = docsLocation..name..".mdx"
     if (not util:file_exists(filename)) then
         local fileW = io.open(filename, "w") --add the file if it was missing
@@ -301,9 +298,25 @@ function genDocs:generateClassFile(name, class)
     
     --write to file
     local file = io.open(filename, "w")
+    
+    --write intro
     for i, line in ipairs(intro) do
-        file:write(line, "\n")
+        --add client/server info on line 5
+        if i==5 then
+            if (onClient) then
+                file:write("`Client`", "\n")
+            end
+            if (onServer) then
+                file:write("`Server`", "\n")
+            end
+        end
+        
+        --dont write client/server again
+        if not (string.find(line, "`Client`") or string.find(line, "`Server`")) then
+            file:write(line, "\n")
+        end
     end
+    
     if (class.Methods) then
         file:write("## List of Methods", "\n\n")
         for i, v in ipairs(finalMethods) do
@@ -616,6 +629,10 @@ function genDocs:cleanUpName(name)
     local u3 = "unordered_map<unsigned__int64,classae::studio::ConnectionInfo,structstd::hash<unsigned__int64>,structstd::equal_to<unsigned__int64>,classstd::allocator<structstd::pair<unsigned__int64const,classae::studio::ConnectionInfo>> >"
     local u4 = "unordered_map<unsigned__int64,classae::studio::NetworkStat,structstd::hash<unsigned__int64>,structstd::equal_to<unsigned__int64>,classstd::allocator<structstd::pair<unsigned__int64const,classae::studio::NetworkStat>> >"
     local u5 = "vector<classae::core::UIItem%*,classstd::allocator<classae::core::UIItem%*> >"
+    local u6 = "unordered_map<unsigned__int64,classae::network::ConnectionInfo,structstd::hash<unsigned__int64>,structstd::equal_to<unsigned__int64>,classstd::allocator<structstd::pair<unsigned__int64const,classae::network::ConnectionInfo>> >"
+    local u7 = "unordered_map<unsigned__int64,classae::network::NetworkStat,structstd::hash<unsigned__int64>,structstd::equal_to<unsigned__int64>,classstd::allocator<structstd::pair<unsigned__int64const,classae::network::NetworkStat>> >"
+    local u8 = "vector<classae::core::EntityPath::Waypoint,classstd::allocator<classae::core::EntityPath::Waypoint> >"
+    local u9 = "unordered_map<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>,structae::graphics::Options,structstd::hash<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>>,structstd::equal_to<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>>,classstd::allocator<structstd::pair<classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>>const,structae::graphics::Options>> >"
 
     --this works inccorectly finding a match that is too short when there is a longer match
     --TODO sort by key length
@@ -647,6 +664,10 @@ function genDocs:cleanUpName(name)
         {u3, "userdata"},
         {u4, "userdata"},
         {u5, "userdata"}, --list of UIItems?
+        {u6, "userdata"}, 
+        {u7, "userdata"}, 
+        {u8, "userdata"}, 
+        {u9, "userdata"}, 
         {"Res<classae::renderer::Material2>", "userdata"}, ---?? is this material
         {"vector<classae::core::UIItem,classstd::allocator<classae::core::UIItem> >", "userdata"},
         {"vec2", "Vec2"},

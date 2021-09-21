@@ -18,22 +18,497 @@ function script:Start() end
 --- @param t number total time passed
 function script:Update(dt, t) end
 
---- @class Quat
-Quat = {}
-
 --- @class ControllerButtons
 ControllerButtons = {}
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/AmStreamingStats)
+]]
+--- @class AmStreamingStats
+--- @field sentTotals AmStreamingStatsTotal
+--- @field recvTotals AmStreamingStatsTotal
+--- @field sentPerFrame AmStreamingStatsStatPerFrame
+--- @field recvPerFrame AmStreamingStatsStatPerFrame
+--- @field sentPerSecond AmStreamingStatsStatPerInterval
+--- @field recvPerSecond AmStreamingStatsStatPerInterval
+--- @field sentPerCustTime AmStreamingStatsStatPerInterval
+--- @field recvPerCustTime AmStreamingStatsStatPerInterval
+--- @field sentPerMessage AmStreamingStatsStatPerMessage
+--- @field recvPerMessage AmStreamingStatsStatPerMessage
+AmStreamingStats = {}
+
+--- @return AmStreamingStats
+function Vec2() end
+
+--- @param p1 number
+--- @param p2 number
+--- @return AmStreamingStats
+function Vec2(p1, p2) end
+
+--- @param p1 number
+--- @return AmStreamingStats
+function Vec2(p1) end
+
+--- @param p1 Vec2
+--- @return AmStreamingStats
+function Vec2(p1) end
+
+--- @param p1 Vec2i
+--- @return AmStreamingStats
+function Vec2(p1) end
+
+--- @param p1 Vec2
+--- @param p2 integer
+--- @return number
+function AmStreamingStats:__index(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 integer
+--- @param p3 number
+--- @return nil
+function AmStreamingStats:__newindex(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec2
+function AmStreamingStats:__mul(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return Vec2
+function AmStreamingStats:__mul(p1, p2) end
+
+--- @param p1 number
+--- @param p2 Vec2
+--- @return Vec2
+function AmStreamingStats:__mul(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function AmStreamingStats:__mul(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec2
+function AmStreamingStats:__div(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return Vec2
+function AmStreamingStats:__div(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function AmStreamingStats:__div(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec2
+function AmStreamingStats:__add(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function AmStreamingStats:__add(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec2
+function AmStreamingStats:__sub(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function AmStreamingStats:__sub(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function AmStreamingStats:__unm(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return boolean
+function AmStreamingStats:__eq(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return boolean
+function AmStreamingStats:__eq(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return number
+function AmStreamingStats:__len(p1, p2) end
+
+--- @return number
+function AmStreamingStats:Sum() end
+
+--- @return number
+function AmStreamingStats:Sub() end
+
+--- @return number
+function AmStreamingStats:Diff() end
+
+--- @return number
+function AmStreamingStats:Prod() end
+
+--- @return number
+function AmStreamingStats:LinLen() end
+
+--- @return number
+function AmStreamingStats:Len() end
+
+--- @return number
+function AmStreamingStats:SqLen() end
+
+--- @return number
+function AmStreamingStats:MaxComponent() end
+
+--- @return number
+function AmStreamingStats:MinComponent() end
+
+--- @return number
+function AmStreamingStats:GetMax() end
+
+--- @return number
+function AmStreamingStats:GetMin() end
+
+--- @param p1 number
+--- @return boolean
+function AmStreamingStats:IsWithin(p1) end
+
+--- @param p1 number
+--- @return boolean
+function AmStreamingStats:IsIn(p1) end
+
+--- @param p1 number
+--- @return nil
+function AmStreamingStats:Insert(p1) end
+
+--- @return Vec2
+function AmStreamingStats:GetAbs() end
+
+--- @return number
+function AmStreamingStats:GetAvg() end
+
+--- @return Vec2
+function AmStreamingStats:XY() end
+
+--- @return Vec2
+function AmStreamingStats:YX() end
+
+--- @return boolean
+function AmStreamingStats:IsAnyNaN() end
+
+--- @return Vec2
+function AmStreamingStats:GetUnit() end
+
+--- @return Vec2
+function AmStreamingStats:GetUnitSafe() end
+
+--- @return Vec2
+function AmStreamingStats:SetAbs() end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return number
+function AmStreamingStats:Dot(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return number
+function AmStreamingStats:Dot(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec3
+function AmStreamingStats:Cross(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec3
+function AmStreamingStats:Cross(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @param p3 number
+--- @return Vec2
+function AmStreamingStats:Lerp(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @param p3 number
+--- @return Vec2
+function AmStreamingStats:Mix(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @return boolean
+function AmStreamingStats:IsZero(p1) end
+
+--- @return number
+function AmStreamingStats:Length() end
+
+--- @return number
+function AmStreamingStats:SqrLength() end
+
+--- @return Angle
+function AmStreamingStats:GetAngle() end
+
+--- @return number
+function AmStreamingStats:GetAngleRad() end
+
+--- @return nil
+function AmStreamingStats:Normalize() end
+
+--- @param p1 number
+--- @return nil
+function AmStreamingStats:NormalizeTo(p1) end
+
+--- @return Vec2
+function AmStreamingStats:GetNormalized() end
+
+--- @param p1 number
+--- @return Vec2
+function AmStreamingStats:GetNormalizedTo(p1) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @return nil
+function AmStreamingStats:Clamp(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @param p3 number
+--- @return nil
+function AmStreamingStats:Clamp(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @return Vec2
+function AmStreamingStats:GetClamped(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @param p3 number
+--- @return Vec2
+function AmStreamingStats:GetClamped(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @return nil
+function AmStreamingStats:Ceil(p1) end
+
+--- @param p1 Vec2
+--- @return Vec2
+function AmStreamingStats:GetCeiled(p1) end
+
+--- @param p1 Vec2
+--- @return nil
+function AmStreamingStats:Floor(p1) end
+
+--- @param p1 Vec2
+--- @return Vec2
+function AmStreamingStats:GetFloored(p1) end
+
+--- @return nil
+function AmStreamingStats:Round() end
+
+--- @param p1 Vec2
+--- @return Vec2
+function AmStreamingStats:GetRounded(p1) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return nil
+function AmStreamingStats:SetLength(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return number
+function AmStreamingStats:DistanceTo(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return nil
+function AmStreamingStats:MorphTo(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return Vec2
+function AmStreamingStats:GetMorphedTo(p1, p2) end
+
+--- @return nil
+function AmStreamingStats:RotateRight90() end
+
+--- @param p1 Angle
+--- @return nil
+function AmStreamingStats:RotateRight(p1) end
+
+--- @param p1 number
+--- @return nil
+function AmStreamingStats:RotateRight(p1) end
+
+--- @param p1 Angle
+--- @return Vec2
+function AmStreamingStats:GetRotatedRight(p1) end
+
+--- @param p1 number
+--- @return Vec2
+function AmStreamingStats:GetRotatedRight(p1) end
+
+--- @return Vec2
+function AmStreamingStats:GetRotatedRight90() end
+
+--- @return nil
+function AmStreamingStats:RotateLeft90() end
+
+--- @param p1 Angle
+--- @return nil
+function AmStreamingStats:RotateLeft(p1) end
+
+--- @param p1 number
+--- @return nil
+function AmStreamingStats:RotateLeft(p1) end
+
+--- @param p1 Angle
+--- @return Vec2
+function AmStreamingStats:GetRotatedLeft(p1) end
+
+--- @param p1 number
+--- @return Vec2
+function AmStreamingStats:GetRotatedLeft(p1) end
+
+--- @return Vec2
+function AmStreamingStats:GetRotatedLeft90() end
+
+--- @return nil
+function AmStreamingStats:Rotate90() end
+
+--- @param p1 Angle
+--- @return nil
+function AmStreamingStats:Rotate(p1) end
+
+--- @param p1 number
+--- @return nil
+function AmStreamingStats:Rotate(p1) end
+
+--- @param p1 Angle
+--- @return Vec2
+function AmStreamingStats:GetRotated(p1) end
+
+--- @param p1 number
+--- @return Vec2
+function AmStreamingStats:GetRotated(p1) end
+
+--- @return Vec2
+function AmStreamingStats:GetRotated90() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/AmStreamingStatsSlot)
+]]
+--- @class AmStreamingStatsSlot
+--- @field slotStart integer
+--- @field accumBytes integer
+--- @field accumMessages integer
+AmStreamingStatsSlot = {}
+
+--- @param p1 integer
+--- @return AmStreamingStatsSlot
+function AmStreamingStatsSlot:GetStatsByFrameIdx(p1) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/AmStreamingStatsStatPerFrame)
+]]
+--- @class AmStreamingStatsStatPerFrame
+--- @field networkState string
+--- @field name string
+--- @field IP string
+--- @field port integer
+--- @field streamingVersion string
+AmStreamingStatsStatPerFrame = {}
+
+--- @param p1 integer
+--- @return AmStreamingStatsSlot
+function AmStreamingStatsStatPerFrame:GetStatsByFrameIdx(p1) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/AmStreamingStatsStatPerInterval)
+]]
+--- @class AmStreamingStatsStatPerInterval
+--- @field networkState string
+--- @field name string
+--- @field IP string
+--- @field port integer
+--- @field streamingVersion string
+AmStreamingStatsStatPerInterval = {}
+
+--- @param p1 integer
+--- @return AmStreamingStatsSlot
+function AmStreamingStatsStatPerInterval:GetStatsByTimestamp(p1) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/AmStreamingStatsStatPerMessage)
+]]
+--- @class AmStreamingStatsStatPerMessage
+--- @field networkState string
+--- @field name string
+--- @field IP string
+--- @field port integer
+--- @field streamingVersion string
+AmStreamingStatsStatPerMessage = {}
+
+--- @param p1 integer
+--- @return AmStreamingStatsSlot
+function AmStreamingStatsStatPerMessage:GetStatsByMessageIdx(p1) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/AmStreamingStatsTotal)
+]]
+--- @class AmStreamingStatsTotal
+--- @field bytes integer
+--- @field messages integer
+--- @field lastMsgIdx integer
+--- @field lastOnFrameIdx integer
+--- @field lastTimestampUs integer
+AmStreamingStatsTotal = {}
+
+--- @param p1 integer
+--- @return AmStreamingStatsSlot
+function AmStreamingStatsTotal:GetStatsByFrameIdx(p1) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Angle)
+]]
 --- @class Angle
 --- @field sine number
 --- @field cosine number
 Angle = {}
 
---[[
-ajsdjklalsd
-
-[View Documentation](https://docs.atomontage.com/api/Angle#Angle)
-]]
 --- @return Angle
 function Angle() end
 
@@ -46,24 +521,11 @@ function Angle(p1, p2) end
 --- @return Angle
 function Angle(p1) end
 
---[[
-ajsdjklalsd
-
-[View Documentation](https://docs.atomontage.com/api/Angle#Angle)
-]]
---- @return Angle
-function Angle() end
-
 --- @param p1 Angle
 --- @param p2 Angle
 --- @return boolean
 function Angle:__eq(p1, p2) end
 
---[[
-asdjaklsdlkjas
-
-[View Documentation](https://docs.atomontage.com/api/Angle#void-Set-float)
-]]
 --- @param p1 number
 --- @return nil
 function Angle:Set(p1) end
@@ -71,8 +533,18 @@ function Angle:Set(p1) end
 --- @return number
 function Angle:Get() end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/AssetManager)
+]]
 --- @class AssetManager
---- @field assets userdata
+--- @field x integer
+--- @field y integer
+--- @field length number
+--- @field zero Vec2i
+--- @field normalized Vec2
 AssetManager = {}
 
 --- @param p1 AssetManager
@@ -112,14 +584,16 @@ function AssetManager:GetAssetsPath(p1) end
 --- @return string
 function AssetManager:GetFilePath(p1) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Camera)
+]]
 --- @class Camera
 --- @field transformation Transformation
 --- @field transform Transformation
 Camera = {}
-
---- @param p1 string
---- @return Camera
-function Camera(p1) end
 
 --- @param p1 Object3D
 --- @return Transformation
@@ -233,6 +707,10 @@ function Camera:SetFovY(p1) end
 function Camera:GetFovY() end
 
 --[[
+`Client`
+:::info Client Only
+This class is only available on client
+:::
 
 
 blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab
@@ -245,9 +723,6 @@ blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal
 --- @field platform string
 --- @field sysInfo string
 Client = {}
-
---- @return Client
-function Client() end
 
 --- @param message table
 --- @return nil
@@ -580,6 +1055,32 @@ function Client:GetCurrentUIActionID() end
 
 --- @param p1 string
 --- @param p2 Vec2
+--- @return nil
+function Client:WriteToScreen(p1, p2) end
+
+--- @param p1 string
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @return nil
+function Client:WriteToScreen(p1, p2, p3) end
+
+--- @param p1 string
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @param p4 Vec4
+--- @return nil
+function Client:WriteToScreen(p1, p2, p3, p4) end
+
+--- @param p1 string
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @param p4 Vec4
+--- @param p5 integer
+--- @return nil
+function Client:WriteToScreen(p1, p2, p3, p4, p5) end
+
+--- @param p1 string
+--- @param p2 Vec2
 --- @param p3 Vec2
 --- @param p4 Vec4
 --- @param p5 integer
@@ -651,14 +1152,58 @@ function Client:ToggleChannelRendering() end
 --- @return nil
 function Client:SaveEntityPath() end
 
---- @class CommandLine
---- @field type string
---- @field object Object
-CommandLine = {}
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/ClientConnectionInfo)
+]]
+--- @class ClientConnectionInfo
+--- @field networkState string
+--- @field ID integer
+--- @field name string
+--- @field IP string
+--- @field port integer
+--- @field streamingVersion string
+ClientConnectionInfo = {}
 
 --- @param p1 string
---- @return CommandLine
-function CommandLine(p1) end
+--- @param p2 FilePath
+--- @return ClientConnectionInfo
+function ShaderFiles(p1, p2) end
+
+--- @return boolean
+function ClientConnectionInfo:IsValid() end
+
+--- @return boolean
+function ClientConnectionInfo:IsManaged() end
+
+--- @return string
+function ClientConnectionInfo:GetFiles() end
+
+--- @param p1 string
+--- @return string
+function ClientConnectionInfo:GetFile(p1) end
+
+--- @return string
+function ClientConnectionInfo:GetFilePaths() end
+
+--- @return string
+function ClientConnectionInfo:GetAssetsPath() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/CommandLine)
+]]
+--- @class CommandLine
+--- @field x integer
+--- @field y integer
+--- @field length number
+--- @field zero Vec2i
+--- @field normalized Vec2
+CommandLine = {}
 
 --- @param p1 string
 --- @return boolean
@@ -685,6 +1230,8 @@ function CommandLine:GetOption(p1, p2) end
 function CommandLine:GetOptionVec3(p1, p2) end
 
 --[[
+`Client`
+`Server`
 
 See also: [ScriptComponent](ScriptComponent)
 
@@ -696,15 +1243,55 @@ See also: [ScriptComponent](ScriptComponent)
 Component = {}
 
 --- @return Component
-function Component() end
+function MeshDataBuilder() end
 
+--- @return nil
+function Component:Clear() end
+
+--- @param p1 Vec3
+--- @param p2 Vec4
+--- @return integer
+function Component:AddVertex(p1, p2) end
+
+--- @param p1 Vec3
+--- @param p2 Vec2
+--- @param p3 Vec4
+--- @return integer
+function Component:AddVertex(p1, p2, p3) end
+
+--- @param p1 Vec3
+--- @param p2 Vec2
+--- @return integer
+function Component:AddVertex(p1, p2) end
+
+--- @param p1 Vec3
+--- @return integer
+function Component:AddVertex(p1) end
+
+--- @param p1 integer
+--- @param p2 integer
+--- @param p3 integer
+--- @return nil
+function Component:AddIndex(p1, p2, p3) end
+
+--- @param p1 integer
+--- @param p2 integer
+--- @return nil
+function Component:AddIndex(p1, p2) end
+
+--- @param p1 integer
+--- @return nil
+function Component:AddIndex(p1) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Config)
+]]
 --- @class Config
---- @field client ClientConnectionInfo
---- @field server ServerConnectionInfo
+--- @field transformation Transformation
 Config = {}
-
---- @return Config
-function Config() end
 
 --- @param p1 string
 --- @param p2 integer
@@ -816,6 +1403,393 @@ function Config:GetVec4(p1) end
 --- @return table
 function Config:GetAllValuesStringified(p1) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/ConnectionInfo)
+]]
+--- @class ConnectionInfo
+--- @field client ClientConnectionInfo
+--- @field server ServerConnectionInfo
+ConnectionInfo = {}
+
+--- @return ConnectionInfo
+function Vec2() end
+
+--- @param p1 number
+--- @param p2 number
+--- @return ConnectionInfo
+function Vec2(p1, p2) end
+
+--- @param p1 number
+--- @return ConnectionInfo
+function Vec2(p1) end
+
+--- @param p1 Vec2
+--- @return ConnectionInfo
+function Vec2(p1) end
+
+--- @param p1 Vec2i
+--- @return ConnectionInfo
+function Vec2(p1) end
+
+--- @param p1 Vec2
+--- @param p2 integer
+--- @return number
+function ConnectionInfo:__index(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 integer
+--- @param p3 number
+--- @return nil
+function ConnectionInfo:__newindex(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec2
+function ConnectionInfo:__mul(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return Vec2
+function ConnectionInfo:__mul(p1, p2) end
+
+--- @param p1 number
+--- @param p2 Vec2
+--- @return Vec2
+function ConnectionInfo:__mul(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function ConnectionInfo:__mul(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec2
+function ConnectionInfo:__div(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return Vec2
+function ConnectionInfo:__div(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function ConnectionInfo:__div(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec2
+function ConnectionInfo:__add(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function ConnectionInfo:__add(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec2
+function ConnectionInfo:__sub(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function ConnectionInfo:__sub(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function ConnectionInfo:__unm(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return boolean
+function ConnectionInfo:__eq(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return boolean
+function ConnectionInfo:__eq(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return number
+function ConnectionInfo:__len(p1, p2) end
+
+--- @return number
+function ConnectionInfo:Sum() end
+
+--- @return number
+function ConnectionInfo:Sub() end
+
+--- @return number
+function ConnectionInfo:Diff() end
+
+--- @return number
+function ConnectionInfo:Prod() end
+
+--- @return number
+function ConnectionInfo:LinLen() end
+
+--- @return number
+function ConnectionInfo:Len() end
+
+--- @return number
+function ConnectionInfo:SqLen() end
+
+--- @return number
+function ConnectionInfo:MaxComponent() end
+
+--- @return number
+function ConnectionInfo:MinComponent() end
+
+--- @return number
+function ConnectionInfo:GetMax() end
+
+--- @return number
+function ConnectionInfo:GetMin() end
+
+--- @param p1 number
+--- @return boolean
+function ConnectionInfo:IsWithin(p1) end
+
+--- @param p1 number
+--- @return boolean
+function ConnectionInfo:IsIn(p1) end
+
+--- @param p1 number
+--- @return nil
+function ConnectionInfo:Insert(p1) end
+
+--- @return Vec2
+function ConnectionInfo:GetAbs() end
+
+--- @return number
+function ConnectionInfo:GetAvg() end
+
+--- @return Vec2
+function ConnectionInfo:XY() end
+
+--- @return Vec2
+function ConnectionInfo:YX() end
+
+--- @return boolean
+function ConnectionInfo:IsAnyNaN() end
+
+--- @return Vec2
+function ConnectionInfo:GetUnit() end
+
+--- @return Vec2
+function ConnectionInfo:GetUnitSafe() end
+
+--- @return Vec2
+function ConnectionInfo:SetAbs() end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return number
+function ConnectionInfo:Dot(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return number
+function ConnectionInfo:Dot(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec3
+function ConnectionInfo:Cross(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec3
+function ConnectionInfo:Cross(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @param p3 number
+--- @return Vec2
+function ConnectionInfo:Lerp(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @param p3 number
+--- @return Vec2
+function ConnectionInfo:Mix(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @return boolean
+function ConnectionInfo:IsZero(p1) end
+
+--- @return number
+function ConnectionInfo:Length() end
+
+--- @return number
+function ConnectionInfo:SqrLength() end
+
+--- @return Angle
+function ConnectionInfo:GetAngle() end
+
+--- @return number
+function ConnectionInfo:GetAngleRad() end
+
+--- @return nil
+function ConnectionInfo:Normalize() end
+
+--- @param p1 number
+--- @return nil
+function ConnectionInfo:NormalizeTo(p1) end
+
+--- @return Vec2
+function ConnectionInfo:GetNormalized() end
+
+--- @param p1 number
+--- @return Vec2
+function ConnectionInfo:GetNormalizedTo(p1) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @return nil
+function ConnectionInfo:Clamp(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @param p3 number
+--- @return nil
+function ConnectionInfo:Clamp(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @return Vec2
+function ConnectionInfo:GetClamped(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @param p3 number
+--- @return Vec2
+function ConnectionInfo:GetClamped(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @return nil
+function ConnectionInfo:Ceil(p1) end
+
+--- @param p1 Vec2
+--- @return Vec2
+function ConnectionInfo:GetCeiled(p1) end
+
+--- @param p1 Vec2
+--- @return nil
+function ConnectionInfo:Floor(p1) end
+
+--- @param p1 Vec2
+--- @return Vec2
+function ConnectionInfo:GetFloored(p1) end
+
+--- @return nil
+function ConnectionInfo:Round() end
+
+--- @param p1 Vec2
+--- @return Vec2
+function ConnectionInfo:GetRounded(p1) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return nil
+function ConnectionInfo:SetLength(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return number
+function ConnectionInfo:DistanceTo(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return nil
+function ConnectionInfo:MorphTo(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return Vec2
+function ConnectionInfo:GetMorphedTo(p1, p2) end
+
+--- @return nil
+function ConnectionInfo:RotateRight90() end
+
+--- @param p1 Angle
+--- @return nil
+function ConnectionInfo:RotateRight(p1) end
+
+--- @param p1 number
+--- @return nil
+function ConnectionInfo:RotateRight(p1) end
+
+--- @param p1 Angle
+--- @return Vec2
+function ConnectionInfo:GetRotatedRight(p1) end
+
+--- @param p1 number
+--- @return Vec2
+function ConnectionInfo:GetRotatedRight(p1) end
+
+--- @return Vec2
+function ConnectionInfo:GetRotatedRight90() end
+
+--- @return nil
+function ConnectionInfo:RotateLeft90() end
+
+--- @param p1 Angle
+--- @return nil
+function ConnectionInfo:RotateLeft(p1) end
+
+--- @param p1 number
+--- @return nil
+function ConnectionInfo:RotateLeft(p1) end
+
+--- @param p1 Angle
+--- @return Vec2
+function ConnectionInfo:GetRotatedLeft(p1) end
+
+--- @param p1 number
+--- @return Vec2
+function ConnectionInfo:GetRotatedLeft(p1) end
+
+--- @return Vec2
+function ConnectionInfo:GetRotatedLeft90() end
+
+--- @return nil
+function ConnectionInfo:Rotate90() end
+
+--- @param p1 Angle
+--- @return nil
+function ConnectionInfo:Rotate(p1) end
+
+--- @param p1 number
+--- @return nil
+function ConnectionInfo:Rotate(p1) end
+
+--- @param p1 Angle
+--- @return Vec2
+function ConnectionInfo:GetRotated(p1) end
+
+--- @param p1 number
+--- @return Vec2
+function ConnectionInfo:GetRotated(p1) end
+
+--- @return Vec2
+function ConnectionInfo:GetRotated90() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Frustum)
+]]
 --- @class Frustum
 --- @field nearPlane number
 --- @field farPlane number
@@ -826,15 +1800,18 @@ Frustum = {}
 --- @return Frustum
 function Frustum() end
 
---- @return Frustum
-function Frustum() end
+--[[
+`Client`
+`Server`
 
+[View Documentation](https://docs.atomontage.com/api/Input)
+]]
 --- @class Input
---- @field realtimeLighting RealtimeLightingInfo
+--- @field r boolean
+--- @field g boolean
+--- @field b boolean
+--- @field a boolean
 Input = {}
-
---- @return Input
-function Input() end
 
 --- @return Input
 function Input() end
@@ -1042,50 +2019,248 @@ function Input:JoyAxis(p1, p2) end
 --- @return table
 function Input:GetInputEvents(p1) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/LightingUpdate)
+]]
 --- @class LightingUpdate
 --- @field realtimeLighting RealtimeLightingInfo
 LightingUpdate = {}
 
---- @param p1 string
---- @param p2 FilePath
---- @return LightingUpdate
-function Material(p1, p2) end
-
---- @return boolean
-function LightingUpdate:IsValid() end
-
---- @return boolean
-function LightingUpdate:IsManaged() end
-
---- @param p1 string
---- @return boolean
-function LightingUpdate:HasProperty(p1) end
-
---- @param p1 string
---- @return Vec3
-function LightingUpdate:GetPropertyVec3(p1) end
-
---- @param p1 string
---- @return Vec4
-function LightingUpdate:GetPropertyVec4(p1) end
-
---- @param p1 string
---- @param p2 Vec4
 --- @return nil
-function LightingUpdate:SetProperty(p1, p2) end
+function LightingUpdate:Clear() end
 
---- @param p1 string
+--- @return nil
+function LightingUpdate:UseTemporaryLayers() end
+
+--- @return nil
+function LightingUpdate:Flush() end
+
+--- @param p1 number
+--- @return integer
+function LightingUpdate:FromWorld(p1) end
+
+--- @param p1 Vec3
+--- @return Vec3i
+function LightingUpdate:FromWorld(p1) end
+
+--- @param p1 number
+--- @return number
+function LightingUpdate:ToWorld(p1) end
+
+--- @param p1 Vec3i
+--- @return Vec3
+function LightingUpdate:ToWorld(p1) end
+
+--- @param p1 boolean
+--- @return boolean
+function LightingUpdate:SetUnitVoxelDim(p1) end
+
+--- @param p1 Vec3i
+--- @param p2 boolean
+--- @return nil
+function LightingUpdate:SetMask_deprecated(p1, p2) end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 number
+--- @return boolean
+function LightingUpdate:GetMask(p1, p2, p3) end
+
+--- @param p1 Vec3i
+--- @return boolean
+function LightingUpdate:GetMask(p1) end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 number
+--- @param p4 integer
+--- @return integer
+function LightingUpdate:GetMaskNeighbours(p1, p2, p3, p4) end
+
+--- @param p1 Vec3i
+--- @param p2 integer
+--- @return integer
+function LightingUpdate:GetMaskNeighbours(p1, p2) end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 number
+--- @param p4 integer
+--- @return integer
+function LightingUpdate:GetMaskNeighboursVN(p1, p2, p3, p4) end
+
+--- @param p1 Vec3i
+--- @param p2 integer
+--- @return integer
+function LightingUpdate:GetMaskNeighboursVN(p1, p2) end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 number
+--- @return nil
+function LightingUpdate:ClearVoxel(p1, p2, p3) end
+
+--- @param p1 Vec3i
+--- @return nil
+function LightingUpdate:ClearVoxel(p1) end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 number
+--- @param p4 Vec3
+--- @return nil
+function LightingUpdate:SetColor(p1, p2, p3, p4) end
+
+--- @param p1 Vec3i
 --- @param p2 Vec3
 --- @return nil
-function LightingUpdate:SetProperty(p1, p2) end
+function LightingUpdate:SetColor(p1, p2) end
 
+--- @param p1 Vec3i
+--- @return userdata
+function LightingUpdate:GetColor(p1) end
+
+--- @param p1 Vec3i
+--- @return Vec3
+function LightingUpdate:GetNormal(p1) end
+
+--- @param p1 Vec3i
+--- @return Vec3
+function LightingUpdate:GetFilteredNormal(p1) end
+
+--- @param p1 Vec3i
+--- @param p2 Vec3
+--- @param p3 number
+--- @return userdata
+function LightingUpdate:TraceRay(p1, p2, p3) end
+
+--- @param p1 Vec3i
+--- @param p2 integer
+--- @param p3 Vec3
+--- @return nil
+function LightingUpdate:PaintSphere(p1, p2, p3) end
+
+--- @param p1 Vec3i
+--- @param p2 integer
+--- @param p3 Vec3
+--- @param p4 number
+--- @param p5 number
+--- @param p6 number
+--- @return nil
+function LightingUpdate:PaintSphereBlend(p1, p2, p3, p4, p5, p6) end
+
+--- @param p1 integer
+--- @param p2 Vec3i
+--- @param p3 integer
+--- @return nil
+function LightingUpdate:ClearShape(p1, p2, p3) end
+
+--- @param p1 Vec3i
+--- @param p2 integer
+--- @return nil
+function LightingUpdate:ClearSphere(p1, p2) end
+
+--- @param p1 Vec3i
+--- @param p2 integer
+--- @param p3 number
+--- @param p4 number
+--- @param p5 number
+--- @return nil
+function LightingUpdate:InflateRadius(p1, p2, p3, p4, p5) end
+
+--- @param p1 Vec3i
+--- @param p2 integer
+--- @param p3 Vec3
+--- @return nil
+function LightingUpdate:MakeSphere(p1, p2, p3) end
+
+--- @param p1 Vec3
+--- @param p2 Quat
+--- @param p3 number
+--- @return nil
+function LightingUpdate:InstantiateIE(p1, p2, p3) end
+
+--- @param p1 Vec3i
+--- @param p2 Vec3
+--- @param p3 number
+--- @return userdata
+function LightingUpdate:TraceRayTmp(p1, p2, p3) end
+
+--- @param p1 integer
+--- @return nil
+function LightingUpdate:FreeTmpLayers(p1) end
+
+--- @param p1 Vec3i
+--- @param p2 Vec3i
+--- @param p3 integer
+--- @param p4 integer
+--- @return nil
+function LightingUpdate:FillTmpLayers(p1, p2, p3, p4) end
+
+--- @return nil
+function LightingUpdate:ClearContent() end
+
+--- @param p1 string
+--- @return boolean
+function LightingUpdate:Load(p1) end
+
+--- @param p1 boolean
+--- @return nil
+function LightingUpdate:RebuildLods(p1) end
+
+--- @param p1 string
+--- @param p2 string
+--- @return boolean
+function LightingUpdate:CopyLayer(p1, p2) end
+
+--- @param p1 string
+--- @return boolean
+function LightingUpdate:ClearLayer(p1) end
+
+--- @return nil
+function LightingUpdate:RemoveHiddenVoxelsC32() end
+
+--- @return nil
+function LightingUpdate:RemoveHiddenVoxelsN16() end
+
+--- @return table
+function LightingUpdate:GetInfo() end
+
+--- @param p1 VoxelDB
+--- @return nil
+function LightingUpdate:CopyTo(p1) end
+
+--- @param p1 string
+--- @param p2 string
+--- @param p3 integer
+--- @return boolean
+function LightingUpdate:Save(p1, p2, p3) end
+
+--- @param p1 Vec3i
+--- @param p2 integer
+--- @param p3 integer
+--- @param p4 userdata
+--- @param p5 integer
+--- @return VoxelInspectData
+function LightingUpdate:Inspect(p1, p2, p3, p4, p5) end
+
+--- @return string
+function LightingUpdate:GetLayers() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Material)
+]]
 --- @class Material
---- @field shaderFiles ResourceReference
---- @field polygonMode PolygonMode
---- @field depthStencil ResourceReference
---- @field blend ResourceReference
---- @field defines string
---- @field uniforms userdata
+--- @field nearPlane number
+--- @field farPlane number
+--- @field fovY number
+--- @field aspectRatio number
 Material = {}
 
 --- @param p1 string
@@ -1121,8 +2296,25 @@ function Material:SetProperty(p1, p2) end
 --- @return nil
 function Material:SetProperty(p1, p2) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Matrix4f)
+]]
 --- @class Matrix4f
---- @field row Vec4[4]
+--- @field x number
+--- @field y number
+--- @field z number
+--- @field zero Vec3
+--- @field up Vec3
+--- @field right Vec3
+--- @field forward Vec3
+--- @field down Vec3
+--- @field left Vec3
+--- @field back Vec3
+--- @field length number
+--- @field normalized Vec3
 Matrix4f = {}
 
 --- @return Matrix4f
@@ -1132,21 +2324,18 @@ function Matrix4f() end
 --- @return Matrix4f
 function Matrix4f(p1) end
 
---- @return Matrix4f
-function Matrix4f() end
+--[[
+`Client`
+`Server`
 
---- @return Matrix4f
-function Matrix4f() end
-
+[View Documentation](https://docs.atomontage.com/api/MeshData)
+]]
 --- @class MeshData
 --- @field file string
 --- @field data MeshDataBuilder
 --- @field type string
 --- @field object Object
 MeshData = {}
-
---- @return MeshData
-function MeshDataBuilder() end
 
 --- @return MeshData
 function MeshDataBuilder() end
@@ -1189,15 +2378,18 @@ function MeshData:AddIndex(p1, p2) end
 --- @return nil
 function MeshData:AddIndex(p1) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/MeshDataBuilder)
+]]
 --- @class MeshDataBuilder
 --- @field static boolean
 --- @field dynamic boolean
 --- @field streamed boolean
 --- @field topology PrimitiveTopology
 MeshDataBuilder = {}
-
---- @return MeshDataBuilder
-function MeshDataBuilder() end
 
 --- @return MeshDataBuilder
 function MeshDataBuilder() end
@@ -1240,26 +2432,442 @@ function MeshDataBuilder:AddIndex(p1, p2) end
 --- @return nil
 function MeshDataBuilder:AddIndex(p1) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/MeshRender)
+]]
 --- @class MeshRender
 --- @field material userdata
 --- @field type string
 --- @field object Object
 MeshRender = {}
 
---- @return MeshRender
-function MipMapImage() end
+--[[
+`Client`
+`Server`
 
+[View Documentation](https://docs.atomontage.com/api/NetworkStat)
+]]
+--- @class NetworkStat
+--- @field receivedUIMessageCount integer
+--- @field receivedUIMessageCountPerSecond integer
+--- @field receivedUIData integer
+--- @field receivedUIDataPerSecond integer
+--- @field receivedUIDataInFrame integer
+--- @field receivedUIDataInLastMessage integer
+--- @field receivedLuaMessageCount integer
+--- @field receivedLuaMessageCountPerSecond integer
+--- @field receivedLuaData integer
+--- @field receivedLuaDataPerSecond integer
+--- @field receivedLuaDataInFrame integer
+--- @field receivedLuaDataInLastMessage integer
+--- @field receivedMessageCount integer
+--- @field receivedMessageCountPerSecond integer
+--- @field receivedData integer
+--- @field receivedDataPerSecond integer
+--- @field receivedDataInFrame integer
+--- @field receivedDataInLastMessage integer
+--- @field sentUIMessageCount integer
+--- @field sentUIMessageCountPerSecond integer
+--- @field sentUIData integer
+--- @field sentUIDataPerSecond integer
+--- @field sentUIDataInFrame integer
+--- @field sentUIDataInLastMessage integer
+--- @field sentLuaMessageCount integer
+--- @field sentLuaMessageCountPerSecond integer
+--- @field sentLuaData integer
+--- @field sentLuaDataPerSecond integer
+--- @field sentLuaDataInFrame integer
+--- @field sentLuaDataInLastMessage integer
+--- @field sentMessageCount integer
+--- @field sentMessageCountPerSecond integer
+--- @field sentData integer
+--- @field sentDataPerSecond integer
+--- @field sentDataInFrame integer
+--- @field sentDataInLastMessage integer
+NetworkStat = {}
+
+--- @return NetworkStat
+function Vec2() end
+
+--- @param p1 number
+--- @param p2 number
+--- @return NetworkStat
+function Vec2(p1, p2) end
+
+--- @param p1 number
+--- @return NetworkStat
+function Vec2(p1) end
+
+--- @param p1 Vec2
+--- @return NetworkStat
+function Vec2(p1) end
+
+--- @param p1 Vec2i
+--- @return NetworkStat
+function Vec2(p1) end
+
+--- @param p1 Vec2
+--- @param p2 integer
+--- @return number
+function NetworkStat:__index(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 integer
+--- @param p3 number
+--- @return nil
+function NetworkStat:__newindex(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec2
+function NetworkStat:__mul(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return Vec2
+function NetworkStat:__mul(p1, p2) end
+
+--- @param p1 number
+--- @param p2 Vec2
+--- @return Vec2
+function NetworkStat:__mul(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function NetworkStat:__mul(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec2
+function NetworkStat:__div(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return Vec2
+function NetworkStat:__div(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function NetworkStat:__div(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec2
+function NetworkStat:__add(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function NetworkStat:__add(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec2
+function NetworkStat:__sub(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function NetworkStat:__sub(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec2
+function NetworkStat:__unm(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return boolean
+function NetworkStat:__eq(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return boolean
+function NetworkStat:__eq(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return number
+function NetworkStat:__len(p1, p2) end
+
+--- @return number
+function NetworkStat:Sum() end
+
+--- @return number
+function NetworkStat:Sub() end
+
+--- @return number
+function NetworkStat:Diff() end
+
+--- @return number
+function NetworkStat:Prod() end
+
+--- @return number
+function NetworkStat:LinLen() end
+
+--- @return number
+function NetworkStat:Len() end
+
+--- @return number
+function NetworkStat:SqLen() end
+
+--- @return number
+function NetworkStat:MaxComponent() end
+
+--- @return number
+function NetworkStat:MinComponent() end
+
+--- @return number
+function NetworkStat:GetMax() end
+
+--- @return number
+function NetworkStat:GetMin() end
+
+--- @param p1 number
+--- @return boolean
+function NetworkStat:IsWithin(p1) end
+
+--- @param p1 number
+--- @return boolean
+function NetworkStat:IsIn(p1) end
+
+--- @param p1 number
+--- @return nil
+function NetworkStat:Insert(p1) end
+
+--- @return Vec2
+function NetworkStat:GetAbs() end
+
+--- @return number
+function NetworkStat:GetAvg() end
+
+--- @return Vec2
+function NetworkStat:XY() end
+
+--- @return Vec2
+function NetworkStat:YX() end
+
+--- @return boolean
+function NetworkStat:IsAnyNaN() end
+
+--- @return Vec2
+function NetworkStat:GetUnit() end
+
+--- @return Vec2
+function NetworkStat:GetUnitSafe() end
+
+--- @return Vec2
+function NetworkStat:SetAbs() end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return number
+function NetworkStat:Dot(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return number
+function NetworkStat:Dot(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2i
+--- @return Vec3
+function NetworkStat:Cross(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return Vec3
+function NetworkStat:Cross(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @param p3 number
+--- @return Vec2
+function NetworkStat:Lerp(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @param p3 number
+--- @return Vec2
+function NetworkStat:Mix(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @return boolean
+function NetworkStat:IsZero(p1) end
+
+--- @return number
+function NetworkStat:Length() end
+
+--- @return number
+function NetworkStat:SqrLength() end
+
+--- @return Angle
+function NetworkStat:GetAngle() end
+
+--- @return number
+function NetworkStat:GetAngleRad() end
+
+--- @return nil
+function NetworkStat:Normalize() end
+
+--- @param p1 number
+--- @return nil
+function NetworkStat:NormalizeTo(p1) end
+
+--- @return Vec2
+function NetworkStat:GetNormalized() end
+
+--- @param p1 number
+--- @return Vec2
+function NetworkStat:GetNormalizedTo(p1) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @return nil
+function NetworkStat:Clamp(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @param p3 number
+--- @return nil
+function NetworkStat:Clamp(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @return Vec2
+function NetworkStat:GetClamped(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @param p3 number
+--- @return Vec2
+function NetworkStat:GetClamped(p1, p2, p3) end
+
+--- @param p1 Vec2
+--- @return nil
+function NetworkStat:Ceil(p1) end
+
+--- @param p1 Vec2
+--- @return Vec2
+function NetworkStat:GetCeiled(p1) end
+
+--- @param p1 Vec2
+--- @return nil
+function NetworkStat:Floor(p1) end
+
+--- @param p1 Vec2
+--- @return Vec2
+function NetworkStat:GetFloored(p1) end
+
+--- @return nil
+function NetworkStat:Round() end
+
+--- @param p1 Vec2
+--- @return Vec2
+function NetworkStat:GetRounded(p1) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return nil
+function NetworkStat:SetLength(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 Vec2
+--- @return number
+function NetworkStat:DistanceTo(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return nil
+function NetworkStat:MorphTo(p1, p2) end
+
+--- @param p1 Vec2
+--- @param p2 number
+--- @return Vec2
+function NetworkStat:GetMorphedTo(p1, p2) end
+
+--- @return nil
+function NetworkStat:RotateRight90() end
+
+--- @param p1 Angle
+--- @return nil
+function NetworkStat:RotateRight(p1) end
+
+--- @param p1 number
+--- @return nil
+function NetworkStat:RotateRight(p1) end
+
+--- @param p1 Angle
+--- @return Vec2
+function NetworkStat:GetRotatedRight(p1) end
+
+--- @param p1 number
+--- @return Vec2
+function NetworkStat:GetRotatedRight(p1) end
+
+--- @return Vec2
+function NetworkStat:GetRotatedRight90() end
+
+--- @return nil
+function NetworkStat:RotateLeft90() end
+
+--- @param p1 Angle
+--- @return nil
+function NetworkStat:RotateLeft(p1) end
+
+--- @param p1 number
+--- @return nil
+function NetworkStat:RotateLeft(p1) end
+
+--- @param p1 Angle
+--- @return Vec2
+function NetworkStat:GetRotatedLeft(p1) end
+
+--- @param p1 number
+--- @return Vec2
+function NetworkStat:GetRotatedLeft(p1) end
+
+--- @return Vec2
+function NetworkStat:GetRotatedLeft90() end
+
+--- @return nil
+function NetworkStat:Rotate90() end
+
+--- @param p1 Angle
+--- @return nil
+function NetworkStat:Rotate(p1) end
+
+--- @param p1 number
+--- @return nil
+function NetworkStat:Rotate(p1) end
+
+--- @param p1 Angle
+--- @return Vec2
+function NetworkStat:GetRotated(p1) end
+
+--- @param p1 number
+--- @return Vec2
+function NetworkStat:GetRotated(p1) end
+
+--- @return Vec2
+function NetworkStat:GetRotated90() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Object)
+]]
 --- @class Object
---- @field s_id integer
 --- @field name string
 --- @field tag string
---- @field flags integer
---- @field transform2 integer
---- @field meshData integer
---- @field meshRender integer
---- @field voxelData integer
---- @field voxelRender integer
---- @field rigidBody integer
 --- @field id integer
 --- @field isDestroyed boolean
 --- @field componentsCount integer
@@ -1268,9 +2876,6 @@ function MipMapImage() end
 --- @field transform Transform
 --- @field dontSave boolean
 Object = {}
-
---- @return Object
-function Object() end
 
 --- @param p1 Object
 --- @return nil
@@ -1292,13 +2897,15 @@ function Object:RemoveComponent(p1) end
 --- @return userdata
 function Object:GetComponentByType(p1) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Object3D)
+]]
 --- @class Object3D
 --- @field transformation Transformation
 Object3D = {}
-
---- @param p1 string
---- @return Object3D
-function Object3D(p1) end
 
 --- @param p1 Object3D
 --- @return Transformation
@@ -1348,10 +2955,19 @@ function Object3D:GetPosition(p1) end
 --- @return nil
 function Object3D:SetPosition(p1) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/RealtimeLightingInfo)
+]]
 --- @class RealtimeLightingInfo
+--- @field directional boolean
+--- @field shadows boolean
+--- @field ambientOcclusion boolean
 --- @field diffuseSamples integer
---- @field ambient Vec3
---- @field diffuse Vec3
+--- @field ambientColor Vec3
+--- @field diffuseColor Vec3
 --- @field lightDir Vec3
 --- @field ambientSamples integer
 --- @field diffuseRayLength number
@@ -1359,26 +2975,120 @@ function Object3D:SetPosition(p1) end
 --- @field taskBoxScale integer
 RealtimeLightingInfo = {}
 
---- @return RealtimeLightingInfo
-function RealtimeLightingInfo() end
+--- @return number
+function RealtimeLightingInfo:GetTime() end
 
---- @class ResourceReference
---- @field angles Vec3
-ResourceReference = {}
+--- @return number
+function RealtimeLightingInfo:GetTimeDelta() end
 
---- @return ResourceReference
-function Rotation() end
+--- @return number
+function RealtimeLightingInfo:GetDebugTime() end
 
---- @param p1 Vec3
---- @return ResourceReference
-function Rotation(p1) end
+--- @return boolean
+function RealtimeLightingInfo:Test() end
 
---- @return ResourceReference
-function Rotation() end
+--- @return Object
+function RealtimeLightingInfo:CreateObject() end
 
---- @return ResourceReference
-function Rotation() end
+--- @param p1 Object
+--- @return Object
+function RealtimeLightingInfo:CloneObject(p1) end
 
+--- @param p1 Object
+--- @return nil
+function RealtimeLightingInfo:DestroyObject(p1) end
+
+--- @param p1 string
+--- @return userdata
+function RealtimeLightingInfo:CreateMaterial(p1) end
+
+--- @return nil
+function RealtimeLightingInfo:DebugStats() end
+
+--- @param p1 string
+--- @return table
+function RealtimeLightingInfo:GetObjectsByName(p1) end
+
+--- @return table
+function RealtimeLightingInfo:GetAllObjects() end
+
+--- @return table
+function RealtimeLightingInfo:GetRootObjects() end
+
+--- @param p1 string
+--- @return table
+function RealtimeLightingInfo:GetObjectsByTag(p1) end
+
+--- @param p1 integer
+--- @return Object
+function RealtimeLightingInfo:GetObjectById(p1) end
+
+--- @param p1 string
+--- @param p2 integer
+--- @return userdata
+function RealtimeLightingInfo:GetNativeComponentById(p1, p2) end
+
+--- @return boolean
+function RealtimeLightingInfo:IsServerReady() end
+
+--- @param p1 string
+--- @return nil
+function RealtimeLightingInfo:Save(p1) end
+
+--- @param p1 string
+--- @return integer
+function RealtimeLightingInfo:Merge(p1) end
+
+--- @param p1 string
+--- @return nil
+function RealtimeLightingInfo:ScheduleLoad(p1) end
+
+--- @return nil
+function RealtimeLightingInfo:RebuildLighting() end
+
+--- @param p1 string
+--- @param p2 string
+--- @return LightingUpdate
+function RealtimeLightingInfo:CreateLighting(p1, p2) end
+
+--- @param p1 string
+--- @return VoxelDB
+function RealtimeLightingInfo:GetVoxelDB(p1) end
+
+--- @param p1 Object
+--- @return integer
+function RealtimeLightingInfo:MontageCreate(p1) end
+
+--- @param p1 Object
+--- @return integer
+function RealtimeLightingInfo:MontageUnlink(p1) end
+
+--- @param p1 string
+--- @return Object
+function RealtimeLightingInfo:MontageInstantiate(p1) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/ResResource)
+]]
+--- @class ResResource
+--- @field x integer
+--- @field y integer
+--- @field width integer
+--- @field height integer
+ResResource = {}
+
+--- @return string
+function ResResource:data() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Rotation)
+]]
 --- @class Rotation
 --- @field angles Vec3
 Rotation = {}
@@ -1390,18 +3100,13 @@ function Rotation() end
 --- @return Rotation
 function Rotation(p1) end
 
---- @return Rotation
-function Rotation() end
+--[[
+`Client`
+`Server`
 
---- @return Rotation
-function Rotation() end
-
+[View Documentation](https://docs.atomontage.com/api/Scene)
+]]
 --- @class Scene
---- @field SysTransform userdata
---- @field SysMeshRender MeshRender
---- @field SysMeshData MeshData
---- @field SysVoxelData userdata
---- @field SysVoxelRender userdata
 --- @field lighting LightingUpdate
 Scene = {}
 
@@ -1477,14 +3182,17 @@ function Scene:ScheduleLoad(p1) end
 function Scene:RebuildLighting() end
 
 --- @param p1 string
+--- @param p2 string
 --- @return LightingUpdate
-function Scene:CreateLighting(p1) end
+function Scene:CreateLighting(p1, p2) end
 
 --- @param p1 string
 --- @return VoxelDB
 function Scene:GetVoxelDB(p1) end
 
 --[[
+`Client`
+`Server`
 
 See also: [Component](Component)
 
@@ -1548,15 +3256,252 @@ end
 --- @class ScriptComponent
 --- @field type string
 --- @field object Object
---- @field fileName string
 --- @field isValid boolean
 --- @field instance table
 --- @field file string
 ScriptComponent = {}
 
 --- @return ScriptComponent
-function ScriptComponent() end
+function MeshDataBuilder() end
 
+--- @return nil
+function ScriptComponent:Clear() end
+
+--- @param p1 Vec3
+--- @param p2 Vec4
+--- @return integer
+function ScriptComponent:AddVertex(p1, p2) end
+
+--- @param p1 Vec3
+--- @param p2 Vec2
+--- @param p3 Vec4
+--- @return integer
+function ScriptComponent:AddVertex(p1, p2, p3) end
+
+--- @param p1 Vec3
+--- @param p2 Vec2
+--- @return integer
+function ScriptComponent:AddVertex(p1, p2) end
+
+--- @param p1 Vec3
+--- @return integer
+function ScriptComponent:AddVertex(p1) end
+
+--- @param p1 integer
+--- @param p2 integer
+--- @param p3 integer
+--- @return nil
+function ScriptComponent:AddIndex(p1, p2, p3) end
+
+--- @param p1 integer
+--- @param p2 integer
+--- @return nil
+function ScriptComponent:AddIndex(p1, p2) end
+
+--- @param p1 integer
+--- @return nil
+function ScriptComponent:AddIndex(p1) end
+
+--[[
+`Server`
+:::info Server Only
+This class is only available on server
+:::
+
+[View Documentation](https://docs.atomontage.com/api/Server)
+]]
+--- @class Server
+--- @field networkState string
+--- @field name string
+--- @field IP string
+--- @field port integer
+--- @field streamingVersion string
+Server = {}
+
+--- @return table
+function Server:GetClients() end
+
+--- @param toClientID integer
+--- @param messages table
+--- @return nil
+function Server:SendMessages(toClientID, messages) end
+
+--- @return table
+function Server:ReceiveMessages() end
+
+--- @return integer
+function Server:GetScriptsVersion() end
+
+--- @return nil
+function Server:ResendScripts() end
+
+--- @return boolean
+function Server:ReloadScripts() end
+
+--- @return userdata
+function Server:GetVoxelClientIDs() end
+
+--- @param clientID integer
+--- @return AmStreamingStats
+function Server:GetVoxelStreamStats(clientID) end
+
+--- @return ServerConnectionInfo
+function Server:GetServerConnectionInfo() end
+
+--- @return userdata
+function Server:GetConnectionInfos() end
+
+--- @return NetworkStat
+function Server:GetNetworkStat() end
+
+--- @return userdata
+function Server:GetNetworkStats() end
+
+--- @return nil
+function Server:OnLuaLog() end
+
+--- @return boolean
+function Server:IsClient() end
+
+--- @return boolean
+function Server:IsServer() end
+
+--- @return integer
+function Server:GetCurrentUIActionID() end
+
+--- @return nil
+function Server:ScrollToLastestLuaLog() end
+
+--- @return CommandLine
+function Server:GetCommandLine() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/ServerConnectionInfo)
+]]
+--- @class ServerConnectionInfo
+--- @field networkState string
+--- @field name string
+--- @field IP string
+--- @field port integer
+--- @field streamingVersion string
+ServerConnectionInfo = {}
+
+--- @param p1 integer
+--- @param p2 UIItem
+--- @param p3 userdata
+--- @return string
+function ServerConnectionInfo:UIItemUpdate(p1, p2, p3) end
+
+--- @param p1 UIItem
+--- @return nil
+function ServerConnectionInfo:SelectItemInUICreator(p1) end
+
+--- @param p1 integer
+--- @return UIItem
+function ServerConnectionInfo:GetUIItemByUIActionID(p1) end
+
+--- @param p1 integer
+--- @return string
+function ServerConnectionInfo:GetUIActionType(p1) end
+
+--- @param p1 integer
+--- @return string
+function ServerConnectionInfo:GetUIActionScript(p1) end
+
+--- @return integer
+function ServerConnectionInfo:GetCurrentUIActionID() end
+
+--- @return nil
+function ServerConnectionInfo:OnLuaLog() end
+
+--- @return boolean
+function ServerConnectionInfo:IsServer() end
+
+--- @return boolean
+function ServerConnectionInfo:IsClient() end
+
+--- @param p1 string
+--- @param p2 integer
+--- @return nil
+function ServerConnectionInfo:OpenScriptFile(p1, p2) end
+
+--- @return nil
+function ServerConnectionInfo:ClearLuaLogClient() end
+
+--- @return nil
+function ServerConnectionInfo:ScrollToLastestLuaLog() end
+
+--- @return number
+function ServerConnectionInfo:GetFPS() end
+
+--- @return integer
+function ServerConnectionInfo:GetScriptsVersion() end
+
+--- @param p1 string
+--- @return number
+function ServerConnectionInfo:GetLogValue(p1) end
+
+--- @param p1 string
+--- @param p2 number
+--- @return nil
+function ServerConnectionInfo:SetLogValue(p1, p2) end
+
+--- @param p1 string
+--- @return userdata
+function ServerConnectionInfo:GetLogValueForPlot(p1) end
+
+--- @param p1 integer
+--- @return number
+function ServerConnectionInfo:GetLogIValue(p1) end
+
+--- @param p1 integer
+--- @return string
+function ServerConnectionInfo:GetLogIValueName(p1) end
+
+--- @param p1 integer
+--- @return string
+function ServerConnectionInfo:GetLogIValueOutputName(p1) end
+
+--- @param p1 integer
+--- @return boolean
+function ServerConnectionInfo:GetLogIsValue(p1) end
+
+--- @return integer
+function ServerConnectionInfo:GetLogValuesCount() end
+
+--- @return Vec2i
+function ServerConnectionInfo:GetVideoRange() end
+
+--- @return integer
+function ServerConnectionInfo:GetCurrentFrame() end
+
+--- @param p1 integer
+--- @return nil
+function ServerConnectionInfo:SetCurrentFrame(p1) end
+
+--- @return userdata
+function ServerConnectionInfo:GetVisibleWindows() end
+
+--- @param p1 UIItem
+--- @return boolean
+function ServerConnectionInfo:IsContainerEnabledAndVisible(p1) end
+
+--- @return nil
+function ServerConnectionInfo:LuaStartDebugger() end
+
+--- @param p1 boolean
+--- @return nil
+function ServerConnectionInfo:LuaEnableDebugging(p1) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Transform)
+]]
 --- @class Transform
 --- @field childCount integer
 --- @field pos Vec3
@@ -1597,6 +3542,12 @@ function Transform:LocalToWorldVec(p1) end
 --- @return Vec3
 function Transform:WorldToLocalVec(p1) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Transformation)
+]]
 --- @class Transformation
 --- @field position Vec3
 --- @field rotation Rotation
@@ -1610,34 +3561,15 @@ function Transformation() end
 --- @return Transformation
 function Transformation(p1, p2) end
 
---- @return Transformation
-function Transformation() end
+--[[
+`Client`
+`Server`
 
---- @param p1 structAsObject
---- @return Transformation
-function Transformation(p1) end
-
---- @return Transformation
-function Transformation() end
-
---- @param p1 structAsObject
---- @return Transformation
-function Transformation(p1) end
-
+[View Documentation](https://docs.atomontage.com/api/UIItem)
+]]
 --- @class UIItem
---- @field x number
---- @field y number
---- @field length number
---- @field zero Vec2
---- @field normalized Vec2
+--- @field transformation Transformation
 UIItem = {}
-
---- @return UIItem
-function UIItem() end
-
---- @param p1 string
---- @return UIItem
-function UIItem(p1) end
 
 --- @return string
 function UIItem:GetID() end
@@ -1648,6 +3580,12 @@ function UIItem:GetType() end
 --- @return string
 function UIItem:GetLabel() end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Vec2)
+]]
 --- @class Vec2
 --- @field x number
 --- @field y number
@@ -1673,28 +3611,6 @@ function Vec2(p1) end
 function Vec2(p1) end
 
 --- @param p1 Vec2i
---- @return Vec2
-function Vec2(p1) end
-
---- @return Vec2
-function Vec2() end
-
---- @param p1 structAsObject
---- @return Vec2
-function Vec2(p1) end
-
---- @param p1 structAsRawPointegerer
---- @return Vec2
-function Vec2(p1) end
-
---- @return Vec2
-function Vec2() end
-
---- @param p1 structAsObject
---- @return Vec2
-function Vec2(p1) end
-
---- @param p1 structAsRawPointegerer
 --- @return Vec2
 function Vec2(p1) end
 
@@ -2048,6 +3964,12 @@ function Vec2:GetRotated(p1) end
 --- @return Vec2
 function Vec2:GetRotated90() end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Vec2i)
+]]
 --- @class Vec2i
 --- @field x integer
 --- @field y integer
@@ -2069,28 +3991,6 @@ function Vec2i(p1, p2) end
 function Vec2i(p1) end
 
 --- @param p1 Vec2i
---- @return Vec2i
-function Vec2i(p1) end
-
---- @return Vec2i
-function Vec2i() end
-
---- @param p1 structAsObject
---- @return Vec2i
-function Vec2i(p1) end
-
---- @param p1 structAsRawPointegerer
---- @return Vec2i
-function Vec2i(p1) end
-
---- @return Vec2i
-function Vec2i() end
-
---- @param p1 structAsObject
---- @return Vec2i
-function Vec2i(p1) end
-
---- @param p1 structAsRawPointegerer
 --- @return Vec2i
 function Vec2i(p1) end
 
@@ -2491,6 +4391,8 @@ function Vec2i:GetRotated(p1, p2) end
 function Vec2i:GetRotated90() end
 
 --[[
+`Client`
+`Server`
 
 Representation of 3D vectors and points.
 
@@ -2556,28 +4458,6 @@ function Vec3(p1) end
 --- @param p2 number
 --- @return Vec3
 function Vec3(p1, p2) end
-
---- @return Vec3
-function Vec3() end
-
---- @param p1 structAsObject
---- @return Vec3
-function Vec3(p1) end
-
---- @param p1 structAsRawPointegerer
---- @return Vec3
-function Vec3(p1) end
-
---- @return Vec3
-function Vec3() end
-
---- @param p1 structAsObject
---- @return Vec3
-function Vec3(p1) end
-
---- @param p1 structAsRawPointegerer
---- @return Vec3
-function Vec3(p1) end
 
 --- @param p1 Vec3
 --- @param p2 integer
@@ -2927,6 +4807,12 @@ function Vec3:IsZero(p1) end
 --- @return number
 function Vec3:DistanceTo(p1, p2) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Vec3i)
+]]
 --- @class Vec3i
 --- @field x integer
 --- @field y integer
@@ -2960,28 +4846,6 @@ function Vec3i(p1) end
 function Vec3i(p1) end
 
 --- @param p1 Vec3i
---- @return Vec3i
-function Vec3i(p1) end
-
---- @return Vec3i
-function Vec3i() end
-
---- @param p1 structAsObject
---- @return Vec3i
-function Vec3i(p1) end
-
---- @param p1 structAsRawPointegerer
---- @return Vec3i
-function Vec3i(p1) end
-
---- @return Vec3i
-function Vec3i() end
-
---- @param p1 structAsObject
---- @return Vec3i
-function Vec3i(p1) end
-
---- @param p1 structAsRawPointegerer
 --- @return Vec3i
 function Vec3i(p1) end
 
@@ -3396,6 +5260,12 @@ function Vec3i:Length(p1, p2) end
 --- @return number
 function Vec3i:Length(p1) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Vec4)
+]]
 --- @class Vec4
 --- @field x number
 --- @field y number
@@ -3403,7 +5273,6 @@ function Vec3i:Length(p1) end
 --- @field zero Vec4
 --- @field length number
 --- @field normalized Vec4
---- @field w number
 Vec4 = {}
 
 --- @return Vec4
@@ -3441,28 +5310,6 @@ function Vec4(p1, p2, p3) end
 --- @param p2 number
 --- @return Vec4
 function Vec4(p1, p2) end
-
---- @return Vec4
-function Vec4() end
-
---- @param p1 structAsObject
---- @return Vec4
-function Vec4(p1) end
-
---- @param p1 structAsRawPointegerer
---- @return Vec4
-function Vec4(p1) end
-
---- @return Vec4
-function Vec4() end
-
---- @param p1 structAsObject
---- @return Vec4
-function Vec4(p1) end
-
---- @param p1 structAsRawPointegerer
---- @return Vec4
-function Vec4(p1) end
 
 --- @param p1 Vec4
 --- @param p2 integer
@@ -3701,13 +5548,16 @@ function Vec4:IsZero(p1) end
 --- @return number
 function Vec4:DistanceTo(p1, p2) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/VoxelDB)
+]]
 --- @class VoxelDB
 --- @field autoLightingUpdate boolean
 --- @field voxelDim integer
 VoxelDB = {}
-
---- @return VoxelDB
-function VoxelDB() end
 
 --- @return nil
 function VoxelDB:Clear() end
@@ -3930,34 +5780,310 @@ function VoxelDB:Inspect(p1, p2, p3, p4, p5) end
 --- @return string
 function VoxelDB:GetLayers() end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/VoxelData)
+]]
 --- @class VoxelData
 --- @field resource string
 --- @field type string
 --- @field object Object
 VoxelData = {}
 
---- @return VoxelData
-function VoxelInspectData() end
+--[[
+`Client`
+`Server`
 
+[View Documentation](https://docs.atomontage.com/api/VoxelInspectData)
+]]
 --- @class VoxelInspectData
 --- @field voxelSize number
 --- @field texts string
 --- @field positions userdata
 VoxelInspectData = {}
 
---- @return VoxelInspectData
-function VoxelInspectData() end
+--- @return number
+function VoxelInspectData:GetTime() end
 
+--- @return number
+function VoxelInspectData:GetTimeDelta() end
+
+--- @return number
+function VoxelInspectData:GetDebugTime() end
+
+--- @return boolean
+function VoxelInspectData:Test() end
+
+--- @return Object
+function VoxelInspectData:CreateObject() end
+
+--- @param p1 Object
+--- @return Object
+function VoxelInspectData:CloneObject(p1) end
+
+--- @param p1 Object
+--- @return nil
+function VoxelInspectData:DestroyObject(p1) end
+
+--- @param p1 string
+--- @return userdata
+function VoxelInspectData:CreateMaterial(p1) end
+
+--- @return nil
+function VoxelInspectData:DebugStats() end
+
+--- @param p1 string
+--- @return table
+function VoxelInspectData:GetObjectsByName(p1) end
+
+--- @return table
+function VoxelInspectData:GetAllObjects() end
+
+--- @return table
+function VoxelInspectData:GetRootObjects() end
+
+--- @param p1 string
+--- @return table
+function VoxelInspectData:GetObjectsByTag(p1) end
+
+--- @param p1 integer
+--- @return Object
+function VoxelInspectData:GetObjectById(p1) end
+
+--- @param p1 string
+--- @param p2 integer
+--- @return userdata
+function VoxelInspectData:GetNativeComponentById(p1, p2) end
+
+--- @return boolean
+function VoxelInspectData:IsServerReady() end
+
+--- @param p1 string
+--- @return nil
+function VoxelInspectData:Save(p1) end
+
+--- @param p1 string
+--- @return integer
+function VoxelInspectData:Merge(p1) end
+
+--- @param p1 string
+--- @return nil
+function VoxelInspectData:ScheduleLoad(p1) end
+
+--- @return nil
+function VoxelInspectData:RebuildLighting() end
+
+--- @param p1 string
+--- @param p2 string
+--- @return LightingUpdate
+function VoxelInspectData:CreateLighting(p1, p2) end
+
+--- @param p1 string
+--- @return VoxelDB
+function VoxelInspectData:GetVoxelDB(p1) end
+
+--- @param p1 Object
+--- @return integer
+function VoxelInspectData:MontageCreate(p1) end
+
+--- @param p1 Object
+--- @return integer
+function VoxelInspectData:MontageUnlink(p1) end
+
+--- @param p1 string
+--- @return Object
+function VoxelInspectData:MontageInstantiate(p1) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/VoxelRender)
+]]
 --- @class VoxelRender
 --- @field type string
 --- @field object Object
 VoxelRender = {}
 
---- @return ae
-function VoxelRender:::graphics::Options() end
+--[[
+`Client`
+`Server`
 
---- @return ae
-function VoxelRender:::graphics::Options() end
+[View Documentation](https://docs.atomontage.com/api/Quat)
+]]
+--- @class Quat
+--- @field x number
+--- @field y number
+--- @field z number
+--- @field w number
+--- @field identity Quat
+--- @field euler Vec3
+--- @field mat3 Matrix3f
+--- @field mat4 Matrix4f
+--- @field angle number
+--- @field axis Vec3
+--- @field conjugate Quat
+--- @field inverse Quat
+--- @field length number
+--- @field normalized Quat
+--- @field pitch number
+--- @field yaw number
+--- @field roll number
+Quat = {}
+
+--- @return Quat
+function Quat() end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 number
+--- @param p4 number
+--- @return Quat
+function Quat(p1, p2, p3, p4) end
+
+--- @param p1 Vec3
+--- @return Quat
+function Quat(p1) end
+
+--- @param p1 Quat
+--- @return Quat
+function Quat(p1) end
+
+--- @param p1 number
+--- @param p2 Vec3
+--- @return Quat
+function Quat(p1, p2) end
+
+--- @param p1 Vec3
+--- @param p2 Vec3
+--- @return Quat
+function Quat(p1, p2) end
+
+--- @param p1 Vec3
+--- @param p2 integer
+--- @return number
+function Quat:__index(p1, p2) end
+
+--- @param p1 Vec3
+--- @param p2 integer
+--- @param p3 number
+--- @return nil
+function Quat:__newindex(p1, p2, p3) end
+
+--- @param p1 Quat
+--- @param p2 Quat
+--- @return Quat
+function Quat:__add(p1, p2) end
+
+--- @param p1 Quat
+--- @param p2 Quat
+--- @return Quat
+function Quat:__sub(p1, p2) end
+
+--- @param p1 number
+--- @param p2 Quat
+--- @return Quat
+function Quat:__mul(p1, p2) end
+
+--- @param p1 Quat
+--- @param p2 number
+--- @return Quat
+function Quat:__mul(p1, p2) end
+
+--- @param p1 Quat
+--- @param p2 Vec4
+--- @return Vec4
+function Quat:__mul(p1, p2) end
+
+--- @param p1 Quat
+--- @param p2 Vec3
+--- @return Vec3
+function Quat:__mul(p1, p2) end
+
+--- @param p1 Quat
+--- @param p2 Quat
+--- @return Quat
+function Quat:__mul(p1, p2) end
+
+--- @param p1 Quat
+--- @param p2 number
+--- @return Quat
+function Quat:__div(p1, p2) end
+
+--- @param p1 Quat
+--- @param p2 Quat
+--- @return Quat
+function Quat:__unm(p1, p2) end
+
+--- @param p1 Quat
+--- @param p2 Quat
+--- @return boolean
+function Quat:__eq(p1, p2) end
+
+--- @param p1 Vec3
+--- @return Quat
+function Quat:Euler(p1) end
+
+--- @param p1 number
+--- @param p2 Vec3
+--- @return Quat
+function Quat:AngleAxis(p1, p2) end
+
+--- @param p1 Quat
+--- @return number
+function Quat:Dot(p1) end
+
+--- @param p1 Quat
+--- @param p2 Quat
+--- @param p3 number
+--- @return Quat
+function Quat:Lerp(p1, p2, p3) end
+
+--- @param p1 Quat
+--- @param p2 Quat
+--- @param p3 number
+--- @return Quat
+function Quat:Mix(p1, p2, p3) end
+
+--- @return nil
+function Quat:Normalize() end
+
+--- @param p1 Quat
+--- @param p2 Quat
+--- @param p3 number
+--- @return Quat
+function Quat:Slerp(p1, p2, p3) end
+
+--- @param p1 number
+--- @param p2 Vec3
+--- @return nil
+function Quat:Rotate(p1, p2) end
+
+--- @param p1 number
+--- @param p2 Vec3
+--- @return Quat
+function Quat:GetRotated(p1, p2) end
+
+--- @param p1 Vec3
+--- @param p2 Vec3
+--- @return Quat
+function Quat:LookAt(p1, p2) end
+
+--- @param p1 Vec3
+--- @return Quat
+function Quat:LookAt(p1) end
+
+--- @return nil
+function Quat:Invert() end
+
+--- @return Quat
+function Quat:GetInversed() end
+
+--- @param p1 Quat
+--- @return number
+function Quat:DotProd(p1) end
 
 --- @class AttachmentFlags
 AttachmentFlags = {
@@ -4060,22 +6186,6 @@ LuaErrorType = {
 	UIAction = 3,
 }
 
---- @class MemTarget
-MemTarget = {
-	SystemMem = 0,
-	VideoMem = 1,
-}
-
---- @class MessageLevel
-MessageLevel = {
-	Critical = 0,
-	Error = 1,
-	Warn = 2,
-	Info = 3,
-	Debug = 4,
-	Trace = 5,
-}
-
 --- @class Operation
 Operation = {
 	Keep = 0,
@@ -4148,80 +6258,6 @@ PrimitiveTopology = {
 	TriangleStrip = 3,
 	TriangleFan = 4,
 	Triangles = 5,
-}
-
---- @class RTXShaderGroupType
-RTXShaderGroupType = {
-	General = 0,
-	TrianglesHitGroup = 1,
-	ProceduralHitGroup = 2,
-}
-
---- @class RenderTargetAttachmentLayout
-RenderTargetAttachmentLayout = {
-	Undefined = 0,
-	General = 1,
-	ColorAttachmentOptimal = 2,
-	DepthStencilAttachmentOptimal = 3,
-	DepthStencilReadOnlyOptimal = 4,
-	ShaderReadOnlyOptimal = 5,
-	TransferSrcOptimal = 6,
-	TransferDstOptimal = 7,
-	Preinitialized = 8,
-	DepthReadOnlyStencilAttachmentOptimal = 9,
-	DepthAttachmentStencilReadOnlyOptimal = 10,
-	PresentSrc = 11,
-	SharedPresentSrc = 12,
-	ShadingRateOptimal = 13,
-	FragmentDensityMapOptimal = 14,
-}
-
---- @class RenderTargetAttachmentLoadOp
-RenderTargetAttachmentLoadOp = {
-	Load = 0,
-	Clear = 1,
-	DontCare = 2,
-}
-
---- @class RenderTargetAttachmentStoreOp
-RenderTargetAttachmentStoreOp = {
-	Store = 0,
-	DontCare = 1,
-}
-
---- @class ResourceMemoryUsage
-ResourceMemoryUsage = {
-	Unknown = 0,
-	GpuOnly = 1,
-	CpuToGpu = 2,
-	GpuToCpu = 3,
-}
-
---- @class ResourceState
-ResourceState = {
-	Unknown = 0,
-	Undefined = 1,
-	VertexBuffer = 2,
-	ConstantBuffer = 3,
-	IndexBuffer = 4,
-	SBTBuffer = 5,
-	RenderTarget = 6,
-	UnorderedAccess = 7,
-	DepthWrite = 8,
-	DepthRead = 9,
-	ShaderResource = 10,
-	IndirectArgument = 11,
-	CopyDest = 12,
-	CopySource = 13,
-	AccelerationStructure = 14,
-	Present = 15,
-}
-
---- @class ResourceStateTransitionMode
-ResourceStateTransitionMode = {
-	None = 0,
-	Transition = 1,
-	Verify = 2,
 }
 
 --- @class ResourceUsage
@@ -4313,12 +6349,13 @@ TextureWrappingMode = {
 --- @class Type
 Type = {
 	Unknown = 0,
-	Vertex = 1,
-	Index = 2,
-	Constant = 3,
-	Storage = 4,
-	ShaderBindingTable = 5,
-	Auto = 6,
+	Texture1D = 1,
+	Texture1DArray = 2,
+	Texture2D = 3,
+	Texture2DArray = 4,
+	Texture3D = 5,
+	TextureCube = 6,
+	TextureCubeArray = 7,
 }
 
 --- @class UpdateFrequency
@@ -4331,11 +6368,16 @@ UpdateFrequency = {
 
 --- @class UsageFlagBits
 UsageFlagBits = {
-	UsageAllowUpdateBIT = 0,
-	UsageAllowCompactionBIT = 1,
-	UsagePreferFastTraceBIT = 2,
-	UsagePreferFastBuildBIT = 3,
-	UsageLowMemoryBIT = 4,
+	UsageTransferSrcBIT = 0,
+	UsageTransferDstBIT = 1,
+	UsageSampledBIT = 2,
+	UsageStorageBIT = 3,
+	UsageColorAttachmentBIT = 4,
+	UsageDepthStencilAttachmentBIT = 5,
+	UsageTransientAttachmentBIT = 6,
+	UsageInputAttachmentBIT = 7,
+	UsageShadingRateImageBIT = 8,
+	UsageFragmentDensityMapBIT = 9,
 }
 
 --- @class VSyncMode
