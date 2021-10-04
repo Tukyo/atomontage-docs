@@ -688,6 +688,7 @@ function genDocs:cleanUpName(name)
         {"shared_ptr<classae::scene::SystemVoxelData>", "userdata"},
         {"shared_ptr<classae::scene::SystemVoxelRender>", "userdata"},
         {"Vector_Vec3", "userdata"},
+        {"shared_ptr<classae::scene::LuaVoxelDB>", "VoxelDB"}
     }
 
     --name = name:gsub("(%S+),?", replacments)

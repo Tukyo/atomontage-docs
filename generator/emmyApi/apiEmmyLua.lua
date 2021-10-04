@@ -1242,46 +1242,29 @@ See also: [ScriptComponent](ScriptComponent)
 --- @field object Object
 Component = {}
 
---- @return Component
-function MeshDataBuilder() end
-
---- @return nil
-function Component:Clear() end
-
---- @param p1 Vec3
---- @param p2 Vec4
---- @return integer
-function Component:AddVertex(p1, p2) end
-
---- @param p1 Vec3
---- @param p2 Vec2
---- @param p3 Vec4
---- @return integer
-function Component:AddVertex(p1, p2, p3) end
-
---- @param p1 Vec3
---- @param p2 Vec2
---- @return integer
-function Component:AddVertex(p1, p2) end
-
---- @param p1 Vec3
---- @return integer
-function Component:AddVertex(p1) end
+--- @param p1 string
+--- @return Transform
+function Component:Get(p1) end
 
 --- @param p1 integer
---- @param p2 integer
---- @param p3 integer
---- @return nil
-function Component:AddIndex(p1, p2, p3) end
+--- @return Transform
+function Component:GetChild(p1) end
 
---- @param p1 integer
---- @param p2 integer
---- @return nil
-function Component:AddIndex(p1, p2) end
+--- @param p1 Vec3
+--- @return Vec3
+function Component:LocalToWorld(p1) end
 
---- @param p1 integer
---- @return nil
-function Component:AddIndex(p1) end
+--- @param p1 Vec3
+--- @return Vec3
+function Component:WorldToLocal(p1) end
+
+--- @param p1 Vec3
+--- @return Vec3
+function Component:LocalToWorldVec(p1) end
+
+--- @param p1 Vec3
+--- @return Vec3
+function Component:WorldToLocalVec(p1) end
 
 --[[
 `Client`
@@ -2444,6 +2427,15 @@ function MeshDataBuilder:AddIndex(p1) end
 --- @field object Object
 MeshRender = {}
 
+--- @param p1 number
+--- @param p2 userdata
+--- @param p3 string
+--- @return nil
+function MeshRender:AddVoxelInfo(p1, p2, p3) end
+
+--- @return nil
+function MeshRender:Clear() end
+
 --[[
 `Client`
 `Server`
@@ -2889,6 +2881,9 @@ function Object:AddComponent(p1) end
 --- @return userdata
 function Object:GetComponent(p1) end
 
+--- @return table
+function Object:GetComponents() end
+
 --- @param p1 string
 --- @return userdata
 function Object:RemoveComponent(p1) end
@@ -2896,6 +2891,10 @@ function Object:RemoveComponent(p1) end
 --- @param p1 string
 --- @return userdata
 function Object:GetComponentByType(p1) end
+
+--- @param p1 string
+--- @return table
+function Object:GetComponentsByType(p1) end
 
 --[[
 `Client`
@@ -3019,20 +3018,17 @@ function RealtimeLightingInfo:GetRootObjects() end
 --- @return table
 function RealtimeLightingInfo:GetObjectsByTag(p1) end
 
---- @param p1 integer
---- @return Object
-function RealtimeLightingInfo:GetObjectById(p1) end
-
---- @param p1 string
---- @param p2 integer
---- @return userdata
-function RealtimeLightingInfo:GetNativeComponentById(p1, p2) end
-
 --- @return boolean
 function RealtimeLightingInfo:IsServerReady() end
 
---- @param p1 string
+--- @return boolean
+function RealtimeLightingInfo:GetAmFileLoaded() end
+
 --- @return nil
+function RealtimeLightingInfo:SetAmFileLoaded() end
+
+--- @param p1 string
+--- @return boolean
 function RealtimeLightingInfo:Save(p1) end
 
 --- @param p1 string
@@ -3154,20 +3150,17 @@ function Scene:GetRootObjects() end
 --- @return table
 function Scene:GetObjectsByTag(p1) end
 
---- @param p1 integer
---- @return Object
-function Scene:GetObjectById(p1) end
-
---- @param p1 string
---- @param p2 integer
---- @return userdata
-function Scene:GetNativeComponentById(p1, p2) end
-
 --- @return boolean
 function Scene:IsServerReady() end
 
---- @param p1 string
+--- @return boolean
+function Scene:GetAmFileLoaded() end
+
 --- @return nil
+function Scene:SetAmFileLoaded() end
+
+--- @param p1 string
+--- @return boolean
 function Scene:Save(p1) end
 
 --- @param p1 string
@@ -3261,46 +3254,29 @@ end
 --- @field file string
 ScriptComponent = {}
 
---- @return ScriptComponent
-function MeshDataBuilder() end
-
---- @return nil
-function ScriptComponent:Clear() end
-
---- @param p1 Vec3
---- @param p2 Vec4
---- @return integer
-function ScriptComponent:AddVertex(p1, p2) end
-
---- @param p1 Vec3
---- @param p2 Vec2
---- @param p3 Vec4
---- @return integer
-function ScriptComponent:AddVertex(p1, p2, p3) end
-
---- @param p1 Vec3
---- @param p2 Vec2
---- @return integer
-function ScriptComponent:AddVertex(p1, p2) end
-
---- @param p1 Vec3
---- @return integer
-function ScriptComponent:AddVertex(p1) end
+--- @param p1 string
+--- @return Transform
+function ScriptComponent:Get(p1) end
 
 --- @param p1 integer
---- @param p2 integer
---- @param p3 integer
---- @return nil
-function ScriptComponent:AddIndex(p1, p2, p3) end
+--- @return Transform
+function ScriptComponent:GetChild(p1) end
 
---- @param p1 integer
---- @param p2 integer
---- @return nil
-function ScriptComponent:AddIndex(p1, p2) end
+--- @param p1 Vec3
+--- @return Vec3
+function ScriptComponent:LocalToWorld(p1) end
 
---- @param p1 integer
---- @return nil
-function ScriptComponent:AddIndex(p1) end
+--- @param p1 Vec3
+--- @return Vec3
+function ScriptComponent:WorldToLocal(p1) end
+
+--- @param p1 Vec3
+--- @return Vec3
+function ScriptComponent:LocalToWorldVec(p1) end
+
+--- @param p1 Vec3
+--- @return Vec3
+function ScriptComponent:WorldToLocalVec(p1) end
 
 --[[
 `Server`
@@ -5792,6 +5768,15 @@ function VoxelDB:GetLayers() end
 --- @field object Object
 VoxelData = {}
 
+--- @param p1 number
+--- @param p2 userdata
+--- @param p3 string
+--- @return nil
+function VoxelData:AddVoxelInfo(p1, p2, p3) end
+
+--- @return nil
+function VoxelData:Clear() end
+
 --[[
 `Client`
 `Server`
@@ -5848,20 +5833,17 @@ function VoxelInspectData:GetRootObjects() end
 --- @return table
 function VoxelInspectData:GetObjectsByTag(p1) end
 
---- @param p1 integer
---- @return Object
-function VoxelInspectData:GetObjectById(p1) end
-
---- @param p1 string
---- @param p2 integer
---- @return userdata
-function VoxelInspectData:GetNativeComponentById(p1, p2) end
-
 --- @return boolean
 function VoxelInspectData:IsServerReady() end
 
---- @param p1 string
+--- @return boolean
+function VoxelInspectData:GetAmFileLoaded() end
+
 --- @return nil
+function VoxelInspectData:SetAmFileLoaded() end
+
+--- @param p1 string
+--- @return boolean
 function VoxelInspectData:Save(p1) end
 
 --- @param p1 string
@@ -5906,6 +5888,15 @@ function VoxelInspectData:MontageInstantiate(p1) end
 --- @field type string
 --- @field object Object
 VoxelRender = {}
+
+--- @param p1 number
+--- @param p2 userdata
+--- @param p3 string
+--- @return nil
+function VoxelRender:AddVoxelInfo(p1, p2, p3) end
+
+--- @return nil
+function VoxelRender:Clear() end
 
 --[[
 `Client`
@@ -6409,6 +6400,11 @@ VertexComponent = {
 	Bitangent = 16,
 	Index = 17,
 	Unknown = 18,
+	Data0 = 19,
+	Data1 = 20,
+	Data2 = 21,
+	Data3 = 22,
+	Data4 = 23,
 }
 
 --- @class VertexComponentFormat
@@ -6442,5 +6438,27 @@ VertexComponentFormat = {
 	FloatVec2 = 26,
 	FloatVec3 = 27,
 	FloatVec4 = 28,
+	FloatMat2x2 = 29,
+	FloatMat2x3 = 30,
+	FloatMat2x4 = 31,
+	FloatMat3x2 = 32,
+	FloatMat3x3 = 33,
+	FloatMat3x4 = 34,
+	FloatMat4x2 = 35,
+	FloatMat4x3 = 36,
+	FloatMat4x4 = 37,
+	Double = 38,
+	DoubleVec2 = 39,
+	DoubleVec3 = 40,
+	DoubleVec4 = 41,
+	DoubleMat2x2 = 42,
+	DoubleMat2x3 = 43,
+	DoubleMat2x4 = 44,
+	DoubleMat3x2 = 45,
+	DoubleMat3x3 = 46,
+	DoubleMat3x4 = 47,
+	DoubleMat4x2 = 48,
+	DoubleMat4x3 = 49,
+	DoubleMat4x4 = 50,
 }
 
