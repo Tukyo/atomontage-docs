@@ -12,6 +12,8 @@ local emmyDefaultLines = [[
 
 --- @class Script
 --- @field component Component
+--- @field onServer boolean
+--- @field onClient boolean
 script = {}
 
 -- Called on script instance initialization. Usually after changing `.instance` or `.file` property
@@ -103,6 +105,7 @@ function genEmmy:generateEmmyLua(file, name, intro, finalMethods, finalPropertie
         header = header:gsub("const ", "") --for now just remove that
         local  _, _, returnType, name, paramsStr = string.find(header, "### (%w*)%s?(%S*)%((.*)%).+")
         local params = {}
+        assert(paramsStr, "header contains illegal characters: "..header)
         for word in string.gmatch(paramsStr, '%s?([^,]+)') do
             local  _, _, ptype, name = string.find(word, "(%S*)%s?(%S*)")
             if name == "" then name = nil end

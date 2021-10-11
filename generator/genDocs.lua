@@ -204,11 +204,13 @@ function genDocs:gen()
         ["ConnectionInfo"] = true,
         ["NetworkStat"] = true,
         ["AmStreamingStats"] = true,
+        --[[
         ["AmStreamingStatsTotal"] = true,
         ["AmStreamingStatsStatPerFrame"] = true,
         ["AmStreamingStatsStatPerInterval"] = true,
         ["AmStreamingStatsStatPerMessage"] = true,
         ["AmStreamingStatsSlot"] = true,
+        ]]
         ["ClientConnectionInfo"] = true,
         ["ServerConnectionInfo"] = true,
     }
@@ -236,7 +238,11 @@ function genDocs:gen()
         local class = serverClass or clientClass
         if serverClass and clientClass then
             --TODO doesnt pass in both classes so if they are different something is missing, so warning here for now
-            assert(#serverClass.Methods == #clientClass.Methods and #serverClass.Properties == #clientClass.Properties, nameOrig..": Server/Client is different")
+            local sm = serverClass.Methods and #serverClass.Methods or 0
+            local cm = clientClass.Methods and #clientClass.Methods or 0
+            local sp = serverClass.Properties and #serverClass.Properties or 0
+            local cp = clientClass.Properties and #clientClass.Properties or 0
+            assert(sm == cm and sp == cp, nameOrig..": Server/Client is different")
         end
         if (show[nameOrig]) then
             local name = util:firstToLower(nameOrig)
@@ -709,7 +715,8 @@ function genDocs:cleanUpName(name)
         {"shared_ptr<classae::scene::SystemVoxelData>", "userdata"},
         {"shared_ptr<classae::scene::SystemVoxelRender>", "userdata"},
         {"Vector_Vec3", "userdata"},
-        {"shared_ptr<classae::scene::LuaVoxelDB>", "VoxelDB"}
+        {"shared_ptr<classae::scene::LuaVoxelDB>", "VoxelDB"},
+        {"shared_ptr<classae::scene::ScriptComponent>", "ScriptComponent"},
     }
 
     --name = name:gsub("(%S+),?", replacments)
