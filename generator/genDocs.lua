@@ -317,10 +317,30 @@ function genDocs:generateClassFile(name, class, onClient, onServer)
         end
     end
     
+    local constructorStrPart = "## "..util:firstToUpper(name).."("
+    local wroteMetamethods = false
+    local wroteConstructors = false
+    local wroteMethods = false
     if (class.Methods) then
-        file:write("## List of Methods", "\n\n")
         for i, v in ipairs(finalMethods) do
             local lines = v.entry
+            --make all kinds of function type headers
+            if not wroteMethods then
+                local isMetamethod = lines[1]:find("__")
+                local isConstructor = lines[1]:find(constructorStrPart, 1, true)
+                if not wroteConstructors and isConstructor then
+                    file:write("## List of Constructors", "\n\n")
+                    wroteConstructors = true
+                end
+                if not wroteMetamethods and isMetamethod then
+                    file:write("## List of Metamethods", "\n\n")
+                    wroteMetamethods = true
+                end
+                if not wroteMethods and not (isConstructor or isMetamethod) then
+                    file:write("## List of Methods", "\n\n")
+                    wroteMethods = true
+                end
+            end
             for i, line in ipairs(lines) do
                 file:write(line, "\n")
             end
@@ -535,10 +555,7 @@ function genDocs:getSections(filename)
     local intro = {}
     local methods = {}
     local properties = {}
-
-    local groups = {intro, methods, properties}
-    local iCurrentGroup = 1
-    local currentGroup = groups[iCurrentGroup]
+    local currentGroup = intro
 
     local entryName
     local entry = currentGroup --first is just one entry
@@ -560,12 +577,16 @@ function genDocs:getSections(filename)
         --group by sections
         if util:stringStartsWith(line, "## ") then
             addEntry(line)
-            iCurrentGroup = iCurrentGroup + 1
-            if (iCurrentGroup == 2 and util:stringStartsWith(line, "## List of Properties")) then
-                --no methods, so skip
-                iCurrentGroup = iCurrentGroup + 1
+            if util:stringStartsWith(line, "## List of Constructors") 
+                or util:stringStartsWith(line, "## List of Metamethods") 
+                or util:stringStartsWith(line, "## List of Methods") 
+            then
+                currentGroup = methods
+            elseif (util:stringStartsWith(line, "## List of Properties")) then
+                currentGroup = properties
             end
-            currentGroup = groups[iCurrentGroup]
+            
+            --dont add entry for this header line
             entryName = nil
             entry = {}
         else

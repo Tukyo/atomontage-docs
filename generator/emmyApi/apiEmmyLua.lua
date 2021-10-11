@@ -502,34 +502,69 @@ function AmStreamingStatsTotal:GetStatsByFrameIdx(p1) end
 `Client`
 `Server`
 
+alksjdlkajsdkljalkjd asdalksd
+
 [View Documentation](https://docs.atomontage.com/api/Angle)
 ]]
 --- @class Angle
+--- @field Get() number
+--- @field Get() number
 --- @field sine number
 --- @field cosine number
 Angle = {}
 
+--[[
+123
+
+[View Documentation](https://docs.atomontage.com/api/Angle#Angle)
+]]
 --- @return Angle
 function Angle() end
 
+--[[
+aksldkjlaksjdklasd
+
+[View Documentation](https://docs.atomontage.com/api/Angle#Angle-float-float)
+]]
 --- @param p1 number
 --- @param p2 number
 --- @return Angle
 function Angle(p1, p2) end
 
+--[[
+ddddddd
+dddddddddd
+
+[View Documentation](https://docs.atomontage.com/api/Angle#Angle-float)
+]]
 --- @param p1 number
 --- @return Angle
 function Angle(p1) end
 
+--[[
+adasd
+
+[View Documentation](https://docs.atomontage.com/api/Angle#bool-eq-Angle-Angle)
+]]
 --- @param p1 Angle
 --- @param p2 Angle
 --- @return boolean
 function Angle:__eq(p1, p2) end
 
+--[[
+asdasdasd
+
+[View Documentation](https://docs.atomontage.com/api/Angle#void-Set-float)
+]]
 --- @param p1 number
 --- @return nil
 function Angle:Set(p1) end
 
+--[[
+adddddd
+
+[View Documentation](https://docs.atomontage.com/api/Angle#float-Get)
+]]
 --- @return number
 function Angle:Get() end
 
@@ -5924,6 +5959,11 @@ function VoxelRender:Clear() end
 --- @field roll number
 Quat = {}
 
+--[[
+asdasdasdasdasd
+
+[View Documentation](https://docs.atomontage.com/api/Quat#Quat)
+]]
 --- @return Quat
 function Quat() end
 
@@ -5952,6 +5992,11 @@ function Quat(p1, p2) end
 --- @return Quat
 function Quat(p1, p2) end
 
+--[[
+dddd
+
+[View Documentation](https://docs.atomontage.com/api/Quat#float-index-Vec3-int)
+]]
 --- @param p1 Vec3
 --- @param p2 integer
 --- @return number
