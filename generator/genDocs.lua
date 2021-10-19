@@ -203,16 +203,6 @@ function genDocs:gen()
         ["ResResource"] = true,
         ["ConnectionInfo"] = true,
         ["NetworkStat"] = true,
-        ["AmStreamingStats"] = true,
-        --[[
-        ["AmStreamingStatsTotal"] = true,
-        ["AmStreamingStatsStatPerFrame"] = true,
-        ["AmStreamingStatsStatPerInterval"] = true,
-        ["AmStreamingStatsStatPerMessage"] = true,
-        ["AmStreamingStatsSlot"] = true,
-        ]]
-        ["ClientConnectionInfo"] = true,
-        ["ServerConnectionInfo"] = true,
     }
 
     --find out whats on client and server

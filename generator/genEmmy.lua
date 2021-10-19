@@ -11,7 +11,7 @@ local emmyDefaultLines = [[
 --- @meta
 
 --- @class Script
---- @field component Component
+--- @field component ScriptComponent
 --- @field onServer boolean
 --- @field onClient boolean
 script = {}
@@ -27,8 +27,7 @@ function script:Start() end
 
 -- Called if updates are enabled (they are enabled automatically if attached script has this method). dt is frame time delta in seconds and t is application time in seconds.
 --- @param dt number delta time since last update
---- @param t number total time passed
-function script:Update(dt, t) end
+function script:Update(dt) end
 
 --- @class ControllerButtons
 ControllerButtons = {}

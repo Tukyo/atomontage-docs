@@ -23,61 +23,61 @@ id: Vec3i
 
 ### void __newindex(Vec3i, int, int) {#void-newindex-Vec3i-int-int}
 
+### Vec3i __mul(Vec3i, Vec3i) {#Vec3i-mul-Vec3i-Vec3i}
+
 ### Vec3 __mul(Vec3i, Vec3) {#Vec3-mul-Vec3i-Vec3}
 
 ### Vec3i __mul(Vec3i, int) {#Vec3i-mul-Vec3i-int}
 
 ### Vec3i __mul(int, Vec3i) {#Vec3i-mul-int-Vec3i}
 
-### Vec3i __mul(Vec3i, Vec3i) {#Vec3i-mul-Vec3i-Vec3i}
+### Vec3i __div(Vec3i, Vec3i) {#Vec3i-div-Vec3i-Vec3i}
 
 ### Vec3 __div(Vec3i, Vec3) {#Vec3-div-Vec3i-Vec3}
 
 ### Vec3i __div(Vec3i, int) {#Vec3i-div-Vec3i-int}
 
-### Vec3i __div(Vec3i, Vec3i) {#Vec3i-div-Vec3i-Vec3i}
+### Vec3i __add(Vec3i, Vec3i) {#Vec3i-add-Vec3i-Vec3i}
 
 ### Vec3 __add(Vec3i, Vec3) {#Vec3-add-Vec3i-Vec3}
 
-### Vec3i __add(Vec3i, Vec3i) {#Vec3i-add-Vec3i-Vec3i}
+### Vec3i __sub(Vec3i, Vec3i) {#Vec3i-sub-Vec3i-Vec3i}
 
 ### Vec3 __sub(Vec3i, Vec3) {#Vec3-sub-Vec3i-Vec3}
 
-### Vec3i __sub(Vec3i, Vec3i) {#Vec3i-sub-Vec3i-Vec3i}
-
 ### Vec3i __unm(Vec3i, Vec3i) {#Vec3i-unm-Vec3i-Vec3i}
-
-### bool __eq(Vec3i, Vec3) {#bool-eq-Vec3i-Vec3}
 
 ### bool __eq(Vec3i, Vec3i) {#bool-eq-Vec3i-Vec3i}
 
-### float __len() {#float-len}
+### bool __eq(Vec3i, Vec3) {#bool-eq-Vec3i-Vec3}
 
-### Vec3i __mod(Vec3i, int) {#Vec3i-mod-Vec3i-int}
+### float __len() {#float-len}
 
 ### Vec3i __mod(Vec3i, Vec3i) {#Vec3i-mod-Vec3i-Vec3i}
 
-### Vec3i __band(Vec3i, int) {#Vec3i-band-Vec3i-int}
+### Vec3i __mod(Vec3i, int) {#Vec3i-mod-Vec3i-int}
 
 ### Vec3i __band(Vec3i, Vec3i) {#Vec3i-band-Vec3i-Vec3i}
 
-### Vec3i __bor(Vec3i, int) {#Vec3i-bor-Vec3i-int}
+### Vec3i __band(Vec3i, int) {#Vec3i-band-Vec3i-int}
 
 ### Vec3i __bor(Vec3i, Vec3i) {#Vec3i-bor-Vec3i-Vec3i}
 
-### Vec3i __bxor(Vec3i, int) {#Vec3i-bxor-Vec3i-int}
+### Vec3i __bor(Vec3i, int) {#Vec3i-bor-Vec3i-int}
 
 ### Vec3i __bxor(Vec3i, Vec3i) {#Vec3i-bxor-Vec3i-Vec3i}
 
-### Vec3i __bnot(Vec3i, Vec3i) {#Vec3i-bnot-Vec3i-Vec3i}
+### Vec3i __bxor(Vec3i, int) {#Vec3i-bxor-Vec3i-int}
 
-### Vec3i __shl(Vec3i, int) {#Vec3i-shl-Vec3i-int}
+### Vec3i __bnot(Vec3i, Vec3i) {#Vec3i-bnot-Vec3i-Vec3i}
 
 ### Vec3i __shl(Vec3i, Vec3i) {#Vec3i-shl-Vec3i-Vec3i}
 
-### Vec3i __shr(Vec3i, int) {#Vec3i-shr-Vec3i-int}
+### Vec3i __shl(Vec3i, int) {#Vec3i-shl-Vec3i-int}
 
 ### Vec3i __shr(Vec3i, Vec3i) {#Vec3i-shr-Vec3i-Vec3i}
+
+### Vec3i __shr(Vec3i, int) {#Vec3i-shr-Vec3i-int}
 
 ## List of Methods
 
@@ -159,13 +159,13 @@ id: Vec3i
 
 ### Vec3i SetAbs() {#Vec3i-SetAbs}
 
-### float Dot(Vec3i, Vec3) {#float-Dot-Vec3i-Vec3}
-
 ### int Dot(Vec3i, Vec3i) {#int-Dot-Vec3i-Vec3i}
 
-### Vec3 Cross(Vec3i, Vec3) {#Vec3-Cross-Vec3i-Vec3}
+### float Dot(Vec3i, Vec3) {#float-Dot-Vec3i-Vec3}
 
 ### Vec3i Cross(Vec3i, Vec3i) {#Vec3i-Cross-Vec3i-Vec3i}
+
+### Vec3 Cross(Vec3i, Vec3) {#Vec3-Cross-Vec3i-Vec3}
 
 ### Vec3 Lerp(Vec3i, Vec3i, int) {#Vec3-Lerp-Vec3i-Vec3i-int}
 
@@ -181,13 +181,13 @@ id: Vec3i
 
 ### Vec3 GetNormalizedSafe(Vec3i) {#Vec3-GetNormalizedSafe-Vec3i}
 
-### void Clamp(Vec3i, Vec3i, Vec3i) {#void-Clamp-Vec3i-Vec3i-Vec3i}
-
 ### void Clamp(Vec3i, int, int) {#void-Clamp-Vec3i-int-int}
 
-### Vec3i GetClamped(Vec3i, Vec3i, Vec3i) {#Vec3i-GetClamped-Vec3i-Vec3i-Vec3i}
+### void Clamp(Vec3i, Vec3i, Vec3i) {#void-Clamp-Vec3i-Vec3i-Vec3i}
 
 ### Vec3i GetClamped(Vec3i, int, int) {#Vec3i-GetClamped-Vec3i-int-int}
+
+### Vec3i GetClamped(Vec3i, Vec3i, Vec3i) {#Vec3i-GetClamped-Vec3i-Vec3i-Vec3i}
 
 ### Vec3i ClampRadius(float) {#Vec3i-ClampRadius-float}
 
@@ -196,10 +196,6 @@ id: Vec3i
 ### Vec3i Signs() {#Vec3i-Signs}
 
 ### Vec3i SignsUnits() {#Vec3i-SignsUnits}
-
-### Vec3i Signsi() {#Vec3i-Signsi}
-
-### Vec3i SignsUnitsi32() {#Vec3i-SignsUnitsi32}
 
 ### void Ceil(Vec3i) {#void-Ceil-Vec3i}
 
@@ -215,9 +211,9 @@ id: Vec3i
 
 ### float DistanceTo(Vec3i, Vec3i) {#float-DistanceTo-Vec3i-Vec3i}
 
-### float Length(Vec3i, Vec3i) {#float-Length-Vec3i-Vec3i}
-
 ### float Length(Vec3i) {#float-Length-Vec3i}
+
+### float Length(Vec3i, Vec3i) {#float-Length-Vec3i-Vec3i}
 
 ## List of Properties
 

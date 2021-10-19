@@ -13,65 +13,141 @@ id: VoxelDB
 
 ### void Flush() {#void-Flush}
 
-### int FromWorld(float) {#int-FromWorld-float}
-
 ### Vec3i FromWorld(Vec3) {#Vec3i-FromWorld-Vec3}
 
-### float ToWorld(float) {#float-ToWorld-float}
+### int FromWorld(float) {#int-FromWorld-float}
 
 ### Vec3 ToWorld(Vec3i) {#Vec3-ToWorld-Vec3i}
+
+### float ToWorld(float) {#float-ToWorld-float}
 
 ### bool SetUnitVoxelDim(bool) {#bool-SetUnitVoxelDim-bool}
 
 ### void SetMask_deprecated(Vec3i, bool) {#void-SetMaskdeprecated-Vec3i-bool}
 
-### bool GetMask(double, double, double) {#bool-GetMask-double-double-double}
-
 ### bool GetMask(Vec3i) {#bool-GetMask-Vec3i}
 
-### int GetMaskNeighbours(double, double, double, int) {#int-GetMaskNeighbours-double-double-double-int}
+### bool GetMask(double, double, double) {#bool-GetMask-double-double-double}
 
 ### int GetMaskNeighbours(Vec3i, int) {#int-GetMaskNeighbours-Vec3i-int}
 
-### int GetMaskNeighboursVN(double, double, double, int) {#int-GetMaskNeighboursVN-double-double-double-int}
+### int GetMaskNeighbours(double, double, double, int) {#int-GetMaskNeighbours-double-double-double-int}
 
 ### int GetMaskNeighboursVN(Vec3i, int) {#int-GetMaskNeighboursVN-Vec3i-int}
 
-### void ClearVoxel(double, double, double) {#void-ClearVoxel-double-double-double}
+### int GetMaskNeighboursVN(double, double, double, int) {#int-GetMaskNeighboursVN-double-double-double-int}
 
 ### void ClearVoxel(Vec3i) {#void-ClearVoxel-Vec3i}
 
-### void SetColor(double, double, double, Vec3) {#void-SetColor-double-double-double-Vec3}
+### void ClearVoxel(double, double, double) {#void-ClearVoxel-double-double-double}
 
 ### void SetColor(Vec3i, Vec3) {#void-SetColor-Vec3i-Vec3}
 
+### void SetColor(double, double, double, Vec3) {#void-SetColor-double-double-double-Vec3}
+
 ### userdata GetColor(Vec3i) {#userdata-GetColor-Vec3i}
 
-### Vec3 GetNormal(Vec3i) {#Vec3-GetNormal-Vec3i}
+### Vec3 GetNormalV(Vec3i) {#Vec3-GetNormalV-Vec3i}
 
-### Vec3 GetFilteredNormal(Vec3i) {#Vec3-GetFilteredNormal-Vec3i}
+### Vec3 GetFilteredNormalV(Vec3i) {#Vec3-GetFilteredNormalV-Vec3i}
 
-### userdata TraceRay(Vec3i, Vec3, float) {#userdata-TraceRay-Vec3i-Vec3-float}
+### userdata TraceRayV(Vec3i, Vec3, float) {#userdata-TraceRayV-Vec3i-Vec3-float}
 
-### void PaintSphere(Vec3i, int, Vec3) {#void-PaintSphere-Vec3i-int-Vec3}
+### void PaintSphereV(Vec3i, int, Vec3) {#void-PaintSphereV-Vec3i-int-Vec3}
 
-### void PaintSphereBlend(Vec3i, int, Vec3, float, float, float) {#void-PaintSphereBlend-Vec3i-int-Vec3-float-float-float}
+### void PaintBoxV(Vec3i, Vec3i, Vec3) {#void-PaintBoxV-Vec3i-Vec3i-Vec3}
 
-### void ClearShape(int, Vec3i, int) {#void-ClearShape-int-Vec3i-int}
+### void PaintBoxV(Vec3i, Vec3i, Quat, Vec3) {#void-PaintBoxV-Vec3i-Vec3i-Quat-Vec3}
 
-### void ClearSphere(Vec3i, int) {#void-ClearSphere-Vec3i-int}
+### void PaintCapsuleV(Vec3i, Vec3i, int, Vec3) {#void-PaintCapsuleV-Vec3i-Vec3i-int-Vec3}
 
-### void InflateRadius(Vec3i, int, float, float, float) {#void-InflateRadius-Vec3i-int-float-float-float}
+### void PaintCapsuleV(Vec3i, Vec3i, int, int, Vec3) {#void-PaintCapsuleV-Vec3i-Vec3i-int-int-Vec3}
 
-### void MakeSphere(Vec3i, int, Vec3) {#void-MakeSphere-Vec3i-int-Vec3}
+### void ClearSphereV(Vec3i, int) {#void-ClearSphereV-Vec3i-int}
+
+### void ClearBoxV(Vec3i, Vec3i) {#void-ClearBoxV-Vec3i-Vec3i}
+
+### void ClearBoxV(Vec3i, Vec3i, Quat) {#void-ClearBoxV-Vec3i-Vec3i-Quat}
+
+### void ClearCapsuleV(Vec3i, Vec3i, int) {#void-ClearCapsuleV-Vec3i-Vec3i-int}
+
+### void ClearCapsuleV(Vec3i, Vec3i, int, int) {#void-ClearCapsuleV-Vec3i-Vec3i-int-int}
+
+### void MakeSphereV(Vec3i, int, Vec3) {#void-MakeSphereV-Vec3i-int-Vec3}
+
+### void MakeBoxV(Vec3i, Vec3i, Vec3) {#void-MakeBoxV-Vec3i-Vec3i-Vec3}
+
+### void MakeBoxV(Vec3i, Vec3i, Quat, Vec3) {#void-MakeBoxV-Vec3i-Vec3i-Quat-Vec3}
+
+### void MakeCapsuleV(Vec3i, Vec3i, int, Vec3) {#void-MakeCapsuleV-Vec3i-Vec3i-int-Vec3}
+
+### void MakeCapsuleV(Vec3i, Vec3i, int, int, Vec3) {#void-MakeCapsuleV-Vec3i-Vec3i-int-int-Vec3}
+
+### void FillTmpLayersV(Vec3i, Vec3i, int, int) {#void-FillTmpLayersV-Vec3i-Vec3i-int-int}
+
+### userdata TraceRayTmpV(Vec3i, Vec3, float) {#userdata-TraceRayTmpV-Vec3i-Vec3-float}
+
+### void PaintSphereBlendV(Vec3i, int, Vec3, float, float, float) {#void-PaintSphereBlendV-Vec3i-int-Vec3-float-float-float}
+
+### Vec3 GetNormal(Vec3) {#Vec3-GetNormal-Vec3}
+
+### Vec3 GetFilteredNormal(Vec3) {#Vec3-GetFilteredNormal-Vec3}
+
+### userdata TraceRay(Vec3, Vec3, float) {#userdata-TraceRay-Vec3-Vec3-float}
+
+### bool CheckSphere(Vec3, float) {#bool-CheckSphere-Vec3-float}
+
+### bool CheckBox(Vec3, Vec3, Quat) {#bool-CheckBox-Vec3-Vec3-Quat}
+
+### bool CheckBox(Vec3, Vec3) {#bool-CheckBox-Vec3-Vec3}
+
+### bool CheckCapsule(Vec3, Vec3, float, float) {#bool-CheckCapsule-Vec3-Vec3-float-float}
+
+### bool CheckCapsule(Vec3, Vec3, float) {#bool-CheckCapsule-Vec3-Vec3-float}
+
+### void PaintSphere(Vec3, float) {#void-PaintSphere-Vec3-float}
+
+### void PaintBox(Vec3, Vec3, Quat) {#void-PaintBox-Vec3-Vec3-Quat}
+
+### void PaintBox(Vec3, Vec3) {#void-PaintBox-Vec3-Vec3}
+
+### void PaintCapsule(Vec3, Vec3, float, float) {#void-PaintCapsule-Vec3-Vec3-float-float}
+
+### void PaintCapsule(Vec3, Vec3, float) {#void-PaintCapsule-Vec3-Vec3-float}
+
+### void ClearSphere(Vec3, float) {#void-ClearSphere-Vec3-float}
+
+### void ClearBox(Vec3, Vec3, Quat) {#void-ClearBox-Vec3-Vec3-Quat}
+
+### void ClearBox(Vec3, Vec3) {#void-ClearBox-Vec3-Vec3}
+
+### void ClearCapsule(Vec3, Vec3, float, float) {#void-ClearCapsule-Vec3-Vec3-float-float}
+
+### void ClearCapsule(Vec3, Vec3, float) {#void-ClearCapsule-Vec3-Vec3-float}
+
+### void MakeSphere(Vec3, float) {#void-MakeSphere-Vec3-float}
+
+### void MakeBox(Vec3, Vec3, Quat) {#void-MakeBox-Vec3-Vec3-Quat}
+
+### void MakeBox(Vec3, Vec3) {#void-MakeBox-Vec3-Vec3}
+
+### void MakeCapsule(Vec3, Vec3, float, float) {#void-MakeCapsule-Vec3-Vec3-float-float}
+
+### void MakeCapsule(Vec3, Vec3, float) {#void-MakeCapsule-Vec3-Vec3-float}
+
+### void SetBlend(bool) {#void-SetBlend-bool}
+
+### void SetBlendParams(float, float, float) {#void-SetBlendParams-float-float-float}
+
+### void SetMaterial(Vec3) {#void-SetMaterial-Vec3}
+
+### void FillTmpLayers(Vec3, Vec3, float, int) {#void-FillTmpLayers-Vec3-Vec3-float-int}
+
+### userdata TraceRayTmp(Vec3, Vec3, float) {#userdata-TraceRayTmp-Vec3-Vec3-float}
 
 ### void InstantiateIE(Vec3, Quat, float) {#void-InstantiateIE-Vec3-Quat-float}
 
-### userdata TraceRayTmp(Vec3i, Vec3, float) {#userdata-TraceRayTmp-Vec3i-Vec3-float}
-
 ### void FreeTmpLayers(int) {#void-FreeTmpLayers-int}
-
-### void FillTmpLayers(Vec3i, Vec3i, int, int) {#void-FillTmpLayers-Vec3i-Vec3i-int-int}
 
 ### void ClearContent() {#void-ClearContent}
 
