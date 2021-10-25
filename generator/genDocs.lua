@@ -5,8 +5,6 @@ TODO
 * Perhaps some standard format things i.e return table contents, argument cotnent
 * make types links? or color if not link? or color everything else
 * some copy button?
-* server client seperation
-* add new methods/props/enums in correct position (after previous)
 * categorize stuff into subfolders? (and make gen work wiht it) /internal /editor
 ]]
 
@@ -203,6 +201,11 @@ function genDocs:gen()
         ["ResResource"] = true,
         ["ConnectionInfo"] = true,
         ["NetworkStat"] = true,
+        ["VoxelInspectComponent"] = true,
+        ["MontageComponent"] = true,
+        ["StaticVoxelDataComponent"] = true,
+        ["SkyboxComponent"] = true,
+        ["NativeComponent"] = true,
     }
 
     --find out whats on client and server
@@ -289,6 +292,7 @@ function genDocs:generateClassFile(name, class, onClient, onServer)
     local finalMethods = self:getFinalEntries(currentMethods, class.Methods, name)
     local finalProperties = self:getFinalEntries(currentProperties, class.Properties, name)
 
+    --TODO if adding new class auto generated info is not there yet and not included in emmy file
     --use final entries for emmy generator
     genEmmy:generateEmmyLua(fileEmmyLua, name, intro, finalMethods, finalProperties)
     

@@ -1220,6 +1220,29 @@ MeshRender = {}
 `Client`
 `Server`
 
+[View Documentation](https://docs.atomontage.com/api/MontageComponent)
+]]
+--- @class MontageComponent
+--- @field type string
+--- @field object Object
+--- @field montageId string
+MontageComponent = {}
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/NativeComponent)
+]]
+--- @class NativeComponent
+--- @field type string
+--- @field object Object
+NativeComponent = {}
+
+--[[
+`Client`
+`Server`
+
 [View Documentation](https://docs.atomontage.com/api/Object)
 ]]
 --- @class Object
@@ -1612,6 +1635,37 @@ function Server:ScrollToLastestLuaLog() end
 
 --- @return CommandLine
 function Server:GetCommandLine() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/SkyboxComponent)
+]]
+--- @class SkyboxComponent
+--- @field type string
+--- @field object Object
+--- @field cloudScale number
+--- @field cloudOffset number
+--- @field cloudSlope number
+--- @field sunAzimuth number
+--- @field sunAltitude number
+--- @field rayleighCoeff Vec3
+--- @field mieCoeff number
+SkyboxComponent = {}
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/StaticVoxelDataComponent)
+]]
+--- @class StaticVoxelDataComponent
+--- @field type string
+--- @field object Object
+--- @field resource string
+--- @field isLoaded boolean
+StaticVoxelDataComponent = {}
 
 --[[
 `Client`
@@ -4125,6 +4179,33 @@ function VoxelDB:GetLayers() end
 --- @field type string
 --- @field object Object
 VoxelData = {}
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/VoxelInspectComponent)
+]]
+--- @class VoxelInspectComponent
+--- @field type string
+--- @field object Object
+VoxelInspectComponent = {}
+
+--- @param p1 number
+--- @param p2 userdata
+--- @param p3 string
+--- @param p4 userdata
+--- @param p5 boolean
+--- @param p6 integer
+--- @return nil
+function VoxelInspectComponent:AddVoxelInfo(p1, p2, p3, p4, p5, p6) end
+
+--- @return nil
+function VoxelInspectComponent:Clear() end
+
+--- @param p1 Vec4
+--- @return nil
+function VoxelInspectComponent:SetLineColor(p1) end
 
 --[[
 `Client`
