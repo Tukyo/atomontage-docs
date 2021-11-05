@@ -155,6 +155,7 @@ function genDocs:gen()
     local show = {
         ["Quat"] = true,
         ["quat"] = true,
+        ["Quatf"] = true,
         ["V2i"] = true,
         ["V3i"] = true,
         ["V2f"] = true,
@@ -163,6 +164,12 @@ function genDocs:gen()
         ["vec2"] = true,
         ["vec3"] = true,
         ["vec4"] = true,
+        ["Vec2i"] = true,
+        ["Vec3i"] = true,
+        ["Vec4i"] = true,
+        ["Vec2f"] = true,
+        ["Vec3f"] = true,
+        ["Vec4f"] = true,
         ["Camera"] = true,
         ["Config"] = true,
         ["ConfigMap"] = true,
@@ -193,11 +200,13 @@ function genDocs:gen()
         ["Rotation"] = true,
         ["CommandLine"] = true,
         ["ResourceReference"] = true,
+        ["Matrix3f"] = true,
         ["Matrix4f"] = true,
+        ["Mat3f"] = true,
+        ["Mat4f"] = true,
         ["AssetManager"] = true,
         ["Server"] = true,
         ["FilePath"] = true,
-        ["Matrix3f"] = true,
         ["ResResource"] = true,
         ["ConnectionInfo"] = true,
         ["NetworkStat"] = true,
@@ -624,6 +633,13 @@ function genEmmy:cleanUpClassName(name)
     name = name:gsub("v2f", "vec2")
     name = name:gsub("v3f", "vec3")
     name = name:gsub("v4f", "vec4")
+    name = name:gsub("vec2f", "vec2")
+    name = name:gsub("vec3f", "vec3")
+    name = name:gsub("vec4f", "vec4")
+    name = name:gsub("mat3f", "mat3")
+    name = name:gsub("mat4f", "mat4")
+    name = name:gsub("quatf", "quat")
+
     name = name:gsub("configMap", "config")
     return name
 end
@@ -700,7 +716,13 @@ function genDocs:cleanUpName(name)
         {"V2f", "Vec2"},
         {"V3f", "Vec3"},
         {"V4f", "Vec4"},
+        {"Vec2f", "Vec2"},
+        {"Vec3f", "Vec3"},
+        {"Vec4f", "Vec4"},
+        {"Mat3f", "Mat3"},
+        {"Mat4f", "Mat4"},
         {"quat", "Quat"},
+        {"Quatf", "Quat"},
         {"ConfigMap", "Config"}, --the whole class has wrong name, not fixed by this
         {"Vector_int", "userdata"},
         {"Vector_float", "userdata"},

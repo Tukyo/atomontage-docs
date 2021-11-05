@@ -25,17 +25,15 @@ This action is dangerous
 
 ### Vec3() {#Vec3}
 
+### Vec3(float) {#Vec3-float}
+
 ### Vec3(float, float, float) {#Vec3-float-float-float}
 
-### Vec3(int, int, int) {#Vec3-int-int-int}
-
-### Vec3(float) {#Vec3-float}
+### Vec3(Vec2, float) {#Vec3-Vec2-float}
 
 ### Vec3(Vec3) {#Vec3-Vec3}
 
 ### Vec3(Vec3i) {#Vec3-Vec3i}
-
-### Vec3(Vec2, float) {#Vec3-Vec2-float}
 
 ## List of Metamethods
 
@@ -43,13 +41,25 @@ This action is dangerous
 
 ### void __newindex(Vec3, int, float) {#void-newindex-Vec3-int-float}
 
+### Vec3 __add(Vec3, Vec3) {#Vec3-add-Vec3-Vec3}
+
+### Vec3 __add(Vec3, Vec3i) {#Vec3-add-Vec3-Vec3i}
+
+### Vec3 __add(Vec3, float) {#Vec3-add-Vec3-float}
+
+### Vec3 __add(float, Vec3) {#Vec3-add-float-Vec3}
+
+### Vec3 __sub(Vec3, Vec3) {#Vec3-sub-Vec3-Vec3}
+
+### Vec3 __sub(Vec3, Vec3i) {#Vec3-sub-Vec3-Vec3i}
+
+### Vec3 __sub(Vec3, float) {#Vec3-sub-Vec3-float}
+
+### Vec3 __sub(float, Vec3) {#Vec3-sub-float-Vec3}
+
 ### Vec3 __mul(Vec3, Vec3) {#Vec3-mul-Vec3-Vec3}
 
-### Vec3 __mul(Vec3, Quat) {#Vec3-mul-Vec3-Quat}
-
 ### Vec3 __mul(Vec3, Vec3i) {#Vec3-mul-Vec3-Vec3i}
-
-### Vec4 __mul(Vec3, Matrix4f) {#Vec4-mul-Vec3-Matrix4f}
 
 ### Vec3 __mul(Vec3, float) {#Vec3-mul-Vec3-float}
 
@@ -61,109 +71,47 @@ This action is dangerous
 
 ### Vec3 __div(Vec3, float) {#Vec3-div-Vec3-float}
 
-### Vec3 __add(Vec3, Vec3) {#Vec3-add-Vec3-Vec3}
+### Vec3 __div(float, Vec3) {#Vec3-div-float-Vec3}
 
-### Vec3 __add(Vec3, Vec3i) {#Vec3-add-Vec3-Vec3i}
-
-### Vec3 __sub(Vec3, Vec3) {#Vec3-sub-Vec3-Vec3}
-
-### Vec3 __sub(Vec3, Vec3i) {#Vec3-sub-Vec3-Vec3i}
-
-### Vec3 __unm(Vec3, Vec3) {#Vec3-unm-Vec3-Vec3}
+### Vec3 __unm(Vec3) {#Vec3-unm-Vec3}
 
 ### bool __eq(Vec3, Vec3) {#bool-eq-Vec3-Vec3}
 
 ### bool __eq(Vec3, Vec3i) {#bool-eq-Vec3-Vec3i}
 
-### float __len(Vec3, Vec3) {#float-len-Vec3-Vec3}
+### float __len(Vec3) {#float-len-Vec3}
 
 ## List of Methods
 
-### float Sum() {#float-Sum}
-
-### float GetMul() {#float-GetMul}
-
-### float Prod() {#float-Prod}
-
-### Vec3 GetPow(Vec3, float) {#Vec3-GetPow-Vec3-float}
-
-### float LinLen() {#float-LinLen}
-
 ### float Len() {#float-Len}
 
-### float SqLen() {#float-SqLen}
+### float SqrLength() {#float-SqrLength}
 
-### float MaxComponent() {#float-MaxComponent}
+### bool IsZero() {#bool-IsZero}
 
-### float MinComponent() {#float-MinComponent}
+### float GetMinComponent() {#float-GetMinComponent}
 
-### float GetMax() {#float-GetMax}
+### float GetMaxComponent() {#float-GetMaxComponent}
 
-### float GetMin() {#float-GetMin}
-
-### float GetMid() {#float-GetMid}
-
-### float MidComponent() {#float-MidComponent}
-
-### bool IsIn(float) {#bool-IsIn-float}
-
-### int GetCompIdx(float) {#int-GetCompIdx-float}
-
-### int GetCompIdxSafe(float) {#int-GetCompIdxSafe-float}
-
-### int GetMinIndex() {#int-GetMinIndex}
-
-### int GetMidIndex() {#int-GetMidIndex}
-
-### int GetMaxIndex() {#int-GetMaxIndex}
-
-### Vec3 GetGreaterSigned(float) {#Vec3-GetGreaterSigned-float}
+### float GetMidComponent() {#float-GetMidComponent}
 
 ### Vec3 GetAbs() {#Vec3-GetAbs}
 
-### float GetAvg() {#float-GetAvg}
+### void Clamp(Vec3, float, float) {#void-Clamp-Vec3-float-float}
 
-### Vec2 V2(Vec3) {#Vec2-V2-Vec3}
+### void Clamp(Vec3, Vec3, Vec3) {#void-Clamp-Vec3-Vec3-Vec3}
 
-### Vec2 XY() {#Vec2-XY}
+### Vec3 GetClamped(Vec3, float, float) {#Vec3-GetClamped-Vec3-float-float}
 
-### Vec2 XZ() {#Vec2-XZ}
-
-### Vec2 YX() {#Vec2-YX}
-
-### Vec2 YZ() {#Vec2-YZ}
-
-### Vec2 ZX() {#Vec2-ZX}
-
-### Vec2 ZY() {#Vec2-ZY}
-
-### Vec3 X0Z() {#Vec3-X0Z}
-
-### Vec3 XZY() {#Vec3-XZY}
-
-### Vec2 UV(int, int) {#Vec2-UV-int-int}
-
-### Vec3 UVW(int, int, int) {#Vec3-UVW-int-int-int}
-
-### bool IsAnyNaN() {#bool-IsAnyNaN}
-
-### Vec3 GetUnit() {#Vec3-GetUnit}
-
-### Vec3 GetUnitSafe() {#Vec3-GetUnitSafe}
-
-### Vec3 SetAbs() {#Vec3-SetAbs}
+### Vec3 GetClamped(Vec3, Vec3, Vec3) {#Vec3-GetClamped-Vec3-Vec3-Vec3}
 
 ### float Dot(Vec3, Vec3) {#float-Dot-Vec3-Vec3}
 
 ### float Dot(Vec3, Vec3i) {#float-Dot-Vec3-Vec3i}
 
-### Vec3 Cross(Vec3, Vec3) {#Vec3-Cross-Vec3-Vec3}
-
-### Vec3 Cross(Vec3, Vec3i) {#Vec3-Cross-Vec3-Vec3i}
+### bool IsAnyNaN() {#bool-IsAnyNaN}
 
 ### Vec3 Lerp(Vec3, Vec3, float) {#Vec3-Lerp-Vec3-Vec3-float}
-
-### Vec3 Mix(Vec3, Vec3, float) {#Vec3-Mix-Vec3-Vec3-float}
 
 ### Vec3 Normalize() {#Vec3-Normalize}
 
@@ -172,24 +120,6 @@ This action is dangerous
 ### Vec3 GetNormalized() {#Vec3-GetNormalized}
 
 ### Vec3 GetNormalizedSafe() {#Vec3-GetNormalizedSafe}
-
-### void Clamp(Vec3, float, float) {#void-Clamp-Vec3-float-float}
-
-### Vec3 GetClamped(Vec3, float, float) {#Vec3-GetClamped-Vec3-float-float}
-
-### Vec3 ClampRadius(float) {#Vec3-ClampRadius-float}
-
-### Vec3 Nonzero() {#Vec3-Nonzero}
-
-### Vec3 Signs() {#Vec3-Signs}
-
-### Vec3 SignsUnits() {#Vec3-SignsUnits}
-
-### Vec3i Signsi() {#Vec3i-Signsi}
-
-### Vec3i SignsUnitsi32() {#Vec3i-SignsUnitsi32}
-
-### Vec3i GetVec3i() {#Vec3i-GetVec3i}
 
 ### void Ceil(Vec3) {#void-Ceil-Vec3}
 
@@ -203,17 +133,11 @@ This action is dangerous
 
 ### Vec3 GetRounded(Vec3) {#Vec3-GetRounded-Vec3}
 
-### void SetLength(Vec3, float) {#void-SetLength-Vec3-float}
+### float DistanceTo(Vec3) {#float-DistanceTo-Vec3}
 
-### float Length(Vec3) {#float-Length-Vec3}
+### Vec3 Cross(Vec3, Vec3) {#Vec3-Cross-Vec3-Vec3}
 
-### float Length(Vec3, Vec3) {#float-Length-Vec3-Vec3}
-
-### Vec3 IsNaN(Vec3) {#Vec3-IsNaN-Vec3}
-
-### bool IsZero(Vec3) {#bool-IsZero-Vec3}
-
-### float DistanceTo(Vec3, Vec3) {#float-DistanceTo-Vec3-Vec3}
+### Vec3 Cross(Vec3, Vec3i) {#Vec3-Cross-Vec3-Vec3i}
 
 ## List of Properties
 
@@ -236,8 +160,4 @@ This action is dangerous
 ### Vec3 left {#Vec3-left}
 
 ### Vec3 back {#Vec3-back}
-
-### float length {#float-length}
-
-### Vec3 normalized {#Vec3-normalized}
 

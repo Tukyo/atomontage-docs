@@ -5,6 +5,11 @@ id: Quat
 `Client`
 `Server`
 
+## List of Metamethods
+
+### float __index(Vec3, int) {#float-index-Vec3-int}
+dddd
+
 ## List of Constructors
 
 ### Quat() {#Quat}
@@ -20,12 +25,9 @@ asdasdasdasdasd
 
 ### Quat(Vec3, Vec3) {#Quat-Vec3-Vec3}
 
-## List of Metamethods
+### float __index(Quat, int) {#float-index-Quat-int}
 
-### float __index(Vec3, int) {#float-index-Vec3-int}
-dddd
-
-### void __newindex(Vec3, int, float) {#void-newindex-Vec3-int-float}
+### void __newindex(Quat, int, float) {#void-newindex-Quat-int-float}
 
 ### Quat __add(Quat, Quat) {#Quat-add-Quat-Quat}
 
@@ -43,7 +45,7 @@ dddd
 
 ### Quat __div(Quat, float) {#Quat-div-Quat-float}
 
-### Quat __unm(Quat, Quat) {#Quat-unm-Quat-Quat}
+### Quat __unm(Quat) {#Quat-unm-Quat}
 
 ### bool __eq(Quat, Quat) {#bool-eq-Quat-Quat}
 
@@ -91,9 +93,9 @@ dddd
 
 ### Vec3 euler {#Vec3-euler}
 
-### Matrix3f mat3 {#Matrix3f-mat3}
+### Mat3 mat3 {#Mat3-mat3}
 
-### Matrix4f mat4 {#Matrix4f-mat4}
+### Mat4 mat4 {#Mat4-mat4}
 
 ### float angle {#float-angle}
 

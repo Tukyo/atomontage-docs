@@ -5,25 +5,29 @@ id: Input
 `Client`
 `Server`
 
-## List of Constructors
-
-### Input() {#Input}
-
 ## List of Methods
 
-### bool KeyDown(int) {#bool-KeyDown-int}
+### table GetEvents() {#table-GetEvents}
 
-### bool Key(int) {#bool-Key-int}
+### bool KeyDown(string) {#bool-KeyDown-string}
 
-### bool KeyUp(int) {#bool-KeyUp-int}
+### bool Key(string) {#bool-Key-string}
 
-### bool KeyCombDown(int, int) {#bool-KeyCombDown-int-int}
+### bool KeyUp(string) {#bool-KeyUp-string}
 
-### bool KeyCombDown(int, int, int) {#bool-KeyCombDown-int-int-int}
+### table KeyCombosDown() {#table-KeyCombosDown}
 
-### bool KeyComb(int, int) {#bool-KeyComb-int-int}
+### bool KeyComboDown(string) {#bool-KeyComboDown-string}
 
-### bool KeyComb(int, int, int) {#bool-KeyComb-int-int-int}
+### bool KeyComboDown(string, string, string) {#bool-KeyComboDown-string-string-string}
+
+### bool KeyComboDown(string, string) {#bool-KeyComboDown-string-string}
+
+### bool KeyCombo(string) {#bool-KeyCombo-string}
+
+### bool KeyCombo(string, string, string) {#bool-KeyCombo-string-string-string}
+
+### bool KeyCombo(string, string) {#bool-KeyCombo-string-string}
 
 ### bool ShiftKey() {#bool-ShiftKey}
 
@@ -31,25 +35,11 @@ id: Input
 
 ### bool AltKey() {#bool-AltKey}
 
-### string GetKeyName(int) {#string-GetKeyName-int}
+### bool MouseButtonDown(int) {#bool-MouseButtonDown-int}
 
-### int GetKeyCode(string) {#int-GetKeyCode-string}
+### bool MouseButton(int) {#bool-MouseButton-int}
 
-### userdata GetKeysDown() {#userdata-GetKeysDown}
-
-### userdata GetKeys() {#userdata-GetKeys}
-
-### userdata GetKeysUp() {#userdata-GetKeysUp}
-
-### int GetKeyShortcutsPressedCount() {#int-GetKeyShortcutsPressedCount}
-
-### string GetKeyShortcutPressed(int) {#string-GetKeyShortcutPressed-int}
-
-### bool MouseBtnDown(int) {#bool-MouseBtnDown-int}
-
-### bool MouseBtn(int) {#bool-MouseBtn-int}
-
-### bool MouseBtnUp(int) {#bool-MouseBtnUp-int}
+### bool MouseButtonUp(int) {#bool-MouseButtonUp-int}
 
 ### int MouseWheel() {#int-MouseWheel}
 
@@ -59,17 +49,11 @@ id: Input
 
 ### Vec2 MouseMove() {#Vec2-MouseMove}
 
-### Vec2 MousePosRel() {#Vec2-MousePosRel}
+### Vec2 MousePosPerc() {#Vec2-MousePosPerc}
 
-### Vec2 MousePosRelLast() {#Vec2-MousePosRelLast}
+### Vec2 MousePosPercLast() {#Vec2-MousePosPercLast}
 
-### Vec2 MouseMoveRel() {#Vec2-MouseMoveRel}
-
-### userdata GetMouseButtonsDown() {#userdata-GetMouseButtonsDown}
-
-### userdata GetMouseButtons() {#userdata-GetMouseButtons}
-
-### userdata GetMouseButtonsUp() {#userdata-GetMouseButtonsUp}
+### Vec2 MouseMovePerc() {#Vec2-MouseMovePerc}
 
 ### bool GetRelativeMouseMode() {#bool-GetRelativeMouseMode}
 
@@ -91,31 +75,15 @@ id: Input
 
 ### Vec2 FingerPos(int) {#Vec2-FingerPos-int}
 
-### bool VrBtnDown(int, ControllerButtons) {#bool-VrBtnDown-int-ControllerButtons}
+### bool VRButton(int, VRControllerButton) {#bool-VRButton-int-VRControllerButton}
 
-### float VrHandTrigger(int) {#float-VrHandTrigger-int}
+### float VRHandTrigger(int) {#float-VRHandTrigger-int}
 
-### float VrIndexTrigger(int) {#float-VrIndexTrigger-int}
+### float VRIndexTrigger(int) {#float-VRIndexTrigger-int}
 
-### Vec2 VrThumbStick(int) {#Vec2-VrThumbStick-int}
+### Vec2 VRThumbStick(int) {#Vec2-VRThumbStick-int}
 
-### string GetJoyBtnName(int) {#string-GetJoyBtnName-int}
+### userdata Gamepads() {#userdata-Gamepads}
 
-### string GetJoyAxisName(int) {#string-GetJoyAxisName-int}
-
-### int GetJoyBtnByName(string) {#int-GetJoyBtnByName-string}
-
-### int GetJoyAxisByName(string) {#int-GetJoyAxisByName-string}
-
-### int GetActiveJoypadID() {#int-GetActiveJoypadID}
-
-### bool JoyBtnDown(int, int) {#bool-JoyBtnDown-int-int}
-
-### bool JoyBtn(int, int) {#bool-JoyBtn-int-int}
-
-### bool JoyBtnUp(int, int) {#bool-JoyBtnUp-int-int}
-
-### float JoyAxis(int, int) {#float-JoyAxis-int-int}
-
-### table GetInputEvents(Input) {#table-GetInputEvents-Input}
+### userdata GetActiveGamepad() {#userdata-GetActiveGamepad}
 
