@@ -14,6 +14,8 @@ blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal
 
 ## List of Methods
 
+### int GetID() {#int-GetID}
+
 ### void SendMessage(table message) {#void-SendMessage-table-message}
 
 ### void SendMessages(table tableOfMessages) {#void-SendMessages-table-tableOfMessages}
@@ -150,8 +152,6 @@ end
 
 ### int GetLogStrValuesCount() {#int-GetLogStrValuesCount}
 
-### double GetTime() {#double-GetTime}
-
 ### double GetLogTime(string) {#double-GetLogTime-string}
 
 ### float GetFPS() {#float-GetFPS}
@@ -160,15 +160,13 @@ end
 
 ### void ConnectToServer(Client) {#void-ConnectToServer-Client}
 
+### void Disconnect() {#void-Disconnect}
+
 ### bool OpenFolder(string folder) {#bool-OpenFolder-string-folder}
 
 ### int GetScriptsVersion() {#int-GetScriptsVersion}
 
 ### int GetClientScriptsVersion() {#int-GetClientScriptsVersion}
-
-### void ResendServerLua() {#void-ResendServerLua}
-
-### void ReloadLua() {#void-ReloadLua}
 
 ### void LuaOpenDebugger() {#void-LuaOpenDebugger}
 
@@ -177,9 +175,6 @@ end
 ### void OnLuaLog() {#void-OnLuaLog}
 
 ### void ScrollToLastestLuaLog() {#void-ScrollToLastestLuaLog}
-
-### Camera GetCamera() {#Camera-GetCamera}
-Returns [`Camera`](/api/camera)
 
 ### userdata GetVisibleWindows() {#userdata-GetVisibleWindows}
 
@@ -196,6 +191,8 @@ Returns [`Camera`](/api/camera)
 ### bool IsClient() {#bool-IsClient}
 
 ### bool IsServer() {#bool-IsServer}
+
+### bool DevMode() {#bool-DevMode}
 
 ### void SelectItemInUICreator(UIItem uiItem) {#void-SelectItemInUICreator-UIItem-uiItem}
 
@@ -230,6 +227,7 @@ Returns [`Camera`](/api/camera)
 ### Vec2 GetViewportSize() {#Vec2-GetViewportSize}
 
 ### CommandLine GetCommandLine() {#CommandLine-GetCommandLine}
+Returns [`CommandLine`](/api/commandLine)
 
 ### Vec4 GetBGColor() {#Vec4-GetBGColor}
 
@@ -255,7 +253,27 @@ Returns [`Camera`](/api/camera)
 
 ### void ToggleChannelRendering() {#void-ToggleChannelRendering}
 
+### int GetRenderChannelsCount() {#int-GetRenderChannelsCount}
+
+### float GetRenderChannelOpacity(int) {#float-GetRenderChannelOpacity-int}
+
+### void SetRenderChannelOpacity(int, float) {#void-SetRenderChannelOpacity-int-float}
+
+### bool VehicleControlUIEnabled() {#bool-VehicleControlUIEnabled}
+
+### void LoadEntityPath() {#void-LoadEntityPath}
+
 ### void SaveEntityPath() {#void-SaveEntityPath}
+
+### void PlayEntityPath() {#void-PlayEntityPath}
+
+### void ClearEntityPath() {#void-ClearEntityPath}
+
+### void AddEntityPathWaypoint() {#void-AddEntityPathWaypoint}
+
+### string GetCredits() {#string-GetCredits}
+
+### void InjectVehicleCtrlUI(bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool) {#void-InjectVehicleCtrlUI-bool-bool-bool-bool-bool-bool-bool-bool-bool-bool-bool-bool-bool}
 
 ## List of Properties
 

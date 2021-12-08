@@ -11,13 +11,47 @@ id: Vec3i
 
 ### Vec3i(int) {#Vec3i-int}
 
+### Vec3i(float) {#Vec3i-float}
+
 ### Vec3i(int, int, int) {#Vec3i-int-int-int}
 
+### Vec3i(int, int, float) {#Vec3i-int-int-float}
+
+### Vec3i(int, float, int) {#Vec3i-int-float-int}
+
+### Vec3i(int, float, float) {#Vec3i-int-float-float}
+
+### Vec3i(float, int, int) {#Vec3i-float-int-int}
+
+### Vec3i(float, int, float) {#Vec3i-float-int-float}
+
+### Vec3i(float, float, int) {#Vec3i-float-float-int}
+
+### Vec3i(float, float, float) {#Vec3i-float-float-float}
+
 ### Vec3i(Vec2i, int) {#Vec3i-Vec2i-int}
+
+### Vec3i(Vec2i, float) {#Vec3i-Vec2i-float}
+
+### Vec3i(Vec2, int) {#Vec3i-Vec2-int}
+
+### Vec3i(Vec2, float) {#Vec3i-Vec2-float}
+
+### Vec3i(int, Vec2i) {#Vec3i-int-Vec2i}
+
+### Vec3i(int, Vec2) {#Vec3i-int-Vec2}
+
+### Vec3i(float, Vec2i) {#Vec3i-float-Vec2i}
+
+### Vec3i(float, Vec2) {#Vec3i-float-Vec2}
 
 ### Vec3i(Vec3i) {#Vec3i-Vec3i}
 
 ### Vec3i(Vec3) {#Vec3i-Vec3}
+
+### Vec3i(Vec4i) {#Vec3i-Vec4i}
+
+### Vec3i(Vec4) {#Vec3i-Vec4}
 
 ## List of Metamethods
 
@@ -57,13 +91,27 @@ id: Vec3i
 
 ### Vec3i __div(int, Vec3i) {#Vec3i-div-int-Vec3i}
 
+### Vec3i __mod(Vec3i, Vec3i) {#Vec3i-mod-Vec3i-Vec3i}
+
+### Vec3 __mod(Vec3i, Vec3) {#Vec3-mod-Vec3i-Vec3}
+
+### Vec3i __mod(Vec3i, int) {#Vec3i-mod-Vec3i-int}
+
+### Vec3i __mod(int, Vec3i) {#Vec3i-mod-int-Vec3i}
+
+### Vec3i __pow(Vec3i, Vec3i) {#Vec3i-pow-Vec3i-Vec3i}
+
+### Vec3 __pow(Vec3i, Vec3) {#Vec3-pow-Vec3i-Vec3}
+
+### Vec3i __pow(Vec3i, int) {#Vec3i-pow-Vec3i-int}
+
+### Vec3i __pow(int, Vec3i) {#Vec3i-pow-int-Vec3i}
+
 ### Vec3i __unm(Vec3i) {#Vec3i-unm-Vec3i}
 
 ### bool __eq(Vec3i, Vec3i) {#bool-eq-Vec3i-Vec3i}
 
 ### bool __eq(Vec3i, Vec3) {#bool-eq-Vec3i-Vec3}
-
-### int __len(Vec3i) {#int-len-Vec3i}
 
 ## List of Methods
 
@@ -72,12 +120,6 @@ id: Vec3i
 ### int SqrLength() {#int-SqrLength}
 
 ### bool IsZero() {#bool-IsZero}
-
-### int GetMinComponent() {#int-GetMinComponent}
-
-### int GetMaxComponent() {#int-GetMaxComponent}
-
-### int GetMidComponent() {#int-GetMidComponent}
 
 ### Vec3i GetAbs() {#Vec3i-GetAbs}
 
@@ -92,10 +134,6 @@ id: Vec3i
 ### int Dot(Vec3i, Vec3i) {#int-Dot-Vec3i-Vec3i}
 
 ### float Dot(Vec3i, Vec3) {#float-Dot-Vec3i-Vec3}
-
-### Vec3i __mod(Vec3i, Vec3i) {#Vec3i-mod-Vec3i-Vec3i}
-
-### Vec3i __mod(Vec3i, int) {#Vec3i-mod-Vec3i-int}
 
 ### Vec3i __band(Vec3i, Vec3i) {#Vec3i-band-Vec3i-Vec3i}
 
@@ -119,9 +157,13 @@ id: Vec3i
 
 ### Vec3i __shl(Vec3i, Vec3i) {#Vec3i-shl-Vec3i-Vec3i}
 
+### Vec3i __shl(int, Vec3i) {#Vec3i-shl-int-Vec3i}
+
 ### Vec3i __shl(Vec3i, int) {#Vec3i-shl-Vec3i-int}
 
 ### Vec3i __shr(Vec3i, Vec3i) {#Vec3i-shr-Vec3i-Vec3i}
+
+### Vec3i __shr(int, Vec3i) {#Vec3i-shr-int-Vec3i}
 
 ### Vec3i __shr(Vec3i, int) {#Vec3i-shr-Vec3i-int}
 

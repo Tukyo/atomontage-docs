@@ -115,7 +115,7 @@ local testBindings = {
 
 
 
-local fileEmmyLua = genEmmy:createFile()
+local fileEmmyLua = genEmmy:createFile(_BindingsServer, _BindingsClient)
 
 function genDocs:gen()
     --make directory
@@ -733,6 +733,7 @@ function genDocs:cleanUpName(name)
         {"Vector_Vec3", "userdata"},
         {"shared_ptr<classae::scene::LuaVoxelDB>", "VoxelDB"},
         {"shared_ptr<classae::scene::ScriptComponent>", "ScriptComponent"},
+        {"variadic_args", "..."},
     }
 
     --name = name:gsub("(%S+),?", replacments)

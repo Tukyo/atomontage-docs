@@ -9,9 +9,29 @@ id: Mat3
 
 ### Mat3() {#Mat3}
 
+### Mat3(float) {#Mat3-float}
+
+### Mat3(float, float, float, float, float, float, float, float, float) {#Mat3-float-float-float-float-float-float-float-float-float}
+
 ### Mat3(Vec3, Vec3, Vec3) {#Mat3-Vec3-Vec3-Vec3}
 
+### Mat3(Vec3, Vec3, Vec3i) {#Mat3-Vec3-Vec3-Vec3i}
+
+### Mat3(Vec3, Vec3i, Vec3) {#Mat3-Vec3-Vec3i-Vec3}
+
+### Mat3(Vec3, Vec3i, Vec3i) {#Mat3-Vec3-Vec3i-Vec3i}
+
+### Mat3(Vec3i, Vec3, Vec3) {#Mat3-Vec3i-Vec3-Vec3}
+
+### Mat3(Vec3i, Vec3, Vec3i) {#Mat3-Vec3i-Vec3-Vec3i}
+
+### Mat3(Vec3i, Vec3i, Vec3) {#Mat3-Vec3i-Vec3i-Vec3}
+
+### Mat3(Vec3i, Vec3i, Vec3i) {#Mat3-Vec3i-Vec3i-Vec3i}
+
 ### Mat3(Mat3) {#Mat3-Mat3}
+
+### Mat3(Mat4) {#Mat3-Mat4}
 
 ## List of Metamethods
 
@@ -21,11 +41,39 @@ id: Mat3
 
 ### Mat3 __add(Mat3, Mat3) {#Mat3-add-Mat3-Mat3}
 
+### Mat3 __add(Mat3, float) {#Mat3-add-Mat3-float}
+
+### Mat3 __add(float, Mat3) {#Mat3-add-float-Mat3}
+
 ### Mat3 __sub(Mat3, Mat3) {#Mat3-sub-Mat3-Mat3}
+
+### Mat3 __sub(Mat3, float) {#Mat3-sub-Mat3-float}
+
+### Mat3 __sub(float, Mat3) {#Mat3-sub-float-Mat3}
 
 ### Mat3 __unm(Mat3) {#Mat3-unm-Mat3}
 
 ### bool __eq(Mat3, Mat3) {#bool-eq-Mat3-Mat3}
+
+## List of Methods
+
+### float GetDeterminant() {#float-GetDeterminant}
+
+### Mat3 Transpose() {#Mat3-Transpose}
+
+### Mat3 GetTransposed() {#Mat3-GetTransposed}
+
+### Mat3 Invert() {#Mat3-Invert}
+
+### Mat3 GetInverted() {#Mat3-GetInverted}
+
+### bool IsIdentity(float) {#bool-IsIdentity-float}
+
+### bool IsZero() {#bool-IsZero}
+
+### bool IsSingular() {#bool-IsSingular}
+
+### bool IsAnyNaN() {#bool-IsAnyNaN}
 
 ## List of Properties
 

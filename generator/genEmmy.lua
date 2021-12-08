@@ -55,9 +55,20 @@ function Server:ReceiveMessages() end
 function Server:GetCommandLine() end
 ]]
 
-function genEmmy:createFile()
+function genEmmy:createFile(bindingsServer, bindingsClient)
     local file = io.open("generator\\emmyApi\\apiEmmyLua.lua", "w")
+    
+    --add component alias
+    local comps = util:getAllComponents(bindingsServer)
+    file:write("--- @alias componentType", "\n")
+    for i, comp in ipairs(comps) do
+        file:write([[---| "']]..comp..[['"]], "\n")
+    end
+    file:write("\n")
+
+    --default lines
     file:write(emmyDefaultLines, "\n")
+    
     return file
 end
 

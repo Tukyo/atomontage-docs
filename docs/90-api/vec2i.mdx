@@ -11,11 +11,27 @@ id: Vec2i
 
 ### Vec2i(int) {#Vec2i-int}
 
+### Vec2i(float) {#Vec2i-float}
+
 ### Vec2i(int, int) {#Vec2i-int-int}
+
+### Vec2i(int, float) {#Vec2i-int-float}
+
+### Vec2i(float, int) {#Vec2i-float-int}
+
+### Vec2i(float, float) {#Vec2i-float-float}
 
 ### Vec2i(Vec2i) {#Vec2i-Vec2i}
 
 ### Vec2i(Vec2) {#Vec2i-Vec2}
+
+### Vec2i(Vec3i) {#Vec2i-Vec3i}
+
+### Vec2i(Vec3) {#Vec2i-Vec3}
+
+### Vec2i(Vec4i) {#Vec2i-Vec4i}
+
+### Vec2i(Vec4) {#Vec2i-Vec4}
 
 ## List of Metamethods
 
@@ -55,13 +71,27 @@ id: Vec2i
 
 ### Vec2i __div(int, Vec2i) {#Vec2i-div-int-Vec2i}
 
+### Vec2i __mod(Vec2i, Vec2i) {#Vec2i-mod-Vec2i-Vec2i}
+
+### Vec2 __mod(Vec2i, Vec2) {#Vec2-mod-Vec2i-Vec2}
+
+### Vec2i __mod(Vec2i, int) {#Vec2i-mod-Vec2i-int}
+
+### Vec2i __mod(int, Vec2i) {#Vec2i-mod-int-Vec2i}
+
+### Vec2i __pow(Vec2i, Vec2i) {#Vec2i-pow-Vec2i-Vec2i}
+
+### Vec2 __pow(Vec2i, Vec2) {#Vec2-pow-Vec2i-Vec2}
+
+### Vec2i __pow(Vec2i, int) {#Vec2i-pow-Vec2i-int}
+
+### Vec2i __pow(int, Vec2i) {#Vec2i-pow-int-Vec2i}
+
 ### Vec2i __unm(Vec2i) {#Vec2i-unm-Vec2i}
 
 ### bool __eq(Vec2i, Vec2i) {#bool-eq-Vec2i-Vec2i}
 
 ### bool __eq(Vec2i, Vec2) {#bool-eq-Vec2i-Vec2}
-
-### int __len(Vec2i) {#int-len-Vec2i}
 
 ## List of Methods
 
@@ -70,12 +100,6 @@ id: Vec2i
 ### int SqrLength() {#int-SqrLength}
 
 ### bool IsZero() {#bool-IsZero}
-
-### int GetMinComponent() {#int-GetMinComponent}
-
-### int GetMaxComponent() {#int-GetMaxComponent}
-
-### bool IsWithin(int) {#bool-IsWithin-int}
 
 ### Vec2i GetAbs() {#Vec2i-GetAbs}
 
@@ -90,10 +114,6 @@ id: Vec2i
 ### int Dot(Vec2i, Vec2i) {#int-Dot-Vec2i-Vec2i}
 
 ### float Dot(Vec2i, Vec2) {#float-Dot-Vec2i-Vec2}
-
-### Vec2i __mod(Vec2i, Vec2i) {#Vec2i-mod-Vec2i-Vec2i}
-
-### Vec2i __mod(Vec2i, int) {#Vec2i-mod-Vec2i-int}
 
 ### Vec2i __band(Vec2i, Vec2i) {#Vec2i-band-Vec2i-Vec2i}
 
@@ -117,9 +137,13 @@ id: Vec2i
 
 ### Vec2i __shl(Vec2i, Vec2i) {#Vec2i-shl-Vec2i-Vec2i}
 
+### Vec2i __shl(int, Vec2i) {#Vec2i-shl-int-Vec2i}
+
 ### Vec2i __shl(Vec2i, int) {#Vec2i-shl-Vec2i-int}
 
 ### Vec2i __shr(Vec2i, Vec2i) {#Vec2i-shr-Vec2i-Vec2i}
+
+### Vec2i __shr(int, Vec2i) {#Vec2i-shr-int-Vec2i}
 
 ### Vec2i __shr(Vec2i, int) {#Vec2i-shr-Vec2i-int}
 

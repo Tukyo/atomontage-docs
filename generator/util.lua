@@ -1,5 +1,24 @@
 local util = {}
 
+--find all componets in _Bindings (by checking if they have type and object props)
+function util:getAllComponents(_Bindings)
+    local components = {}
+    for name, class in pairs(_Bindings.Classes) do
+        if name ~= "Component" then 
+            local hasType = false
+            local hasObject = false
+            for i, prop in ipairs(class.Properties or {}) do
+                hasType = hasType or prop:find(" type")
+                hasObject = hasObject or prop:find(" object")
+            end
+            if hasType and hasObject then
+                table.insert(components, name)          
+            end
+        end
+    end
+    return components
+end
+
 --check if a table with lines is more then just a header
 function util:hasDocumentation(lines)
     --actually should also check if lines are just empty here
