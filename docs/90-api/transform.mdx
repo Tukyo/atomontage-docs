@@ -7,9 +7,15 @@ id: Transform
 
 ## List of Methods
 
-### Transform Get(string) {#Transform-Get-string}
+### userdata GetChild(int) {#userdata-GetChild-int}
 
-### Transform GetChild(int) {#Transform-GetChild-int}
+### userdata GetChild(string) {#userdata-GetChild-string}
+
+### userdata Get(int) {#userdata-Get-int}
+
+### userdata Get(string) {#userdata-Get-string}
+
+### bool SetParent(userdata) {#bool-SetParent-userdata}
 
 ### Vec3 LocalToWorld(Vec3) {#Vec3-LocalToWorld-Vec3}
 
@@ -18,6 +24,8 @@ id: Transform
 ### Vec3 LocalToWorldVec(Vec3) {#Vec3-LocalToWorldVec-Vec3}
 
 ### Vec3 WorldToLocalVec(Vec3) {#Vec3-WorldToLocalVec-Vec3}
+
+### bool __eq(Transform, Transform) {#bool-eq-Transform-Transform}
 
 ## List of Properties
 
@@ -33,9 +41,7 @@ id: Transform
 
 ### Quat localRot {#Quat-localRot}
 
-### Transform parent {#Transform-parent}
-
-### Transform invalid {#Transform-invalid}
+### userdata parent {#userdata-parent}
 
 ### Vec3 right {#Vec3-right}
 

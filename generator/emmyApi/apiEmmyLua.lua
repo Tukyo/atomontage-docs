@@ -1,16 +1,15 @@
 --- @alias componentType
----| "'StaticVoxelDataComponent'"
----| "'VoxelInspectComponent'"
----| "'ScriptComponent'"
----| "'NativeComponent'"
+---| "'SkyboxComponent'"
+---| "'VoxelRender'"
 ---| "'Transform'"
 ---| "'MontageComponent'"
----| "'MeshData'"
----| "'SkyboxComponent'"
+---| "'ScriptComponent'"
 ---| "'CameraComponent'"
----| "'VoxelRender'"
----| "'MeshRender'"
+---| "'VoxelInspectComponent'"
 ---| "'VoxelData'"
+---| "'MeshRender'"
+---| "'MeshData'"
+---| "'StaticVoxelDataComponent'"
 
 --- @meta
 
@@ -611,12 +610,6 @@ function Client:WriteToScreen(p1, p2, p3, p4, p5) end
 --- @return nil
 function Client:CloseApp() end
 
---- @return number
-function Client:GetDeltaTime() end
-
---- @return number
-function Client:GetTotalTime() end
-
 --- @return Camera
 function Client:GetMainCamera() end
 
@@ -703,6 +696,9 @@ function Client:ClearEntityPath() end
 
 --- @return nil
 function Client:AddEntityPathWaypoint() end
+
+--- @return nil
+function Client:TakeScreenShot() end
 
 --- @return string
 function Client:GetCredits() end
@@ -1202,6 +1198,46 @@ function Mat3:__sub(p1, p2) end
 function Mat3:__sub(p1, p2) end
 
 --- @param p1 Mat3
+--- @param p2 Mat3
+--- @return Mat3
+function Mat3:__mul(p1, p2) end
+
+--- @param p1 Mat3
+--- @param p2 number
+--- @return Mat3
+function Mat3:__mul(p1, p2) end
+
+--- @param p1 number
+--- @param p2 Mat3
+--- @return Mat3
+function Mat3:__mul(p1, p2) end
+
+--- @param p1 Vec3
+--- @param p2 Mat3
+--- @return Vec3
+function Mat3:__mul(p1, p2) end
+
+--- @param p1 Mat3
+--- @param p2 Mat3
+--- @return Mat3
+function Mat3:__div(p1, p2) end
+
+--- @param p1 Mat3
+--- @param p2 number
+--- @return Mat3
+function Mat3:__div(p1, p2) end
+
+--- @param p1 number
+--- @param p2 Mat3
+--- @return Mat3
+function Mat3:__div(p1, p2) end
+
+--- @param p1 Vec3
+--- @param p2 Mat3
+--- @return Vec3
+function Mat3:__div(p1, p2) end
+
+--- @param p1 Mat3
 --- @return Mat3
 function Mat3:__unm(p1) end
 
@@ -1237,6 +1273,15 @@ function Mat3:IsSingular() end
 
 --- @return boolean
 function Mat3:IsAnyNaN() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Mat4)
+]]
+--- @class Mat4
+Mat4 = {}
 
 --[[
 `Client`
@@ -1443,6 +1488,46 @@ function Mat4:__sub(p1, p2) end
 function Mat4:__sub(p1, p2) end
 
 --- @param p1 Mat4
+--- @param p2 Mat4
+--- @return Mat4
+function Mat4:__mul(p1, p2) end
+
+--- @param p1 Mat4
+--- @param p2 number
+--- @return Mat4
+function Mat4:__mul(p1, p2) end
+
+--- @param p1 number
+--- @param p2 Mat4
+--- @return Mat4
+function Mat4:__mul(p1, p2) end
+
+--- @param p1 Vec4
+--- @param p2 Mat4
+--- @return Vec4
+function Mat4:__mul(p1, p2) end
+
+--- @param p1 Mat4
+--- @param p2 Mat4
+--- @return Mat4
+function Mat4:__div(p1, p2) end
+
+--- @param p1 Mat4
+--- @param p2 number
+--- @return Mat4
+function Mat4:__div(p1, p2) end
+
+--- @param p1 number
+--- @param p2 Mat4
+--- @return Mat4
+function Mat4:__div(p1, p2) end
+
+--- @param p1 Vec4
+--- @param p2 Mat4
+--- @return Vec4
+function Mat4:__div(p1, p2) end
+
+--- @param p1 Mat4
 --- @return Mat4
 function Mat4:__unm(p1) end
 
@@ -1534,6 +1619,11 @@ function Material:SetProperty(p1, p2) end
 --- @field object Object
 MeshData = {}
 
+--- @param p1 MeshData
+--- @param p2 MeshData
+--- @return boolean
+function MeshData:__eq(p1, p2) end
+
 --[[
 `Client`
 `Server`
@@ -1600,6 +1690,11 @@ function MeshDataBuilder:AddIndex(p1, p2) end
 --- @field object Object
 MeshRender = {}
 
+--- @param p1 MeshRender
+--- @param p2 MeshRender
+--- @return boolean
+function MeshRender:__eq(p1, p2) end
+
 --[[
 `Client`
 `Server`
@@ -1619,8 +1714,6 @@ MontageComponent = {}
 [View Documentation](https://docs.atomontage.com/api/NativeComponent)
 ]]
 --- @class NativeComponent
---- @field type string
---- @field object Object
 NativeComponent = {}
 
 --[[
@@ -1632,18 +1725,20 @@ NativeComponent = {}
 --- @class Object
 --- @field name string
 --- @field tag string
+--- @field transform Transform
+--- @field parent userdata
+--- @field components table
+--- @field children table
 --- @field id integer
 --- @field isDestroyed boolean
 --- @field componentsCount integer
 --- @field update boolean
 --- @field active boolean
---- @field transform Transform
 --- @field dontSave boolean
 Object = {}
 
---- @param p1 Object
 --- @return nil
-function Object:RemoveAllNonNativeComponents(p1) end
+function Object:RemoveAllNonNativeComponents() end
 
 --- @param p1 string
 --- @return userdata
@@ -1655,6 +1750,10 @@ function Object:GetComponent(p1) end
 
 --- @return table
 function Object:GetComponents() end
+
+--- @param p1 userdata
+--- @return boolean
+function Object:RemoveComponent(p1) end
 
 --- @param p1 string
 --- @return userdata
@@ -1730,6 +1829,21 @@ function Object3D:GetPosition(p1) end
 --- @return nil
 function Object3D:SetPosition(p1) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Quat)
+]]
+--- @class Quat
+Quat = {}
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Quat)
+]]
 --- @class Quat
 --- @field x number
 --- @field y number
@@ -1963,7 +2077,7 @@ Scene = {}
 function Scene:GetTime() end
 
 --- @return number
-function Scene:GetTimeDelta() end
+function Scene:GetDeltaTime() end
 
 --- @return number
 function Scene:GetDebugTime() end
@@ -2003,9 +2117,20 @@ function Scene:GetRootObjects() end
 --- @return table
 function Scene:GetObjectsByTag(p1) end
 
+--- @param p1 integer
+--- @return Object
+function Scene:GetObjectById(p1) end
+
 --- @param p1 string
 --- @return boolean
-function Scene:Save(p1) end
+function Scene:IsNameValid(p1) end
+
+--- @return boolean
+function Scene:Save() end
+
+--- @param p1 string
+--- @return boolean
+function Scene:SaveAs(p1) end
 
 --- @param p1 string
 --- @return integer
@@ -2108,6 +2233,10 @@ function ScriptComponent:GetSyncToClient() end
 function ScriptComponent:SetSyncToClient(p1) end
 
 --- @param p1 string
+--- @return boolean
+function ScriptComponent:AssignScript(p1) end
+
+--- @param p1 string
 --- @param p2 table
 --- @return nil
 function ScriptComponent:SendMessage(p1, p2) end
@@ -2159,6 +2288,9 @@ function Server:ResendScripts() end
 
 --- @return boolean
 function Server:ReloadScripts() end
+
+--- @return table
+function Server:GetLuaFilesList() end
 
 --- @return userdata
 function Server:GetVoxelClientIDs() end
@@ -2257,8 +2389,7 @@ StaticVoxelDataComponent = {}
 --- @field localPos Vec3
 --- @field localScale number
 --- @field localRot Quat
---- @field parent Transform
---- @field invalid Transform
+--- @field parent userdata
 --- @field right Vec3
 --- @field up Vec3
 --- @field forward Vec3
@@ -2266,13 +2397,25 @@ StaticVoxelDataComponent = {}
 --- @field object Object
 Transform = {}
 
+--- @param p1 integer
+--- @return userdata
+function Transform:GetChild(p1) end
+
 --- @param p1 string
---- @return Transform
-function Transform:Get(p1) end
+--- @return userdata
+function Transform:GetChild(p1) end
 
 --- @param p1 integer
---- @return Transform
-function Transform:GetChild(p1) end
+--- @return userdata
+function Transform:Get(p1) end
+
+--- @param p1 string
+--- @return userdata
+function Transform:Get(p1) end
+
+--- @param p1 userdata
+--- @return boolean
+function Transform:SetParent(p1) end
 
 --- @param p1 Vec3
 --- @return Vec3
@@ -2289,6 +2432,11 @@ function Transform:LocalToWorldVec(p1) end
 --- @param p1 Vec3
 --- @return Vec3
 function Transform:WorldToLocalVec(p1) end
+
+--- @param p1 Transform
+--- @param p2 Transform
+--- @return boolean
+function Transform:__eq(p1, p2) end
 
 --[[
 `Client`
@@ -5486,6 +5634,11 @@ function VoxelDB:GetCenter() end
 --- @field object Object
 VoxelData = {}
 
+--- @param p1 VoxelData
+--- @param p2 VoxelData
+--- @return boolean
+function VoxelData:__eq(p1, p2) end
+
 --[[
 `Client`
 `Server`
@@ -5536,6 +5689,11 @@ VoxelInspectData = {}
 --- @field type string
 --- @field object Object
 VoxelRender = {}
+
+--- @param p1 VoxelRender
+--- @param p2 VoxelRender
+--- @return boolean
+function VoxelRender:__eq(p1, p2) end
 
 --- @class AttachmentFlags
 AttachmentFlags = {
@@ -5710,6 +5868,15 @@ PrimitiveTopology = {
 	TriangleStrip = 3,
 	TriangleFan = 4,
 	Triangles = 5,
+}
+
+--- @class RendererState
+RendererState = {
+	Shadows = 0,
+	Fog = 1,
+	MultiView = 2,
+	Lighting = 3,
+	DepthPass = 4,
 }
 
 --- @class ResourceUsage

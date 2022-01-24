@@ -3,7 +3,4 @@
         "redefined-local",
         "trailing-space"
     ],
-    "Lua.workspace.userThirdParty": [
-        "c:\\Users\\maxkr\\.vscode\\extensions\\atomontageinc.vscode-atomontage-lua-0.4.0\\am_library"
-    ]
 }
