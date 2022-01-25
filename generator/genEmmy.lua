@@ -60,6 +60,7 @@ function genEmmy:createFile(bindingsServer, bindingsClient)
     
     --add component alias
     local comps = util:getAllComponents(bindingsServer)
+    table.sort(comps) --sort ABC
     file:write("--- @alias componentType", "\n")
     for i, comp in ipairs(comps) do
         file:write([[---| "']]..comp..[['"]], "\n")

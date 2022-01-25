@@ -1,15 +1,15 @@
 --- @alias componentType
----| "'SkyboxComponent'"
----| "'VoxelRender'"
----| "'Transform'"
+---| "'CameraComponent'"
+---| "'MeshData'"
+---| "'MeshRender'"
 ---| "'MontageComponent'"
 ---| "'ScriptComponent'"
----| "'CameraComponent'"
----| "'VoxelInspectComponent'"
----| "'VoxelData'"
----| "'MeshRender'"
----| "'MeshData'"
+---| "'SkyboxComponent'"
 ---| "'StaticVoxelDataComponent'"
+---| "'Transform'"
+---| "'VoxelData'"
+---| "'VoxelInspectComponent'"
+---| "'VoxelRender'"
 
 --- @meta
 
