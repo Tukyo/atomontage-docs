@@ -13,25 +13,6 @@
 
 --- @meta
 
---- @class Script
---- @field component ScriptComponent
---- @field onServer boolean
---- @field onClient boolean
-script = {}
-
--- Called on script instance initialization. Usually after changing `.instance` or `.file` property
-function script:Attach() end
-
--- Called on script release. Usually on object destruction or to release old script instance during change of `.instance` or `.file` property
-function script:Detach() end
-
--- Called once before the first Update
-function script:Start() end
-
--- Called if updates are enabled (they are enabled automatically if attached script has this method). dt is frame time delta in seconds and t is application time in seconds.
---- @param dt number delta time since last update
-function script:Update(dt) end
-
 --- @class ControllerButtons
 ControllerButtons = {}
 
@@ -2257,6 +2238,39 @@ function ScriptComponent:RPC(p1, p2) end
 --- @param p3 ...
 --- @return nil
 function ScriptComponent:RPC2(p1, p2, p3) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/ScriptInstance)
+]]
+--- @class ScriptInstance
+--- @field component ScriptComponent
+--- @field object Object
+--- @field transform Transform
+--- @field onServer boolean
+--- @field onClient boolean
+ScriptInstance = {}
+
+--- @return nil
+function ScriptInstance:Start() end
+
+--- @param deltaTime number
+--- @return nil
+function ScriptInstance:Update(deltaTime) end
+
+--- @return nil
+function ScriptInstance:Attach() end
+
+--- @return nil
+function ScriptInstance:Detach() end
+
+--- @param toClient integer
+--- @param functionName string
+--- @param values ...
+--- @return nil
+function ScriptInstance:RPC(toClient, functionName, values) end
 
 --[[
 `Server`

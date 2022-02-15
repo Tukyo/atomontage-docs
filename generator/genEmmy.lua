@@ -10,49 +10,8 @@ mnaully fix all vector names and ConfigMap -> Config
 local emmyDefaultLines = [[
 --- @meta
 
---- @class Script
---- @field component ScriptComponent
---- @field onServer boolean
---- @field onClient boolean
-script = {}
-
--- Called on script instance initialization. Usually after changing `.instance` or `.file` property
-function script:Attach() end
-
--- Called on script release. Usually on object destruction or to release old script instance during change of `.instance` or `.file` property
-function script:Detach() end
-
--- Called once before the first Update
-function script:Start() end
-
--- Called if updates are enabled (they are enabled automatically if attached script has this method). dt is frame time delta in seconds and t is application time in seconds.
---- @param dt number delta time since last update
-function script:Update(dt) end
-
 --- @class ControllerButtons
 ControllerButtons = {}
-]]
-
---add to sever file after default lines
-local emmyDefaultLinesServer = [[
---- @class Server
-Server = {}
-
--- Returns a table of connected client IDs i.e. `{0,1,2,5}`
---- @return table
-function Server:GetClients() end
-
--- Send message to client 
---- @param clientID integer client id i.e from `Server:GetClients()`
---- @param messages table data to send table may contain primitive math classes such as `Quat`, `Vec3` etc  
---- @return nil
-function Server:SendMessages(clientID, messages) end
-
---- @return table
-function Server:ReceiveMessages() end
-
---- @return CommandLine
-function Server:GetCommandLine() end
 ]]
 
 function genEmmy:createFile(bindingsServer, bindingsClient)

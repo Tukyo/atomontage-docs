@@ -183,6 +183,7 @@ function genDocs:gen()
         ["Object"] = true,
         ["Scene"] = true,
         ["ScriptComponent"] = true,
+        ["ScriptInstance"] = true,
         ["Studio"] = true,
         ["Transform"] = true,
         ["Transformation"] = true,
