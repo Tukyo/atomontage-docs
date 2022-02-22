@@ -2229,15 +2229,15 @@ function ScriptComponent:SendMessage(p1, p2) end
 function ScriptComponent:SendMessage(p1, p2, p3) end
 
 --- @param p1 string
---- @param p2 ...
+--- @vararg any
 --- @return nil
-function ScriptComponent:RPC(p1, p2) end
+function ScriptComponent:RPC(p1, ...) end
 
 --- @param p1 integer
 --- @param p2 string
---- @param p3 ...
+--- @vararg any
 --- @return nil
-function ScriptComponent:RPC2(p1, p2, p3) end
+function ScriptComponent:RPC2(p1, p2, ...) end
 
 --[[
 `Client`
@@ -2268,9 +2268,9 @@ function ScriptInstance:Detach() end
 
 --- @param toClient integer
 --- @param functionName string
---- @param values ...
+--- @vararg any
 --- @return nil
-function ScriptInstance:RPC(toClient, functionName, values) end
+function ScriptInstance:RPC(toClient, functionName, ...) end
 
 --[[
 `Server`

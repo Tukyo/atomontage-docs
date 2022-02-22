@@ -22,7 +22,7 @@ function genEmmy:createFile(bindingsServer, bindingsClient)
     table.sort(comps) --sort ABC
     file:write("--- @alias componentType", "\n")
     for i, comp in ipairs(comps) do
-        file:write([[---| "']]..comp..[['"]], "\n")
+        file:write([[---| "']], comp, [['"]], "\n")
     end
     file:write("\n")
 
@@ -111,11 +111,16 @@ function genEmmy:generateEmmyLua(file, name, intro, finalMethods, finalPropertie
         for i, info in ipairs(params) do
             local paramType = info[1]
             local paramName = info[2] or ("p"..i) 
-            --local paramName = "p"..i --names are missing
-            table.insert(paramNames, paramName)
             paramType = self:convertToEmmyLuaType(paramType)
             -- @param name type info
-            file:write("--- @param ",paramName," ",paramType, "\n")
+            if paramType == "..." then
+                --TODO for now just 'any' but might need to support specific type or something like @alias primitives
+                paramName = "..."
+                file:write("--- @vararg any", "\n")
+            else
+                file:write("--- @param ",paramName," ",paramType, "\n")
+            end
+            table.insert(paramNames, paramName)
         end
         local paramNamesStr = table.concat(paramNames, ", ") 
         returnType = self:convertToEmmyLuaType(returnType)
