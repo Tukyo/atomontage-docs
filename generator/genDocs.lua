@@ -171,6 +171,7 @@ function genDocs:gen()
         ["Vec3f"] = true,
         ["Vec4f"] = true,
         ["Camera"] = true,
+        ["CameraComponent"] = true,
         ["Config"] = true,
         ["ConfigMap"] = true,
         ["Component"] = true,

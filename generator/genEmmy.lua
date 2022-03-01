@@ -4,14 +4,33 @@ local util = require("generator.util")
 
 --[[
 mnaully fix all vector names and ConfigMap -> Config
+
+can support generics like this but name param must match class name
+
+--- @generic T: Component
+--- @param name `T`|componentType
+--- @return T
+function Object:GetComponentByType(name) end
+
+--- @generic T: Component
+--- @param name `T`|componentType
+--- @return T[]
+function Object:GetComponentsByType(name) end
 ]]
 
 --default lines to add at file start
 local emmyDefaultLines = [[
 --- @meta
 
---- @class ControllerButtons
-ControllerButtons = {}
+--- @generic T: Component
+--- @param name `T`|componentType
+--- @return T
+function Object:GetComponentByType(name) end
+
+--- @generic T: Component
+--- @param name `T`|componentType
+--- @return T[]
+function Object:GetComponentsByType(name) end
 ]]
 
 function genEmmy:createFile(bindingsServer, bindingsClient)

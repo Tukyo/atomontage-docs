@@ -13,8 +13,15 @@
 
 --- @meta
 
---- @class ControllerButtons
-ControllerButtons = {}
+--- @generic T: Component
+--- @param name `T`|componentType
+--- @return T
+function Object:GetComponentByType(name) end
+
+--- @generic T: Component
+--- @param name `T`|componentType
+--- @return T[]
+function Object:GetComponentsByType(name) end
 
 --[[
 `Client`
@@ -221,6 +228,25 @@ function Camera:SetFovY(p1) end
 
 --- @return number
 function Camera:GetFovY() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/CameraComponent)
+]]
+--- @class CameraComponent
+--- @field type string
+--- @field object Object
+--- @field frustum Frustum
+--- @field fovY number
+--- @field type string
+--- @field object Object
+CameraComponent = {}
+
+--- @param p1 Vec2
+--- @return Vec3
+function CameraComponent:GetRay(p1) end
 
 --[[
 `Client`
