@@ -736,6 +736,7 @@ function genDocs:cleanUpName(name)
         {"shared_ptr<classae::scene::LuaVoxelDB>", "VoxelDB"},
         {"shared_ptr<classae::scene::ScriptComponent>", "ScriptComponent"},
         {"variadic_args", "..."},
+        {"shared_ptr<classae::scene::Component>", "Component"}
     }
 
     --name = name:gsub("(%S+),?", replacments)

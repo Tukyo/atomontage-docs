@@ -246,7 +246,15 @@ CameraComponent = {}
 
 --- @param p1 Vec2
 --- @return Vec3
-function CameraComponent:GetRay(p1) end
+function CameraComponent:ScreenToWorldRay(p1) end
+
+--- @param p1 Vec3
+--- @return Vec2
+function CameraComponent:WorldToScreen(p1) end
+
+--- @param p1 Vec3
+--- @return Vec3
+function CameraComponent:WorldToScreen3f(p1) end
 
 --[[
 `Client`
@@ -265,13 +273,6 @@ blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal
 --- @field platform string
 --- @field sysInfo string
 Client = {}
-
---- @return integer
-function Client:GetID() end
-
---- @param message table
---- @return nil
-function Client:SendMessage(message) end
 
 --[[
 Send a message to server scripts. The message is a table
@@ -330,6 +331,9 @@ end
 --- @return table
 function Client:ReceiveMessages() end
 
+--- @return integer
+function Client:GetID() end
+
 --- @param actionID integer
 --- @param item UIItem
 --- @param value userdata
@@ -370,9 +374,6 @@ function Client:GetUICapturesTextInput() end
 --- @return boolean
 function Client:GetUIIsInEditMode() end
 
---- @return nil
-function Client:LoadDefaultLayout() end
-
 --- @param windowID string
 --- @return nil
 function Client:OpenUIWindow(windowID) end
@@ -388,6 +389,11 @@ function Client:ToggleUIWindow(windowID) end
 --- @param windowID string
 --- @return boolean
 function Client:IsWindowOpen(windowID) end
+
+--- @param p1 string
+--- @param p2 Vec2
+--- @return nil
+function Client:SetWindowPos(p1, p2) end
 
 --- @param p1 string
 --- @return nil
@@ -516,7 +522,7 @@ function Client:OpenFolder(folder) end
 function Client:GetScriptsVersion() end
 
 --- @return integer
-function Client:GetClientScriptsVersion() end
+function Client:GetLoadedScriptsVersion() end
 
 --- @return nil
 function Client:LuaOpenDebugger() end
@@ -531,25 +537,13 @@ function Client:OnLuaLog() end
 --- @return nil
 function Client:ScrollToLastestLuaLog() end
 
---- @return userdata
-function Client:GetVisibleWindows() end
-
 --- @param uiItem UIItem
 --- @return boolean
 function Client:IsContainerEnabledAndVisible(uiItem) end
 
---- @return table
-function Client:GetConnectionInfo() end
-
---- @return table
-function Client:GetNetworkStat() end
-
 --- @param p1 string
 --- @return nil
 function Client:Log(p1) end
-
---- @return table
-function Client:GetVoxelStreamStats() end
 
 --- @return boolean
 function Client:IsClient() end
@@ -686,9 +680,6 @@ function Client:GetRenderChannelOpacity(p1) end
 --- @return nil
 function Client:SetRenderChannelOpacity(p1, p2) end
 
---- @return boolean
-function Client:VehicleControlUIEnabled() end
-
 --- @return nil
 function Client:LoadEntityPath() end
 
@@ -709,22 +700,6 @@ function Client:TakeScreenShot() end
 
 --- @return string
 function Client:GetCredits() end
-
---- @param p1 boolean
---- @param p2 boolean
---- @param p3 boolean
---- @param p4 boolean
---- @param p5 boolean
---- @param p6 boolean
---- @param p7 boolean
---- @param p8 boolean
---- @param p9 boolean
---- @param p10 boolean
---- @param p11 boolean
---- @param p12 boolean
---- @param p13 boolean
---- @return nil
-function Client:InjectVehicleCtrlUI(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) end
 
 --[[
 `Client`
@@ -1288,15 +1263,6 @@ function Mat3:IsAnyNaN() end
 [View Documentation](https://docs.atomontage.com/api/Mat4)
 ]]
 --- @class Mat4
-Mat4 = {}
-
---[[
-`Client`
-`Server`
-
-[View Documentation](https://docs.atomontage.com/api/Mat4)
-]]
---- @class Mat4
 --- @field xaxis Vec3
 --- @field yaxis Vec3
 --- @field zaxis Vec3
@@ -1758,12 +1724,12 @@ function Object:GetComponent(p1) end
 --- @return table
 function Object:GetComponents() end
 
---- @param p1 userdata
+--- @param p1 string
 --- @return boolean
 function Object:RemoveComponent(p1) end
 
---- @param p1 string
---- @return userdata
+--- @param p1 userdata
+--- @return boolean
 function Object:RemoveComponent(p1) end
 
 --- @param p1 string
@@ -1835,15 +1801,6 @@ function Object3D:GetPosition(p1) end
 --- @param p1 Vec3
 --- @return nil
 function Object3D:SetPosition(p1) end
-
---[[
-`Client`
-`Server`
-
-[View Documentation](https://docs.atomontage.com/api/Quat)
-]]
---- @class Quat
-Quat = {}
 
 --[[
 `Client`
@@ -2089,15 +2046,17 @@ function Scene:GetDeltaTime() end
 --- @return number
 function Scene:GetDebugTime() end
 
---- @return boolean
-function Scene:Test() end
-
 --- @return Object
 function Scene:CreateObject() end
 
 --- @param p1 Object
 --- @return Object
 function Scene:CloneObject(p1) end
+
+--- @param p1 Object
+--- @param p2 string
+--- @return Object
+function Scene:CloneObject(p1, p2) end
 
 --- @param p1 Object
 --- @return nil
@@ -2127,6 +2086,10 @@ function Scene:GetObjectsByTag(p1) end
 --- @param p1 integer
 --- @return Object
 function Scene:GetObjectById(p1) end
+
+--- @param p1 integer
+--- @return Component
+function Scene:GetComponentById(p1) end
 
 --- @param p1 string
 --- @return boolean
@@ -2225,11 +2188,12 @@ end
 --- @class ScriptComponent
 --- @field type string
 --- @field object Object
---- @field isValid boolean
---- @field instance table
+--- @field name string
 --- @field file string
 --- @field syncToClient boolean
---- @field name string
+--- @field sync boolean
+--- @field instance table
+--- @field isValid boolean
 ScriptComponent = {}
 
 --- @return boolean
@@ -2243,27 +2207,9 @@ function ScriptComponent:SetSyncToClient(p1) end
 --- @return boolean
 function ScriptComponent:AssignScript(p1) end
 
---- @param p1 string
---- @param p2 table
---- @return nil
-function ScriptComponent:SendMessage(p1, p2) end
-
---- @param p1 string
---- @param p2 table
---- @param p3 integer
---- @return nil
-function ScriptComponent:SendMessage(p1, p2, p3) end
-
---- @param p1 string
 --- @vararg any
 --- @return nil
-function ScriptComponent:RPC(p1, ...) end
-
---- @param p1 integer
---- @param p2 string
---- @vararg any
---- @return nil
-function ScriptComponent:RPC2(p1, p2, ...) end
+function ScriptComponent:RPC(...) end
 
 --[[
 `Client`
@@ -2292,11 +2238,16 @@ function ScriptInstance:Attach() end
 --- @return nil
 function ScriptInstance:Detach() end
 
---- @param toClient integer
---- @param functionName string
+--- @param p1 string
 --- @vararg any
 --- @return nil
-function ScriptInstance:RPC(toClient, functionName, ...) end
+function ScriptInstance:RPC(p1, ...) end
+
+--- @param p1 integer
+--- @param p2 string
+--- @vararg any
+--- @return nil
+function ScriptInstance:RPC(p1, p2, ...) end
 
 --[[
 `Server`
@@ -2312,47 +2263,23 @@ Server = {}
 --- @return table
 function Server:GetClients() end
 
---- @param toClientID integer
---- @param messages table
---- @return nil
-function Server:SendMessages(toClientID, messages) end
-
---- @return table
-function Server:ReceiveMessages() end
-
 --- @return integer
 function Server:GetScriptsVersion() end
 
 --- @return nil
-function Server:ResendScripts() end
+function Server:LuaReset() end
 
---- @return boolean
-function Server:ReloadScripts() end
+--- @return nil
+function Server:ResendScripts() end
 
 --- @return table
 function Server:GetLuaFilesList() end
 
---- @return userdata
-function Server:GetVoxelClientIDs() end
-
---- @param clientID integer
 --- @return table
-function Server:GetVoxelStreamStats(clientID) end
+function Server:GetVoxelFilesList() end
 
 --- @return nil
 function Server:SaveVoxelData() end
-
---- @return table
-function Server:GetServerConnectionInfo() end
-
---- @return table
-function Server:GetConnectionInfos() end
-
---- @return table
-function Server:GetNetworkStat() end
-
---- @return userdata
-function Server:GetNetworkStats() end
 
 --- @return nil
 function Server:OnLuaLog() end
@@ -5213,6 +5140,11 @@ function Vec4i:__shr(p1, p2) end
 --- @class VoxelDB
 --- @field autoLightingUpdate boolean
 --- @field voxelDim integer
+--- @field BlendEnabled boolean
+--- @field BlendMode BlendMode
+--- @field BlendOpacity number
+--- @field BlendSharpness number
+--- @field BlendRadiusRatio number
 VoxelDB = {}
 
 --- @return nil
@@ -5220,6 +5152,10 @@ function VoxelDB:Clear() end
 
 --- @return nil
 function VoxelDB:UseTemporaryLayers() end
+
+--- @param p1 integer
+--- @return nil
+function VoxelDB:SetSerialOpId(p1) end
 
 --- @return nil
 function VoxelDB:Flush() end
@@ -5572,16 +5508,6 @@ function VoxelDB:MakeCapsule(p1, p2, p3, p4) end
 --- @return nil
 function VoxelDB:MakeCapsule(p1, p2, p3) end
 
---- @param p1 boolean
---- @return nil
-function VoxelDB:SetBlend(p1) end
-
---- @param p1 number
---- @param p2 number
---- @param p3 number
---- @return nil
-function VoxelDB:SetBlendParams(p1, p2, p3) end
-
 --- @param p1 Vec3
 --- @return nil
 function VoxelDB:SetMaterial(p1) end
@@ -5611,10 +5537,6 @@ function VoxelDB:FreeTmpLayers(p1) end
 
 --- @return nil
 function VoxelDB:ClearContent() end
-
---- @param p1 string
---- @return boolean
-function VoxelDB:Load(p1) end
 
 --- @param p1 boolean
 --- @return nil
@@ -5656,6 +5578,16 @@ function VoxelDB:Save(p1, p2, p3) end
 --- @return VoxelInspectData
 function VoxelDB:Inspect(p1, p2, p3, p4, p5) end
 
+--- @param p1 Vec3
+--- @param p2 Vec3
+--- @param p3 number
+--- @param p4 integer
+--- @param p5 integer
+--- @param p6 userdata
+--- @param p7 integer
+--- @return VoxelInspectData
+function VoxelDB:Inspect2(p1, p2, p3, p4, p5, p6, p7) end
+
 --- @return string
 function VoxelDB:GetLayers() end
 
@@ -5694,10 +5626,11 @@ VoxelInspectComponent = {}
 --- @param p2 userdata
 --- @param p3 string
 --- @param p4 userdata
---- @param p5 boolean
---- @param p6 integer
+--- @param p5 Mat4
+--- @param p6 boolean
+--- @param p7 integer
 --- @return nil
-function VoxelInspectComponent:AddVoxelInfo(p1, p2, p3, p4, p5, p6) end
+function VoxelInspectComponent:AddVoxelInfo(p1, p2, p3, p4, p5, p6, p7) end
 
 --- @return nil
 function VoxelInspectComponent:Clear() end
@@ -5717,6 +5650,7 @@ function VoxelInspectComponent:SetLineColor(p1) end
 --- @field texts string
 --- @field positions userdata
 --- @field colors userdata
+--- @field mat Mat4
 VoxelInspectData = {}
 
 --[[
@@ -5728,6 +5662,9 @@ VoxelInspectData = {}
 --- @class VoxelRender
 --- @field type string
 --- @field object Object
+--- @field sync boolean
+--- @field enabled boolean
+--- @field selected boolean
 VoxelRender = {}
 
 --- @param p1 VoxelRender
@@ -5770,6 +5707,36 @@ BlendFactor = {
 	OneMinusSrc1Alpha = 18,
 }
 
+--- @class BlendMode
+BlendMode = {
+	Normal = 0,
+	Darken = 1,
+	Multiply = 2,
+	ColorBurn = 3,
+	LinearBurn = 4,
+	DarkenColor = 5,
+	Lighten = 6,
+	Screen = 7,
+	ColorDodge = 8,
+	LinearDodge = 9,
+	LightenColor = 10,
+	Overlay = 11,
+	SoftLight = 12,
+	HardLight = 13,
+	VividLight = 14,
+	LinearLight = 15,
+	PinLight = 16,
+	HardMix = 17,
+	Difference = 18,
+	Exclusion = 19,
+	Subtract = 20,
+	Divide = 21,
+	Hue = 22,
+	Color = 23,
+	Saturation = 24,
+	Luminosity = 25,
+}
+
 --- @class BlendOp
 BlendOp = {
 	Add = 0,
@@ -5808,6 +5775,10 @@ DepthBufferMode = {
 DrawingCommandsFlags = {
 	BaseVertex = 0,
 	BaseInstance = 1,
+	BaseVertexBaseInstance = 2,
+	MultiBaseVertex = 3,
+	MultiBaseInstance = 4,
+	MultiBaseVertexBaseInstance = 5,
 }
 
 --- @class FrontFaceWinding
@@ -6015,6 +5986,40 @@ Type = {
 	Texture3D = 5,
 	TextureCube = 6,
 	TextureCubeArray = 7,
+}
+
+--- @class UIActionsPlace
+UIActionsPlace = {
+	Client = 0,
+	Server = 1,
+	Inherited = 2,
+}
+
+--- @class UIItemType
+UIItemType = {
+	Undefined = 0,
+	Window = 1,
+	Header = 2,
+	Panel = 3,
+	Grid = 4,
+	Tab = 5,
+	Separator = 6,
+	Button = 7,
+	Number = 8,
+	Wheel = 9,
+	TextInput = 10,
+	ListBox = 11,
+	ListBoxSimple = 12,
+	ListBoxEnum = 13,
+	CheckBox = 14,
+	Radio = 15,
+	Label = 16,
+	Color = 17,
+	Vector = 18,
+	Matrix = 19,
+	Transformation = 20,
+	Plot = 21,
+	Count = 22,
 }
 
 --- @class UpdateFrequency

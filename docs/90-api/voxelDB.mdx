@@ -11,6 +11,8 @@ id: VoxelDB
 
 ### void UseTemporaryLayers() {#void-UseTemporaryLayers}
 
+### void SetSerialOpId(int) {#void-SetSerialOpId-int}
+
 ### void Flush() {#void-Flush}
 
 ### Vec3i FromWorld(Vec3) {#Vec3i-FromWorld-Vec3}
@@ -135,10 +137,6 @@ id: VoxelDB
 
 ### void MakeCapsule(Vec3, Vec3, float) {#void-MakeCapsule-Vec3-Vec3-float}
 
-### void SetBlend(bool) {#void-SetBlend-bool}
-
-### void SetBlendParams(float, float, float) {#void-SetBlendParams-float-float-float}
-
 ### void SetMaterial(Vec3) {#void-SetMaterial-Vec3}
 
 ### void FillTmpLayers(Vec3, Vec3, float, int) {#void-FillTmpLayers-Vec3-Vec3-float-int}
@@ -150,8 +148,6 @@ id: VoxelDB
 ### void FreeTmpLayers(int) {#void-FreeTmpLayers-int}
 
 ### void ClearContent() {#void-ClearContent}
-
-### bool Load(string) {#bool-Load-string}
 
 ### void RebuildLods(bool) {#void-RebuildLods-bool}
 
@@ -171,6 +167,8 @@ id: VoxelDB
 
 ### VoxelInspectData Inspect(Vec3i, int, int, userdata, int) {#VoxelInspectData-Inspect-Vec3i-int-int-userdata-int}
 
+### VoxelInspectData Inspect2(Vec3, Vec3, float, int, int, userdata, int) {#VoxelInspectData-Inspect2-Vec3-Vec3-float-int-int-userdata-int}
+
 ### string GetLayers() {#string-GetLayers}
 
 ### Vec3 GetCenter() {#Vec3-GetCenter}
@@ -180,4 +178,14 @@ id: VoxelDB
 ### bool autoLightingUpdate {#bool-autoLightingUpdate}
 
 ### int voxelDim {#int-voxelDim}
+
+### bool BlendEnabled {#bool-BlendEnabled}
+
+### BlendMode BlendMode {#BlendMode-BlendMode}
+
+### float BlendOpacity {#float-BlendOpacity}
+
+### float BlendSharpness {#float-BlendSharpness}
+
+### float BlendRadiusRatio {#float-BlendRadiusRatio}
 

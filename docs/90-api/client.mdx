@@ -14,10 +14,6 @@ blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal
 
 ## List of Methods
 
-### int GetID() {#int-GetID}
-
-### void SendMessage(table message) {#void-SendMessage-table-message}
-
 ### void SendMessages(table tableOfMessages) {#void-SendMessages-table-tableOfMessages}
 Send a message to server scripts. The message is a table
 
@@ -64,6 +60,8 @@ for i,msg in ipairs(Client:ReceiveMessages()) do
 end
 ```
 
+### int GetID() {#int-GetID}
+
 ### string UIItemUpdate(int actionID, UIItem item, userdata value) {#string-UIItemUpdate-int-actionID-UIItem-item-userdata-value}
 
 ### void OpenKeyboardShortcutInput(string keyActionID) {#void-OpenKeyboardShortcutInput-string-keyActionID}
@@ -88,8 +86,6 @@ end
 
 ### bool GetUIIsInEditMode() {#bool-GetUIIsInEditMode}
 
-### void LoadDefaultLayout() {#void-LoadDefaultLayout}
-
 ### void OpenUIWindow(string windowID) {#void-OpenUIWindow-string-windowID}
 
 ### void CloseUIWindow(string windowID) {#void-CloseUIWindow-string-windowID}
@@ -97,6 +93,8 @@ end
 ### void ToggleUIWindow(string windowID) {#void-ToggleUIWindow-string-windowID}
 
 ### bool IsWindowOpen(string windowID) {#bool-IsWindowOpen-string-windowID}
+
+### void SetWindowPos(string, Vec2) {#void-SetWindowPos-string-Vec2}
 
 ### void OpenScriptFile(string) {#void-OpenScriptFile-string}
 
@@ -166,7 +164,7 @@ end
 
 ### int GetScriptsVersion() {#int-GetScriptsVersion}
 
-### int GetClientScriptsVersion() {#int-GetClientScriptsVersion}
+### int GetLoadedScriptsVersion() {#int-GetLoadedScriptsVersion}
 
 ### void LuaOpenDebugger() {#void-LuaOpenDebugger}
 
@@ -176,17 +174,9 @@ end
 
 ### void ScrollToLastestLuaLog() {#void-ScrollToLastestLuaLog}
 
-### userdata GetVisibleWindows() {#userdata-GetVisibleWindows}
-
 ### bool IsContainerEnabledAndVisible(UIItem uiItem) {#bool-IsContainerEnabledAndVisible-UIItem-uiItem}
 
-### table GetConnectionInfo() {#table-GetConnectionInfo}
-
-### table GetNetworkStat() {#table-GetNetworkStat}
-
 ### void Log(string) {#void-Log-string}
-
-### table GetVoxelStreamStats() {#table-GetVoxelStreamStats}
 
 ### bool IsClient() {#bool-IsClient}
 
@@ -255,8 +245,6 @@ Returns [`CommandLine`](/api/commandLine)
 
 ### void SetRenderChannelOpacity(int, float) {#void-SetRenderChannelOpacity-int-float}
 
-### bool VehicleControlUIEnabled() {#bool-VehicleControlUIEnabled}
-
 ### void LoadEntityPath() {#void-LoadEntityPath}
 
 ### void SaveEntityPath() {#void-SaveEntityPath}
@@ -270,8 +258,6 @@ Returns [`CommandLine`](/api/commandLine)
 ### void TakeScreenShot() {#void-TakeScreenShot}
 
 ### string GetCredits() {#string-GetCredits}
-
-### void InjectVehicleCtrlUI(bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool, bool) {#void-InjectVehicleCtrlUI-bool-bool-bool-bool-bool-bool-bool-bool-bool-bool-bool-bool-bool}
 
 ## List of Properties
 
