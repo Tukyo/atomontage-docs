@@ -7,13 +7,13 @@ id: VoxelDB
 
 ## List of Methods
 
-### void Clear() {#void-Clear}
+### nil Clear() {#nil-Clear}
 
-### void UseTemporaryLayers() {#void-UseTemporaryLayers}
+### nil UseTemporaryLayers() {#nil-UseTemporaryLayers}
 
-### void SetSerialOpId(int) {#void-SetSerialOpId-int}
+### nil SetSerialOpId(int) {#nil-SetSerialOpId-int}
 
-### void Flush() {#void-Flush}
+### nil Flush() {#nil-Flush}
 
 ### Vec3i FromWorld(Vec3) {#Vec3i-FromWorld-Vec3}
 
@@ -25,7 +25,7 @@ id: VoxelDB
 
 ### bool SetUnitVoxelDim(bool) {#bool-SetUnitVoxelDim-bool}
 
-### void SetMask_deprecated(Vec3i, bool) {#void-SetMaskdeprecated-Vec3i-bool}
+### nil SetMask_deprecated(Vec3i, bool) {#nil-SetMaskdeprecated-Vec3i-bool}
 
 ### bool GetMask(Vec3i) {#bool-GetMask-Vec3i}
 
@@ -39,13 +39,13 @@ id: VoxelDB
 
 ### int GetMaskNeighboursVN(double, double, double, int) {#int-GetMaskNeighboursVN-double-double-double-int}
 
-### void ClearVoxel(Vec3i) {#void-ClearVoxel-Vec3i}
+### nil ClearVoxel(Vec3i) {#nil-ClearVoxel-Vec3i}
 
-### void ClearVoxel(double, double, double) {#void-ClearVoxel-double-double-double}
+### nil ClearVoxel(double, double, double) {#nil-ClearVoxel-double-double-double}
 
-### void SetColor(Vec3i, Vec3) {#void-SetColor-Vec3i-Vec3}
+### nil SetColor(Vec3i, Vec3) {#nil-SetColor-Vec3i-Vec3}
 
-### void SetColor(double, double, double, Vec3) {#void-SetColor-double-double-double-Vec3}
+### nil SetColor(double, double, double, Vec3) {#nil-SetColor-double-double-double-Vec3}
 
 ### userdata GetColor(Vec3i) {#userdata-GetColor-Vec3i}
 
@@ -55,41 +55,41 @@ id: VoxelDB
 
 ### userdata TraceRayV(Vec3i, Vec3, float) {#userdata-TraceRayV-Vec3i-Vec3-float}
 
-### void PaintSphereV(Vec3i, int, Vec3) {#void-PaintSphereV-Vec3i-int-Vec3}
+### nil PaintSphereV(Vec3i, int, Vec3) {#nil-PaintSphereV-Vec3i-int-Vec3}
 
-### void PaintBoxV(Vec3i, Vec3i, Vec3) {#void-PaintBoxV-Vec3i-Vec3i-Vec3}
+### nil PaintBoxV(Vec3i, Vec3i, Vec3) {#nil-PaintBoxV-Vec3i-Vec3i-Vec3}
 
-### void PaintBoxV(Vec3i, Vec3i, Quat, Vec3) {#void-PaintBoxV-Vec3i-Vec3i-Quat-Vec3}
+### nil PaintBoxV(Vec3i, Vec3i, Quat, Vec3) {#nil-PaintBoxV-Vec3i-Vec3i-Quat-Vec3}
 
-### void PaintCapsuleV(Vec3i, Vec3i, int, Vec3) {#void-PaintCapsuleV-Vec3i-Vec3i-int-Vec3}
+### nil PaintCapsuleV(Vec3i, Vec3i, int, Vec3) {#nil-PaintCapsuleV-Vec3i-Vec3i-int-Vec3}
 
-### void PaintCapsuleV(Vec3i, Vec3i, int, int, Vec3) {#void-PaintCapsuleV-Vec3i-Vec3i-int-int-Vec3}
+### nil PaintCapsuleV(Vec3i, Vec3i, int, int, Vec3) {#nil-PaintCapsuleV-Vec3i-Vec3i-int-int-Vec3}
 
-### void ClearSphereV(Vec3i, int) {#void-ClearSphereV-Vec3i-int}
+### nil ClearSphereV(Vec3i, int) {#nil-ClearSphereV-Vec3i-int}
 
-### void ClearBoxV(Vec3i, Vec3i) {#void-ClearBoxV-Vec3i-Vec3i}
+### nil ClearBoxV(Vec3i, Vec3i) {#nil-ClearBoxV-Vec3i-Vec3i}
 
-### void ClearBoxV(Vec3i, Vec3i, Quat) {#void-ClearBoxV-Vec3i-Vec3i-Quat}
+### nil ClearBoxV(Vec3i, Vec3i, Quat) {#nil-ClearBoxV-Vec3i-Vec3i-Quat}
 
-### void ClearCapsuleV(Vec3i, Vec3i, int) {#void-ClearCapsuleV-Vec3i-Vec3i-int}
+### nil ClearCapsuleV(Vec3i, Vec3i, int) {#nil-ClearCapsuleV-Vec3i-Vec3i-int}
 
-### void ClearCapsuleV(Vec3i, Vec3i, int, int) {#void-ClearCapsuleV-Vec3i-Vec3i-int-int}
+### nil ClearCapsuleV(Vec3i, Vec3i, int, int) {#nil-ClearCapsuleV-Vec3i-Vec3i-int-int}
 
-### void MakeSphereV(Vec3i, int, Vec3) {#void-MakeSphereV-Vec3i-int-Vec3}
+### nil MakeSphereV(Vec3i, int, Vec3) {#nil-MakeSphereV-Vec3i-int-Vec3}
 
-### void MakeBoxV(Vec3i, Vec3i, Vec3) {#void-MakeBoxV-Vec3i-Vec3i-Vec3}
+### nil MakeBoxV(Vec3i, Vec3i, Vec3) {#nil-MakeBoxV-Vec3i-Vec3i-Vec3}
 
-### void MakeBoxV(Vec3i, Vec3i, Quat, Vec3) {#void-MakeBoxV-Vec3i-Vec3i-Quat-Vec3}
+### nil MakeBoxV(Vec3i, Vec3i, Quat, Vec3) {#nil-MakeBoxV-Vec3i-Vec3i-Quat-Vec3}
 
-### void MakeCapsuleV(Vec3i, Vec3i, int, Vec3) {#void-MakeCapsuleV-Vec3i-Vec3i-int-Vec3}
+### nil MakeCapsuleV(Vec3i, Vec3i, int, Vec3) {#nil-MakeCapsuleV-Vec3i-Vec3i-int-Vec3}
 
-### void MakeCapsuleV(Vec3i, Vec3i, int, int, Vec3) {#void-MakeCapsuleV-Vec3i-Vec3i-int-int-Vec3}
+### nil MakeCapsuleV(Vec3i, Vec3i, int, int, Vec3) {#nil-MakeCapsuleV-Vec3i-Vec3i-int-int-Vec3}
 
-### void FillTmpLayersV(Vec3i, Vec3i, int, int) {#void-FillTmpLayersV-Vec3i-Vec3i-int-int}
+### nil FillTmpLayersV(Vec3i, Vec3i, int, int) {#nil-FillTmpLayersV-Vec3i-Vec3i-int-int}
 
 ### userdata TraceRayTmpV(Vec3i, Vec3, float) {#userdata-TraceRayTmpV-Vec3i-Vec3-float}
 
-### void PaintSphereBlendV(Vec3i, int, Vec3, float, float, float) {#void-PaintSphereBlendV-Vec3i-int-Vec3-float-float-float}
+### nil PaintSphereBlendV(Vec3i, int, Vec3, float, float, float) {#nil-PaintSphereBlendV-Vec3i-int-Vec3-float-float-float}
 
 ### Vec3 GetNormal(Vec3) {#Vec3-GetNormal-Vec3}
 
@@ -107,61 +107,61 @@ id: VoxelDB
 
 ### bool CheckCapsule(Vec3, Vec3, float) {#bool-CheckCapsule-Vec3-Vec3-float}
 
-### void PaintSphere(Vec3, float) {#void-PaintSphere-Vec3-float}
+### nil PaintSphere(Vec3, float) {#nil-PaintSphere-Vec3-float}
 
-### void PaintBox(Vec3, Vec3, Quat) {#void-PaintBox-Vec3-Vec3-Quat}
+### nil PaintBox(Vec3, Vec3, Quat) {#nil-PaintBox-Vec3-Vec3-Quat}
 
-### void PaintBox(Vec3, Vec3) {#void-PaintBox-Vec3-Vec3}
+### nil PaintBox(Vec3, Vec3) {#nil-PaintBox-Vec3-Vec3}
 
-### void PaintCapsule(Vec3, Vec3, float, float) {#void-PaintCapsule-Vec3-Vec3-float-float}
+### nil PaintCapsule(Vec3, Vec3, float, float) {#nil-PaintCapsule-Vec3-Vec3-float-float}
 
-### void PaintCapsule(Vec3, Vec3, float) {#void-PaintCapsule-Vec3-Vec3-float}
+### nil PaintCapsule(Vec3, Vec3, float) {#nil-PaintCapsule-Vec3-Vec3-float}
 
-### void ClearSphere(Vec3, float) {#void-ClearSphere-Vec3-float}
+### nil ClearSphere(Vec3, float) {#nil-ClearSphere-Vec3-float}
 
-### void ClearBox(Vec3, Vec3, Quat) {#void-ClearBox-Vec3-Vec3-Quat}
+### nil ClearBox(Vec3, Vec3, Quat) {#nil-ClearBox-Vec3-Vec3-Quat}
 
-### void ClearBox(Vec3, Vec3) {#void-ClearBox-Vec3-Vec3}
+### nil ClearBox(Vec3, Vec3) {#nil-ClearBox-Vec3-Vec3}
 
-### void ClearCapsule(Vec3, Vec3, float, float) {#void-ClearCapsule-Vec3-Vec3-float-float}
+### nil ClearCapsule(Vec3, Vec3, float, float) {#nil-ClearCapsule-Vec3-Vec3-float-float}
 
-### void ClearCapsule(Vec3, Vec3, float) {#void-ClearCapsule-Vec3-Vec3-float}
+### nil ClearCapsule(Vec3, Vec3, float) {#nil-ClearCapsule-Vec3-Vec3-float}
 
-### void MakeSphere(Vec3, float) {#void-MakeSphere-Vec3-float}
+### nil MakeSphere(Vec3, float) {#nil-MakeSphere-Vec3-float}
 
-### void MakeBox(Vec3, Vec3, Quat) {#void-MakeBox-Vec3-Vec3-Quat}
+### nil MakeBox(Vec3, Vec3, Quat) {#nil-MakeBox-Vec3-Vec3-Quat}
 
-### void MakeBox(Vec3, Vec3) {#void-MakeBox-Vec3-Vec3}
+### nil MakeBox(Vec3, Vec3) {#nil-MakeBox-Vec3-Vec3}
 
-### void MakeCapsule(Vec3, Vec3, float, float) {#void-MakeCapsule-Vec3-Vec3-float-float}
+### nil MakeCapsule(Vec3, Vec3, float, float) {#nil-MakeCapsule-Vec3-Vec3-float-float}
 
-### void MakeCapsule(Vec3, Vec3, float) {#void-MakeCapsule-Vec3-Vec3-float}
+### nil MakeCapsule(Vec3, Vec3, float) {#nil-MakeCapsule-Vec3-Vec3-float}
 
-### void SetMaterial(Vec3) {#void-SetMaterial-Vec3}
+### nil SetMaterial(Vec3) {#nil-SetMaterial-Vec3}
 
-### void FillTmpLayers(Vec3, Vec3, float, int) {#void-FillTmpLayers-Vec3-Vec3-float-int}
+### nil FillTmpLayers(Vec3, Vec3, float, int) {#nil-FillTmpLayers-Vec3-Vec3-float-int}
 
 ### userdata TraceRayTmp(Vec3, Vec3, float) {#userdata-TraceRayTmp-Vec3-Vec3-float}
 
-### void InstantiateIE(Vec3, Quat, float) {#void-InstantiateIE-Vec3-Quat-float}
+### nil InstantiateIE(Vec3, Quat, float) {#nil-InstantiateIE-Vec3-Quat-float}
 
-### void FreeTmpLayers(int) {#void-FreeTmpLayers-int}
+### nil FreeTmpLayers(int) {#nil-FreeTmpLayers-int}
 
-### void ClearContent() {#void-ClearContent}
+### nil ClearContent() {#nil-ClearContent}
 
-### void RebuildLods(bool) {#void-RebuildLods-bool}
+### nil RebuildLods(bool) {#nil-RebuildLods-bool}
 
 ### bool CopyLayer(string, string) {#bool-CopyLayer-string-string}
 
 ### bool ClearLayer(string) {#bool-ClearLayer-string}
 
-### void RemoveHiddenVoxelsC32() {#void-RemoveHiddenVoxelsC32}
+### nil RemoveHiddenVoxelsC32() {#nil-RemoveHiddenVoxelsC32}
 
-### void RemoveHiddenVoxelsN16() {#void-RemoveHiddenVoxelsN16}
+### nil RemoveHiddenVoxelsN16() {#nil-RemoveHiddenVoxelsN16}
 
 ### table GetInfo() {#table-GetInfo}
 
-### void CopyTo(VoxelDB) {#void-CopyTo-VoxelDB}
+### nil CopyTo(VoxelDB) {#nil-CopyTo-VoxelDB}
 
 ### bool Save(string, string, int) {#bool-Save-string-string-int}
 

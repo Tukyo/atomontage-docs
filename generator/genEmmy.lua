@@ -176,6 +176,7 @@ function genEmmy:writeClassHeader(file, className, documentation, docsPath)
     file:write("--- @class ",className, "\n")
 end
 
+--TODO maybe docs should use samd names?
 function genEmmy:convertToEmmyLuaType(strType)
     strType = strType:gsub("bool", "boolean")
     strType = strType:gsub("int", "integer")

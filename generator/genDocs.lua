@@ -686,8 +686,8 @@ function genDocs:cleanUpName(name)
         {"basic_table_core<0,classsol::basic_reference<0> >", "table"},
         {"basic_object<classsol::basic_reference<0> >", "userdata"}, --??this could be many things
         {"shared_ptr<classae::scene::Object>", "Object"},
-        {tableObjects, "table"},--table of Objects
-        {tableObjects2, "table"},
+        {tableObjects, "Object[]"},--table of Objects
+        {tableObjects2, "Object[]"},
         {"shared_ptr<structae::scene::LuaVoxelDB>", "VoxelDB"},
         {"shared_ptr<classae::lighting::LightingUpdate>", "LightingUpdate"},
         {"shared_ptr<classae::scene::SystemTransform>", "userdata"}, --??? no idea what this is
@@ -736,7 +736,8 @@ function genDocs:cleanUpName(name)
         {"shared_ptr<classae::scene::LuaVoxelDB>", "VoxelDB"},
         {"shared_ptr<classae::scene::ScriptComponent>", "ScriptComponent"},
         {"variadic_args", "..."},
-        {"shared_ptr<classae::scene::Component>", "Component"}
+        {"shared_ptr<classae::scene::Component>", "Component"},
+        {"void", "nil"},
     }
 
     --name = name:gsub("(%S+),?", replacments)
