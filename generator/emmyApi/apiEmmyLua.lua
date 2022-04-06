@@ -13,6 +13,8 @@
 
 --- @meta
 
+--- @alias serializableType nil|boolean|number|string|Vec2|Vec2i|Vec3|Vec3i|Mat4|Quat
+
 --https://wiki.libsdl.org/SDL_Keycode
 --- @alias keyCode
 ---| '"0"'
