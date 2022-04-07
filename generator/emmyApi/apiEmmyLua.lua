@@ -15,6 +15,11 @@
 
 --- @alias serializableType nil|boolean|number|string|Vec2|Vec2i|Vec3|Vec3i|Mat4|Quat
 
+--- @alias mouseButton
+---| '0' # left button
+---| '1' # middle button
+---| '2' # right button
+
 --https://wiki.libsdl.org/SDL_Keycode
 --- @alias keyCode
 ---| '"0"'
@@ -28,50 +33,50 @@
 ---| '"8"'
 ---| '"9"'
 ---| '"A"'
----| '"AC Back"' (the Back key (application control keypad))
----| '"AC Bookmarks"' (the Bookmarks key (application control keypad))
----| '"AC Forward"' (the Forward key (application control keypad))
----| '"AC Home"' (the Home key (application control keypad))
----| '"AC Refresh"' (the Refresh key (application control keypad))
----| '"AC Search"' (the Search key (application control keypad))
----| '"AC Stop"' (the Stop key (application control keypad))
----| '"Again"' (the Again key (Redo))
----| '"AltErase"' (Erase-Eaze)
+---| '"AC Back"' # (the Back key (application control keypad))
+---| '"AC Bookmarks"' # (the Bookmarks key (application control keypad))
+---| '"AC Forward"' # (the Forward key (application control keypad))
+---| '"AC Home"' # (the Home key (application control keypad))
+---| '"AC Refresh"' # (the Refresh key (application control keypad))
+---| '"AC Search"' # (the Search key (application control keypad))
+---| '"AC Stop"' # (the Stop key (application control keypad))
+---| '"Again"' # (the Again key (Redo))
+---| '"AltErase"' # (Erase-Eaze)
 ---| '"'"'
----| '"Application"' (the Application / Compose / Context Menu (Windows) key)
----| '"AudioMute"' (the Mute volume key)
----| '"AudioNext"' (the Next Track media key)
----| '"AudioPlay"' (the Play media key)
----| '"AudioPrev"' (the Previous Track media key)
----| '"AudioStop"' (the Stop media key)
+---| '"Application"' # (the Application / Compose / Context Menu (Windows) key)
+---| '"AudioMute"' # (the Mute volume key)
+---| '"AudioNext"' # (the Next Track media key)
+---| '"AudioPlay"' # (the Play media key)
+---| '"AudioPrev"' # (the Previous Track media key)
+---| '"AudioStop"' # (the Stop media key)
 ---| '"B"'
----| '"\""' (Located at the lower left of the return key on ISO keyboards and at the right end of the QWERTY row on ANSI keyboards. Produces REVERSE SOLIDUS (backslash) and VERTICAL LINE in a US layout, REVERSE SOLIDUS and VERTICAL LINE in a UK Mac layout, NUMBER SIGN and TILDE in a UK Windows layout, DOLLAR SIGN and POUND SIGN in a Swiss German layout, NUMBER SIGN and APOSTROPHE in a German layout, GRAVE ACCENT and POUND SIGN in a French Mac layout, and ASTERISK and MICRO SIGN in a French Windows layout.)
+---| '"\""' # (Located at the lower left of the return key on ISO keyboards and at the right end of the QWERTY row on ANSI keyboards. Produces REVERSE SOLIDUS (backslash) and VERTICAL LINE in a US layout, REVERSE SOLIDUS and VERTICAL LINE in a UK Mac layout, NUMBER SIGN and TILDE in a UK Windows layout, DOLLAR SIGN and POUND SIGN in a Swiss German layout, NUMBER SIGN and APOSTROPHE in a German layout, GRAVE ACCENT and POUND SIGN in a French Mac layout, and ASTERISK and MICRO SIGN in a French Windows layout.)
 ---| '"Backspace"'
----| '"BrightnessDown"' (the Brightness Down key)
----| '"BrightnessUp"' (the Brightness Up key)
+---| '"BrightnessDown"' # (the Brightness Down key)
+---| '"BrightnessUp"' # (the Brightness Up key)
 ---| '"C"'
----| '"Calculator"' (the Calculator key)
+---| '"Calculator"' # (the Calculator key)
 ---| '"Cancel"'
 ---| '"CapsLock"'
 ---| '"Clear"'
 ---| '"Clear / Again"'
 ---| '","'
----| '"Computer"' (the My Computer key)
+---| '"Computer"' # (the My Computer key)
 ---| '"Copy"'
 ---| '"CrSel"'
----| '"CurrencySubUnit"' (the Currency Subunit key)
----| '"CurrencyUnit"' (the Currency Unit key)
+---| '"CurrencySubUnit"' # (the Currency Subunit key)
+---| '"CurrencyUnit"' # (the Currency Unit key)
 ---| '"Cut"'
 ---| '"D"'
----| '"DecimalSeparator"' (the Decimal Separator key)
+---| '"DecimalSeparator"' # (the Decimal Separator key)
 ---| '"Delete"'
----| '"DisplaySwitch"' (display mirroring/dual display switch, video mode switch)
----| '"Down"' (the Down arrow key (navigation keypad))
+---| '"DisplaySwitch"' # (display mirroring/dual display switch, video mode switch)
+---| '"Down"' # (the Down arrow key (navigation keypad))
 ---| '"E"'
----| '"Eject"' (the Eject key)
+---| '"Eject"' # (the Eject key)
 ---| '"End"'
 ---| '"="'
----| '"Escape"' (the Esc key)
+---| '"Escape"' # (the Esc key)
 ---| '"Execute"'
 ---| '"ExSel"'
 ---| '"F"'
@@ -101,94 +106,94 @@
 ---| '"F9"'
 ---| '"Find"'
 ---| '"G"'
----| '"`"' (Located in the top left corner (on both ANSI and ISO keyboards). Produces GRAVE ACCENT and TILDE in a US Windows layout and in US and UK Mac layouts on ANSI keyboards, GRAVE ACCENT and NOT SIGN in a UK Windows layout, SECTION SIGN and PLUS-MINUS SIGN in US and UK Mac layouts on ISO keyboards, SECTION SIGN and DEGREE SIGN in a Swiss German layout (Mac: only on ISO keyboards), CIRCUMFLEX ACCENT and DEGREE SIGN in a German layout (Mac: only on ISO keyboards), SUPERSCRIPT TWO and TILDE in a French Windows layout, COMMERCIAL AT and NUMBER SIGN in a French Mac layout on ISO keyboards, and LESS-THAN SIGN and GREATER-THAN SIGN in a Swiss German, German, or French Mac layout on ANSI keyboards.)
+---| '"`"' # (Located in the top left corner (on both ANSI and ISO keyboards). Produces GRAVE ACCENT and TILDE in a US Windows layout and in US and UK Mac layouts on ANSI keyboards, GRAVE ACCENT and NOT SIGN in a UK Windows layout, SECTION SIGN and PLUS-MINUS SIGN in US and UK Mac layouts on ISO keyboards, SECTION SIGN and DEGREE SIGN in a Swiss German layout (Mac: only on ISO keyboards), CIRCUMFLEX ACCENT and DEGREE SIGN in a German layout (Mac: only on ISO keyboards), SUPERSCRIPT TWO and TILDE in a French Windows layout, COMMERCIAL AT and NUMBER SIGN in a French Mac layout on ISO keyboards, and LESS-THAN SIGN and GREATER-THAN SIGN in a Swiss German, German, or French Mac layout on ANSI keyboards.)
 ---| '"H"'
 ---| '"Help"'
 ---| '"Home"'
 ---| '"I"'
----| '"Insert"' (insert on PC, help on some Mac keyboards (but does send code 73, not 117))
+---| '"Insert"' # (insert on PC, help on some Mac keyboards (but does send code 73, not 117))
 ---| '"J"'
 ---| '"K"'
----| '"KBDIllumDown"' (the Keyboard Illumination Down key)
----| '"KBDIllumToggle"' (the Keyboard Illumination Toggle key)
----| '"KBDIllumUp"' (the Keyboard Illumination Up key)
----| '"Keypad 0"' (the 0 key (numeric keypad))
----| '"Keypad 00"' (the 00 key (numeric keypad))
----| '"Keypad 000"' (the 000 key (numeric keypad))
----| '"Keypad 1"' (the 1 key (numeric keypad))
----| '"Keypad 2"' (the 2 key (numeric keypad))
----| '"Keypad 3"' (the 3 key (numeric keypad))
----| '"Keypad 4"' (the 4 key (numeric keypad))
----| '"Keypad 5"' (the 5 key (numeric keypad))
----| '"Keypad 6"' (the 6 key (numeric keypad))
----| '"Keypad 7"' (the 7 key (numeric keypad))
----| '"Keypad 8"' (the 8 key (numeric keypad))
----| '"Keypad 9"' (the 9 key (numeric keypad))
----| '"Keypad A"' (the A key (numeric keypad))
----| '"Keypad &"' (the & key (numeric keypad))
----| '"Keypad @"' (the @ key (numeric keypad))
----| '"Keypad B"' (the B key (numeric keypad))
----| '"Keypad Backspace"' (the Backspace key (numeric keypad))
----| '"Keypad Binary"' (the Binary key (numeric keypad))
----| '"Keypad C"' (the C key (numeric keypad))
----| '"Keypad Clear"' (the Clear key (numeric keypad))
----| '"Keypad ClearEntry"' (the Clear Entry key (numeric keypad))
----| '"Keypad :"' (the : key (numeric keypad))
----| '"Keypad ,"' (the Comma key (numeric keypad))
----| '"Keypad D"' (the D key (numeric keypad))
----| '"Keypad &&"' (the && key (numeric keypad))
+---| '"KBDIllumDown"' # (the Keyboard Illumination Down key)
+---| '"KBDIllumToggle"' # (the Keyboard Illumination Toggle key)
+---| '"KBDIllumUp"' # (the Keyboard Illumination Up key)
+---| '"Keypad 0"' # (the 0 key (numeric keypad))
+---| '"Keypad 00"' # (the 00 key (numeric keypad))
+---| '"Keypad 000"' # (the 000 key (numeric keypad))
+---| '"Keypad 1"' # (the 1 key (numeric keypad))
+---| '"Keypad 2"' # (the 2 key (numeric keypad))
+---| '"Keypad 3"' # (the 3 key (numeric keypad))
+---| '"Keypad 4"' # (the 4 key (numeric keypad))
+---| '"Keypad 5"' # (the 5 key (numeric keypad))
+---| '"Keypad 6"' # (the 6 key (numeric keypad))
+---| '"Keypad 7"' # (the 7 key (numeric keypad))
+---| '"Keypad 8"' # (the 8 key (numeric keypad))
+---| '"Keypad 9"' # (the 9 key (numeric keypad))
+---| '"Keypad A"' # (the A key (numeric keypad))
+---| '"Keypad &"' # (the & key (numeric keypad))
+---| '"Keypad @"' # (the @ key (numeric keypad))
+---| '"Keypad B"' # (the B key (numeric keypad))
+---| '"Keypad Backspace"' # (the Backspace key (numeric keypad))
+---| '"Keypad Binary"' # (the Binary key (numeric keypad))
+---| '"Keypad C"' # (the C key (numeric keypad))
+---| '"Keypad Clear"' # (the Clear key (numeric keypad))
+---| '"Keypad ClearEntry"' # (the Clear Entry key (numeric keypad))
+---| '"Keypad :"' # (the : key (numeric keypad))
+---| '"Keypad ,"' # (the Comma key (numeric keypad))
+---| '"Keypad D"' # (the D key (numeric keypad))
+---| '"Keypad &&"' # (the && key (numeric keypad))
 ---| '"'''Keypad
----| '"Keypad Decimal"' (the Decimal key (numeric keypad))
----| '"Keypad /"' (the / key (numeric keypad))
----| '"Keypad E"' (the E key (numeric keypad))
----| '"Keypad Enter"' (the Enter key (numeric keypad))
----| '"Keypad ="' (the = key (numeric keypad))
----| '"Keypad = (AS400)"' (the Equals AS400 key (numeric keypad))
----| '"Keypad !"' (the ! key (numeric keypad))
----| '"Keypad F"' (the F key (numeric keypad))
----| '"Keypad >"' (the Greater key (numeric keypad))
----| '"Keypad #"' (the # key (numeric keypad))
----| '"Keypad Hexadecimal"' (the Hexadecimal key (numeric keypad))
----| '"Keypad {"' (the Left Brace key (numeric keypad))
----| '"Keypad ("' (the Left Parenthesis key (numeric keypad))
----| '"Keypad <"' (the Less key (numeric keypad))
----| '"Keypad MemAdd"' (the Mem Add key (numeric keypad))
----| '"Keypad MemClear"' (the Mem Clear key (numeric keypad))
----| '"Keypad MemDivide"' (the Mem Divide key (numeric keypad))
----| '"Keypad MemMultiply"' (the Mem Multiply key (numeric keypad))
----| '"Keypad MemRecall"' (the Mem Recall key (numeric keypad))
----| '"Keypad MemStore"' (the Mem Store key (numeric keypad))
----| '"Keypad MemSubtract"' (the MemSubtract key (numeric keypad))
----| '"Keypad -"' (the 0-key (numeric keypad))
----| '"Keypad *"' (the * key (numeric keypad))
----| '"Keypad Octal"' (the Octal key (numeric keypad))
----| '"Keypad %"' (the Percent key (numeric keypad))
----| '"Keypad ."' (the . key (numeric keypad))
----| '"Keypad +"' (the + key (numeric keypad))
----| '"Keypad +/-"' (the +/- key (numeric keypad))
----| '"Keypad ^"' (the Power key (numeric keypad))
----| '"Keypad }"' (the Right Brace key (numeric keypad))
----| '"Keypad )"' (the Right Parenthesis key (numeric keypad))
----| '"Keypad Space"' (the Space key (numeric keypad))
----| '"Keypad Tab"' (the Tab key (numeric keypad))
----| '"Keypad |"' (the | key (numeric keypad))
----| '"Keypad XOR"' (the XOR key (numeric keypad))
+---| '"Keypad Decimal"' # (the Decimal key (numeric keypad))
+---| '"Keypad /"' # (the / key (numeric keypad))
+---| '"Keypad E"' # (the E key (numeric keypad))
+---| '"Keypad Enter"' # (the Enter key (numeric keypad))
+---| '"Keypad ="' # (the = key (numeric keypad))
+---| '"Keypad = (AS400)"' # (the Equals AS400 key (numeric keypad))
+---| '"Keypad !"' # (the ! key (numeric keypad))
+---| '"Keypad F"' # (the F key (numeric keypad))
+---| '"Keypad >"' # (the Greater key (numeric keypad))
+---| '"Keypad #"' # (the # key (numeric keypad))
+---| '"Keypad Hexadecimal"' # (the Hexadecimal key (numeric keypad))
+---| '"Keypad {"' # (the Left Brace key (numeric keypad))
+---| '"Keypad ("' # (the Left Parenthesis key (numeric keypad))
+---| '"Keypad <"' # (the Less key (numeric keypad))
+---| '"Keypad MemAdd"' # (the Mem Add key (numeric keypad))
+---| '"Keypad MemClear"' # (the Mem Clear key (numeric keypad))
+---| '"Keypad MemDivide"' # (the Mem Divide key (numeric keypad))
+---| '"Keypad MemMultiply"' # (the Mem Multiply key (numeric keypad))
+---| '"Keypad MemRecall"' # (the Mem Recall key (numeric keypad))
+---| '"Keypad MemStore"' # (the Mem Store key (numeric keypad))
+---| '"Keypad MemSubtract"' # (the MemSubtract key (numeric keypad))
+---| '"Keypad -"' # (the 0-key (numeric keypad))
+---| '"Keypad *"' # (the * key (numeric keypad))
+---| '"Keypad Octal"' # (the Octal key (numeric keypad))
+---| '"Keypad %"' # (the Percent key (numeric keypad))
+---| '"Keypad ."' # (the . key (numeric keypad))
+---| '"Keypad +"' # (the + key (numeric keypad))
+---| '"Keypad +/-"' # (the +/- key (numeric keypad))
+---| '"Keypad ^"' # (the Power key (numeric keypad))
+---| '"Keypad }"' # (the Right Brace key (numeric keypad))
+---| '"Keypad )"' # (the Right Parenthesis key (numeric keypad))
+---| '"Keypad Space"' # (the Space key (numeric keypad))
+---| '"Keypad Tab"' # (the Tab key (numeric keypad))
+---| '"Keypad |"' # (the | key (numeric keypad))
+---| '"Keypad XOR"' # (the XOR key (numeric keypad))
 ---| '"L"'
 ---| '"Left Alt"'
 ---| '"Left Ctrl"'
----| '"Left"' (the Left arrow key (navigation keypad))
+---| '"Left"' # (the Left arrow key (navigation keypad))
 ---| '"["'
----| '"Left GUI"' (windows, command (apple), meta)
+---| '"Left GUI"' # (windows, command (apple), meta)
 ---| '"Left Shift"'
 ---| '"M"'
----| '"Mail"' (the Mail/eMail key)
----| '"MediaSelect"' (the Media Select key)
+---| '"Mail"' # (the Mail/eMail key)
+---| '"MediaSelect"' # (the Media Select key)
 ---| '"Menu"'
 ---| '"-"'
 ---| '"ModeSwitch"'
 ---| '"Mute"'
 ---| '"N"'
----| '"Numlock"' (the Num Lock key (PC) / the Clear key (Mac))
+---| '"Numlock"' # (the Num Lock key (PC) / the Clear key (Mac))
 ---| '"O"'
 ---| '"Oper"'
 ---| '"Out"'
@@ -196,19 +201,19 @@
 ---| '"PageDown"'
 ---| '"PageUp"'
 ---| '"Paste"'
----| '"Pause"' (the Pause / Break key)
+---| '"Pause"' # (the Pause / Break key)
 ---| '"."'
----| '"Power"' (The USB document says this is a status flag, not a physical key - but some Mac keyboards do have a power key.)
+---| '"Power"' # (The USB document says this is a status flag, not a physical key - but some Mac keyboards do have a power key.)
 ---| '"PrintScreen"'
 ---| '"Prior"'
 ---| '"Q"'
 ---| '"R"'
----| '"Right Alt"' (alt gr, option)
+---| '"Right Alt"' # (alt gr, option)
 ---| '"Right Ctrl"'
----| '"Return"' (the Enter key (main keyboard))
+---| '"Return"' # (the Enter key (main keyboard))
 ---| '"Return"'
----| '"Right GUI"' (windows, command (apple), meta)
----| '"Right"' (the Right arrow key (navigation keypad))
+---| '"Right GUI"' # (windows, command (apple), meta)
+---| '"Right"' # (the Right arrow key (navigation keypad))
 ---| '"]"'
 ---| '"Right Shift"'
 ---| '"S"'
@@ -217,22 +222,22 @@
 ---| '";"'
 ---| '"Separator"'
 ---| '"/"'
----| '"Sleep"' (the Sleep key)
----| '"Space"' (the Space Bar key(s))
+---| '"Sleep"' # (the Sleep key)
+---| '"Space"' # (the Space Bar key(s))
 ---| '"Stop"'
----| '"SysReq"' (the SysReq key)
+---| '"SysReq"' # (the SysReq key)
 ---| '"T"'
----| '"Tab"' (the Tab key)
----| '"ThousandsSeparator"' (the Thousands Separator key)
+---| '"Tab"' # (the Tab key)
+---| '"ThousandsSeparator"' # (the Thousands Separator key)
 ---| '"U"'
 ---| '"Undo"'
----| '""' (no name, empty string)
----| '"Up"' (the Up arrow key (navigation keypad))
+---| '""' # (no name, empty string)
+---| '"Up"' # (the Up arrow key (navigation keypad))
 ---| '"V"'
 ---| '"VolumeDown"'
 ---| '"VolumeUp"'
 ---| '"W"'
----| '"WWW"' (the WWW/World Wide Web key)
+---| '"WWW"' # (the WWW/World Wide Web key)
 ---| '"X"'
 ---| '"Y"'
 ---| '"Z"'
