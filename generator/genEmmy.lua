@@ -249,14 +249,14 @@ local emmyDefaultLines = [[
 ---| '"Y"'
 ---| '"Z"'
 
---- @generic T: Component
---- @param name `T`|componentType
---- @return T
+--- @generic ComponentType: Component
+--- @param name `ComponentType`|componentType
+--- @return ComponentType
 function Object:GetComponentByType(name) end
 
---- @generic T: Component
---- @param name `T`|componentType
---- @return T[]
+--- @generic ComponentType: Component
+--- @param name `ComponentType`|componentType
+--- @return ComponentType[]
 function Object:GetComponentsByType(name) end
 ]]
 

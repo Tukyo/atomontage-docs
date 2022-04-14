@@ -242,14 +242,14 @@
 ---| '"Y"'
 ---| '"Z"'
 
---- @generic T: Component
---- @param name `T`|componentType
---- @return T
+--- @generic ComponentType: Component
+--- @param name `ComponentType`|componentType
+--- @return ComponentType
 function Object:GetComponentByType(name) end
 
---- @generic T: Component
---- @param name `T`|componentType
---- @return T[]
+--- @generic ComponentType: Component
+--- @param name `ComponentType`|componentType
+--- @return ComponentType[]
 function Object:GetComponentsByType(name) end
 
 --[[
@@ -502,63 +502,6 @@ blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal
 --- @field platform string
 --- @field sysInfo string
 Client = {}
-
---[[
-Send a message to server scripts. The message is a table
-
-```lua
--- send message examples
-Client:SendMessage({act = 'erase', pos = Vec3(0,0,0), rad = 1})
--- send message example with no string use
-Client:SendMessage({[1] = 1, [2] = 100, [3] = false, [4] = Vec2(0)})
--- send message with no keys, it's the same message as the line above
-Client:SendMessage({1, 100, false, Vec2(0)})
-
--- send more messages in one call
-Client:SendMessages({	
-    {act = 1}, -- message 1
-    {act = 5}, -- message 2
-    {1, 100, false}, -- message 3 (with no keys)
-    {act = 2, brush = 'paint'}}) -- message 4
-
-
-
-local my_msgs = {}
-table.insert(my_msgs, {act = 'erase'})
-table.insert(my_msgs, {act = 'erase'})
-table.insert(my_msgs, {act = 'erase'})
-Client:SendMessages(my_msgs)
-```
-
-[View Documentation](https://docs.atomontage.com/api/Client#void-SendMessages-table-tableOfMessages)
-]]
---- @param tableOfMessages table
---- @return nil
-function Client:SendMessages(tableOfMessages) end
-
---[[
-Recieve messages send by server scripts
-
-```lua
--- define your actions for network messages (good example, but user can wrok this out freely)
-net_actions = {}
-net_actions['Del'] = function(msg) Scene:ClearSphere(msg.pos, msg.rad) end
-net_actions[1] = function(msg) Scene:ClearSphere(msg[2], msg[3]) end
-
--- receive all messages in one call and process them
-for i,msg in ipairs(Client:ReceiveMessages()) do
-    -- process message example:
-    local f = msg.act and net_actions[msg.act]
-    if type(f) == 'function' then
-        f(msg)
-    end
-end
-```
-
-[View Documentation](https://docs.atomontage.com/api/Client#table-ReceiveMessages)
-]]
---- @return table
-function Client:ReceiveMessages() end
 
 --- @return integer
 function Client:GetID() end
