@@ -23,9 +23,9 @@ local emmyDefaultLines = [[
 --- @alias serializableType nil|boolean|number|string|Vec2|Vec2i|Vec3|Vec3i|Mat4|Quat
 
 --- @alias mouseButton
----| '0' # left button
----| '1' # middle button
----| '2' # right button
+---| 1 # left button
+---| 2 # middle button
+---| 3 # right button
 
 --https://wiki.libsdl.org/SDL_Keycode
 --- @alias keyCode
@@ -263,6 +263,9 @@ function Object:GetComponentsByType(name) end
 function genEmmy:createFile(bindingsServer, bindingsClient)
     local file = io.open("generator\\emmyApi\\apiEmmyLua.lua", "w")
     
+    --default lines
+    file:write(emmyDefaultLines, "\n")
+
     --add component alias
     local comps = util:getAllComponents(bindingsServer)
     table.sort(comps) --sort ABC
@@ -272,9 +275,6 @@ function genEmmy:createFile(bindingsServer, bindingsClient)
     end
     file:write("\n")
 
-    --default lines
-    file:write(emmyDefaultLines, "\n")
-    
     return file
 end
 

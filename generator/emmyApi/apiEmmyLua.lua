@@ -1,24 +1,11 @@
---- @alias componentType
----| "'CameraComponent'"
----| "'MeshData'"
----| "'MeshRender'"
----| "'MontageComponent'"
----| "'ScriptComponent'"
----| "'SkyboxComponent'"
----| "'StaticVoxelDataComponent'"
----| "'Transform'"
----| "'VoxelData'"
----| "'VoxelInspectComponent'"
----| "'VoxelRender'"
-
 --- @meta
 
 --- @alias serializableType nil|boolean|number|string|Vec2|Vec2i|Vec3|Vec3i|Mat4|Quat
 
 --- @alias mouseButton
----| '0' # left button
----| '1' # middle button
----| '2' # right button
+---| 1 # left button
+---| 2 # middle button
+---| 3 # right button
 
 --https://wiki.libsdl.org/SDL_Keycode
 --- @alias keyCode
@@ -251,6 +238,19 @@ function Object:GetComponentByType(name) end
 --- @param name `ComponentType`|componentType
 --- @return ComponentType[]
 function Object:GetComponentsByType(name) end
+
+--- @alias componentType
+---| "'CameraComponent'"
+---| "'MeshData'"
+---| "'MeshRender'"
+---| "'MontageComponent'"
+---| "'ScriptComponent'"
+---| "'SkyboxComponent'"
+---| "'StaticVoxelDataComponent'"
+---| "'Transform'"
+---| "'VoxelData'"
+---| "'VoxelInspectComponent'"
+---| "'VoxelRender'"
 
 --[[
 `Client`
