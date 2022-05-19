@@ -259,6 +259,15 @@ local emmyDefaultLines = [[
 ---| '"Y"'
 ---| '"Z"'
 
+--- @return Filter
+function Filter.new() end
+
+--- @return Collision
+function Collision.new() end
+
+--- @return VoxelEdit
+function VoxelEdit.new() end
+
 --- @generic T:Component
 --- @param type `T`|componentType
 --- @return T
