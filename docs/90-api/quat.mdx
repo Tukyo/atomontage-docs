@@ -9,15 +9,15 @@ id: Quat
 
 ### Quat() {#Quat}
 
-### Quat(float, float, float, float) {#Quat-float-float-float-float}
-
-### Quat(Vec3) {#Quat-Vec3}
-
 ### Quat(Quat) {#Quat-Quat}
+
+### Quat(float, float, float, float) {#Quat-float-float-float-float}
 
 ### Quat(float, Vec3) {#Quat-float-Vec3}
 
-### Quat(Vec3, Vec3) {#Quat-Vec3-Vec3}
+### Quat(Mat3) {#Quat-Mat3}
+
+### Quat(Mat4) {#Quat-Mat4}
 
 ## List of Metamethods
 
@@ -31,15 +31,17 @@ id: Quat
 
 ### Quat __mul(Quat, Quat) {#Quat-mul-Quat-Quat}
 
-### Quat __mul(float, Quat) {#Quat-mul-float-Quat}
-
-### Quat __mul(Quat, float) {#Quat-mul-Quat-float}
-
 ### Vec4 __mul(Quat, Vec4) {#Vec4-mul-Quat-Vec4}
 
 ### Vec3 __mul(Quat, Vec3) {#Vec3-mul-Quat-Vec3}
 
+### Quat __mul(float, Quat) {#Quat-mul-float-Quat}
+
+### Quat __mul(Quat, float) {#Quat-mul-Quat-float}
+
 ### Quat __div(Quat, float) {#Quat-div-Quat-float}
+
+### Quat __pow(Quat, float) {#Quat-pow-Quat-float}
 
 ### Quat __unm(Quat) {#Quat-unm-Quat}
 
@@ -47,33 +49,59 @@ id: Quat
 
 ## List of Methods
 
-### Quat Euler(Vec3) {#Quat-Euler-Vec3}
+### float Len() {#float-Len}
 
-### Quat AngleAxis(float, Vec3) {#Quat-AngleAxis-float-Vec3}
+### float SqrLength() {#float-SqrLength}
+
+### bool IsZero() {#bool-IsZero}
 
 ### float Dot(Quat) {#float-Dot-Quat}
 
 ### Quat Lerp(Quat, Quat, float) {#Quat-Lerp-Quat-Quat-float}
 
-### Quat Mix(Quat, Quat, float) {#Quat-Mix-Quat-Quat-float}
+### Quat Slerp(Quat, Quat, float) {#Quat-Slerp-Quat-Quat-float}
 
 ### nil Normalize() {#nil-Normalize}
 
-### Quat Slerp(Quat, Quat, float) {#Quat-Slerp-Quat-Quat-float}
-
-### nil Rotate(float, Vec3) {#nil-Rotate-float-Vec3}
-
-### Quat GetRotated(float, Vec3) {#Quat-GetRotated-float-Vec3}
-
-### Quat LookAt(Vec3) {#Quat-LookAt-Vec3}
-
-### Quat LookAt(Vec3, Vec3) {#Quat-LookAt-Vec3-Vec3}
+### Quat GetNormalized() {#Quat-GetNormalized}
 
 ### nil Invert() {#nil-Invert}
 
 ### Quat GetInversed() {#Quat-GetInversed}
 
-### float DotProd(Quat) {#float-DotProd-Quat}
+### nil Rotate(Quat, float, Vec3) {#nil-Rotate-Quat-float-Vec3}
+
+### Quat GetRotated(Quat, float, Vec3) {#Quat-GetRotated-Quat-float-Vec3}
+
+### Quat GetConjugate() {#Quat-GetConjugate}
+
+### float GetPitch(Quat) {#float-GetPitch-Quat}
+
+### float GetYaw(Quat) {#float-GetYaw-Quat}
+
+### float GetRoll(Quat) {#float-GetRoll-Quat}
+
+### Vec3 GetEuler(Quat) {#Vec3-GetEuler-Quat}
+
+### float GetAngle(Quat) {#float-GetAngle-Quat}
+
+### Vec3 GetAxis() {#Vec3-GetAxis}
+
+### Quat Euler(float, float, float) {#Quat-Euler-float-float-float}
+
+### Quat Euler(Vec3) {#Quat-Euler-Vec3}
+
+### Quat Axes(Vec3, Vec3) {#Quat-Axes-Vec3-Vec3}
+
+### Quat AngleAxis(float, Vec3) {#Quat-AngleAxis-float-Vec3}
+
+### Quat LookAt(Vec3) {#Quat-LookAt-Vec3}
+
+### Quat LookAt(Vec3, Vec3) {#Quat-LookAt-Vec3-Vec3}
+
+### string __tostring(Quat) {#string-tostring-Quat}
+
+### const char __name(Quat) {#const-char-name-Quat}
 
 ## List of Properties
 
@@ -86,28 +114,4 @@ id: Quat
 ### float w {#float-w}
 
 ### Quat identity {#Quat-identity}
-
-### Vec3 euler {#Vec3-euler}
-
-### Mat3 mat3 {#Mat3-mat3}
-
-### Mat4 mat4 {#Mat4-mat4}
-
-### float angle {#float-angle}
-
-### Vec3 axis {#Vec3-axis}
-
-### Quat conjugate {#Quat-conjugate}
-
-### Quat inverse {#Quat-inverse}
-
-### float length {#float-length}
-
-### Quat normalized {#Quat-normalized}
-
-### float pitch {#float-pitch}
-
-### float yaw {#float-yaw}
-
-### float roll {#float-roll}
 

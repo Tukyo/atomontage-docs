@@ -49,6 +49,8 @@ id: Mat4
 
 ### Mat4(Mat4) {#Mat4-Mat4}
 
+### Mat4(Quat) {#Mat4-Quat}
+
 ## List of Metamethods
 
 ### Vec4 __index(Mat4, int) {#Vec4-index-Mat4-int}
@@ -106,6 +108,28 @@ id: Mat4
 ### bool IsSingular() {#bool-IsSingular}
 
 ### bool IsAnyNaN() {#bool-IsAnyNaN}
+
+### Mat4 Translation(float, float, float) {#Mat4-Translation-float-float-float}
+
+### Mat4 Translation(Vec3) {#Mat4-Translation-Vec3}
+
+### Mat4 RotationXYZ(float, float, float) {#Mat4-RotationXYZ-float-float-float}
+
+### Mat4 RotationXYZ(Vec3) {#Mat4-RotationXYZ-Vec3}
+
+### Mat4 RotationYawPitchRoll(float, float, float) {#Mat4-RotationYawPitchRoll-float-float-float}
+
+### Mat4 RotationYawPitchRoll(Vec3) {#Mat4-RotationYawPitchRoll-Vec3}
+
+### Mat4 Scaling(float, float, float) {#Mat4-Scaling-float-float-float}
+
+### Mat4 Scaling(Vec3) {#Mat4-Scaling-Vec3}
+
+### Mat4 LookAt(Vec3, Vec3, Vec3) {#Mat4-LookAt-Vec3-Vec3-Vec3}
+
+### Mat4 Perspective(float, float, float, float) {#Mat4-Perspective-float-float-float-float}
+
+### Mat4 Ortho(float, float, float, float, float, float) {#Mat4-Ortho-float-float-float-float-float-float}
 
 ## List of Properties
 

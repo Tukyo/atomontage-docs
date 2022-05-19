@@ -8,7 +8,7 @@ function util:getAllComponents(_Bindings)
             local hasType = false
             local hasObject = false
             for i, prop in ipairs(class.Properties or {}) do
-                hasType = hasType or prop:find(" type")
+                hasType = hasType or prop:find("string type")
                 hasObject = hasObject or prop:find(" object")
             end
             if hasType and hasObject then

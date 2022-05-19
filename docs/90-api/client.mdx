@@ -54,6 +54,8 @@ blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal
 
 ### nil OpenScriptFile(string, int) {#nil-OpenScriptFile-string-int}
 
+### string GetScript(string) {#string-GetScript-string}
+
 ### nil SetUIScale(float scale) {#nil-SetUIScale-float-scale}
 
 ### float GetUIScale() {#float-GetUIScale}
@@ -72,7 +74,9 @@ blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal
 
 ### string GetConnectionStatus() {#string-GetConnectionStatus}
 
-### nil DisconnectFromMontageServer() {#nil-DisconnectFromMontageServer}
+### string GetConnectionStatusDetailed() {#string-GetConnectionStatusDetailed}
+
+### nil Disconnect() {#nil-Disconnect}
 
 ### float GetLogValue(string) {#float-GetLogValue-string}
 
@@ -110,9 +114,7 @@ blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal
 
 ### Config GetConfigInputActions() {#Config-GetConfigInputActions}
 
-### nil ConnectToServer(Client) {#nil-ConnectToServer-Client}
-
-### nil Disconnect() {#nil-Disconnect}
+### nil ConnectToServer() {#nil-ConnectToServer}
 
 ### bool OpenFolder(string folder) {#bool-OpenFolder-string-folder}
 
@@ -212,6 +214,14 @@ Returns [`CommandLine`](/api/commandLine)
 ### nil TakeScreenShot() {#nil-TakeScreenShot}
 
 ### string GetCredits() {#string-GetCredits}
+
+### string GetSystemConsole() {#string-GetSystemConsole}
+
+### string GetSystemOutput() {#string-GetSystemOutput}
+
+### nil CopyToClipboard(string) {#nil-CopyToClipboard-string}
+
+### const char __tostring() {#const-char-tostring}
 
 ## List of Properties
 
