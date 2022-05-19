@@ -8,16 +8,20 @@ id: VoxelDataResource
 ## Methods
 
 ### string Save(string, bool) {#string-Save-string-bool}
+save voxel data in AM file
 
 ## Properties
 
 ### bool isEditable {#bool-isEditable}
+returns false if loaded as aevv
 
 ### bool isSaved {#bool-isSaved}
+returns true if data was modified
 
 ### bool hasAnyVoxels {#bool-hasAnyVoxels}
 
 ### float volumePerc {#float-volumePerc}
+Approximate. Quickly count non-zero blocks of voxel object. Block size is 8x8x8. Block can be fully filled or just 1 voxel
 
 ### bool useContent {#bool-useContent}
 

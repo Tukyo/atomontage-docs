@@ -14,16 +14,20 @@ id: Collision
 ## Methods
 
 ### table Raycast() {#table-Raycast}
+use rayPos, rayDir, returns table of Hit values or empty table for no hit
 
 ### table Raycast(Vec3, Vec3) {#table-Raycast-Vec3-Vec3}
+use rayPos, rayDir, returns table of Hit values or empty table for no hit
 
 ### bool Check() {#bool-Check}
+checks collision between shape and geometry passed by filter
 
 ## Properties
 
 ### Filter filter {#Filter-filter}
 
 ### int maxHitCount {#int-maxHitCount}
+doesn't influence result, just limits returned hits table size
 
 ### Shape shape {#Shape-shape}
 
