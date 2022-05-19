@@ -259,6 +259,18 @@ local emmyDefaultLines = [[
 ---| '"Y"'
 ---| '"Z"'
 
+--- @class TraceRayParams:table
+--- @field Origin Vec3 
+--- @field Dir Vec3
+--- @field TraceAtlas boolean
+--- @field TraceCommon boolean
+--- @field ForceComponents VoxelRender[]
+--- @field IgnoreComponents VoxelRender[]
+
+--- @param p1 TraceRayParams
+--- @return Hit[]
+function Scene:TraceRay(p1) end
+
 --- @return Filter
 function Filter.new() end
 
@@ -267,6 +279,16 @@ function Collision.new() end
 
 --- @return VoxelEdit
 function VoxelEdit.new() end
+
+
+--- @return Hit[]
+function Collision:Raycast() end
+
+--- @param p1 Vec3
+--- @param p2 Vec3
+--- @return Hit[]
+function Collision:Raycast(p1, p2) end
+
 
 --- @generic T:Component
 --- @param type `T`|componentType

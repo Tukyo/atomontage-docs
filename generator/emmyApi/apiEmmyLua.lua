@@ -239,6 +239,18 @@
 ---| '"Y"'
 ---| '"Z"'
 
+--- @class TraceRayParams:table
+--- @field Origin Vec3 
+--- @field Dir Vec3
+--- @field TraceAtlas boolean
+--- @field TraceCommon boolean
+--- @field ForceComponents VoxelRender[]
+--- @field IgnoreComponents VoxelRender[]
+
+--- @param p1 TraceRayParams
+--- @return Hit[]
+function Scene:TraceRay(p1) end
+
 --- @return Filter
 function Filter.new() end
 
@@ -247,6 +259,16 @@ function Collision.new() end
 
 --- @return VoxelEdit
 function VoxelEdit.new() end
+
+
+--- @return Hit[]
+function Collision:Raycast() end
+
+--- @param p1 Vec3
+--- @param p2 Vec3
+--- @return Hit[]
+function Collision:Raycast(p1, p2) end
+
 
 --- @generic T:Component
 --- @param type `T`|componentType
@@ -1002,7 +1024,9 @@ function Client:__tostring() end
 --- @field shape Shape
 --- @field rayPos Vec3
 --- @field rayDir Vec3
-Collision = {}
+Collision = {
+	maxHitCount = nil, ---doesn't influence result, just limits returned hits table size
+}
 
 --- @return Collision
 function Collision() end
@@ -1010,14 +1034,29 @@ function Collision() end
 --- @return Collision
 function Collision() end
 
+--[[
+use rayPos, rayDir, returns table of Hit values or empty table for no hit
+
+[View Documentation](https://docs.atomontage.com/api/Collision#table-Raycast)
+]]
 --- @return table
 function Collision:Raycast() end
 
+--[[
+use rayPos, rayDir, returns table of Hit values or empty table for no hit
+
+[View Documentation](https://docs.atomontage.com/api/Collision#table-Raycast-Vec3-Vec3)
+]]
 --- @param p1 Vec3
 --- @param p2 Vec3
 --- @return table
 function Collision:Raycast(p1, p2) end
 
+--[[
+checks collision between shape and geometry passed by filter
+
+[View Documentation](https://docs.atomontage.com/api/Collision#bool-Check)
+]]
 --- @return boolean
 function Collision:Check() end
 
@@ -1198,7 +1237,10 @@ function Config:GetAllValuesStringified(p1) end
 --- @field useTmp boolean
 --- @field ignoreList table
 --- @field forceList table
-Filter = {}
+Filter = {
+	ignoreList = nil, ---contains objects
+	forceList = nil, ---contains objects
+}
 
 --- @return Filter
 function Filter() end
@@ -6156,7 +6198,11 @@ function VoxelDB:GetCenter() end
 --- @field copyOnWrite boolean
 --- @field type string
 --- @field object Object
-VoxelData = {}
+VoxelData = {
+	resource = nil, ---resource file name
+	voxelData = nil, ---shared voxel data
+	copyOnWrite = nil, ---make local copy of voxel data resource if edited 
+}
 
 --- @param p1 VoxelData
 --- @param p2 VoxelData
@@ -6175,8 +6221,17 @@ function VoxelData:__eq(p1, p2) end
 --- @field hasAnyVoxels boolean
 --- @field volumePerc number
 --- @field useContent boolean
-VoxelDataResource = {}
+VoxelDataResource = {
+	isEditable = nil, ---returns false if loaded as aevv
+	isSaved = nil, ---returns true if data was modified
+	volumePerc = nil, ---Approximate. Quickly count non-zero blocks of voxel object. Block size is 8x8x8. Block can be fully filled or just 1 voxel
+}
 
+--[[
+save voxel data in AM file
+
+[View Documentation](https://docs.atomontage.com/api/VoxelDataResource#string-Save-string-bool)
+]]
 --- @param p1 string
 --- @param p2 boolean
 --- @return string
