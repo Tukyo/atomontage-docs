@@ -1948,7 +1948,11 @@ function MeshData:__eq(p1, p2) end
 --- @field dynamic boolean
 --- @field streamed boolean
 --- @field topology PrimitiveTopology
-MeshDataBuilder = {}
+MeshDataBuilder = {
+	static = nil, ---Hint for opengl/vulkan about how often you change the geometry (static = once, dynamic=more often, streamed = each frame)
+	dynamic = nil, ---Hint for opengl/vulkan about how often you change the geometry (static = once, dynamic=more often, streamed = each frame)
+	streamed = nil, ---Hint for opengl/vulkan about how often you change the geometry (static = once, dynamic=more often, streamed = each frame)
+}
 
 --- @return MeshDataBuilder
 function MeshDataBuilder() end
@@ -6179,7 +6183,9 @@ VoxelInspectData = {}
 --- @field sync boolean
 --- @field enabled boolean
 --- @field outline boolean
-VoxelRender = {}
+VoxelRender = {
+	enabled = nil, ---if Enabled is switched off on server, then the object becomes invisible on all clients, or it's not streamed to clients.each client can enable/disable rendering of VRC locally
+}
 
 --- @param p1 VoxelRender
 --- @param p2 VoxelRender

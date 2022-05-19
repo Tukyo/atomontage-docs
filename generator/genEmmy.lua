@@ -301,85 +301,9 @@ function genEmmy:generateEmmyLua(file, name, intro, finalMethods, finalPropertie
     local className = util:firstToUpper(name)
     local docsPath = ""
     self:writeClassHeader(file, className, intro, docsPath)
-    
-    --props
-    for i, prop in ipairs(finalProperties) do
-        local header = prop.entry[1]
-        --### Vec3 position {#Vec3-position}
-        header = header:gsub("const ", "") --for now just remove that
-        local  _, _, returnType, name = string.find(header, "### (%S+)%s(%S+)%s*")
-        assert(returnType, "err")
-        returnType = self:convertToEmmyLuaType(returnType)
-        file:write("--- @field ",name," ",returnType, "\n")
-    end
-    file:write(className," = {}", "\n\n")
-
-    --methods
-    for i, prop in ipairs(finalMethods) do
-        local lines = prop.entry
-        local header = lines[1]
-        header = header:gsub("const ", "") --for now just remove that
-        local  _, _, returnType, name, paramsStr = string.find(header, "### (%w*)%s?(%S*)%((.*)%).+")
-        local params = {}
-        assert(paramsStr, "header contains illegal characters: "..header)
-        for word in string.gmatch(paramsStr, '%s?([^,]+)') do
-            local  _, _, ptype, name = string.find(word, "(%S*)%s?(%S*)")
-            if name == "" then name = nil end
-            table.insert(params, {ptype, name})
-        end
-        
-        --write function documentation 
-        if (util:hasDocumentation(lines)) then
-            file:write("--[[", "\n")
-            for i = 2, #lines do
-                local line = lines[i]
-                --title= not supported, strip out
-                local  hasTitle = string.find(line, "```lua title=")
-                if (hasTitle) then line = "```lua" end
-                line = line:gsub("bool", "boolean")
-                file:write(line, "\n")
-            end
-            local  _, _, headingId = string.find(header, "{(%S*)}")
-            local uri = "https://docs.atomontage.com/api/"..className..headingId
-            file:write("[View Documentation](",uri,")", "\n")
-            file:write("]]", "\n")
-        end
-        
-        --is constructor
-        local isConstructor = name == ""
-        if isConstructor then
-            name = returnType
-            returnType = className
-        end
-        
-        --write function
-        local paramNames = {}
-        for i, info in ipairs(params) do
-            local paramType = info[1]
-            local paramName = info[2] or ("p"..i) 
-            paramType = self:convertToEmmyLuaType(paramType)
-            -- @param name type info
-            if paramType == "..." then
-                --TODO for now just 'any' but might need to support specific type or something like @alias primitives
-                paramName = "..."
-                file:write("--- @vararg any", "\n")
-            else
-                file:write("--- @param ",paramName," ",paramType, "\n")
-            end
-            table.insert(paramNames, paramName)
-        end
-        local paramNamesStr = table.concat(paramNames, ", ") 
-        returnType = self:convertToEmmyLuaType(returnType)
-        file:write("--- @return ",returnType, "\n")
-        if (isConstructor) then
-            file:write("function ",name,"(",paramNamesStr,") end", "\n\n")
-        else
-            file:write("function ",className,":",name,"(",paramNamesStr,") end", "\n\n")
-        end
-    end
-    
+    self:writeProps(file, className, finalProperties)
+    self:writeMethods(file, className, finalMethods)
 end
-
 
 function genEmmy:writeClassHeader(file, className, documentation, docsPath)
     --write class documentation
@@ -401,6 +325,109 @@ function genEmmy:writeClassHeader(file, className, documentation, docsPath)
     end
 
     file:write("--- @class ",className, "\n")
+end
+
+function genEmmy:writeProps(file, className, finalProperties)
+    --props
+    for i, prop in ipairs(finalProperties) do
+        local header = prop.entry[1]
+        --### Vec3 position {#Vec3-position}
+        header = header:gsub("const ", "") --for now just remove that
+        local _, _, returnType, name = string.find(header, "### (%S+)%s(%S+)%s*")
+        assert(returnType, "err")
+        returnType = self:convertToEmmyLuaType(returnType)
+        file:write("--- @field ", name, " ", returnType, "\n")
+    end
+    --file:write(className," = {}", "\n\n")
+
+    --TEMP write table with contents (workaround because comments dont work behind @field)
+    local lines = {}
+    for i, prop in ipairs(finalProperties) do
+        local hasComment = util:hasDocumentation(prop.entry)
+        if hasComment then
+            local comment = util:getDocumentation(prop.entry)
+            local header = prop.entry[1]
+            header = header:gsub("const ", "") --for now just remove that
+            local _, _, returnType, name = string.find(header, "### (%S+)%s(%S+)%s*")
+            local line = table.concat({"\t", name, " = nil, ", "---", comment, "\n"})
+            table.insert(lines, line)
+        end
+    end
+    if next(lines) then
+        file:write(className, " = {", "\n")
+        for i, line in ipairs(lines) do
+            file:write(line)
+        end
+        file:write("}", "\n\n")
+    else
+        file:write(className, " = {}", "\n\n")
+    end
+end
+
+function genEmmy:writeMethods(file, className, finalMethods)
+    --methods
+    for i, prop in ipairs(finalMethods) do
+        local lines = prop.entry
+        local header = lines[1]
+        header = header:gsub("const ", "") --for now just remove that
+        local _, _, returnType, name, paramsStr = string.find(header, "### (%w*)%s?(%S*)%((.*)%).+")
+        local params = {}
+        assert(paramsStr, "header contains illegal characters: " .. header)
+        for word in string.gmatch(paramsStr, '%s?([^,]+)') do
+            local _, _, ptype, name = string.find(word, "(%S*)%s?(%S*)")
+            if name == "" then name = nil end
+            table.insert(params, { ptype, name })
+        end
+
+        --write function documentation
+        if (util:hasDocumentation(lines)) then
+            file:write("--[[", "\n")
+            for i = 2, #lines do
+                local line = lines[i]
+                --title= not supported, strip out
+                local hasTitle = string.find(line, "```lua title=")
+                if (hasTitle) then line = "```lua" end
+                line = line:gsub("bool", "boolean")
+                file:write(line, "\n")
+            end
+            local _, _, headingId = string.find(header, "{(%S*)}")
+            local uri = "https://docs.atomontage.com/api/" .. className .. headingId
+            file:write("[View Documentation](", uri, ")", "\n")
+            file:write("]]", "\n")
+        end
+
+        --is constructor
+        local isConstructor = name == ""
+        if isConstructor then
+            name = returnType
+            returnType = className
+        end
+
+        --write function
+        local paramNames = {}
+        for i, info in ipairs(params) do
+            local paramType = info[1]
+            local paramName = info[2] or ("p" .. i)
+            paramType = self:convertToEmmyLuaType(paramType)
+            -- @param name type info
+            if paramType == "..." then
+                --TODO for now just 'any' but might need to support specific type or something like @alias primitives
+                paramName = "..."
+                file:write("--- @vararg any", "\n")
+            else
+                file:write("--- @param ", paramName, " ", paramType, "\n")
+            end
+            table.insert(paramNames, paramName)
+        end
+        local paramNamesStr = table.concat(paramNames, ", ")
+        returnType = self:convertToEmmyLuaType(returnType)
+        file:write("--- @return ", returnType, "\n")
+        if (isConstructor) then
+            file:write("function ", name, "(", paramNamesStr, ") end", "\n\n")
+        else
+            file:write("function ", className, ":", name, "(", paramNamesStr, ") end", "\n\n")
+        end
+    end
 end
 
 --TODO maybe docs should use samd names?

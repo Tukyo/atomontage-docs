@@ -26,6 +26,19 @@ function util:hasDocumentation(lines)
     return hasDocumentation
 end
 
+--get documentation without header as string for now (later consider new lines)
+function util:getDocumentation(lines)
+    local res = {}
+    for i, str in ipairs(lines) do
+        if i> 1 and str ~= "" then
+            table.insert(res, str)
+        end
+    end
+    if next(res) then
+        return table.concat(res)
+    end
+end
+
 function util:file_exists(name)
    local f=io.open(name,"r")
    if f~=nil then io.close(f) return true else return false end
