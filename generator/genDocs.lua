@@ -351,21 +351,18 @@ function genDocs:generateClassFile(name, class, onClient, onServer)
         for i, v in ipairs(finalMethods) do
             local lines = v.entry
             --make all kinds of function type headers
-            if not wroteMethods then
-                local isMetamethod = lines[1]:find("__")
-                local isConstructor = lines[1]:find(constructorStrPart, 1, true)
-                if not wroteConstructors and isConstructor then
-                    file:write("## List of Constructors", "\n\n")
-                    wroteConstructors = true
-                end
-                if not wroteMetamethods and isMetamethod then
-                    file:write("## List of Metamethods", "\n\n")
-                    wroteMetamethods = true
-                end
-                if not wroteMethods and not (isConstructor or isMetamethod) then
-                    file:write("## List of Methods", "\n\n")
-                    wroteMethods = true
-                end
+            local isMetamethod = lines[1]:find("__")
+            local isConstructor = lines[1]:find(constructorStrPart, 1, true)
+            --TODO to order of bindings determines the order of headings, maybe sort
+            if not wroteConstructors and isConstructor then
+                file:write("## List of Constructors", "\n\n")
+                wroteConstructors = true
+            elseif not wroteMetamethods and isMetamethod then
+                file:write("## List of Metamethods", "\n\n")
+                wroteMetamethods = true
+            elseif not wroteMethods and not (isConstructor or isMetamethod) then
+                file:write("## List of Methods", "\n\n")
+                wroteMethods = true
             end
             for i, line in ipairs(lines) do
                 file:write(line, "\n")
