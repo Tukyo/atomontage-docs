@@ -381,16 +381,16 @@ function AssetManager:GetFilePath(p1) end
 Box = {}
 
 --- @return Shape
-function Box:new() end
+function Box.new() end
 
 --- @param p1 Vec3
 --- @param p2 Vec3
 --- @return Shape
-function Box:new(p1, p2) end
+function Box.new(p1, p2) end
 
 --- @param p1 Vec3
 --- @return Shape
-function Box:new(p1) end
+function Box.new(p1) end
 
 --[[
 `Client`
@@ -551,31 +551,31 @@ function CameraComponent:WorldToScreen3f(p1) end
 Capsule = {}
 
 --- @return Shape
-function Capsule:new() end
+function Capsule.new() end
 
 --- @param p1 Vec3
 --- @param p2 number
 --- @return Shape
-function Capsule:new(p1, p2) end
+function Capsule.new(p1, p2) end
 
 --- @param p1 Vec3
 --- @return Shape
-function Capsule:new(p1) end
+function Capsule.new(p1) end
 
 --- @return Shape
-function Capsule:new() end
+function Capsule.new() end
 
 --- @param p1 Vec3
 --- @param p2 Vec3
 --- @param p3 number
 --- @param p4 number
 --- @return Shape
-function Capsule:new(p1, p2, p3, p4) end
+function Capsule.new(p1, p2, p3, p4) end
 
 --- @param p1 Vec3
 --- @param p2 Vec3
 --- @return Shape
-function Capsule:new(p1, p2) end
+function Capsule.new(p1, p2) end
 
 --[[
 `Client`
@@ -2834,16 +2834,16 @@ SkyboxComponent = {}
 Sphere = {}
 
 --- @return Shape
-function Sphere:new() end
+function Sphere.new() end
 
 --- @param p1 Vec3
 --- @param p2 number
 --- @return Shape
-function Sphere:new(p1, p2) end
+function Sphere.new(p1, p2) end
 
 --- @param p1 Vec3
 --- @return Shape
-function Sphere:new(p1) end
+function Sphere.new(p1) end
 
 --[[
 `Client`

@@ -497,7 +497,11 @@ function genEmmy:writeMethods(file, className, finalMethods)
         if (isConstructor) then
             file:write("function ", name, "(", paramNamesStr, ") end", "\n\n")
         else
-            file:write("function ", className, ":", name, "(", paramNamesStr, ") end", "\n\n")
+            if name == "new" then
+                file:write("function ", className, ".", name, "(", paramNamesStr, ") end", "\n\n")
+            else
+                file:write("function ", className, ":", name, "(", paramNamesStr, ") end", "\n\n")
+            end
         end
     end
 end
