@@ -20,7 +20,17 @@ function Object:GetComponentsByType(name) end
 local emmyDefaultLines = [[
 --- @meta
 
---- @alias serializableType nil|boolean|number|string|Vec2|Vec2i|Vec3|Vec3i|Mat4|Quat
+--- @alias serializableType
+---| nil
+---| boolean
+---| number
+---| string
+---| Vec2
+---| Vec2i
+---| Vec3
+---| Vec3i
+---| Mat4
+---| Quat
 
 --- @alias mouseButton
 ---| 1 # left button
@@ -249,6 +259,11 @@ local emmyDefaultLines = [[
 ---| '"Y"'
 ---| '"Z"'
 
+--- @generic T:Component
+--- @param type `T`|componentType
+--- @return T
+function Object:AddComponent(type) end
+
 --- @generic ComponentType: Component
 --- @param name `ComponentType`|componentType
 --- @return ComponentType
@@ -258,6 +273,63 @@ function Object:GetComponentByType(name) end
 --- @param name `ComponentType`|componentType
 --- @return ComponentType[]
 function Object:GetComponentsByType(name) end
+
+
+--- @param p1 string
+--- @return Object[]
+function Scene:GetObjectsByName(p1) end
+
+--- @return Object[]
+function Scene:GetAllObjects() end
+
+--- @return Object[]
+function Scene:GetRootObjects() end
+
+--- @param p1 string
+--- @return Object[]
+function Scene:GetObjectsByTag(p1) end
+
+
+--- @return number[]
+function Server:GetClients() end
+
+
+--- @param p1 integer
+--- @return Transform
+function Transform:GetChild(p1) end
+
+--- @param p1 string
+--- @return Transform
+function Transform:GetChild(p1) end
+
+
+--- @param p1 keyCode
+--- @return boolean
+function Input:KeyDown(p1) end
+
+--- @param p1 keyCode
+--- @return boolean
+function Input:Key(p1) end
+
+--- @param p1 keyCode
+--- @return boolean
+function Input:KeyUp(p1) end
+
+--- @return keyCode[]
+function Input:KeyCombosDown() end
+
+--- @param mouseButton mouseButton
+--- @return boolean
+function Input:MouseButtonDown(mouseButton) end
+
+--- @param p1 mouseButton
+--- @return boolean
+function Input:MouseButton(p1) end
+
+--- @param p1 mouseButton
+--- @return boolean
+function Input:MouseButtonUp(p1) end
+
 ]]
 
 function genEmmy:createFile(bindingsServer, bindingsClient)
