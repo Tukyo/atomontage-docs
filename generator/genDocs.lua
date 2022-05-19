@@ -355,13 +355,13 @@ function genDocs:generateClassFile(name, class, onClient, onServer)
             local isConstructor = lines[1]:find(constructorStrPart, 1, true)
             --TODO to order of bindings determines the order of headings, maybe sort
             if not wroteConstructors and isConstructor then
-                file:write("## List of Constructors", "\n\n")
+                file:write("## Constructors", "\n\n")
                 wroteConstructors = true
             elseif not wroteMetamethods and isMetamethod then
-                file:write("## List of Metamethods", "\n\n")
+                file:write("## Metamethods", "\n\n")
                 wroteMetamethods = true
             elseif not wroteMethods and not (isConstructor or isMetamethod) then
-                file:write("## List of Methods", "\n\n")
+                file:write("## Methods", "\n\n")
                 wroteMethods = true
             end
             for i, line in ipairs(lines) do
@@ -370,7 +370,7 @@ function genDocs:generateClassFile(name, class, onClient, onServer)
         end
     end
     if (class.Properties) then
-        file:write("## List of Properties", "\n\n")
+        file:write("## Properties", "\n\n")
         for i, v in ipairs(finalProperties) do
             local lines = v.entry
             for i, line in ipairs(lines) do
@@ -600,12 +600,12 @@ function genDocs:getSections(filename)
         --group by sections
         if util:stringStartsWith(line, "## ") then
             addEntry(line)
-            if util:stringStartsWith(line, "## List of Constructors") 
-                or util:stringStartsWith(line, "## List of Metamethods") 
-                or util:stringStartsWith(line, "## List of Methods") 
+            if util:stringStartsWith(line, "## Constructors") 
+                or util:stringStartsWith(line, "## Metamethods") 
+                or util:stringStartsWith(line, "## Methods") 
             then
                 currentGroup = methods
-            elseif (util:stringStartsWith(line, "## List of Properties")) then
+            elseif (util:stringStartsWith(line, "## Properties")) then
                 currentGroup = properties
             end
             
