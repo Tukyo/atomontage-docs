@@ -17,26 +17,26 @@ All script methods are optional.
 | `Detach(self)` | Called on script release. Usually on object destruction or to release old script instance during change of `.instance` or `.file` property |
 
 
-```lua title="component.lua"
-local script = {}
+```lua title="script.lua"
+local self = {}
 
-function script:Attach()
+function self:Attach()
    print("attached") 
 end
 
-function script:Detach()
+function self:Detach()
    print("detached") 
 end
 
-function script:Start()
+function self:Start()
    print("starting") 
 end
 
-function script:Update(dt, t)
+function self:Update(dt, t)
    
 end
 
-return script
+return self
 ```
 
 
