@@ -1,6 +1,21 @@
 # Editor Basics
 
-## Add Objects to the Hierachy
+## Camera Controls
+The camera has two modes `Fly` and `Orbit`. 
+Fly Mode allows for free control of the camera. 
+Orbit Mode focuses and rotates the camera around one point. 
+Use the mouse buttons, mouse wheel and `WASD` to control the camera. Press `Shift` to move faster. 
+The tools panel has a `Reset Position` button to reset the camera.
+
+## Editing Voxels
+Edit voxels with the tools in the `Brush` section of the tools panel in the top left. 
+The `Paint` brush has various blend modes which you may know from Photoshop. See a list of explanations ![here](https://photoshoptrainingchannel.com/blending-modes-explained/#normal-blending-modes).
+![Panel](/img/editor-basics/leftPanel.png)
+
+Save voxels edits of the terrain by pressing `Save Voxel Data` in the dev menu on the right.
+![Save](/img/editor-basics/saveVoxels.png)
+
+## Adding Objects to the Hierachy
 Press hierachy server in the top bar or `Ctrl + H` to open the hierachy. 
  * Click `+` to add a new object
  * Now click `+ Add` to add a `Voxel Data` and `Voxel Render` component
@@ -15,7 +30,7 @@ Press hierachy server in the top bar or `Ctrl + H` to open the hierachy.
 This object can also be edited with the brush tools.
 You can now move the object with the gizmos. You can select any object in the hierachy to move it. Duplicate a selected object with `Ctrl + D`. Press `Ctrl + F` for a list of other available shortcuts.
 
-![Hierachy](/img/editor-basics/gizmo.png)
+![Gizmo](/img/editor-basics/gizmo.png)
 
 ## Resetting
 If anything goes wrong you can reset the editor with `Ctrl + R`
