@@ -614,11 +614,6 @@ function Capsule.new(p1, p2) end
 This class is only available on client
 :::
 
-
-blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab
-
-blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab blallblalb lalal bal babl aabab
-
 [View Documentation](https://docs.atomontage.com/api/Client)
 ]]
 --- @class Client
@@ -1449,6 +1444,15 @@ LightingUpdate = {}
 [View Documentation](https://docs.atomontage.com/api/Mat3)
 ]]
 --- @class Mat3
+--- @operator add(Mat3):Mat3
+--- @operator add(number):Mat3
+--- @operator sub(Mat3):Mat3
+--- @operator sub(number):Mat3
+--- @operator mul(Mat3):Mat3
+--- @operator mul(number):Mat3
+--- @operator div(Mat3):Mat3
+--- @operator div(number):Mat3
+--- @operator unm(Mat3):Mat3
 --- @field xaxis Vec3
 --- @field yaxis Vec3
 --- @field zaxis Vec3
@@ -1661,6 +1665,15 @@ function Mat3:IsAnyNaN() end
 [View Documentation](https://docs.atomontage.com/api/Mat4)
 ]]
 --- @class Mat4
+--- @operator add(Mat4):Mat4
+--- @operator add(number):Mat4
+--- @operator sub(Mat4):Mat4
+--- @operator sub(number):Mat4
+--- @operator mul(Mat4):Mat4
+--- @operator mul(number):Mat4
+--- @operator div(Mat4):Mat4
+--- @operator div(number):Mat4
+--- @operator unm(Mat4):Mat4
 --- @field xaxis Vec3
 --- @field yaxis Vec3
 --- @field zaxis Vec3
@@ -2276,6 +2289,15 @@ function Object3D:SetPosition(p1) end
 [View Documentation](https://docs.atomontage.com/api/Quat)
 ]]
 --- @class Quat
+--- @operator add(Quat):Quat
+--- @operator sub(Quat):Quat
+--- @operator mul(Quat):Quat
+--- @operator mul(Vec4):Vec4
+--- @operator mul(Vec3):Vec3
+--- @operator mul(number):Quat
+--- @operator div(number):Quat
+--- @operator pow(number):Quat
+--- @operator unm(Quat):Quat
 --- @field x number
 --- @field y number
 --- @field z number
@@ -2651,25 +2673,25 @@ All script methods are optional.
 
 
 ```lua
-local script = {}
+local self = {}
 
-function script:Attach()
+function self:Attach()
    print("attached") 
 end
 
-function script:Detach()
+function self:Detach()
    print("detached") 
 end
 
-function script:Start()
+function self:Start()
    print("starting") 
 end
 
-function script:Update(dt, t)
+function self:Update(dt, t)
    
 end
 
-return script
+return self
 ```
 
 
@@ -3015,6 +3037,25 @@ function UIItem:GetLabel() end
 [View Documentation](https://docs.atomontage.com/api/Vec2)
 ]]
 --- @class Vec2
+--- @operator add(Vec2):Vec2
+--- @operator add(Vec2i):Vec2
+--- @operator add(number):Vec2
+--- @operator sub(Vec2):Vec2
+--- @operator sub(Vec2i):Vec2
+--- @operator sub(number):Vec2
+--- @operator mul(Vec2):Vec2
+--- @operator mul(Vec2i):Vec2
+--- @operator mul(number):Vec2
+--- @operator div(Vec2):Vec2
+--- @operator div(Vec2i):Vec2
+--- @operator div(number):Vec2
+--- @operator mod(Vec2):Vec2
+--- @operator mod(Vec2i):Vec2
+--- @operator mod(number):Vec2
+--- @operator pow(Vec2):Vec2
+--- @operator pow(Vec2i):Vec2
+--- @operator pow(number):Vec2
+--- @operator unm(Vec2):Vec2
 --- @field x number
 --- @field y number
 --- @field zero Vec2
@@ -3344,6 +3385,36 @@ function Vec2:__name(p1) end
 [View Documentation](https://docs.atomontage.com/api/Vec2i)
 ]]
 --- @class Vec2i
+--- @operator add(Vec2i):Vec2i
+--- @operator add(Vec2):Vec2
+--- @operator add(integer):Vec2i
+--- @operator sub(Vec2i):Vec2i
+--- @operator sub(Vec2):Vec2
+--- @operator sub(integer):Vec2i
+--- @operator mul(Vec2i):Vec2i
+--- @operator mul(Vec2):Vec2
+--- @operator mul(integer):Vec2i
+--- @operator div(Vec2i):Vec2i
+--- @operator div(Vec2):Vec2
+--- @operator div(integer):Vec2i
+--- @operator mod(Vec2i):Vec2i
+--- @operator mod(Vec2):Vec2
+--- @operator mod(integer):Vec2i
+--- @operator pow(Vec2i):Vec2i
+--- @operator pow(Vec2):Vec2
+--- @operator pow(integer):Vec2i
+--- @operator unm(Vec2i):Vec2i
+--- @operator band(Vec2i):Vec2i
+--- @operator band(integer):Vec2i
+--- @operator bor(Vec2i):Vec2i
+--- @operator bor(integer):Vec2i
+--- @operator bxor(Vec2i):Vec2i
+--- @operator bxor(integer):Vec2i
+--- @operator bnot(Vec2i):Vec2i
+--- @operator shl(Vec2i):Vec2i
+--- @operator shl(integer):Vec2i
+--- @operator shr(Vec2i):Vec2i
+--- @operator shr(integer):Vec2i
 --- @field x integer
 --- @field y integer
 --- @field zero Vec2i
@@ -3686,25 +3757,30 @@ function Vec2i:__name(p1) end
 `Client`
 `Server`
 
-Representation of 3D vectors and points.
-
-This structure is used throughout Atomontage to pass 3D positions and directions around. It also contains functions for doing common vector operations.
-
-:::tip My tip
-
-Wwo!!
-
-:::
-
-:::danger Take care
-
-This action is dangerous
-
-:::
+3D vectors and points.
 
 [View Documentation](https://docs.atomontage.com/api/Vec3)
 ]]
 --- @class Vec3
+--- @operator add(Vec3):Vec3
+--- @operator add(Vec3i):Vec3
+--- @operator add(number):Vec3
+--- @operator sub(Vec3):Vec3
+--- @operator sub(Vec3i):Vec3
+--- @operator sub(number):Vec3
+--- @operator mul(Vec3):Vec3
+--- @operator mul(Vec3i):Vec3
+--- @operator mul(number):Vec3
+--- @operator div(Vec3):Vec3
+--- @operator div(Vec3i):Vec3
+--- @operator div(number):Vec3
+--- @operator mod(Vec3):Vec3
+--- @operator mod(Vec3i):Vec3
+--- @operator mod(number):Vec3
+--- @operator pow(Vec3):Vec3
+--- @operator pow(Vec3i):Vec3
+--- @operator pow(number):Vec3
+--- @operator unm(Vec3):Vec3
 --- @field x number
 --- @field y number
 --- @field z number
@@ -4097,6 +4173,36 @@ function Vec3:__name(p1) end
 [View Documentation](https://docs.atomontage.com/api/Vec3i)
 ]]
 --- @class Vec3i
+--- @operator add(Vec3i):Vec3i
+--- @operator add(Vec3):Vec3
+--- @operator add(integer):Vec3i
+--- @operator sub(Vec3i):Vec3i
+--- @operator sub(Vec3):Vec3
+--- @operator sub(integer):Vec3i
+--- @operator mul(Vec3i):Vec3i
+--- @operator mul(Vec3):Vec3
+--- @operator mul(integer):Vec3i
+--- @operator div(Vec3i):Vec3i
+--- @operator div(Vec3):Vec3
+--- @operator div(integer):Vec3i
+--- @operator mod(Vec3i):Vec3i
+--- @operator mod(Vec3):Vec3
+--- @operator mod(integer):Vec3i
+--- @operator pow(Vec3i):Vec3i
+--- @operator pow(Vec3):Vec3
+--- @operator pow(integer):Vec3i
+--- @operator unm(Vec3i):Vec3i
+--- @operator band(Vec3i):Vec3i
+--- @operator band(integer):Vec3i
+--- @operator bor(Vec3i):Vec3i
+--- @operator bor(integer):Vec3i
+--- @operator bxor(Vec3i):Vec3i
+--- @operator bxor(integer):Vec3i
+--- @operator bnot(Vec3i):Vec3i
+--- @operator shl(Vec3i):Vec3i
+--- @operator shl(integer):Vec3i
+--- @operator shr(Vec3i):Vec3i
+--- @operator shr(integer):Vec3i
 --- @field x integer
 --- @field y integer
 --- @field z integer
@@ -4509,6 +4615,25 @@ function Vec3i:__name(p1) end
 [View Documentation](https://docs.atomontage.com/api/Vec4)
 ]]
 --- @class Vec4
+--- @operator add(Vec4):Vec4
+--- @operator add(Vec4i):Vec4
+--- @operator add(number):Vec4
+--- @operator sub(Vec4):Vec4
+--- @operator sub(Vec4i):Vec4
+--- @operator sub(number):Vec4
+--- @operator mul(Vec4):Vec4
+--- @operator mul(Vec4i):Vec4
+--- @operator mul(number):Vec4
+--- @operator div(Vec4):Vec4
+--- @operator div(Vec4i):Vec4
+--- @operator div(number):Vec4
+--- @operator mod(Vec4):Vec4
+--- @operator mod(Vec4i):Vec4
+--- @operator mod(number):Vec4
+--- @operator pow(Vec4):Vec4
+--- @operator pow(Vec4i):Vec4
+--- @operator pow(number):Vec4
+--- @operator unm(Vec4):Vec4
 --- @field x number
 --- @field y number
 --- @field z number
@@ -5112,6 +5237,36 @@ function Vec4:__name(p1) end
 [View Documentation](https://docs.atomontage.com/api/Vec4i)
 ]]
 --- @class Vec4i
+--- @operator add(Vec4i):Vec4i
+--- @operator add(Vec4):Vec4
+--- @operator add(integer):Vec4i
+--- @operator sub(Vec4i):Vec4i
+--- @operator sub(Vec4):Vec4
+--- @operator sub(integer):Vec4i
+--- @operator mul(Vec4i):Vec4i
+--- @operator mul(Vec4):Vec4
+--- @operator mul(integer):Vec4i
+--- @operator div(Vec4i):Vec4i
+--- @operator div(Vec4):Vec4
+--- @operator div(integer):Vec4i
+--- @operator mod(Vec4i):Vec4i
+--- @operator mod(Vec4):Vec4
+--- @operator mod(integer):Vec4i
+--- @operator pow(Vec4i):Vec4i
+--- @operator pow(Vec4):Vec4
+--- @operator pow(integer):Vec4i
+--- @operator unm(Vec4i):Vec4i
+--- @operator band(Vec4i):Vec4i
+--- @operator band(integer):Vec4i
+--- @operator bor(Vec4i):Vec4i
+--- @operator bor(integer):Vec4i
+--- @operator bxor(Vec4i):Vec4i
+--- @operator bxor(integer):Vec4i
+--- @operator bnot(Vec4i):Vec4i
+--- @operator shl(Vec4i):Vec4i
+--- @operator shl(integer):Vec4i
+--- @operator shr(Vec4i):Vec4i
+--- @operator shr(integer):Vec4i
 --- @field x integer
 --- @field y integer
 --- @field z integer

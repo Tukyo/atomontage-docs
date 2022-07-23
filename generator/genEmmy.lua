@@ -404,6 +404,7 @@ function genEmmy:generateEmmyLua(file, name, intro, finalMethods, finalPropertie
     local className = util:firstToUpper(name)
     local docsPath = ""
     self:writeClassHeader(file, className, intro, docsPath)
+    self:writeOperators(file, className, finalMethods)
     self:writeProps(file, className, finalProperties)
     self:writeMethods(file, className, finalMethods)
 end
@@ -428,6 +429,61 @@ function genEmmy:writeClassHeader(file, className, documentation, docsPath)
     end
 
     file:write("--- @class ",className, "\n")
+end
+
+local operators = {
+    ["__unm"] = true,
+    ["__add"] = true,
+    ["__sub"] = true,
+    ["__mul"] = true,
+    ["__div"] = true,
+    ["__idiv"] = true,
+    ["__mod"] = true,
+    ["__pow"] = true,
+    ["__concat"] = true,
+    ["__band"] = true,
+    ["__bor"] = true,
+    ["__bxor"] = true,
+    ["__bnot"] = true,
+    ["__shl"] = true,
+    ["__shr"] = true,
+    --["__eq"] = true,
+    ["__lt"] = true,
+    ["__le"] = true,
+}
+
+function genEmmy:writeOperators(file, className, finalMethods)
+    for i, prop in ipairs(finalMethods) do
+        local lines = prop.entry
+        local header, returnType, name, params = genEmmy:dissectMethodEntry(lines)
+
+        if operators[name] then
+            local _, _, operation = string.find(name, "^__(%S+)")
+
+            --write function
+            local paramNames = {}
+            local paramTypes = {}
+            for i, info in ipairs(params) do
+                local paramType = info[1]
+                local paramName = info[2] or ("p" .. i)
+                assert(paramType ~= "...", "vararg unhandeled")
+                table.insert(paramTypes, paramType)
+                table.insert(paramNames, paramName)
+            end
+
+            --extension doesnt support other cases yet i.e. `number * Vec3` only `Vec3 * number`
+            local left = paramTypes[1]
+            local right = paramTypes[2]
+            assert(paramTypes[3] == nil)
+            local leftIsClass = left == className
+            if leftIsClass then
+                --Vec3f __div (Vec3f, Vec3f)
+                --@operator div(Vec3): Vec3
+                local param = right or left --in case of i.e. unm with only one param
+                file:write("--- @operator ", operation, "(", param, "):", returnType, "\n")
+            end
+        end
+    end
 end
 
 function genEmmy:writeProps(file, className, finalProperties)
@@ -471,17 +527,8 @@ function genEmmy:writeMethods(file, className, finalMethods)
     --methods
     for i, prop in ipairs(finalMethods) do
         local lines = prop.entry
-        local header = lines[1]
-        header = header:gsub("const ", "") --for now just remove that
-        local _, _, returnType, name, paramsStr = string.find(header, "### (%w*)%s?(%S*)%((.*)%).+")
-        local params = {}
-        assert(paramsStr, "header contains illegal characters: " .. header)
-        for word in string.gmatch(paramsStr, '%s?([^,]+)') do
-            local _, _, ptype, name = string.find(word, "(%S*)%s?(%S*)")
-            if name == "" then name = nil end
-            table.insert(params, { ptype, name })
-        end
-
+        local header, returnType, name, params = genEmmy:dissectMethodEntry(lines)
+        
         --write function documentation
         if (util:hasDocumentation(lines)) then
             file:write("--[[", "\n")
@@ -511,7 +558,6 @@ function genEmmy:writeMethods(file, className, finalMethods)
         for i, info in ipairs(params) do
             local paramType = info[1]
             local paramName = info[2] or ("p" .. i)
-            paramType = self:convertToEmmyLuaType(paramType)
             -- @param name type info
             if paramType == "..." then
                 --TODO for now just 'any' but might need to support specific type or something like @alias primitives
@@ -522,8 +568,8 @@ function genEmmy:writeMethods(file, className, finalMethods)
             end
             table.insert(paramNames, paramName)
         end
+
         local paramNamesStr = table.concat(paramNames, ", ")
-        returnType = self:convertToEmmyLuaType(returnType)
         file:write("--- @return ", returnType, "\n")
         if (isConstructor) then
             file:write("function ", name, "(", paramNamesStr, ") end", "\n\n")
@@ -535,6 +581,24 @@ function genEmmy:writeMethods(file, className, finalMethods)
             end
         end
     end
+end
+
+--split lines into info
+function genEmmy:dissectMethodEntry(lines)
+    local header = lines[1]
+    header = header:gsub("const ", "") --for now just remove that
+    local _, _, returnType, name, paramsStr = string.find(header, "### (%w*)%s?(%S*)%((.*)%).+")
+    local params = {}
+    assert(paramsStr, "header contains illegal characters: " .. header)
+    for word in string.gmatch(paramsStr, '%s?([^,]+)') do
+        local _, _, ptype, name = string.find(word, "(%S*)%s?(%S*)")
+        if name == "" then name = nil end
+        ptype = self:convertToEmmyLuaType(ptype)
+        table.insert(params, { ptype, name })
+    end
+
+    returnType = self:convertToEmmyLuaType(returnType)
+    return header, returnType, name, params
 end
 
 --TODO maybe docs should use samd names?

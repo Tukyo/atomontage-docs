@@ -535,9 +535,10 @@ function genDocs:addFrontMatter(filename, fileWrite)
         "---",
         "title: "..title,
         "id: "..id,
-        "---"
+        "---",
+        "\n"
     }
-    local str = table.concat(frontMatter, "\n") .. "\n\n"
+    local str = table.concat(frontMatter, "\n")
     fileWrite:write(str)
 end
 
