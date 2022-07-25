@@ -6529,7 +6529,7 @@ function VoxelRender:__eq(p1, p2) end
 --- @return nil
 function VoxelRender:RebuildLighting() end
 
---- @class AttachmentFlags
+--- @enum AttachmentFlags
 AttachmentFlags = {
 	-- test
 	Depth = 0,
@@ -6541,7 +6541,7 @@ AttachmentFlags = {
 	Color3 = 5,
 }
 
---- @class BlendFactor
+--- @enum BlendFactor
 BlendFactor = {
 	Zero = 0,
 	SrcColor = 1,
@@ -6564,7 +6564,7 @@ BlendFactor = {
 	OneMinusSrc1Alpha = 18,
 }
 
---- @class BlendMode
+--- @enum BlendMode
 BlendMode = {
 	Normal = 0,
 	Darken = 1,
@@ -6594,7 +6594,7 @@ BlendMode = {
 	Luminosity = 25,
 }
 
---- @class BlendOp
+--- @enum BlendOp
 BlendOp = {
 	Add = 0,
 	Subtract = 1,
@@ -6603,7 +6603,7 @@ BlendOp = {
 	Max = 4,
 }
 
---- @class CpuArch
+--- @enum CpuArch
 CpuArch = {
 	Unknown = 0,
 	X86 = 1,
@@ -6613,7 +6613,7 @@ CpuArch = {
 	Wasm = 5,
 }
 
---- @class CullMode
+--- @enum CullMode
 CullMode = {
 	None = 0,
 	Front = 1,
@@ -6621,14 +6621,14 @@ CullMode = {
 	FrontAndBack = 3,
 }
 
---- @class DepthBufferMode
+--- @enum DepthBufferMode
 DepthBufferMode = {
 	None = 0,
 	DepthOnly = 1,
 	DepthAndStencil = 2,
 }
 
---- @class DrawingCommandsFlags
+--- @enum DrawingCommandsFlags
 DrawingCommandsFlags = {
 	BaseVertex = 0,
 	BaseInstance = 1,
@@ -6638,13 +6638,13 @@ DrawingCommandsFlags = {
 	MultiBaseVertexBaseInstance = 5,
 }
 
---- @class FrontFaceWinding
+--- @enum FrontFaceWinding
 FrontFaceWinding = {
 	Clockwise = 0,
 	CounterClockwise = 1,
 }
 
---- @class Function
+--- @enum Function
 Function = {
 	Never = 0,
 	Less = 1,
@@ -6656,7 +6656,7 @@ Function = {
 	Lequal = 7,
 }
 
---- @class HitType
+--- @enum HitType
 HitType = {
 	Invalid = 0,
 	StaticCommon = 1,
@@ -6664,7 +6664,7 @@ HitType = {
 	ObjectVoxel = 3,
 }
 
---- @class LuaErrorType
+--- @enum LuaErrorType
 LuaErrorType = {
 	None = 0,
 	DoFile = 1,
@@ -6672,7 +6672,7 @@ LuaErrorType = {
 	UIAction = 3,
 }
 
---- @class Operation
+--- @enum Operation
 Operation = {
 	Keep = 0,
 	Zero = 1,
@@ -6684,7 +6684,7 @@ Operation = {
 	Invert = 7,
 }
 
---- @class PixelFormat
+--- @enum PixelFormat
 PixelFormat = {
 	Unknown = 0,
 	RGB888 = 1,
@@ -6730,14 +6730,14 @@ PixelFormat = {
 	Depth32Stencil8X24 = 41,
 }
 
---- @class PolygonMode
+--- @enum PolygonMode
 PolygonMode = {
 	Fill = 0,
 	Line = 1,
 	Point = 2,
 }
 
---- @class PrimitiveTopology
+--- @enum PrimitiveTopology
 PrimitiveTopology = {
 	Points = 0,
 	LineStrip = 1,
@@ -6747,7 +6747,7 @@ PrimitiveTopology = {
 	Triangles = 5,
 }
 
---- @class RendererStateFlags
+--- @enum RendererStateFlags
 RendererStateFlags = {
 	Shadows = 0,
 	Fog = 1,
@@ -6756,14 +6756,14 @@ RendererStateFlags = {
 	DepthPass = 4,
 }
 
---- @class ResourceUsage
+--- @enum ResourceUsage
 ResourceUsage = {
 	Static = 0,
 	Dynamic = 1,
 	Stream = 2,
 }
 
---- @class ShaderResourceType
+--- @enum ShaderResourceType
 ShaderResourceType = {
 	Unknown = 0,
 	Bool = 1,
@@ -6810,7 +6810,7 @@ ShaderResourceType = {
 	AccelerationStructure = 42,
 }
 
---- @class SharePermission
+--- @enum SharePermission
 SharePermission = {
 	View = 0,
 	Play = 1,
@@ -6818,7 +6818,7 @@ SharePermission = {
 	Copy = 3,
 }
 
---- @class System
+--- @enum System
 System = {
 	Unknown = 0,
 	Windows = 1,
@@ -6829,7 +6829,7 @@ System = {
 	Android = 6,
 }
 
---- @class TextureFiltering
+--- @enum TextureFiltering
 TextureFiltering = {
 	None = 0,
 	Linear = 1,
@@ -6838,14 +6838,14 @@ TextureFiltering = {
 	Anisotropic = 4,
 }
 
---- @class TextureWrappingMode
+--- @enum TextureWrappingMode
 TextureWrappingMode = {
 	ClampToEdge = 0,
 	Repeat = 1,
 	MirroredRepeat = 2,
 }
 
---- @class Type
+--- @enum Type
 Type = {
 	Unknown = 0,
 	Texture1D = 1,
@@ -6857,14 +6857,14 @@ Type = {
 	TextureCubeArray = 7,
 }
 
---- @class UIActionsPlace
+--- @enum UIActionsPlace
 UIActionsPlace = {
 	Client = 0,
 	Server = 1,
 	Inherited = 2,
 }
 
---- @class UIItemType
+--- @enum UIItemType
 UIItemType = {
 	Undefined = 0,
 	Window = 1,
@@ -6891,7 +6891,7 @@ UIItemType = {
 	Count = 22,
 }
 
---- @class UpdateFrequency
+--- @enum UpdateFrequency
 UpdateFrequency = {
 	Once = 0,
 	Frame = 1,
@@ -6899,7 +6899,7 @@ UpdateFrequency = {
 	ObjectDraw = 3,
 }
 
---- @class UsageFlagBits
+--- @enum UsageFlagBits
 UsageFlagBits = {
 	UsageTransferSrcBIT = 0,
 	UsageTransferDstBIT = 1,
@@ -6913,7 +6913,7 @@ UsageFlagBits = {
 	UsageFragmentDensityMapBIT = 9,
 }
 
---- @class VRControllerButton
+--- @enum VRControllerButton
 VRControllerButton = {
 	A = 0,
 	B = 1,
@@ -6922,7 +6922,7 @@ VRControllerButton = {
 	Shoulder = 4,
 }
 
---- @class VSyncMode
+--- @enum VSyncMode
 VSyncMode = {
 	Default = 0,
 	Enabled = 1,
@@ -6930,7 +6930,7 @@ VSyncMode = {
 	Adaptive = 3,
 }
 
---- @class VertexComponent
+--- @enum VertexComponent
 VertexComponent = {
 	Position0 = 0,
 	Position1 = 1,
@@ -6958,7 +6958,7 @@ VertexComponent = {
 	Data4 = 23,
 }
 
---- @class VertexComponentFormat
+--- @enum VertexComponentFormat
 VertexComponentFormat = {
 	Unknown = 0,
 	Int8 = 1,

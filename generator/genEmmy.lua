@@ -465,6 +465,7 @@ function genEmmy:addEnum(file, name, intro, finalRows)
     local docsPath = "enums/"
     local className = util:firstToUpper(name)
     self:writeClassHeader(file, className, intro, docsPath)
+    file:write("--- @enum ",className, "\n")
     
     --class table
     file:write(className, " = {", "\n")
@@ -484,6 +485,7 @@ function genEmmy:generateEmmyLua(file, name, intro, finalMethods, finalPropertie
     local className = util:firstToUpper(name)
     local docsPath = ""
     self:writeClassHeader(file, className, intro, docsPath)
+    file:write("--- @class ",className, "\n")
     self:writeOperators(file, className, finalMethods)
     self:writeProps(file, className, finalProperties)
     self:writeMethods(file, className, finalMethods)
@@ -507,8 +509,6 @@ function genEmmy:writeClassHeader(file, className, documentation, docsPath)
         file:write("[View Documentation](",url,")", "\n")
         file:write("]]", "\n")
     end
-
-    file:write("--- @class ",className, "\n")
 end
 
 local operators = {
