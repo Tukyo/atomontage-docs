@@ -342,6 +342,40 @@ function Input:MouseButton(p1) end
 function Input:MouseButtonUp(p1) end
 
 
+--- @param p1 Quat
+--- @param p2 Quat
+--- @param p3 number
+--- @return Quat
+function Quat.Lerp(p1, p2, p3) end
+
+--- @param p1 Quat
+--- @param p2 Quat
+--- @param p3 number
+--- @return Quat
+function Quat.Slerp(p1, p2, p3) end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 number
+--- @return Quat
+function Quat.Euler(p1, p2, p3) end
+
+--- @param p1 Vec3
+--- @return Quat
+function Quat.Euler(p1) end
+
+--- @param p1 number
+--- @param p2 Vec3
+--- @return Quat
+function Quat.AngleAxis(p1, p2) end
+
+--- @param p1 Vec3
+--- @param p2 Vec3
+--- @param p3 number
+--- @return Vec3
+function Vec3.Lerp(p1, p2, p3) end
+
+
 --- @alias componentType
 ---| "'CameraComponent'"
 ---| "'MeshData'"
