@@ -25,6 +25,10 @@ id: Transform
 
 ### Vec3 WorldToLocalVec(Vec3) {#Vec3-WorldToLocalVec-Vec3}
 
+### nil LookAt(Vec3) {#nil-LookAt-Vec3}
+
+### nil LookAt(Vec3, Vec3) {#nil-LookAt-Vec3-Vec3}
+
 ## Metamethods
 
 ### bool __eq(Transform, Transform) {#bool-eq-Transform-Transform}
@@ -33,15 +37,17 @@ id: Transform
 
 ### int childCount {#int-childCount}
 
+### Vec3 globalPos {#Vec3-globalPos}
+
+### Quat globalRot {#Quat-globalRot}
+
 ### Vec3 pos {#Vec3-pos}
+
+### float scale {#float-scale}
 
 ### Quat rot {#Quat-rot}
 
-### Vec3 localPos {#Vec3-localPos}
-
-### float localScale {#float-localScale}
-
-### Quat localRot {#Quat-localRot}
+### Vec3 eulerRot {#Vec3-eulerRot}
 
 ### userdata parent {#userdata-parent}
 

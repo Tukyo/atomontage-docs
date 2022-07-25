@@ -753,8 +753,10 @@ function genDocs:cleanUpName(name)
         {"void", "nil"},
         {"shared_ptr<classae::scene::LuaShape>", "Shape" }, --various shapes, is Shape ok?
         {"shared_ptr<classae::scene::Filter>", "Filter"},
-        { "Res<classae::renderer::Material>", "Material" }, --correct?
-        { "shared_ptr<structae::scene::VoxelDataResource>", "VoxelDataResource" }
+        {"Res<classae::renderer::Material>", "Material" }, --correct?
+        {"shared_ptr<structae::scene::VoxelDataResource>", "VoxelDataResource" },
+        {"shared_ptr<classae::scene::CameraComponent>", "CameraComponent"},
+        {"tuple<classTVector3<float>,classTVector3<float> >", "userdata"} --this is two
     }
 
     --name = name:gsub("(%S+),?", replacments)

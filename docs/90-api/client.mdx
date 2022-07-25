@@ -43,7 +43,7 @@ This class is only available on client
 
 ### bool IsWindowOpen(string windowID) {#bool-IsWindowOpen-string-windowID}
 
-### nil SetWindowPos(string, Vec2) {#nil-SetWindowPos-string-Vec2}
+### nil SetWindowPos(string windowID, Vec2 position) {#nil-SetWindowPos-string-windowID-Vec2-position}
 
 ### nil OpenScriptFile(string) {#nil-OpenScriptFile-string}
 
@@ -62,6 +62,12 @@ This class is only available on client
 ### string GetMontageURL() {#string-GetMontageURL}
 
 ### nil SetMontageURL(string url) {#nil-SetMontageURL-string-url}
+
+### string GetMontageURLBase() {#string-GetMontageURLBase}
+
+### userdata GetMontageURLParameters() {#userdata-GetMontageURLParameters}
+
+### string GetMontageURLWithParameters(userdata) {#string-GetMontageURLWithParameters-userdata}
 
 ### nil LoadMontageByURL() {#nil-LoadMontageByURL}
 
@@ -145,15 +151,11 @@ This class is only available on client
 
 ### int GetCurrentUIActionID() {#int-GetCurrentUIActionID}
 
-### nil WriteToScreen(string, Vec2, Vec2, Vec4, int, float) {#nil-WriteToScreen-string-Vec2-Vec2-Vec4-int-float}
-
-### nil WriteToScreen(string, Vec2) {#nil-WriteToScreen-string-Vec2}
-
-### nil WriteToScreen(string, Vec2, Vec2) {#nil-WriteToScreen-string-Vec2-Vec2}
-
-### nil WriteToScreen(string, Vec2, Vec2, Vec4) {#nil-WriteToScreen-string-Vec2-Vec2-Vec4}
+### nil WriteToScreen(string, Vec2, Vec2, Vec4, int, Vec4, float) {#nil-WriteToScreen-string-Vec2-Vec2-Vec4-int-Vec4-float}
 
 ### nil WriteToScreen(string, Vec2, Vec2, Vec4, int) {#nil-WriteToScreen-string-Vec2-Vec2-Vec4-int}
+
+### nil WriteToScreen(string, Vec2, Vec2, Vec4, int, Vec4) {#nil-WriteToScreen-string-Vec2-Vec2-Vec4-int-Vec4}
 
 ### nil CloseApp() {#nil-CloseApp}
 
@@ -214,11 +216,35 @@ Returns [`CommandLine`](/api/commandLine)
 
 ### string GetSystemOutput() {#string-GetSystemOutput}
 
+### string GetLastSyncMessageRecv() {#string-GetLastSyncMessageRecv}
+
+### string GetLastSyncMessageSent() {#string-GetLastSyncMessageSent}
+
+### bool GetUpdateSyncMessageString() {#bool-GetUpdateSyncMessageString}
+
+### nil SetUpdateSyncMessageString(bool) {#nil-SetUpdateSyncMessageString-bool}
+
 ### nil CopyToClipboard(string) {#nil-CopyToClipboard-string}
 
 ## Metamethods
 
 ### const char __tostring() {#const-char-tostring}
+
+### table EnumerateTestRenderObjects() {#table-EnumerateTestRenderObjects}
+
+### bool IsTestRenderObjectEnabled(string) {#bool-IsTestRenderObjectEnabled-string}
+
+### bool SetTestRenderObjectEnabled(string, bool) {#bool-SetTestRenderObjectEnabled-string-bool}
+
+### bool ToggleTestRenderObjectEnabled(string) {#bool-ToggleTestRenderObjectEnabled-string}
+
+### int GetCollectionCurrentBlockCount(int) {#int-GetCollectionCurrentBlockCount-int}
+
+### int GetCollectionCurrentLoad(int) {#int-GetCollectionCurrentLoad-int}
+
+### int GetCollectionPreferredLoad(int) {#int-GetCollectionPreferredLoad-int}
+
+### nil SetCollectionPreferredLoad(int, int) {#nil-SetCollectionPreferredLoad-int-int}
 
 ## Properties
 
