@@ -395,6 +395,52 @@ function Quat.AngleAxis(p1, p2) end
 --- @return Vec3
 function Vec3.Lerp(p1, p2, p3) end
 
+
+--- @return Vec3
+function Quat:GetEuler() end
+
+
+--- @param p2 number
+--- @param p3 number
+--- @return nil
+function Vec2:Clamp(p2, p3) end
+
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @return nil
+function Vec2:Clamp(p2, p3) end
+
+--- @param p2 number
+--- @param p3 number
+--- @return Vec2
+function Vec2:GetClamped(p2, p3) end
+
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @return Vec2
+function Vec2:GetClamped(p2, p3) end
+
+
+--- @param p2 number
+--- @param p3 number
+--- @return nil
+function Vec3:Clamp(p2, p3) end
+
+--- @param p2 Vec3
+--- @param p3 Vec3
+--- @return nil
+function Vec3:Clamp(p2, p3) end
+
+--- @param p2 number
+--- @param p3 number
+--- @return Vec3
+function Vec3:GetClamped(p2, p3) end
+
+--- @param p2 Vec3
+--- @param p3 Vec3
+--- @return Vec3
+function Vec3:GetClamped(p2, p3) end
+
 ]]
 
 function genEmmy:createFile(bindingsServer, bindingsClient)

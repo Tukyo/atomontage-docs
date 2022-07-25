@@ -376,6 +376,52 @@ function Quat.AngleAxis(p1, p2) end
 function Vec3.Lerp(p1, p2, p3) end
 
 
+--- @return Vec3
+function Quat:GetEuler() end
+
+
+--- @param p2 number
+--- @param p3 number
+--- @return nil
+function Vec2:Clamp(p2, p3) end
+
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @return nil
+function Vec2:Clamp(p2, p3) end
+
+--- @param p2 number
+--- @param p3 number
+--- @return Vec2
+function Vec2:GetClamped(p2, p3) end
+
+--- @param p2 Vec2
+--- @param p3 Vec2
+--- @return Vec2
+function Vec2:GetClamped(p2, p3) end
+
+
+--- @param p2 number
+--- @param p3 number
+--- @return nil
+function Vec3:Clamp(p2, p3) end
+
+--- @param p2 Vec3
+--- @param p3 Vec3
+--- @return nil
+function Vec3:Clamp(p2, p3) end
+
+--- @param p2 number
+--- @param p3 number
+--- @return Vec3
+function Vec3:GetClamped(p2, p3) end
+
+--- @param p2 Vec3
+--- @param p3 Vec3
+--- @return Vec3
+function Vec3:GetClamped(p2, p3) end
+
+
 --- @alias componentType
 ---| "'CameraComponent'"
 ---| "'MeshData'"
@@ -1179,6 +1225,57 @@ function Config:GetVec4(p1, p2) end
 --- @param p1 Config
 --- @return table
 function Config:GetAllValuesStringified(p1) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Cylinder)
+]]
+--- @class Cylinder
+Cylinder = {}
+
+--- @return Shape
+function Cylinder.new() end
+
+--- @param p1 Vec3
+--- @param p2 number
+--- @return Shape
+function Cylinder.new(p1, p2) end
+
+--- @param p1 Vec3
+--- @return Shape
+function Cylinder.new(p1) end
+
+--- @return Shape
+function Cylinder.new() end
+
+--- @param p1 Vec3
+--- @param p2 Vec3
+--- @param p3 number
+--- @param p4 number
+--- @return Shape
+function Cylinder.new(p1, p2, p3, p4) end
+
+--- @param p1 Vec3
+--- @param p2 Vec3
+--- @return Shape
+function Cylinder.new(p1, p2) end
+
+--- @return Shape
+function Cylinder.new() end
+
+--- @param p1 Vec3
+--- @param p2 Vec3
+--- @param p3 number
+--- @param p4 number
+--- @return Shape
+function Cylinder.new(p1, p2, p3, p4) end
+
+--- @param p1 Vec3
+--- @param p2 Vec3
+--- @return Shape
+function Cylinder.new(p1, p2) end
 
 --[[
 `Client`
@@ -2257,6 +2354,18 @@ function Object3D:GetPosition(p1) end
 --- @param p1 Vec3
 --- @return nil
 function Object3D:SetPosition(p1) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Polygon)
+]]
+--- @class Polygon
+Polygon = {}
+
+--- @return Shape
+function Polygon.new() end
 
 --[[
 `Client`

@@ -220,13 +220,15 @@ function genDocs:gen()
         "VoxelDataResource",
         "VoxelEdit", 
         "Filter", 
+        "Shape",
         "Box", 
         "Sphere", 
         "Capsule", 
+        "Cylinder",
+        "Polygon",
         "Collision", 
         "Hit", 
         "HitType",
-        "Shape",
     }
 
     local show = {}
