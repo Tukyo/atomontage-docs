@@ -8,3 +8,6 @@ Input images needs to be grayscale unless they are used as source for color info
 * PNG 8 and 16 bits
 * HDR
 * PNM and PGM
+
+See the full workflow of how to voxelize an image stack in this video walkthrough:
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/iQ_id057gUQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
