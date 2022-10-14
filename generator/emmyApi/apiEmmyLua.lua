@@ -244,8 +244,8 @@
 --- @field Dir Vec3
 --- @field TraceAtlas boolean
 --- @field TraceCommon boolean
---- @field ForceComponents VoxelRender[]
---- @field IgnoreComponents VoxelRender[]
+--- @field ForceComponents VoxelRenderer[]
+--- @field IgnoreComponents VoxelRenderer[]
 
 --- @param p1 TraceRayParams
 --- @return Hit[]
@@ -2203,6 +2203,21 @@ function MeshDataBuilder:AddIndex(p1, p2) end
 --- @return nil
 function MeshDataBuilder:AddShape(p1, p2) end
 
+--- @class MeshRenderer
+--- @field object Object
+--- @field transform Transform
+--- @field isDestroyed boolean
+--- @field material Material
+--- @field type string
+--- @field object Object
+--- @field transform Transform
+MeshRenderer = {}
+
+--- @param p1 MeshRenderer
+--- @param p2 MeshRenderer
+--- @return boolean
+function MeshRenderer:__eq(p1, p2) end
+
 --[[
 `Client`
 `Server`
@@ -2682,6 +2697,29 @@ function Scene:SetProfileScriptsUpdate(p1) end
 --- @return nil
 function Scene:Save() end
 
+--- @class Script
+--- @field object Object
+--- @field transform Transform
+--- @field isDestroyed boolean
+--- @field object Object
+--- @field transform Transform
+--- @field type string
+--- @field instance table
+--- @field name string
+--- @field file string
+--- @field syncToClients boolean
+Script = {}
+
+--- @vararg any
+--- @return integer
+function Script:RPC(...) end
+
+--- @return string
+function Script:GetNetworkFlow() end
+
+--- @return string
+function Script:GetScriptUpdateTime() end
+
 --[[
 `Client`
 `Server`
@@ -2831,6 +2869,23 @@ function Server:AnalyticsClient(p1, p2, p3) end
 --- @field points table
 Shape = {}
 
+--- @class Sky
+--- @field object Object
+--- @field transform Transform
+--- @field isDestroyed boolean
+--- @field cloudScale number
+--- @field cloudOffset number
+--- @field cloudSlope number
+--- @field sunAzimuth number
+--- @field sunAltitude number
+--- @field rayleighCoeff Vec3
+--- @field mieCoeff number
+--- @field render boolean
+--- @field type string
+--- @field object Object
+--- @field transform Transform
+Sky = {}
+
 --[[
 `Client`
 `Server`
@@ -2851,6 +2906,17 @@ function Sphere.new(p1, p2) end
 --- @param p1 Vec3
 --- @return Shape
 function Sphere.new(p1) end
+
+--- @class StaticVoxelData
+--- @field object Object
+--- @field transform Transform
+--- @field isDestroyed boolean
+--- @field resource string
+--- @field isLoaded boolean
+--- @field type string
+--- @field object Object
+--- @field transform Transform
+StaticVoxelData = {}
 
 --[[
 `Client`
@@ -6304,6 +6370,30 @@ function VoxelEdit:Erase() end
 --- @field colors userdata
 --- @field mat Mat4
 VoxelInspectData = {}
+
+--- @class VoxelRenderer
+--- @field object Object
+--- @field transform Transform
+--- @field isDestroyed boolean
+--- @field type string
+--- @field object Object
+--- @field transform Transform
+--- @field syncToClients boolean
+--- @field enabled boolean
+--- @field prioritizeLod boolean
+--- @field outline boolean
+VoxelRenderer = {}
+
+--- @param p1 VoxelRenderer
+--- @param p2 VoxelRenderer
+--- @return boolean
+function VoxelRenderer:__eq(p1, p2) end
+
+--- @return nil
+function VoxelRenderer:RebuildLighting() end
+
+--- @return userdata
+function VoxelRenderer:GetBounds() end
 
 --- @enum AttachmentFlags
 AttachmentFlags = {

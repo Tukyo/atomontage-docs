@@ -264,8 +264,8 @@ local emmyDefaultLines = [[
 --- @field Dir Vec3
 --- @field TraceAtlas boolean
 --- @field TraceCommon boolean
---- @field ForceComponents VoxelRender[]
---- @field IgnoreComponents VoxelRender[]
+--- @field ForceComponents VoxelRenderer[]
+--- @field IgnoreComponents VoxelRenderer[]
 
 --- @param p1 TraceRayParams
 --- @return Hit[]
