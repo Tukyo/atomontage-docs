@@ -708,6 +708,15 @@ function genDocs:cleanUpName(name)
         {"shared_ptr<classae::scene::SystemTransform>", "userdata"}, --??? no idea what this is
         {"shared_ptr<classae::scene::SystemMeshRender>", "MeshRender"},
         {"shared_ptr<classae::scene::SystemMeshData>", "MeshData"},
+        {"shared_ptr<classae::scene::MeshData>", "MeshData"},
+        {"shared_ptr<classae::scene::VoxelData>", "VoxelData"},
+        {"shared_ptr<classae::scene::StaticVoxelData>", "StaticVoxelData"},
+        {"shared_ptr<classae::scene::VoxelRenderer>", "VoxelRenderer"},
+        {"shared_ptr<classae::scene::MeshRenderer>", "MeshRenderer"},
+        {"shared_ptr<classae::scene::Camera>", "Camera"},
+        {"shared_ptr<classae::scene::Sky>", "Sky"},
+        {"shared_ptr<classae::scene::VoxelDB>", "VoxelDB"},
+        {"shared_ptr<classae::scene::VoxelDataResource>", "VoxelDataResource"},
         
         ---idk what these are??? need better names relevant for lua 
         {unordered_map, "userdata"},
@@ -758,7 +767,8 @@ function genDocs:cleanUpName(name)
         {"Res<classae::renderer::Material>", "Material" }, --correct?
         {"shared_ptr<structae::scene::VoxelDataResource>", "VoxelDataResource" },
         {"shared_ptr<classae::scene::CameraComponent>", "CameraComponent"},
-        {"tuple<classTVector3<float>,classTVector3<float> >", "userdata"} --this is two
+        {"tuple<classTVector3<float>,classTVector3<float> >", "userdata"}, --this is two
+        {"shared_ptr<classae::scene::Script>", "Script"}, --correct?
     }
 
     --name = name:gsub("(%S+),?", replacments)

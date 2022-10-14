@@ -7,13 +7,23 @@ id: Object
 
 ## Methods
 
-### nil RemoveAllNonNativeComponents() {#nil-RemoveAllNonNativeComponents}
+### Object GetChild(string) {#Object-GetChild-string}
+
+### Script AddScript(string, string, bool) {#Script-AddScript-string-string-bool}
+
+### MeshData AddMeshData(string) {#MeshData-AddMeshData-string}
+
+### VoxelData AddVoxelData(string) {#VoxelData-AddVoxelData-string}
+
+### StaticVoxelData AddStaticVoxelData(string) {#StaticVoxelData-AddStaticVoxelData-string}
+
+### VoxelRenderer AddVoxelRenderer() {#VoxelRenderer-AddVoxelRenderer}
+
+### Camera AddCamera() {#Camera-AddCamera}
+
+### Sky AddSkybox() {#Sky-AddSkybox}
 
 ### userdata AddComponent(string) {#userdata-AddComponent-string}
-
-### userdata GetComponent(int) {#userdata-GetComponent-int}
-
-### table GetComponents() {#table-GetComponents}
 
 ### bool RemoveComponent(string) {#bool-RemoveComponent-string}
 
@@ -23,35 +33,35 @@ id: Object
 
 ### table GetComponentsByType(string) {#table-GetComponentsByType-string}
 
-### ScriptComponent FindScriptComponentByName(string) {#ScriptComponent-FindScriptComponentByName-string}
-
 ### userdata FindScript(string) {#userdata-FindScript-string}
 
 ### string GetNetworkFlow() {#string-GetNetworkFlow}
 
+### string GetScriptUpdateTime() {#string-GetScriptUpdateTime}
+
+### int GetRefCount() {#int-GetRefCount}
+
 ## Properties
 
-### string name {#string-name}
-
-### string tag {#string-tag}
-
-### Transform transform {#Transform-transform}
-
-### userdata parent {#userdata-parent}
-
-### table components {#table-components}
-
-### table children {#table-children}
-
-### int id {#int-id}
+### shared_ptr<classae::scene::Transform> transform {#sharedptrclassaesceneTransform-transform}
 
 ### bool isDestroyed {#bool-isDestroyed}
 
-### int componentsCount {#int-componentsCount}
-
-### bool update {#bool-update}
+### string name {#string-name}
 
 ### bool active {#bool-active}
 
-### bool dontSave {#bool-dontSave}
+### bool save {#bool-save}
+
+### string tag {#string-tag}
+
+### Object parent {#Object-parent}
+
+### table children {#table-children}
+
+### int childCount {#int-childCount}
+
+### table components {#table-components}
+
+### int componentsCount {#int-componentsCount}
 

@@ -11,11 +11,19 @@ id: VoxelData
 
 ## Properties
 
-### string resource {#string-resource}
-resource file name
+### Object object {#Object-object}
 
-### VoxelDataResource voxelData {#VoxelDataResource-voxelData}
-shared voxel data
+### shared_ptr<classae::scene::Transform> transform {#sharedptrclassaesceneTransform-transform}
+
+### bool isDestroyed {#bool-isDestroyed}
+
+### string File {#string-File}
+
+### bool CopyOnWrite {#bool-CopyOnWrite}
+
+### string path {#string-path}
+
+### VoxelDataResource data {#VoxelDataResource-data}
 
 ### bool copyOnWrite {#bool-copyOnWrite}
 make local copy of voxel data resource if edited 
@@ -23,4 +31,6 @@ make local copy of voxel data resource if edited
 ### string type {#string-type}
 
 ### Object object {#Object-object}
+
+### shared_ptr<classae::scene::Transform> transform {#sharedptrclassaesceneTransform-transform}
 

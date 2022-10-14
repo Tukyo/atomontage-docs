@@ -15,49 +15,49 @@ id: Scene
 
 ### Object CreateObject() {#Object-CreateObject}
 
+### Object CreateObject(string, bool, bool) {#Object-CreateObject-string-bool-bool}
+
+### Object CreateObject(string, Object, bool, bool) {#Object-CreateObject-string-Object-bool-bool}
+
+### Object CreateObject(string, Object) {#Object-CreateObject-string-Object}
+
+### Object CreateObject(Object) {#Object-CreateObject-Object}
+
+### Object CreateObject(string) {#Object-CreateObject-string}
+
+### nil DestroyObject(Object) {#nil-DestroyObject-Object}
+
+### table GetObjectsByName(string) {#table-GetObjectsByName-string}
+
+### Object GetObjectByName(string) {#Object-GetObjectByName-string}
+
+### table GetRootObjects() {#table-GetRootObjects}
+
 ### Object CloneObject(Object) {#Object-CloneObject-Object}
 
 ### Object CloneObject(Object, string) {#Object-CloneObject-Object-string}
 
-### nil DestroyObject(Object) {#nil-DestroyObject-Object}
-
 ### userdata CreateMaterial(string) {#userdata-CreateMaterial-string}
 
-### nil DebugStats() {#nil-DebugStats}
+### Camera GetActiveCamera() {#Camera-GetActiveCamera}
 
-### table GetObjectsByName(string) {#table-GetObjectsByName-string}
+### nil SetActiveCamera(Camera) {#nil-SetActiveCamera-Camera}
 
-### table GetAllObjects() {#table-GetAllObjects}
+### VoxelDB GetVoxelDB(string) {#VoxelDB-GetVoxelDB-string}
 
-### table GetRootObjects() {#table-GetRootObjects}
-
-### table GetObjectsByTag(string) {#table-GetObjectsByTag-string}
-
-### Object GetObjectById(int) {#Object-GetObjectById-int}
-
-### Component GetComponentById(int) {#Component-GetComponentById-int}
-
-### CameraComponent GetActiveCamera() {#CameraComponent-GetActiveCamera}
-
-### nil SetActiveCamera(CameraComponent) {#nil-SetActiveCamera-CameraComponent}
+### table TraceRay(table) {#table-TraceRay-table}
 
 ### bool IsNameValid(string) {#bool-IsNameValid-string}
-
-### bool Save() {#bool-Save}
-
-### bool SaveAs(string) {#bool-SaveAs-string}
-
-### int Merge(string) {#int-Merge-string}
-
-### nil ScheduleLoad(string) {#nil-ScheduleLoad-string}
 
 ### nil RebuildLighting() {#nil-RebuildLighting}
 
 ### LightingUpdate CreateLighting(string, string) {#LightingUpdate-CreateLighting-string-string}
 
-### VoxelDB GetVoxelDB(string) {#VoxelDB-GetVoxelDB-string}
+### bool GetProfileScriptsUpdate() {#bool-GetProfileScriptsUpdate}
 
-### table TraceRay(table) {#table-TraceRay-table}
+### nil SetProfileScriptsUpdate(bool) {#nil-SetProfileScriptsUpdate-bool}
+
+### nil Save() {#nil-Save}
 
 ## Properties
 

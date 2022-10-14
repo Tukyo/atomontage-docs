@@ -5,17 +5,11 @@ id: Transform
 `Client`
 `Server`
 
+## Metamethods
+
+### bool __eq(Transform, Transform) {#bool-eq-Transform-Transform}
+
 ## Methods
-
-### userdata GetChild(int) {#userdata-GetChild-int}
-
-### userdata GetChild(string) {#userdata-GetChild-string}
-
-### userdata Get(int) {#userdata-Get-int}
-
-### userdata Get(string) {#userdata-Get-string}
-
-### bool SetParent(userdata) {#bool-SetParent-userdata}
 
 ### Vec3 LocalToWorld(Vec3) {#Vec3-LocalToWorld-Vec3}
 
@@ -29,17 +23,9 @@ id: Transform
 
 ### nil LookAt(Vec3, Vec3) {#nil-LookAt-Vec3-Vec3}
 
-## Metamethods
-
-### bool __eq(Transform, Transform) {#bool-eq-Transform-Transform}
-
 ## Properties
 
-### int childCount {#int-childCount}
-
-### Vec3 globalPos {#Vec3-globalPos}
-
-### Quat globalRot {#Quat-globalRot}
+### Object object {#Object-object}
 
 ### Vec3 pos {#Vec3-pos}
 
@@ -47,9 +33,11 @@ id: Transform
 
 ### Quat rot {#Quat-rot}
 
-### Vec3 eulerRot {#Vec3-eulerRot}
+### Vec3 globalPos {#Vec3-globalPos}
 
-### userdata parent {#userdata-parent}
+### Quat globalRot {#Quat-globalRot}
+
+### Vec3 eulerRot {#Vec3-eulerRot}
 
 ### Vec3 right {#Vec3-right}
 
@@ -58,6 +46,4 @@ id: Transform
 ### Vec3 forward {#Vec3-forward}
 
 ### string type {#string-type}
-
-### Object object {#Object-object}
 
