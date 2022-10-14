@@ -509,11 +509,11 @@ function Box.new(p1) end
 ]]
 --- @class Camera
 --- @field object Object
---- @field transform shared_ptr<classae::scene::Transform>
+--- @field transform Transform
 --- @field isDestroyed boolean
 --- @field type string
 --- @field object Object
---- @field transform shared_ptr<classae::scene::Transform>
+--- @field transform Transform
 --- @field frustum Frustum
 --- @field fovY number
 Camera = {}
@@ -1105,7 +1105,7 @@ See also: [ScriptComponent](ScriptComponent)
 ]]
 --- @class Component
 --- @field object Object
---- @field transform shared_ptr<classae::scene::Transform>
+--- @field transform Transform
 --- @field isDestroyed boolean
 Component = {}
 
@@ -2126,13 +2126,13 @@ function Material:SetProperty(p1, p2, p3) end
 ]]
 --- @class MeshData
 --- @field object Object
---- @field transform shared_ptr<classae::scene::Transform>
+--- @field transform Transform
 --- @field isDestroyed boolean
 --- @field file string
 --- @field data MeshDataBuilder
 --- @field type string
 --- @field object Object
---- @field transform shared_ptr<classae::scene::Transform>
+--- @field transform Transform
 MeshData = {}
 
 --- @param p1 MeshData
@@ -2210,7 +2210,7 @@ function MeshDataBuilder:AddShape(p1, p2) end
 [View Documentation](https://docs.atomontage.com/api/Object)
 ]]
 --- @class Object
---- @field transform shared_ptr<classae::scene::Transform>
+--- @field transform Transform
 --- @field isDestroyed boolean
 --- @field name string
 --- @field active boolean
@@ -2691,7 +2691,7 @@ function Scene:Save() end
 --- @class ScriptInstance
 --- @field component Script
 --- @field object Object
---- @field transform shared_ptr<classae::scene::Transform>
+--- @field transform Transform
 --- @field onServer boolean
 --- @field onClient boolean
 ScriptInstance = {}
@@ -6201,7 +6201,7 @@ function VoxelDB:GetBounds() end
 ]]
 --- @class VoxelData
 --- @field object Object
---- @field transform shared_ptr<classae::scene::Transform>
+--- @field transform Transform
 --- @field isDestroyed boolean
 --- @field File string
 --- @field CopyOnWrite boolean
@@ -6210,7 +6210,7 @@ function VoxelDB:GetBounds() end
 --- @field copyOnWrite boolean
 --- @field type string
 --- @field object Object
---- @field transform shared_ptr<classae::scene::Transform>
+--- @field transform Transform
 VoxelData = {
 	copyOnWrite = nil, ---make local copy of voxel data resource if edited 
 }

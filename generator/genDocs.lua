@@ -717,6 +717,7 @@ function genDocs:cleanUpName(name)
         {"shared_ptr<classae::scene::Sky>", "Sky"},
         {"shared_ptr<classae::scene::VoxelDB>", "VoxelDB"},
         {"shared_ptr<classae::scene::VoxelDataResource>", "VoxelDataResource"},
+        {"shared_ptr<classae::scene::Transform>", "Transform"},
         
         ---idk what these are??? need better names relevant for lua 
         {unordered_map, "userdata"},
