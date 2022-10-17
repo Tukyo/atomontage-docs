@@ -441,6 +441,11 @@ function Vec3:GetClamped(p2, p3) end
 --- @return Vec3
 function Vec3:GetClamped(p2, p3) end
 
+
+--- @param p1 string
+--- @return Material
+function Scene:CreateMaterial(p1) end
+
 ]]
 
 function genEmmy:createFile(bindingsServer, bindingsClient)
