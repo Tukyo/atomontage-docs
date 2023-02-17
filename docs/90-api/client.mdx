@@ -39,6 +39,8 @@ This class is only available on client
 
 ### nil CloseUIWindow(string windowID) {#nil-CloseUIWindow-string-windowID}
 
+### nil SetUIWindowOpen(string windowID, bool open) {#nil-SetUIWindowOpen-string-windowID-bool-open}
+
 ### nil ToggleUIWindow(string windowID) {#nil-ToggleUIWindow-string-windowID}
 
 ### bool IsWindowOpen(string windowID) {#bool-IsWindowOpen-string-windowID}
@@ -119,6 +121,8 @@ This class is only available on client
 
 ### nil ConnectToServer() {#nil-ConnectToServer}
 
+### nil Disconnect(string) {#nil-Disconnect-string}
+
 ### bool OpenFolder(string folder) {#bool-OpenFolder-string-folder}
 
 ### int GetScriptsVersion() {#int-GetScriptsVersion}
@@ -143,6 +147,8 @@ This class is only available on client
 
 ### bool DevMode() {#bool-DevMode}
 
+### bool GetNetworkThrottlingNow() {#bool-GetNetworkThrottlingNow}
+
 ### nil SelectItemInUICreator(UIItem uiItem) {#nil-SelectItemInUICreator-UIItem-uiItem}
 
 ### UIItem GetUIItemByUIActionID(int uiActionID) {#UIItem-GetUIItemByUIActionID-int-uiActionID}
@@ -162,6 +168,8 @@ This class is only available on client
 ### nil CloseApp() {#nil-CloseApp}
 
 ### string GetEULA() {#string-GetEULA}
+
+### Vec2 GetWindowSize() {#Vec2-GetWindowSize}
 
 ### Vec2 GetViewportSize() {#Vec2-GetViewportSize}
 
@@ -208,7 +216,11 @@ Returns [`CommandLine`](/api/commandLine)
 
 ### nil AddEntityPathWaypoint() {#nil-AddEntityPathWaypoint}
 
-### nil TakeScreenShot() {#nil-TakeScreenShot}
+### nil TakeScreenshot(string, bool) {#nil-TakeScreenshot-string-bool}
+
+### table GetVersion() {#table-GetVersion}
+
+### System GetSystem() {#System-GetSystem}
 
 ### string GetCredits() {#string-GetCredits}
 
@@ -225,6 +237,10 @@ Returns [`CommandLine`](/api/commandLine)
 ### nil SetUpdateSyncMessageString(bool) {#nil-SetUpdateSyncMessageString-bool}
 
 ### nil CopyToClipboard(string) {#nil-CopyToClipboard-string}
+
+### nil OpenBrowserWithURL(string) {#nil-OpenBrowserWithURL-string}
+
+### nil ReloadPage(bool) {#nil-ReloadPage-bool}
 
 ## Metamethods
 
@@ -247,6 +263,10 @@ Returns [`CommandLine`](/api/commandLine)
 ### nil SetCollectionPreferredLoad(int, int) {#nil-SetCollectionPreferredLoad-int-int}
 
 ## Properties
+
+### int clientID {#int-clientID}
+
+### ClientMode mode {#ClientMode-mode}
 
 ### string platform {#string-platform}
 

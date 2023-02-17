@@ -17,6 +17,15 @@ id: VoxelEdit
 
 ### nil Erase() {#nil-Erase}
 
+### nil FreeTmpLayers(int) {#nil-FreeTmpLayers-int}
+It projects cone on voxel geometry and everything inside will be copies to tmp
+all raycasts will collide with this tmp layer instead until FreeTmpLayers
+
+### nil FillTmpLayers(int, Vec3, Vec3, float, int) {#nil-FillTmpLayers-int-Vec3-Vec3-float-int}
+It projects cone on voxel geometry and everything inside will be copies to tmp
+all raycasts will collide with this tmp layer instead until FreeTmpLayers
+parameters specify "cone" - two positions and end radius
+
 ## Properties
 
 ### bool blendEnable {#bool-blendEnable}
@@ -32,4 +41,6 @@ id: VoxelEdit
 ### Filter filter {#Filter-filter}
 
 ### Shape shape {#Shape-shape}
+
+### bool clampToMinVoxelSize {#bool-clampToMinVoxelSize}
 

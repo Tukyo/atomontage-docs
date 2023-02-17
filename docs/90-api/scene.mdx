@@ -35,13 +35,23 @@ id: Scene
 
 ### Object CloneObject(Object) {#Object-CloneObject-Object}
 
+### Object CloneObject(Object, string, bool) {#Object-CloneObject-Object-string-bool}
+
+### Object CloneObject(Object, bool) {#Object-CloneObject-Object-bool}
+
 ### Object CloneObject(Object, string) {#Object-CloneObject-Object-string}
+
+### bool MoveObject(Object, Object) {#bool-MoveObject-Object-Object}
+
+### bool MoveObjectAfter(Object, Object) {#bool-MoveObjectAfter-Object-Object}
+
+### bool MoveObjectBefore(Object, Object) {#bool-MoveObjectBefore-Object-Object}
 
 ### userdata CreateMaterial(string) {#userdata-CreateMaterial-string}
 
 ### Camera GetActiveCamera() {#Camera-GetActiveCamera}
 
-### nil SetActiveCamera(Camera) {#nil-SetActiveCamera-Camera}
+### string AddNewScriptFile(string) {#string-AddNewScriptFile-string}
 
 ### VoxelDB GetVoxelDB(string) {#VoxelDB-GetVoxelDB-string}
 
@@ -57,7 +67,9 @@ id: Scene
 
 ### nil SetProfileScriptsUpdate(bool) {#nil-SetProfileScriptsUpdate-bool}
 
-### nil Save() {#nil-Save}
+### table GetSimpleStats() {#table-GetSimpleStats}
+
+### table GetVDRStats() {#table-GetVDRStats}
 
 ## Properties
 

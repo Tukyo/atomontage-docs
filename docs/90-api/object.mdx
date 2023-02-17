@@ -9,7 +9,9 @@ id: Object
 
 ### Object GetChild(string) {#Object-GetChild-string}
 
-### Script AddScript(string, string, bool) {#Script-AddScript-string-string-bool}
+### bool RemoveParent() {#bool-RemoveParent}
+
+### Script AddScript(string, bool) {#Script-AddScript-string-bool}
 
 ### MeshData AddMeshData(string) {#MeshData-AddMeshData-string}
 
@@ -35,6 +37,8 @@ id: Object
 
 ### userdata FindScript(string) {#userdata-FindScript-string}
 
+### Camera GetCamera() {#Camera-GetCamera}
+
 ### string GetNetworkFlow() {#string-GetNetworkFlow}
 
 ### string GetScriptUpdateTime() {#string-GetScriptUpdateTime}
@@ -51,6 +55,8 @@ id: Object
 
 ### bool active {#bool-active}
 
+### bool activeInHierarchy {#bool-activeInHierarchy}
+
 ### bool save {#bool-save}
 
 ### string tag {#string-tag}
@@ -60,6 +66,8 @@ id: Object
 ### table children {#table-children}
 
 ### int childCount {#int-childCount}
+
+### int siblingIndex {#int-siblingIndex}
 
 ### table components {#table-components}
 

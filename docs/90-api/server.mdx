@@ -11,7 +11,7 @@ This class is only available on server
 
 ### table GetClients() {#table-GetClients}
 
-### nil DisconnectClient(int) {#nil-DisconnectClient-int}
+### nil DisconnectClient(int, string) {#nil-DisconnectClient-int-string}
 
 ### int GetScriptsVersion() {#int-GetScriptsVersion}
 
@@ -21,11 +21,13 @@ This class is only available on server
 
 ### nil ResendScripts() {#nil-ResendScripts}
 
-### table GetLuaFilesList() {#table-GetLuaFilesList}
+### userdata GetLuaFilesList() {#userdata-GetLuaFilesList}
 
-### table GetVoxelFilesList() {#table-GetVoxelFilesList}
+### userdata GetVoxelFilesList() {#userdata-GetVoxelFilesList}
 
-### nil SaveVoxelData() {#nil-SaveVoxelData}
+### nil SaveScene() {#nil-SaveScene}
+
+### nil ReloadScene() {#nil-ReloadScene}
 
 ### nil OnLuaLog() {#nil-OnLuaLog}
 
@@ -45,6 +47,10 @@ This class is only available on server
 
 ### CommandLine GetCommandLine() {#CommandLine-GetCommandLine}
 
+### table GetVersion() {#table-GetVersion}
+
+### System GetSystem() {#System-GetSystem}
+
 ### AssetManager GetResourceManScene() {#AssetManager-GetResourceManScene}
 
 ### AssetManager GetResourceManUI() {#AssetManager-GetResourceManUI}
@@ -55,7 +61,37 @@ This class is only available on server
 
 ### table GetLogTimers(string) {#table-GetLogTimers-string}
 
+### table GetStreamingStats() {#table-GetStreamingStats}
+
+### nil TriggerCrash() {#nil-TriggerCrash}
+
+### nil TriggerException() {#nil-TriggerException}
+
+### nil TriggerCriticalError() {#nil-TriggerCriticalError}
+
 ### nil AnalyticsServer(string, table) {#nil-AnalyticsServer-string-table}
 
 ### nil AnalyticsClient(int, string, table) {#nil-AnalyticsClient-int-string-table}
+
+### nil GenTestVoxelScene() {#nil-GenTestVoxelScene}
+
+### nil GenTestVoxelScene2() {#nil-GenTestVoxelScene2}
+
+### nil MakeVoxelScene(int, int, int, int) {#nil-MakeVoxelScene-int-int-int-int}
+
+### nil RebuildLODsBrightnessMethod() {#nil-RebuildLODsBrightnessMethod}
+
+### nil RebuildLODsBrightnessMethod(Vec3i, Vec3i) {#nil-RebuildLODsBrightnessMethod-Vec3i-Vec3i}
+
+### bool RebuildLODsGradientMethod() {#bool-RebuildLODsGradientMethod}
+
+### bool RebuildLODsGradientMethod(Vec3i, Vec3i) {#bool-RebuildLODsGradientMethod-Vec3i-Vec3i}
+
+### bool ShowAllNormalsPerVoxel(int) {#bool-ShowAllNormalsPerVoxel-int}
+
+### bool ShowAllNormalsPerBT(int) {#bool-ShowAllNormalsPerBT-int}
+
+## Properties
+
+### int clientID {#int-clientID}
 
