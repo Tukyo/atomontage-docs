@@ -239,8 +239,13 @@
 ---| '"Y"'
 ---| '"Z"'
 
+--- @class Object
+--- @field children Object[]
+--- @field components Component[]
+
+
 --- @class TraceRayParams:table
---- @field Origin Vec3 
+--- @field Origin Vec3
 --- @field Dir Vec3
 --- @field TraceAtlas boolean
 --- @field TraceCommon boolean
@@ -250,6 +255,14 @@
 --- @param p1 TraceRayParams
 --- @return Hit[]
 function Scene:TraceRay(p1) end
+
+
+--- @return nil
+function ScriptInstance:OnActivate() end
+
+--- @return nil
+function ScriptInstance:OnDeactivate() end
+
 
 --- @return Filter
 function Filter.new() end
@@ -341,6 +354,10 @@ function Input:MouseButton(p1) end
 --- @return boolean
 function Input:MouseButtonUp(p1) end
 
+
+--- @param p1 Vec3
+--- @return Quat
+function Quat.LookAt(p1) end
 
 --- @param p1 Quat
 --- @param p2 Quat
