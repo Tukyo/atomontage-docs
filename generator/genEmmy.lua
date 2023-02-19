@@ -632,9 +632,8 @@ function genEmmy:writeMethods(file, className, finalMethods)
         end
 
         --is constructor
-        local isConstructor = name == ""
+        local isConstructor = returnType == ""
         if isConstructor then
-            name = returnType
             returnType = className
         end
 
@@ -672,7 +671,7 @@ end
 function genEmmy:dissectMethodEntry(lines)
     local header = lines[1]
     header = header:gsub("const ", "") --for now just remove that
-    local _, _, returnType, name, paramsStr = string.find(header, "### (%w*)%s?(%S*)%((.*)%).+")
+    local _, _, returnType, name, paramsStr = string.find(header, "### ([%w%s%,]-)%s?(%S*)%((.*)%).+")
     local params = {}
     assert(paramsStr, "header contains illegal characters: " .. header)
     for word in string.gmatch(paramsStr, '%s?([^,]+)') do

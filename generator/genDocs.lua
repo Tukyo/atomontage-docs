@@ -767,8 +767,8 @@ function genDocs:cleanUpName(name)
         {"Res<classae::renderer::Material>", "Material" }, --correct?
         {"shared_ptr<structae::scene::VoxelDataResource>", "VoxelDataResource" },
         {"shared_ptr<classae::scene::CameraComponent>", "CameraComponent"},
-        {"tuple<classTVector3<float>,classTVector3<float> >", "userdata"}, --this is two
-        {"tuple<classsol::basic_table_core<0,classsol::basic_reference<0>>,classsol::basic_table_core<0,classsol::basic_reference<0>> >", "userdata"}, --this two!
+        {"tuple<classTVector3<float>,classTVector3<float> >", "float, float"}, --this is two
+        {"tuple<classsol::basic_table_core<0,classsol::basic_reference<0>>,classsol::basic_table_core<0,classsol::basic_reference<0>> >", "table, table"}, --this two
         {"shared_ptr<classae::scene::Script>", "Script"}, --correct?
     }
 

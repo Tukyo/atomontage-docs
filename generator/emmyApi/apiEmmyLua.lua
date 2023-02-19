@@ -2865,10 +2865,10 @@ function Server:LuaReset() end
 --- @return nil
 function Server:ResendScripts() end
 
---- @return userdata
+--- @return table, table
 function Server:GetLuaFilesList() end
 
---- @return userdata
+--- @return table, table
 function Server:GetVoxelFilesList() end
 
 --- @return nil
@@ -5967,34 +5967,6 @@ function Vec4i:__shr(p1, p2) end
 --- @field BlendRadiusRatio number
 VoxelDB = {}
 
---[[
-It projects cone on voxel geometry and everything inside will be copies to tmp
-all raycasts will collide with this tmp layer instead until FreeTmpLayers
-parameters specify "cone" - two positions and end radius
-
-[View Documentation](https://docs.atomontage.com/api/VoxelDB#nil-FillTmpLayersV-Vec3i-Vec3i-int-int)
-]]
---- @param p1 Vec3i
---- @param p2 Vec3i
---- @param p3 integer
---- @param p4 integer
---- @return nil
-function VoxelDB:FillTmpLayersV(p1, p2, p3, p4) end
-
---[[
-It projects cone on voxel geometry and everything inside will be copies to tmp
-all raycasts will collide with this tmp layer instead until FreeTmpLayers
-parameters specify "cone" - two positions and end radius
-
-[View Documentation](https://docs.atomontage.com/api/VoxelDB#nil-FillTmpLayers-Vec3-Vec3-float-int)
-]]
---- @param p1 Vec3
---- @param p2 Vec3
---- @param p3 number
---- @param p4 integer
---- @return nil
-function VoxelDB:FillTmpLayers(p1, p2, p3, p4) end
-
 --- @return nil
 function VoxelDB:Clear() end
 
@@ -6401,7 +6373,7 @@ function VoxelDB:Inspect(p1, p2, p3, p4, p5, p6, p7) end
 --- @return table
 function VoxelDB:GetUsedLayers() end
 
---- @return userdata
+--- @return number, number
 function VoxelDB:GetBounds() end
 
 --[[
@@ -6466,7 +6438,7 @@ save voxel data in AM file
 --- @return string
 function VoxelDataResource:Save(p1, p2) end
 
---- @return userdata
+--- @return number, number
 function VoxelDataResource:GetBounds() end
 
 --- @return userdata
@@ -6504,10 +6476,23 @@ function VoxelEdit:Add() end
 --- @return nil
 function VoxelEdit:Erase() end
 
+--[[
+It projects cone on voxel geometry and everything inside will be copies to tmp
+all raycasts will collide with this tmp layer instead until FreeTmpLayers
+
+[View Documentation](https://docs.atomontage.com/api/VoxelEdit#nil-FreeTmpLayers-int)
+]]
 --- @param p1 integer
 --- @return nil
 function VoxelEdit:FreeTmpLayers(p1) end
 
+--[[
+It projects cone on voxel geometry and everything inside will be copies to tmp
+all raycasts will collide with this tmp layer instead until FreeTmpLayers
+parameters specify "cone" - two positions and end radius
+
+[View Documentation](https://docs.atomontage.com/api/VoxelEdit#nil-FillTmpLayers-int-Vec3-Vec3-float-int)
+]]
 --- @param p1 integer
 --- @param p2 Vec3
 --- @param p3 Vec3
@@ -6561,7 +6546,7 @@ VoxelRenderer = {}
 --- @return boolean
 function VoxelRenderer:__eq(p1, p2) end
 
---- @return userdata
+--- @return number, number
 function VoxelRenderer:GetBounds() end
 
 --- @enum AttachmentFlags
