@@ -6,7 +6,7 @@ slug: /
 
 # Getting started
 
-* [ScriptComponent](api/ScriptComponent)
+* [ScriptInstance](api/ScriptInstance)
 * [Client](api/Client)
 * [Server](api/Server)
 * [Vec3](api/Vec3)
