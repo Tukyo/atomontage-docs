@@ -11,11 +11,17 @@ id: VoxelEdit
 
 ## Methods
 
+### nil Flush() {#nil-Flush}
+
 ### nil Paint() {#nil-Paint}
 
 ### nil Add() {#nil-Add}
 
 ### nil Erase() {#nil-Erase}
+
+### nil Copy() {#nil-Copy}
+
+### nil Kernel() {#nil-Kernel}
 
 ### nil FreeTmpLayers(int) {#nil-FreeTmpLayers-int}
 It projects cone on voxel geometry and everything inside will be copies to tmp
@@ -38,9 +44,39 @@ parameters specify "cone" - two positions and end radius
 
 ### Vec3 color {#Vec3-color}
 
-### Filter filter {#Filter-filter}
+### userdata filter {#userdata-filter}
 
 ### Shape shape {#Shape-shape}
 
 ### bool clampToMinVoxelSize {#bool-clampToMinVoxelSize}
+
+### Transform copySourceTr {#Transform-copySourceTr}
+
+### Transform copyDestinationTr {#Transform-copyDestinationTr}
+
+### Vec3 copyDestinationPos {#Vec3-copyDestinationPos}
+
+### Quat copyDestinationRot {#Quat-copyDestinationRot}
+
+### float copyDestinationScale {#float-copyDestinationScale}
+
+### Vec3 copySourcePos {#Vec3-copySourcePos}
+
+### Quat copySourceRot {#Quat-copySourceRot}
+
+### float copySourceScale {#float-copySourceScale}
+
+### userdata copyResource {#userdata-copyResource}
+
+### bool copyInsert {#bool-copyInsert}
+
+### bool copyRemove {#bool-copyRemove}
+
+### bool copyColor {#bool-copyColor}
+
+### int kernelType {#int-kernelType}
+
+### userdata onProgress {#userdata-onProgress}
+
+### userdata onFinished {#userdata-onFinished}
 

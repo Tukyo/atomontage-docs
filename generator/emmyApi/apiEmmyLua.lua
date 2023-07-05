@@ -531,11 +531,8 @@ function Box.new(p1) end
 ]]
 --- @class Camera
 --- @field object Object
---- @field transform Transform
 --- @field isDestroyed boolean
 --- @field type string
---- @field object Object
---- @field transform Transform
 --- @field fovY number
 Camera = {}
 
@@ -619,9 +616,6 @@ function Client:OpenKeyboardShortcutInput(keyActionID) end
 function Client:ToggleUICreatorWindow() end
 
 --- @return nil
-function Client:ToggleUIStudioSDK() end
-
---- @return nil
 function Client:ToggleUIVisibility() end
 
 --- @return nil
@@ -629,6 +623,13 @@ function Client:ToggleMainMenuVisibility() end
 
 --- @return nil
 function Client:SetToClientUI() end
+
+--- @param p1 boolean
+--- @return nil
+function Client:SetShowWindows(p1) end
+
+--- @return boolean
+function Client:GetShowWindows() end
 
 --- @return boolean
 function Client:GetUICapturesMouseOrKeyboard() end
@@ -873,6 +874,21 @@ function Client:GetUIActionScript(uiActionID) end
 --- @return integer
 function Client:GetCurrentUIActionID() end
 
+--- @param p1 Vec4
+--- @return nil
+function Client:SetIntersectionTint(p1) end
+
+--- @param p1 Vec3
+--- @param p2 Quat
+--- @param p3 Vec3
+--- @return nil
+function Client:SetIntersectionBox(p1, p2, p3) end
+
+--- @param p1 Vec3
+--- @param p2 number
+--- @return nil
+function Client:SetIntersectionSphere(p1, p2) end
+
 --- @param p1 string
 --- @param p2 Vec2
 --- @param p3 Vec2
@@ -939,6 +955,13 @@ function Client:SetVREnabled(p1, p2) end
 --- @return nil
 function Client:ToggleVREnabled(p1) end
 
+--- @param p1 integer
+--- @return Vec3, Quat
+function Client:GetVREyeTransform(p1) end
+
+--- @return boolean
+function Client:GetVREyeTrackingSupported() end
+
 --- @return nil
 function Client:TriggerCrash() end
 
@@ -998,6 +1021,9 @@ function Client:GetVersion() end
 --- @return System
 function Client:GetSystem() end
 
+--- @return integer
+function Client:GetMemoryUsage() end
+
 --- @return string
 function Client:GetCredits() end
 
@@ -1006,6 +1032,12 @@ function Client:GetSystemConsole() end
 
 --- @return string
 function Client:GetSystemOutput() end
+
+--- @return table
+function Client:GetErrors() end
+
+--- @return string
+function Client:GetDateTime() end
 
 --- @return string
 function Client:GetLastSyncMessageRecv() end
@@ -1050,23 +1082,6 @@ function Client:SetTestRenderObjectEnabled(p1, p2) end
 --- @param p1 string
 --- @return boolean
 function Client:ToggleTestRenderObjectEnabled(p1) end
-
---- @param p1 integer
---- @return integer
-function Client:GetCollectionCurrentBlockCount(p1) end
-
---- @param p1 integer
---- @return integer
-function Client:GetCollectionCurrentLoad(p1) end
-
---- @param p1 integer
---- @return integer
-function Client:GetCollectionPreferredLoad(p1) end
-
---- @param p1 integer
---- @param p2 integer
---- @return nil
-function Client:SetCollectionPreferredLoad(p1, p2) end
 
 --[[
 `Client`
@@ -1163,8 +1178,8 @@ See also: [ScriptComponent](ScriptComponent)
 ]]
 --- @class Component
 --- @field object Object
---- @field transform Transform
 --- @field isDestroyed boolean
+--- @field type string
 Component = {}
 
 --[[
@@ -1344,10 +1359,10 @@ function Cylinder.new(p1, p2) end
 [View Documentation](https://docs.atomontage.com/api/Filter)
 ]]
 --- @class Filter
---- @field useCommon boolean
---- @field useAtlas boolean
---- @field useTmp boolean
---- @field useTmpAtlas boolean
+--- @field useStatic boolean
+--- @field useNotStatic boolean
+--- @field useTmpStatic boolean
+--- @field useTmpNotStatic boolean
 --- @field ignoreList table
 --- @field forceList table
 Filter = {
@@ -1479,6 +1494,20 @@ function Input:GetRelativeMouseMode() end
 --- @return nil
 function Input:SetRelativeMouseMode(p1) end
 
+--- @return boolean
+function Input:GetEmulateMouseWithTouch() end
+
+--- @param p1 boolean
+--- @return nil
+function Input:SetEmulateMouseWithTouch(p1) end
+
+--- @return boolean
+function Input:GetEmulateTouchWithMouse() end
+
+--- @param p1 boolean
+--- @return nil
+function Input:SetEmulateTouchWithMouse(p1) end
+
 --- @return number
 function Input:GesturePinch() end
 
@@ -1491,6 +1520,11 @@ function Input:GestureMove() end
 --- @return integer
 function Input:NumFingers() end
 
+--[[
+int passed is the unique ID of that touch obtained i.e. from Input:Fingers() or Input:GetEvents()
+
+[View Documentation](https://docs.atomontage.com/api/Input#bool-FingerDown-int)
+]]
 --- @param p1 integer
 --- @return boolean
 function Input:FingerDown(p1) end
@@ -1509,7 +1543,17 @@ function Input:FingerPos(p1) end
 --- @param p1 integer
 --- @param p2 VRControllerButton
 --- @return boolean
+function Input:VRButtonDown(p1, p2) end
+
+--- @param p1 integer
+--- @param p2 VRControllerButton
+--- @return boolean
 function Input:VRButton(p1, p2) end
+
+--- @param p1 integer
+--- @param p2 VRControllerButton
+--- @return boolean
+function Input:VRButtonUp(p1, p2) end
 
 --- @param p1 integer
 --- @return number
@@ -1522,6 +1566,18 @@ function Input:VRIndexTrigger(p1) end
 --- @param p1 integer
 --- @return Vec2
 function Input:VRThumbStick(p1) end
+
+--- @param p1 integer
+--- @return boolean
+function Input:VRIsControllerValid(p1) end
+
+--- @param p1 integer
+--- @return Vec3
+function Input:VRControllerPos(p1) end
+
+--- @param p1 integer
+--- @return Vec3
+function Input:VRControllerDir(p1) end
 
 --- @return userdata
 function Input:Gamepads() end
@@ -2169,13 +2225,10 @@ function Material:SetProperty(p1, p2, p3) end
 ]]
 --- @class MeshData
 --- @field object Object
---- @field transform Transform
 --- @field isDestroyed boolean
---- @field file string
---- @field data MeshDataBuilder
 --- @field type string
---- @field object Object
---- @field transform Transform
+--- @field resourceUsageMode ResourceUsage
+--- @field topology PrimitiveTopology
 MeshData = {}
 
 --- @param p1 MeshData
@@ -2183,68 +2236,52 @@ MeshData = {}
 --- @return boolean
 function MeshData:__eq(p1, p2) end
 
---[[
-`Client`
-`Server`
-
-[View Documentation](https://docs.atomontage.com/api/MeshDataBuilder)
-]]
---- @class MeshDataBuilder
---- @field static boolean
---- @field dynamic boolean
---- @field streamed boolean
---- @field topology PrimitiveTopology
-MeshDataBuilder = {
-	static = nil, ---Hint for opengl/vulkan about how often you change the geometry (static = once, dynamic=more often, streamed = each frame)
-	dynamic = nil, ---Hint for opengl/vulkan about how often you change the geometry (static = once, dynamic=more often, streamed = each frame)
-	streamed = nil, ---Hint for opengl/vulkan about how often you change the geometry (static = once, dynamic=more often, streamed = each frame)
-}
-
---- @return MeshDataBuilder
-function MeshDataBuilder() end
-
 --- @return nil
-function MeshDataBuilder:Clear() end
+function MeshData:ClearShape() end
+
+--- @param p1 PrimitiveTopology
+--- @return nil
+function MeshData:ClearShape(p1) end
 
 --- @param p1 Vec3
 --- @return integer
-function MeshDataBuilder:AddVertex(p1) end
+function MeshData:AddVertex(p1) end
 
 --- @param p1 Vec3
 --- @param p2 Vec4
 --- @return integer
-function MeshDataBuilder:AddVertex(p1, p2) end
+function MeshData:AddVertex(p1, p2) end
 
 --- @param p1 Vec3
 --- @param p2 Vec2
 --- @param p3 Vec4
 --- @return integer
-function MeshDataBuilder:AddVertex(p1, p2, p3) end
+function MeshData:AddVertex(p1, p2, p3) end
 
 --- @param p1 Vec3
 --- @param p2 Vec2
 --- @return integer
-function MeshDataBuilder:AddVertex(p1, p2) end
+function MeshData:AddVertex(p1, p2) end
 
 --- @param p1 integer
 --- @return nil
-function MeshDataBuilder:AddIndex(p1) end
+function MeshData:AddIndex(p1) end
 
 --- @param p1 integer
 --- @param p2 integer
 --- @param p3 integer
 --- @return nil
-function MeshDataBuilder:AddIndex(p1, p2, p3) end
+function MeshData:AddIndex(p1, p2, p3) end
 
 --- @param p1 integer
 --- @param p2 integer
 --- @return nil
-function MeshDataBuilder:AddIndex(p1, p2) end
+function MeshData:AddIndex(p1, p2) end
 
 --- @param p1 Shape
 --- @param p2 Vec4
 --- @return nil
-function MeshDataBuilder:AddShape(p1, p2) end
+function MeshData:AddShape(p1, p2) end
 
 --[[
 `Client`
@@ -2254,12 +2291,9 @@ function MeshDataBuilder:AddShape(p1, p2) end
 ]]
 --- @class MeshRenderer
 --- @field object Object
---- @field transform Transform
 --- @field isDestroyed boolean
---- @field material Material
 --- @field type string
---- @field object Object
---- @field transform Transform
+--- @field material Material
 MeshRenderer = {}
 
 --- @param p1 MeshRenderer
@@ -2301,9 +2335,8 @@ function Object:RemoveParent() end
 --- @return Script
 function Object:AddScript(p1, p2) end
 
---- @param p1 string
 --- @return MeshData
-function Object:AddMeshData(p1) end
+function Object:AddMeshData() end
 
 --- @param p1 string
 --- @return VoxelData
@@ -2659,6 +2692,9 @@ function Scene:GetDeltaTime() end
 --- @return number
 function Scene:GetDebugTime() end
 
+--- @return integer
+function Scene:GetCurrentFrame() end
+
 --- @return Object
 function Scene:CreateObject() end
 
@@ -2761,6 +2797,10 @@ function Scene:TraceRay(p1) end
 --- @return boolean
 function Scene:IsNameValid(p1) end
 
+--- @param p1 string
+--- @return string
+function Scene:MakeNameValid(p1) end
+
 --- @return nil
 function Scene:RebuildLighting() end
 
@@ -2790,10 +2830,7 @@ function Scene:GetVDRStats() end
 ]]
 --- @class Script
 --- @field object Object
---- @field transform Transform
 --- @field isDestroyed boolean
---- @field object Object
---- @field transform Transform
 --- @field type string
 --- @field instance table
 --- @field name string
@@ -2892,6 +2929,16 @@ function Server:GetVoxelFilesList() end
 function Server:SaveScene() end
 
 --- @return nil
+function Server:SaveSceneHierarchy() end
+
+--- @param p1 boolean
+--- @return nil
+function Server:SetBackupSceneOnSave(p1) end
+
+--- @return boolean
+function Server:GetBackupSceneOnSave() end
+
+--- @return nil
 function Server:ReloadScene() end
 
 --- @return nil
@@ -2927,6 +2974,37 @@ function Server:GetVersion() end
 --- @return System
 function Server:GetSystem() end
 
+--- @return string
+function Server:GetDateTime() end
+
+--- @return integer
+function Server:GetMemoryUsage() end
+
+--- @return table
+function Server:GetErrors() end
+
+--- @return boolean
+function Server:GetStartedWithOriginalScripts() end
+
+--- @return nil
+function Server:OverwriteWithOriginalScripts() end
+
+--- @return boolean
+function Server:GetOriginalScriptsWereSet() end
+
+--- @param p1 string
+--- @param p2 table
+--- @param p3 string
+--- @param p4 userdata
+--- @return nil
+function Server:HttpPost(p1, p2, p3, p4) end
+
+--- @param p1 string
+--- @param p2 table
+--- @param p3 userdata
+--- @return nil
+function Server:HttpGet(p1, p2, p3) end
+
 --- @return AssetManager
 function Server:GetResourceManScene() end
 
@@ -2956,6 +3034,9 @@ function Server:TriggerException() end
 --- @return nil
 function Server:TriggerCriticalError() end
 
+--- @return nil
+function Server:Restart() end
+
 --- @param p1 string
 --- @param p2 table
 --- @return nil
@@ -2966,6 +3047,15 @@ function Server:AnalyticsServer(p1, p2) end
 --- @param p3 table
 --- @return nil
 function Server:AnalyticsClient(p1, p2, p3) end
+
+--- @param p1 integer
+--- @return integer
+function Server:GetCollectionPreferredLoad(p1) end
+
+--- @param p1 integer
+--- @param p2 integer
+--- @return nil
+function Server:SetCollectionPreferredLoad(p1, p2) end
 
 --- @return nil
 function Server:GenTestVoxelScene() end
@@ -3031,8 +3121,8 @@ Shape = {}
 ]]
 --- @class Sky
 --- @field object Object
---- @field transform Transform
 --- @field isDestroyed boolean
+--- @field type string
 --- @field cloudScale number
 --- @field cloudOffset number
 --- @field cloudSlope number
@@ -3041,9 +3131,6 @@ Shape = {}
 --- @field rayleighCoeff Vec3
 --- @field mieCoeff number
 --- @field render boolean
---- @field type string
---- @field object Object
---- @field transform Transform
 Sky = {}
 
 --[[
@@ -3075,13 +3162,10 @@ function Sphere.new(p1) end
 ]]
 --- @class StaticVoxelData
 --- @field object Object
---- @field transform Transform
 --- @field isDestroyed boolean
+--- @field type string
 --- @field path string
 --- @field isLoaded boolean
---- @field type string
---- @field object Object
---- @field transform Transform
 StaticVoxelData = {}
 
 --[[
@@ -3092,16 +3176,19 @@ StaticVoxelData = {}
 ]]
 --- @class Transform
 --- @field object Object
+--- @field isDestroyed boolean
+--- @field type string
+--- @field localPos Vec3
+--- @field localScale number
+--- @field localRot Quat
+--- @field localEulerRot Vec3
 --- @field pos Vec3
---- @field scale number
 --- @field rot Quat
---- @field globalPos Vec3
---- @field globalRot Quat
 --- @field eulerRot Vec3
+--- @field scale number
 --- @field right Vec3
 --- @field up Vec3
 --- @field forward Vec3
---- @field type string
 Transform = {}
 
 --- @param p1 Transform
@@ -5987,10 +6074,12 @@ VoxelDB = {}
 --- @return nil
 function VoxelDB:Clear() end
 
---- @param p1 integer
---- @return nil
-function VoxelDB:SetSerialOpId(p1) end
+--[[
+Flush() adds special operation in queue, which waits for all running ops to finish.
+If we had flush after each op, it would eliminate all multithreaded processing.
 
+[View Documentation](https://docs.atomontage.com/api/VoxelDB#nil-Flush)
+]]
 --- @return nil
 function VoxelDB:Flush() end
 
@@ -6029,6 +6118,13 @@ function VoxelDB:GetMask(p1) end
 --- @return boolean
 function VoxelDB:GetMask(p1, p2, p3) end
 
+--[[
+int is the neighbourhood radius, 1 means it's from pos - 1 to pos + 1, 
+sum of voxles in 3x3 square without center (0-26)
+it should be in range 1-8
+
+[View Documentation](https://docs.atomontage.com/api/VoxelDB#int-GetMaskNeighbours-Vec3i-int)
+]]
 --- @param p1 Vec3i
 --- @param p2 integer
 --- @return integer
@@ -6387,6 +6483,14 @@ function VoxelDB:InspectNormals(p1, p2, p3, p4, p5, p6) end
 --- @return VoxelInspectData
 function VoxelDB:Inspect(p1, p2, p3, p4, p5, p6, p7) end
 
+--- @return integer
+function VoxelDB:GetLODsCount() end
+
+--- @param p1 this_state
+--- @param p2 string
+--- @return table
+function VoxelDB:GetLayerStats(p1, p2) end
+
 --- @return table
 function VoxelDB:GetUsedLayers() end
 
@@ -6401,18 +6505,22 @@ function VoxelDB:GetBounds() end
 ]]
 --- @class VoxelData
 --- @field object Object
---- @field transform Transform
 --- @field isDestroyed boolean
+--- @field type string
 --- @field path string
 --- @field data VoxelDataResource
 --- @field copyOnWrite boolean
 --- @field save boolean
---- @field type string
---- @field object Object
---- @field transform Transform
 VoxelData = {
 	copyOnWrite = nil, ---make local copy of voxel data resource if edited 
 }
+
+--- @return VoxelData
+function VoxelData() end
+
+--- @param p1 string
+--- @return boolean, string
+function VoxelData:SetPath(p1) end
 
 --- @param p1 VoxelData
 --- @param p2 VoxelData
@@ -6441,12 +6549,16 @@ VoxelDataResource = {
 --- @return VoxelDataResource
 function VoxelDataResource.new(p1, p2) end
 
+--- @return VoxelDataResource
+function VoxelDataResource.new() end
+
 --- @param p1 string
 --- @return VoxelDataResource
 function VoxelDataResource.new(p1) end
 
 --[[
 save voxel data in AM file
+second parameter controls if file will be overwritten
 
 [View Documentation](https://docs.atomontage.com/api/VoxelDataResource#string-Save-string-bool)
 ]]
@@ -6476,13 +6588,31 @@ function VoxelDataResource:RebuildLighting() end
 --- @field blendOpacity number
 --- @field blendRadiusRatio number
 --- @field color Vec3
---- @field filter Filter
+--- @field filter userdata
 --- @field shape Shape
 --- @field clampToMinVoxelSize boolean
+--- @field copySourceTr Transform
+--- @field copyDestinationTr Transform
+--- @field copyDestinationPos Vec3
+--- @field copyDestinationRot Quat
+--- @field copyDestinationScale number
+--- @field copySourcePos Vec3
+--- @field copySourceRot Quat
+--- @field copySourceScale number
+--- @field copyResource userdata
+--- @field copyInsert boolean
+--- @field copyRemove boolean
+--- @field copyColor boolean
+--- @field kernelType integer
+--- @field onProgress userdata
+--- @field onFinished userdata
 VoxelEdit = {}
 
 --- @return VoxelEdit
 function VoxelEdit() end
+
+--- @return nil
+function VoxelEdit:Flush() end
 
 --- @return nil
 function VoxelEdit:Paint() end
@@ -6492,6 +6622,12 @@ function VoxelEdit:Add() end
 
 --- @return nil
 function VoxelEdit:Erase() end
+
+--- @return nil
+function VoxelEdit:Copy() end
+
+--- @return nil
+function VoxelEdit:Kernel() end
 
 --[[
 It projects cone on voxel geometry and everything inside will be copies to tmp
@@ -6547,11 +6683,8 @@ function VoxelInspectData:GetColors() end
 ]]
 --- @class VoxelRenderer
 --- @field object Object
---- @field transform Transform
 --- @field isDestroyed boolean
 --- @field type string
---- @field object Object
---- @field transform Transform
 --- @field syncToClients boolean
 --- @field enabled boolean
 --- @field prioritizeLod boolean
@@ -6773,6 +6906,8 @@ PixelFormat = {
 	Depth32Stencil8X24 = 41,
 	RGB16U = 42,
 	RGBA16U = 43,
+	SRGB888 = 44,
+	SRGB888A8 = 45,
 }
 
 --- @enum PolygonMode
@@ -6799,8 +6934,15 @@ RendererStateFlags = {
 	MultiView = 2,
 	Lighting = 3,
 	DepthPass = 4,
+	VR = 5,
 }
 
+--[[
+
+Hint for opengl/vulkan about how often you change the geometry (static = once, dynamic=more often, streamed = each frame)
+
+[View Documentation](https://docs.atomontage.com/api/ResourceUsage)
+]]
 --- @enum ResourceUsage
 ResourceUsage = {
 	Static = 0,
@@ -6863,6 +7005,12 @@ ShaderResourceType = {
 	Texture = 40,
 	Buffer = 41,
 	AccelerationStructure = 42,
+}
+
+--- @enum Side
+Side = {
+	Left = 0,
+	Right = 1,
 }
 
 --- @enum System

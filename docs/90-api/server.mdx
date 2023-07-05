@@ -27,6 +27,12 @@ This class is only available on server
 
 ### nil SaveScene() {#nil-SaveScene}
 
+### nil SaveSceneHierarchy() {#nil-SaveSceneHierarchy}
+
+### nil SetBackupSceneOnSave(bool) {#nil-SetBackupSceneOnSave-bool}
+
+### bool GetBackupSceneOnSave() {#bool-GetBackupSceneOnSave}
+
 ### nil ReloadScene() {#nil-ReloadScene}
 
 ### nil OnLuaLog() {#nil-OnLuaLog}
@@ -51,6 +57,22 @@ This class is only available on server
 
 ### System GetSystem() {#System-GetSystem}
 
+### string GetDateTime() {#string-GetDateTime}
+
+### int GetMemoryUsage() {#int-GetMemoryUsage}
+
+### table GetErrors() {#table-GetErrors}
+
+### bool GetStartedWithOriginalScripts() {#bool-GetStartedWithOriginalScripts}
+
+### nil OverwriteWithOriginalScripts() {#nil-OverwriteWithOriginalScripts}
+
+### bool GetOriginalScriptsWereSet() {#bool-GetOriginalScriptsWereSet}
+
+### nil HttpPost(string, table, string, userdata) {#nil-HttpPost-string-table-string-userdata}
+
+### nil HttpGet(string, table, userdata) {#nil-HttpGet-string-table-userdata}
+
 ### AssetManager GetResourceManScene() {#AssetManager-GetResourceManScene}
 
 ### AssetManager GetResourceManUI() {#AssetManager-GetResourceManUI}
@@ -69,9 +91,15 @@ This class is only available on server
 
 ### nil TriggerCriticalError() {#nil-TriggerCriticalError}
 
+### nil Restart() {#nil-Restart}
+
 ### nil AnalyticsServer(string, table) {#nil-AnalyticsServer-string-table}
 
 ### nil AnalyticsClient(int, string, table) {#nil-AnalyticsClient-int-string-table}
+
+### int GetCollectionPreferredLoad(int) {#int-GetCollectionPreferredLoad-int}
+
+### nil SetCollectionPreferredLoad(int, int) {#nil-SetCollectionPreferredLoad-int-int}
 
 ### nil GenTestVoxelScene() {#nil-GenTestVoxelScene}
 

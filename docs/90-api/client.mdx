@@ -17,13 +17,15 @@ This class is only available on client
 
 ### nil ToggleUICreatorWindow() {#nil-ToggleUICreatorWindow}
 
-### nil ToggleUIStudioSDK() {#nil-ToggleUIStudioSDK}
-
 ### nil ToggleUIVisibility() {#nil-ToggleUIVisibility}
 
 ### nil ToggleMainMenuVisibility() {#nil-ToggleMainMenuVisibility}
 
 ### nil SetToClientUI() {#nil-SetToClientUI}
+
+### nil SetShowWindows(bool) {#nil-SetShowWindows-bool}
+
+### bool GetShowWindows() {#bool-GetShowWindows}
 
 ### bool GetUICapturesMouseOrKeyboard() {#bool-GetUICapturesMouseOrKeyboard}
 
@@ -159,6 +161,12 @@ This class is only available on client
 
 ### int GetCurrentUIActionID() {#int-GetCurrentUIActionID}
 
+### nil SetIntersectionTint(Vec4) {#nil-SetIntersectionTint-Vec4}
+
+### nil SetIntersectionBox(Vec3, Quat, Vec3) {#nil-SetIntersectionBox-Vec3-Quat-Vec3}
+
+### nil SetIntersectionSphere(Vec3, float) {#nil-SetIntersectionSphere-Vec3-float}
+
 ### nil WriteToScreen(string, Vec2, Vec2, Vec4, int, Vec4, float) {#nil-WriteToScreen-string-Vec2-Vec2-Vec4-int-Vec4-float}
 
 ### nil WriteToScreen(string, Vec2, Vec2, Vec4, int) {#nil-WriteToScreen-string-Vec2-Vec2-Vec4-int}
@@ -185,6 +193,10 @@ Returns [`CommandLine`](/api/commandLine)
 ### nil SetVREnabled(bool, string) {#nil-SetVREnabled-bool-string}
 
 ### nil ToggleVREnabled(string) {#nil-ToggleVREnabled-string}
+
+### Vec3, Quat GetVREyeTransform(int) {#Vec3-Quat-GetVREyeTransform-int}
+
+### bool GetVREyeTrackingSupported() {#bool-GetVREyeTrackingSupported}
 
 ### nil TriggerCrash() {#nil-TriggerCrash}
 
@@ -222,11 +234,17 @@ Returns [`CommandLine`](/api/commandLine)
 
 ### System GetSystem() {#System-GetSystem}
 
+### int GetMemoryUsage() {#int-GetMemoryUsage}
+
 ### string GetCredits() {#string-GetCredits}
 
 ### string GetSystemConsole() {#string-GetSystemConsole}
 
 ### string GetSystemOutput() {#string-GetSystemOutput}
+
+### table GetErrors() {#table-GetErrors}
+
+### string GetDateTime() {#string-GetDateTime}
 
 ### string GetLastSyncMessageRecv() {#string-GetLastSyncMessageRecv}
 
@@ -244,7 +262,7 @@ Returns [`CommandLine`](/api/commandLine)
 
 ## Metamethods
 
-### const char __tostring() {#const-char-tostring}
+### string __tostring() {#string-tostring}
 
 ### table EnumerateTestRenderObjects() {#table-EnumerateTestRenderObjects}
 
@@ -253,14 +271,6 @@ Returns [`CommandLine`](/api/commandLine)
 ### bool SetTestRenderObjectEnabled(string, bool) {#bool-SetTestRenderObjectEnabled-string-bool}
 
 ### bool ToggleTestRenderObjectEnabled(string) {#bool-ToggleTestRenderObjectEnabled-string}
-
-### int GetCollectionCurrentBlockCount(int) {#int-GetCollectionCurrentBlockCount-int}
-
-### int GetCollectionCurrentLoad(int) {#int-GetCollectionCurrentLoad-int}
-
-### int GetCollectionPreferredLoad(int) {#int-GetCollectionPreferredLoad-int}
-
-### nil SetCollectionPreferredLoad(int, int) {#nil-SetCollectionPreferredLoad-int-int}
 
 ## Properties
 

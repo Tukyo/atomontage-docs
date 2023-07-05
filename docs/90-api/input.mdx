@@ -59,6 +59,14 @@ id: Input
 
 ### nil SetRelativeMouseMode(bool) {#nil-SetRelativeMouseMode-bool}
 
+### bool GetEmulateMouseWithTouch() {#bool-GetEmulateMouseWithTouch}
+
+### nil SetEmulateMouseWithTouch(bool) {#nil-SetEmulateMouseWithTouch-bool}
+
+### bool GetEmulateTouchWithMouse() {#bool-GetEmulateTouchWithMouse}
+
+### nil SetEmulateTouchWithMouse(bool) {#nil-SetEmulateTouchWithMouse-bool}
+
 ### float GesturePinch() {#float-GesturePinch}
 
 ### float GestureRotate() {#float-GestureRotate}
@@ -68,6 +76,7 @@ id: Input
 ### int NumFingers() {#int-NumFingers}
 
 ### bool FingerDown(int) {#bool-FingerDown-int}
+int passed is the unique ID of that touch obtained i.e. from Input:Fingers() or Input:GetEvents()
 
 ### userdata Fingers() {#userdata-Fingers}
 
@@ -75,13 +84,23 @@ id: Input
 
 ### Vec2 FingerPos(int) {#Vec2-FingerPos-int}
 
+### bool VRButtonDown(int, VRControllerButton) {#bool-VRButtonDown-int-VRControllerButton}
+
 ### bool VRButton(int, VRControllerButton) {#bool-VRButton-int-VRControllerButton}
+
+### bool VRButtonUp(int, VRControllerButton) {#bool-VRButtonUp-int-VRControllerButton}
 
 ### float VRHandTrigger(int) {#float-VRHandTrigger-int}
 
 ### float VRIndexTrigger(int) {#float-VRIndexTrigger-int}
 
 ### Vec2 VRThumbStick(int) {#Vec2-VRThumbStick-int}
+
+### bool VRIsControllerValid(int) {#bool-VRIsControllerValid-int}
+
+### Vec3 VRControllerPos(int) {#Vec3-VRControllerPos-int}
+
+### Vec3 VRControllerDir(int) {#Vec3-VRControllerDir-int}
 
 ### userdata Gamepads() {#userdata-Gamepads}
 

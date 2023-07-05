@@ -9,21 +9,37 @@ id: MeshData
 
 ### bool __eq(MeshData, MeshData) {#bool-eq-MeshData-MeshData}
 
+## Methods
+
+### nil ClearShape() {#nil-ClearShape}
+
+### nil ClearShape(PrimitiveTopology) {#nil-ClearShape-PrimitiveTopology}
+
+### int AddVertex(Vec3) {#int-AddVertex-Vec3}
+
+### int AddVertex(Vec3, Vec4) {#int-AddVertex-Vec3-Vec4}
+
+### int AddVertex(Vec3, Vec2, Vec4) {#int-AddVertex-Vec3-Vec2-Vec4}
+
+### int AddVertex(Vec3, Vec2) {#int-AddVertex-Vec3-Vec2}
+
+### nil AddIndex(int) {#nil-AddIndex-int}
+
+### nil AddIndex(int, int, int) {#nil-AddIndex-int-int-int}
+
+### nil AddIndex(int, int) {#nil-AddIndex-int-int}
+
+### nil AddShape(Shape, Vec4) {#nil-AddShape-Shape-Vec4}
+
 ## Properties
 
 ### Object object {#Object-object}
 
-### Transform transform {#Transform-transform}
-
 ### bool isDestroyed {#bool-isDestroyed}
-
-### string file {#string-file}
-
-### MeshDataBuilder data {#MeshDataBuilder-data}
 
 ### string type {#string-type}
 
-### Object object {#Object-object}
+### ResourceUsage resourceUsageMode {#ResourceUsage-resourceUsageMode}
 
-### Transform transform {#Transform-transform}
+### PrimitiveTopology topology {#PrimitiveTopology-topology}
 

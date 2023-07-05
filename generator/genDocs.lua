@@ -768,9 +768,26 @@ function genDocs:cleanUpName(name)
         {"shared_ptr<structae::scene::VoxelDataResource>", "VoxelDataResource" },
         {"shared_ptr<classae::scene::CameraComponent>", "CameraComponent"},
         {"tuple<classTVector3<float>,classTVector3<float> >", "float, float"}, --this is two
-        {"tuple<classsol::basic_table_core<0,classsol::basic_reference<0>>,classsol::basic_table_core<0,classsol::basic_reference<0>> >", "table, table"}, --this two
+        {"tuple<classsol::basic_table_core<0,classsol::basic_reference<0>>,classsol::basic_table_core<0,classsol::basic_reference<0>> >", "table, table"}, --this is two
+        {"tuple<classTVector3<float>,classae::core::TQuaternion<float> >", "Vec3, Quat" }, --this is two
+        {"tuple<bool,classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>> >", "bool, string" }, --this is two
         {"shared_ptr<classae::scene::Script>", "Script"}, --correct?
+        {"const char", "string"}, --correct?
     }
+
+    --auto find tuple
+    --[[
+    if string.find(name, "tuple<") then
+        local _, _, a, b = string.find(name, "tuple<(%S+)%,(%S+)%s>")
+        for i, repl in ipairs(replacements) do
+            a = a:gsub(repl[1], repl[2])
+        end
+        for i, repl in ipairs(replacements) do
+            b = b:gsub(repl[1], repl[2])
+        end
+        print(name,a,b)
+    end
+    ]]
 
     --name = name:gsub("(%S+),?", replacments)
     for i, repl in ipairs(replacements) do
