@@ -463,6 +463,17 @@ function Vec3:GetClamped(p2, p3) end
 --- @return Material
 function Scene:CreateMaterial(p1) end
 
+
+--- @param text string
+--- @param pos Vec2 0-1
+--- @param pivot Vec2 0 = left allingned, 0.5 = centered, 1 = right alligned
+--- @param color Vec4
+--- @param size integer 1-6
+--- @param colorOutline Vec4?
+--- @param p7 number?
+--- @return nil
+function Client:WriteToScreen(text, pos, pivot, color, size, colorOutline, p7) end
+
 ]]
 
 function genEmmy:createFile(bindingsServer, bindingsClient)
