@@ -27,7 +27,7 @@ id: VoxelEdit
 It projects cone on voxel geometry and everything inside will be copies to tmp
 all raycasts will collide with this tmp layer instead until FreeTmpLayers
 
-### nil FillTmpLayers(int, Vec3, Vec3, float, int) {#nil-FillTmpLayers-int-Vec3-Vec3-float-int}
+### nil FillTmpLayers(int, Vec3, table, float, int) {#nil-FillTmpLayers-int-Vec3-table-float-int}
 It projects cone on voxel geometry and everything inside will be copies to tmp
 all raycasts will collide with this tmp layer instead until FreeTmpLayers
 parameters specify "cone" - two positions and end radius
@@ -46,7 +46,7 @@ parameters specify "cone" - two positions and end radius
 
 ### userdata filter {#userdata-filter}
 
-### Shape shape {#Shape-shape}
+### userdata shape {#userdata-shape}
 
 ### bool clampToMinVoxelSize {#bool-clampToMinVoxelSize}
 
@@ -77,6 +77,9 @@ parameters specify "cone" - two positions and end radius
 ### int kernelType {#int-kernelType}
 
 ### userdata onProgress {#userdata-onProgress}
+callback function. progress from 0-1. May not be called every frame. Is called after script updates 
 
 ### userdata onFinished {#userdata-onFinished}
+callback function. onFinished is called after onProgress if it was last part
+### userdata onError {#userdata-onError}
 

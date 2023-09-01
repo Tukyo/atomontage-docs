@@ -455,6 +455,14 @@ function Scene:CreateMaterial(p1) end
 function Client:WriteToScreen(text, pos, pivot, color, size, colorOutline, p7) end
 
 
+--- @param hand Side
+--- @param duration number in seconds, 0 <= minimal
+--- @param frequency number Hz, 0 = unspecified
+--- @param amplitude number 0-1
+--- @return nil
+function Client:ApplyVRHapticFeedback(p1, p2, p3, p4) end
+
+
 --- @alias componentType
 ---| "'Camera'"
 ---| "'MeshData'"
@@ -682,6 +690,15 @@ function Client:IsWindowOpen(windowID) end
 --- @param position Vec2
 --- @return nil
 function Client:SetWindowPos(windowID, position) end
+
+--- @return nil
+function Client:OpenUI() end
+
+--- @return nil
+function Client:CloseUI() end
+
+--- @return boolean
+function Client:IsUIOpen() end
 
 --- @param p1 string
 --- @return nil
@@ -975,8 +992,22 @@ function Client:GetVREyeTransform(p1, p2) end
 --- @return Vec3, Quat
 function Client:GetVRHeadsetTransform(p1) end
 
+--- @param p1 integer
+--- @param p2 number
+--- @param p3 number
+--- @param p4 number
+--- @return nil
+function Client:ApplyVRHapticFeedback(p1, p2, p3, p4) end
+
 --- @return boolean
 function Client:GetVREyeTrackingSupported() end
+
+--- @param p1 number
+--- @return nil
+function Client:SetVRUserScale(p1) end
+
+--- @return number
+function Client:GetVRUserScale() end
 
 --- @return nil
 function Client:TriggerCrash() end
@@ -1109,6 +1140,7 @@ function Client:ToggleTestRenderObjectEnabled(p1) end
 --- @field filter Filter
 --- @field maxHitCount integer
 --- @field shape Shape
+--- @field precise boolean
 --- @field rayPos Vec3
 --- @field rayDir Vec3
 Collision = {
@@ -1142,10 +1174,19 @@ function Collision:Raycast(p1, p2) end
 --[[
 checks collision between shape and geometry passed by filter
 
-[View Documentation](https://docs.atomontage.com/api/Collision#bool-Check)
+[View Documentation](https://docs.atomontage.com/api/Collision#table-GetOverlap)
 ]]
---- @return boolean
-function Collision:Check() end
+--- @return table
+function Collision:GetOverlap() end
+
+--[[
+checks collision between shape and geometry passed by filter
+
+[View Documentation](https://docs.atomontage.com/api/Collision#table-GetOverlap-Shape)
+]]
+--- @param p1 Shape
+--- @return table
+function Collision:GetOverlap(p1) end
 
 --[[
 `Client`
@@ -2211,9 +2252,10 @@ function Material:IsValid() end
 --- @return boolean
 function Material:IsManaged() end
 
---- @param p1 string
+--- @param p1 Material
+--- @param p2 string
 --- @return boolean
-function Material:HasProperty(p1) end
+function Material:HasProperty(p1, p2) end
 
 --- @param p1 Material
 --- @param p2 string
@@ -3024,6 +3066,9 @@ function Server:GetMemoryUsage() end
 
 --- @return table
 function Server:GetErrors() end
+
+--- @return integer
+function Server:GetMaxConnections() end
 
 --- @return boolean
 function Server:GetStartedWithOriginalScripts() end
@@ -6580,6 +6625,7 @@ function VoxelData:__eq(p1, p2) end
 --- @field isSaved boolean
 --- @field hasAnyVoxels boolean
 --- @field volumePerc number
+--- @field scaleToStatic number
 VoxelDataResource = {
 	isEditable = nil, ---returns false if loaded as aevv
 	isSaved = nil, ---returns true if data was modified
@@ -6631,7 +6677,7 @@ function VoxelDataResource:RebuildLighting() end
 --- @field blendRadiusRatio number
 --- @field color Vec3
 --- @field filter userdata
---- @field shape Shape
+--- @field shape userdata
 --- @field clampToMinVoxelSize boolean
 --- @field copySourceTr Transform
 --- @field copyDestinationTr Transform
@@ -6648,7 +6694,11 @@ function VoxelDataResource:RebuildLighting() end
 --- @field kernelType integer
 --- @field onProgress userdata
 --- @field onFinished userdata
-VoxelEdit = {}
+--- @field onError userdata
+VoxelEdit = {
+	onProgress = nil, ---callback function. progress from 0-1. May not be called every frame. Is called after script updates 
+	onFinished = nil, ---callback function. onFinished is called after onProgress if it was last part
+}
 
 --- @return VoxelEdit
 function VoxelEdit() end
@@ -6686,11 +6736,11 @@ It projects cone on voxel geometry and everything inside will be copies to tmp
 all raycasts will collide with this tmp layer instead until FreeTmpLayers
 parameters specify "cone" - two positions and end radius
 
-[View Documentation](https://docs.atomontage.com/api/VoxelEdit#nil-FillTmpLayers-int-Vec3-Vec3-float-int)
+[View Documentation](https://docs.atomontage.com/api/VoxelEdit#nil-FillTmpLayers-int-Vec3-table-float-int)
 ]]
 --- @param p1 integer
 --- @param p2 Vec3
---- @param p3 Vec3
+--- @param p3 table
 --- @param p4 number
 --- @param p5 integer
 --- @return nil
@@ -6731,6 +6781,8 @@ function VoxelInspectData:GetColors() end
 --- @field enabled boolean
 --- @field prioritizeLod boolean
 --- @field outline boolean
+--- @field tintColor Vec4
+--- @field receiveTransform boolean
 VoxelRenderer = {}
 
 --- @param p1 VoxelRenderer

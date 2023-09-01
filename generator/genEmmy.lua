@@ -474,6 +474,14 @@ function Scene:CreateMaterial(p1) end
 --- @return nil
 function Client:WriteToScreen(text, pos, pivot, color, size, colorOutline, p7) end
 
+
+--- @param hand Side
+--- @param duration number in seconds, 0 <= minimal
+--- @param frequency number Hz, 0 = unspecified
+--- @param amplitude number 0-1
+--- @return nil
+function Client:ApplyVRHapticFeedback(p1, p2, p3, p4) end
+
 ]]
 
 function genEmmy:createFile(bindingsServer, bindingsClient)

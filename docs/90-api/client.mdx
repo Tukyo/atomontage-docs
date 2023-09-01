@@ -49,6 +49,12 @@ This class is only available on client
 
 ### nil SetWindowPos(string windowID, Vec2 position) {#nil-SetWindowPos-string-windowID-Vec2-position}
 
+### nil OpenUI() {#nil-OpenUI}
+
+### nil CloseUI() {#nil-CloseUI}
+
+### bool IsUIOpen() {#bool-IsUIOpen}
+
 ### nil OpenScriptFile(string) {#nil-OpenScriptFile-string}
 
 ### nil OpenScriptFile(string, int) {#nil-OpenScriptFile-string-int}
@@ -198,7 +204,13 @@ Returns [`CommandLine`](/api/commandLine)
 
 ### Vec3, Quat GetVRHeadsetTransform(Space) {#Vec3-Quat-GetVRHeadsetTransform-Space}
 
+### nil ApplyVRHapticFeedback(int, float, float, float) {#nil-ApplyVRHapticFeedback-int-float-float-float}
+
 ### bool GetVREyeTrackingSupported() {#bool-GetVREyeTrackingSupported}
+
+### nil SetVRUserScale(double) {#nil-SetVRUserScale-double}
+
+### double GetVRUserScale() {#double-GetVRUserScale}
 
 ### nil TriggerCrash() {#nil-TriggerCrash}
 
