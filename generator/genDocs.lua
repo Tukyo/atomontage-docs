@@ -228,6 +228,8 @@ function genDocs:gen()
         "Collision", 
         "Hit", 
         "HitType",
+        "Overlap",
+        "File",
     }
 
     local show = {}
@@ -773,6 +775,8 @@ function genDocs:cleanUpName(name)
         {"tuple<bool,classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>> >", "bool, string" }, --this is two
         {"shared_ptr<classae::scene::Script>", "Script"}, --correct?
         {"const char", "string"}, --correct?
+        {"pair<classae::core::TQuaternion<float>,classTVector3<float> >", "Quat, Vec3"},
+        {"shared_ptr<classae::studio::FileLua>", "File"}
     }
 
     --auto find tuple
@@ -797,7 +801,7 @@ function genDocs:cleanUpName(name)
     name = name:gsub(" %(", "(") --remove space beofre bracket opening
     name = name:gsub(", this_state%)", ")") --remove this_state
     name = name:gsub("%(this_state%)", "()") --remove this_state
-    
+    name = name:gsub("%(this_state,%s", "(") --remove this_state
     return name
 end
 

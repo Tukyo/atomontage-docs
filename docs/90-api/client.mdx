@@ -55,6 +55,10 @@ This class is only available on client
 
 ### bool IsUIOpen() {#bool-IsUIOpen}
 
+### nil SetUIPose(Quat, Vec3) {#nil-SetUIPose-Quat-Vec3}
+
+### Quat, Vec3 GetUIPose() {#Quat-Vec3-GetUIPose}
+
 ### nil OpenScriptFile(string) {#nil-OpenScriptFile-string}
 
 ### nil OpenScriptFile(string, int) {#nil-OpenScriptFile-string-int}
@@ -122,6 +126,8 @@ This class is only available on client
 ### double GetLogTime(string) {#double-GetLogTime-string}
 
 ### table GetLogTimers(string) {#table-GetLogTimers-string}
+
+### table GetMainDispatcherStats() {#table-GetMainDispatcherStats}
 
 ### double GetFPS() {#double-GetFPS}
 
@@ -212,6 +218,8 @@ Returns [`CommandLine`](/api/commandLine)
 
 ### double GetVRUserScale() {#double-GetVRUserScale}
 
+### nil SendFile(File) {#nil-SendFile-File}
+
 ### nil TriggerCrash() {#nil-TriggerCrash}
 
 ### nil TriggerException() {#nil-TriggerException}
@@ -247,6 +255,8 @@ Returns [`CommandLine`](/api/commandLine)
 ### table GetVersion() {#table-GetVersion}
 
 ### System GetSystem() {#System-GetSystem}
+
+### Device GetDevice() {#Device-GetDevice}
 
 ### int GetMemoryUsage() {#int-GetMemoryUsage}
 
