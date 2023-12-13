@@ -11,7 +11,11 @@ This class is only available on server
 
 ### table GetClients() {#table-GetClients}
 
-### nil DisconnectClient(int, string) {#nil-DisconnectClient-int-string}
+### table GetUsersID() {#table-GetUsersID}
+
+### string GetUserID(int) {#string-GetUserID-int}
+
+### nil DisconnectClient(int) {#nil-DisconnectClient-int}
 
 ### int GetScriptsVersion() {#int-GetScriptsVersion}
 
@@ -24,6 +28,12 @@ This class is only available on server
 ### table, table GetLuaFilesList() {#table-table-GetLuaFilesList}
 
 ### table, table GetVoxelFilesList() {#table-table-GetVoxelFilesList}
+
+### table GetPrefabsList() {#table-GetPrefabsList}
+
+### Object InsertPrefab(int) {#Object-InsertPrefab-int}
+
+### bool MakePrefab(Object) {#bool-MakePrefab-Object}
 
 ### nil SaveScene() {#nil-SaveScene}
 
@@ -79,7 +89,7 @@ This class is only available on server
 
 ### bool MoveFileToMontageVoxelsFolder(File, string) {#bool-MoveFileToMontageVoxelsFolder-File-string}
 
-### nil MakeUrlForFile(File) {#nil-MakeUrlForFile-File}
+### nil MakeUrlForFile(File, userdata, userdata) {#nil-MakeUrlForFile-File-userdata-userdata}
 
 ### AssetManager GetResourceManScene() {#AssetManager-GetResourceManScene}
 
@@ -106,6 +116,14 @@ This class is only available on server
 ### nil AnalyticsServer(string, table) {#nil-AnalyticsServer-string-table}
 
 ### nil AnalyticsClient(int, string, table) {#nil-AnalyticsClient-int-string-table}
+
+### nil TeamcityApiTest() {#nil-TeamcityApiTest}
+
+### nil TeamcityApiTest2(int) {#nil-TeamcityApiTest2-int}
+
+### table GetTeamcityBuilds() {#table-GetTeamcityBuilds}
+
+### table GetTeamcityBuild(int) {#table-GetTeamcityBuild-int}
 
 ### int GetCollectionPreferredLoad(int) {#int-GetCollectionPreferredLoad-int}
 

@@ -11,6 +11,8 @@ This class is only available on client
 
 ### int GetID() {#int-GetID}
 
+### Guid GetUserID() {#Guid-GetUserID}
+
 ### string UIItemUpdate(int actionID, UIItem item, userdata value) {#string-UIItemUpdate-int-actionID-UIItem-item-userdata-value}
 
 ### nil OpenKeyboardShortcutInput(string keyActionID) {#nil-OpenKeyboardShortcutInput-string-keyActionID}
@@ -72,6 +74,8 @@ This class is only available on client
 ### bool GetUIScaleAuto() {#bool-GetUIScaleAuto}
 
 ### nil SetUIScaleAuto(bool autoScale) {#nil-SetUIScaleAuto-bool-autoScale}
+
+### string GetUILayout() {#string-GetUILayout}
 
 ### string GetMontageURL() {#string-GetMontageURL}
 
@@ -214,11 +218,17 @@ Returns [`CommandLine`](/api/commandLine)
 
 ### bool GetVREyeTrackingSupported() {#bool-GetVREyeTrackingSupported}
 
-### nil SetVRUserScale(double) {#nil-SetVRUserScale-double}
+### double SetVRUserScale(double) {#double-SetVRUserScale-double}
 
 ### double GetVRUserScale() {#double-GetVRUserScale}
 
+### double GetVRUserScaleMin() {#double-GetVRUserScaleMin}
+
+### double GetVRUserScaleMax() {#double-GetVRUserScaleMax}
+
 ### nil SendFile(File) {#nil-SendFile-File}
+
+### nil ChooseImage() {#nil-ChooseImage}
 
 ### nil TriggerCrash() {#nil-TriggerCrash}
 
@@ -296,9 +306,17 @@ Returns [`CommandLine`](/api/commandLine)
 
 ### bool ToggleTestRenderObjectEnabled(string) {#bool-ToggleTestRenderObjectEnabled-string}
 
+### nil EnableRenderingWithFadeEffect(int, float) {#nil-EnableRenderingWithFadeEffect-int-float}
+
+### nil DisableRenderingWithFadeEffect(int, float) {#nil-DisableRenderingWithFadeEffect-int-float}
+
+### nil ToggleRenderingWithFadeEffect(int, float) {#nil-ToggleRenderingWithFadeEffect-int-float}
+
 ## Properties
 
 ### int clientID {#int-clientID}
+
+### Guid userID {#Guid-userID}
 
 ### ClientMode mode {#ClientMode-mode}
 

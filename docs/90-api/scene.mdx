@@ -35,6 +35,8 @@ id: Scene
 
 ### table GetRootObjects() {#table-GetRootObjects}
 
+### table GetAllObjects() {#table-GetAllObjects}
+
 ### Object CloneObject(Object) {#Object-CloneObject-Object}
 
 ### Object CloneObject(Object, string, bool) {#Object-CloneObject-Object-string-bool}
@@ -49,11 +51,15 @@ id: Scene
 
 ### bool MoveObjectBefore(Object, Object) {#bool-MoveObjectBefore-Object-Object}
 
+### bool MoveObjectToRoot(Object) {#bool-MoveObjectToRoot-Object}
+
+### bool CanMoveObject(Object, Object) {#bool-CanMoveObject-Object-Object}
+
 ### userdata CreateMaterial(string) {#userdata-CreateMaterial-string}
 
 ### Camera GetActiveCamera() {#Camera-GetActiveCamera}
 
-### string AddNewScriptFile(string) {#string-AddNewScriptFile-string}
+### string AddNewScriptFile(string, Object) {#string-AddNewScriptFile-string-Object}
 
 ### VoxelDB GetVoxelDB(string) {#VoxelDB-GetVoxelDB-string}
 
@@ -70,6 +76,10 @@ id: Scene
 ### bool IsNameValid(string) {#bool-IsNameValid-string}
 
 ### string MakeNameValid(string) {#string-MakeNameValid-string}
+
+### bool UpdatePrefab(Object) {#bool-UpdatePrefab-Object}
+
+### bool ResetPrefab(Object) {#bool-ResetPrefab-Object}
 
 ### nil RebuildLighting() {#nil-RebuildLighting}
 

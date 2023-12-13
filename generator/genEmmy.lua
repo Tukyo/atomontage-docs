@@ -318,6 +318,11 @@ function Object:GetComponentByType(name) end
 --- @return ComponentType[]
 function Object:GetComponentsByType(name) end
 
+--- @generic ScriptInstanceType: ScriptInstance
+--- @param name `ScriptInstanceType`
+--- @return ScriptInstanceType
+function Object:FindScript(name) end
+
 
 --- @param p1 string
 --- @return Object[]
@@ -480,7 +485,7 @@ function Client:WriteToScreen(text, pos, pivot, color, size, colorOutline, p7) e
 --- @param frequency number Hz, 0 = unspecified
 --- @param amplitude number 0-1
 --- @return nil
-function Client:ApplyVRHapticFeedback(p1, p2, p3, p4) end
+function Client:ApplyVRHapticFeedback(hand, duration, frequency, amplitude) end
 
 ]]
 
