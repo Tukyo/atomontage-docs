@@ -609,6 +609,7 @@ This class is only available on client
 --- @field clientID integer
 --- @field userID Guid
 --- @field mode ClientMode
+--- @field isMaker boolean
 --- @field platform string
 --- @field sysInfo string
 Client = {}
@@ -1028,8 +1029,15 @@ function Client:GetVRUserScaleMin() end
 function Client:GetVRUserScaleMax() end
 
 --- @param p1 File
---- @return nil
+--- @return boolean
 function Client:SendFile(p1) end
+
+--- @param p1 table
+--- @return boolean
+function Client:SendFiles(p1) end
+
+--- @return nil
+function Client:Restart() end
 
 --- @return nil
 function Client:ChooseImage() end
@@ -1331,6 +1339,14 @@ function Config:Del(p1) end
 --- @param p1 string
 --- @return boolean
 function Config:Exists(p1) end
+
+--[[
+force saving Config
+
+[View Documentation](https://docs.atomontage.com/api/Config#nil-EmitChangeSignal)
+]]
+--- @return nil
+function Config:EmitChangeSignal() end
 
 --- @param p1 string
 --- @return integer
@@ -3082,8 +3098,37 @@ function Server:ResendScripts() end
 --- @return table, table
 function Server:GetLuaFilesList() end
 
+--[[
+Voxel files in the Montage/Voxels, those you saved in your montage and they are not necessary uploaded to the cloud already. local montage assets
+
+[View Documentation](https://docs.atomontage.com/api/Server#table-table-GetVoxelFilesList)
+]]
 --- @return table, table
 function Server:GetVoxelFilesList() end
+
+--[[
+Assets in cloud of maker that made this montage
+
+[View Documentation](https://docs.atomontage.com/api/Server#table-table-GetMakerAssetsList)
+]]
+--- @return table, table
+function Server:GetMakerAssetsList() end
+
+--[[
+Common, those we provide cloud with as free to use
+
+[View Documentation](https://docs.atomontage.com/api/Server#table-table-GetCommonAssetsList)
+]]
+--- @return table, table
+function Server:GetCommonAssetsList() end
+
+--[[
+Common scenes
+
+[View Documentation](https://docs.atomontage.com/api/Server#table-table-GetCommonScenesList)
+]]
+--- @return table, table
+function Server:GetCommonScenesList() end
 
 --- @return table
 function Server:GetPrefabsList() end
