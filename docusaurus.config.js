@@ -25,13 +25,24 @@ module.exports = {
         srcDark: 'img/logo_large.png',
       },
       items: [
+
         /*
         {
-          type: 'doc',
-          docId: 'intro',
+          type: 'docSidebar',
+          sidebarId: 'api',
           position: 'left',
-          label: 'Docs',
+          label: 'Api',
         },
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorials',
+          position: 'left',
+          label: 'Tutorials',
+        },
+        */
+
+        
+        /*
         //{to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/facebook/docusaurus',

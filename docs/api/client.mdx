@@ -79,17 +79,15 @@ This class is only available on client
 
 ### string GetMontageURL() {#string-GetMontageURL}
 
-### nil SetMontageURL(string url) {#nil-SetMontageURL-string-url}
-
 ### string GetMontageURLBase() {#string-GetMontageURLBase}
 
 ### userdata GetMontageURLParameters() {#userdata-GetMontageURLParameters}
 
 ### string GetMontageURLWithParameters(userdata) {#string-GetMontageURLWithParameters-userdata}
 
-### nil LoadMontageByURL() {#nil-LoadMontageByURL}
-
 ### nil CancelLoadMontageByURL() {#nil-CancelLoadMontageByURL}
+
+### nil ConnectToMontage(string) {#nil-ConnectToMontage-string}
 
 ### string GetConnectionStatus() {#string-GetConnectionStatus}
 
@@ -293,6 +291,9 @@ Returns [`CommandLine`](/api/commandLine)
 ### nil SetUpdateSyncMessageString(bool) {#nil-SetUpdateSyncMessageString-bool}
 
 ### nil CopyToClipboard(string) {#nil-CopyToClipboard-string}
+
+### string GetClipboardText() {#string-GetClipboardText}
+may not work on all platforms
 
 ### nil OpenBrowserWithURL(string) {#nil-OpenBrowserWithURL-string}
 

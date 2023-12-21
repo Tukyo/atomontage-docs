@@ -740,10 +740,6 @@ function Client:GetUILayout() end
 --- @return string
 function Client:GetMontageURL() end
 
---- @param url string
---- @return nil
-function Client:SetMontageURL(url) end
-
 --- @return string
 function Client:GetMontageURLBase() end
 
@@ -755,10 +751,11 @@ function Client:GetMontageURLParameters() end
 function Client:GetMontageURLWithParameters(p1) end
 
 --- @return nil
-function Client:LoadMontageByURL() end
-
---- @return nil
 function Client:CancelLoadMontageByURL() end
+
+--- @param p1 string
+--- @return nil
+function Client:ConnectToMontage(p1) end
 
 --- @return string
 function Client:GetConnectionStatus() end
@@ -1139,6 +1136,9 @@ function Client:SetUpdateSyncMessageString(p1) end
 --- @return nil
 function Client:CopyToClipboard(p1) end
 
+--- @return string
+function Client:GetClipboardText() end
+
 --- @param p1 string
 --- @return nil
 function Client:OpenBrowserWithURL(p1) end
@@ -1483,6 +1483,37 @@ function Filter(p1, p2) end
 --- @param p2 table
 --- @return Filter
 function Filter(p1, p2) end
+
+--- @class Gamepad
+Gamepad = {}
+
+--- @param p1 integer
+--- @return boolean
+function Gamepad:ButtonDown(p1) end
+
+--- @param p1 integer
+--- @return boolean
+function Gamepad:Button(p1) end
+
+--- @param p1 integer
+--- @return boolean
+function Gamepad:ButtonUp(p1) end
+
+--- @param p1 integer
+--- @return number
+function Gamepad:Axis(p1) end
+
+--- @param p1 integer
+--- @param p2 integer
+--- @param p3 integer
+--- @return integer
+function Gamepad:Rumble(p1, p2, p3) end
+
+--- @param p1 integer
+--- @param p2 integer
+--- @param p3 integer
+--- @return integer
+function Gamepad:RumbleTriggers(p1, p2, p3) end
 
 --[[
 `Client`

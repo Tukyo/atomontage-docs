@@ -15,8 +15,8 @@ local genEmmy = require("generator.genEmmy")
 local serpent = require("generator.serpent")
 local genDocs = {}
 
-local docsLocation = "docs\\90-api\\"
-local enumsLocation = "docs\\90-api\\enums\\"
+local docsLocation = "docs\\api\\"
+local enumsLocation = "docs\\api\\enums\\"
 
 local f = io.open("generator/bindingDumpServer.txt", "r")
 local bindingsSerialized = f:read("*all")
@@ -230,6 +230,7 @@ function genDocs:gen()
         "HitType",
         "Overlap",
         "File",
+        "Gamepad",
     }
 
     local show = {}
