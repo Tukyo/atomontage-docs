@@ -26,21 +26,18 @@ module.exports = {
       },
       items: [
 
-        /*
+        {
+          type: 'docSidebar',
+          sidebarId: 'manual',
+          position: 'left',
+          label: 'Docs',
+        },
         {
           type: 'docSidebar',
           sidebarId: 'api',
           position: 'left',
-          label: 'Api',
+          label: 'API',
         },
-        {
-          type: 'docSidebar',
-          sidebarId: 'tutorials',
-          position: 'left',
-          label: 'Tutorials',
-        },
-        */
-
         
         /*
         //{to: '/blog', label: 'Blog', position: 'left'},
