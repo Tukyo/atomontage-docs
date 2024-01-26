@@ -4,7 +4,7 @@ A short example of how to use the event driven input system to move an object ar
 
 The object transform for rendering is streamed from server to clients. Because of this the movement delayed on the client side.
 A more advanced script would assign a single owner to the script
-who can move the object and not receieve the rendered position from the server via [`VoxelRenderer.receiveTransform = false`](api/VoxelRenderer#bool-receiveTransform)
+who can move the object and not receieve the rendered position from the server via [`VoxelRenderer.receiveTransform = false`](VoxelRenderer#bool-receiveTransform)
 
 ```lua
 local self = {}
