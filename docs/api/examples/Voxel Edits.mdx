@@ -1,0 +1,44 @@
+#Voxel Edits
+
+This example script draws a line of voxels as the object its attached to moves around. To try it select the object in the hierachy and move it with the transformation gizmos.
+Since its not needed on client this script only runs on the server side.
+
+Currently the script creates voxels in the the global static voxel database. Script can also edit individual dynamic voxel data objects.
+
+```lua
+local self = {}
+
+function self:Start()
+end
+
+--do this every frame
+function self:Update(deltaTime)
+    self:updateEdit()
+end
+
+function self:updateEdit()
+    --if position has changed since last frame make line
+    if self.lastPos ~= self.transform.pos then
+        if self.lastPos then
+            self:makeLine(self.lastPos, self.transform.pos)
+        end
+        self.lastPos = self.transform.pos
+    end
+end
+
+--make a capsule from p1, to p2
+function self:makeLine(p1, p2)
+    --multiply thickness by transform scale
+    local thickness = 0.1 * self.transform.scale
+    local s = Capsule(p1, p2, thickness, thickness)
+    local col = self:randomColor()
+    VoxelEdit(s, col):Add()
+end
+
+--generate random color
+function self:randomColor()
+    return Vec3(math.random(), math.random(), math.random())
+end
+
+return self
+```
