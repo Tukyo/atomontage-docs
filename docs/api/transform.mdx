@@ -5,6 +5,8 @@ id: Transform
 `Client`
 `Server`
 
+Holds position, rotation, and scale 
+
 ## Metamethods
 
 ### bool __eq(Transform, Transform) {#bool-eq-Transform-Transform}
@@ -12,16 +14,20 @@ id: Transform
 ## Methods
 
 ### Vec3 LocalToWorld(Vec3) {#Vec3-LocalToWorld-Vec3}
+Transforms a local position to world space, allowing you to convert coordinates relative to an object into global coordinates.
 
 ### Vec3 WorldToLocal(Vec3) {#Vec3-WorldToLocal-Vec3}
+Converts a world position to local space, making it useful for determining an object's position relative to another object.
 
 ### Vec3 LocalToWorldVec(Vec3) {#Vec3-LocalToWorldVec-Vec3}
 
 ### Vec3 WorldToLocalVec(Vec3) {#Vec3-WorldToLocalVec-Vec3}
 
 ### nil LookAt(Vec3) {#nil-LookAt-Vec3}
+Adjusts the object's rotation to look at a specified point in the world, aligning it with the target position.
 
 ### nil LookAt(Vec3, Vec3) {#nil-LookAt-Vec3-Vec3}
+A more customizable version of LookAt, allowing you to specify both the target point and an up direction for the object's orientation.
 
 ## Properties
 
@@ -32,24 +38,34 @@ id: Transform
 ### string type {#string-type}
 
 ### Vec3 localPos {#Vec3-localPos}
+The local position of the object relative to its parent
 
 ### float localScale {#float-localScale}
+The local scale of the object relative to its parent
 
 ### Quat localRot {#Quat-localRot}
+The local rotation of the object represented as a quaternion.
 
 ### Vec3 localEulerRot {#Vec3-localEulerRot}
+The local rotation of the object represented as Euler angles.
 
 ### Vec3 pos {#Vec3-pos}
+The global (world) position of the object
 
 ### Quat rot {#Quat-rot}
+The global (world) rotation of the object as a quaternion
 
 ### Vec3 eulerRot {#Vec3-eulerRot}
+The global (world) rotation of the object represented as Euler angles.
 
 ### float scale {#float-scale}
+The global (world) scale of the object.
 
 ### Vec3 right {#Vec3-right}
+The right direction vector of the object in world space.
 
 ### Vec3 up {#Vec3-up}
+The right direction vector of the object in world space.
 
 ### Vec3 forward {#Vec3-forward}
-
+The forward direction vector of the object in world space.

@@ -8,18 +8,24 @@ id: Camera
 ## Methods
 
 ### Vec3 ScreenToWorldRay(Vec2) {#Vec3-ScreenToWorldRay-Vec2}
+Converts a 2D screen percentage coordinate(i.e from Input:MousePosPerc()) to a 3D world space ray (Vec3), used for determining 3D locations from screen interactions.
 
 ### Vec2 WorldToScreen(Vec3) {#Vec2-WorldToScreen-Vec3}
+Transforms a 3D world coordinate (Vec3) to a 2D screen space percentage coordinate(range 0-1), useful for positioning ui elements like text above a 3D object on the screen.
 
 ### Vec3 WorldToScreen3f(Vec3) {#Vec3-WorldToScreen3f-Vec3}
 
 ## Properties
 
 ### Object object {#Object-object}
+Reference to object instance
 
 ### bool isDestroyed {#bool-isDestroyed}
+Indicates whether the object is destroyed (true) or not (false).
 
 ### string type {#string-type}
+Specifies the object's type as a string, useful for type identification.
 
 ### float fovY {#float-fovY}
+Defines the vertical field of view in degrees
 

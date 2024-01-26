@@ -16,6 +16,8 @@ id: VoxelEdit
 ## Methods
 
 ### nil Flush() {#nil-Flush}
+Flush() adds a special operation in the queue, which waits for all running ops to finish.
+If we had flush after each op, it would eliminate all multithreaded processing.
 
 ### nil Paint() {#nil-Paint}
 
@@ -86,5 +88,7 @@ callback function. progress from 0-1. May not be called every frame. Is called a
 
 ### userdata onFinished {#userdata-onFinished}
 callback function. onFinished is called after onProgress if it was last part
+
 ### userdata onError {#userdata-onError}
+callback function
 

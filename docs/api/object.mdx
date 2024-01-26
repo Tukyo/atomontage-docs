@@ -8,6 +8,7 @@ id: Object
 ## Methods
 
 ### Object GetChild(string) {#Object-GetChild-string}
+Get child object by name
 
 ### bool RemoveParent() {#bool-RemoveParent}
 
@@ -36,6 +37,7 @@ id: Object
 ### table GetComponentsByType(string) {#table-GetComponentsByType-string}
 
 ### userdata FindScript(string) {#userdata-FindScript-string}
+Find attached script component lua table by name
 
 ### Camera GetCamera() {#Camera-GetCamera}
 
@@ -52,6 +54,7 @@ id: Object
 ### Transform transform {#Transform-transform}
 
 ### bool isDestroyed {#bool-isDestroyed}
+True if the object was destroyed. Note that references to this object will still be valid 
 
 ### string name {#string-name}
 
@@ -60,6 +63,7 @@ id: Object
 ### bool activeInHierarchy {#bool-activeInHierarchy}
 
 ### bool save {#bool-save}
+Save this object in the hierachy. If not saved it will be deleted after lua reset or server restart
 
 ### string tag {#string-tag}
 
