@@ -1,0 +1,74 @@
+# Input
+
+A short example of how to use the input event system to move an object around with arrow keys. In this example any user connected can move the objecct. 
+The object transform for rendering is streamed from server to clients. Because of this the movement delayed on the client side.
+A more advanced script would assign a single owner to the script who can move the object and not receieve the rendered position from the server. Via `VoxelRenderer.receiveTransform = false`
+
+```lua
+local self = {}
+self.keysDown = {}
+
+function self:Start()
+    --after creating this object on server also create copies on all clients of this object and this script
+    self.component.syncToClients = true
+
+    local startPos = Vec3(0,20,0)
+    self.transform.pos = startPos
+
+    --add VoxelData and VoxelRenderer component to this object and assign a file, you can also do this in the server hierachy UI 
+    self.vd = self.object:GetComponentByType("VoxelData") or self.object:AddComponent('VoxelData')
+    self.vr = self.object:GetComponentByType("VoxelRenderer") or self.object:AddComponent('VoxelRenderer')
+    if self.vd.path == "" then
+        self.vd.path = "Emoji_Blank_Face.am"
+    end
+    assert(self.onClient or self.vd.data, "Please assign a file to the Voxel Data component of this object in the server hierachy")
+
+    --listen for input events by all players
+    events.keyDown.addListener(self, function (key, from)
+        self.keysDown[key] = true
+
+        --if R pressed reset
+        if key == "R" then
+            self.transform.pos = startPos
+        end
+    end)
+
+    events.keyUp.addListener(self, function(key, from)
+        self.keysDown[key] = false
+    end)
+
+end
+
+function self:Update(deltaTime)
+    --update movement every frame
+    self:updateMovement()
+end
+
+--calculate movement vector from arrow key input
+function self:getMovementInput()
+    local movementInput = Vec3(0, 0, 0)
+    if self.keysDown.Up then
+        movementInput.x = 1
+    end
+    if self.keysDown.Down then
+        movementInput.x = movementInput.x - 1
+    end
+    if self.keysDown.Left then
+        movementInput.z = -1
+    end
+    if self.keysDown.Right then
+        movementInput.z = movementInput.z + 1
+    end
+    return movementInput
+end
+
+--apply movement to transform
+function self:updateMovement(key, from)
+    local speed = 10
+    local move = self:getMovementInput()
+    --remember to multiply by delta time, since the time passed between each Update() is not constant
+    self.transform.pos = self.transform.pos + move * speed * Scene:GetDeltaTime() 
+end
+
+return self
+```
