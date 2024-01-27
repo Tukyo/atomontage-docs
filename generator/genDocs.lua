@@ -231,6 +231,7 @@ function genDocs:gen()
         "Overlap",
         "File",
         "Gamepad",
+        "Image",
     }
 
     local show = {}
@@ -777,7 +778,8 @@ function genDocs:cleanUpName(name)
         {"shared_ptr<classae::scene::Script>", "Script"}, --correct?
         {"const char", "string"}, --correct?
         {"pair<classae::core::TQuaternion<float>,classTVector3<float> >", "Quat, Vec3"},
-        {"shared_ptr<classae::studio::FileLua>", "File"}
+        {"shared_ptr<classae::studio::FileLua>", "File"},
+        {"shared_ptr<classae::core::Image>", "Image" }
     }
 
     --auto find tuple

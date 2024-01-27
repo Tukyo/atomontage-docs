@@ -559,12 +559,27 @@ function Box(p1) end
 --- @field isDestroyed boolean
 --- @field type string
 --- @field fovY number
-Camera = {}
+Camera = {
+	object = nil, ---Reference to object instance
+	isDestroyed = nil, ---Indicates whether the object is destroyed (true) or not (false).
+	type = nil, ---Specifies the object's type as a string, useful for type identification.
+	fovY = nil, ---Defines the vertical field of view in degrees
+}
 
+--[[
+Converts a 2D screen percentage coordinate(i.e from Input:MousePosPerc()) to a 3D world space ray (Vec3), used for determining 3D locations from screen interactions.
+
+[View Documentation](https://docs.atomontage.com/api/Camera#Vec3-ScreenToWorldRay-Vec2)
+]]
 --- @param p1 Vec2
 --- @return Vec3
 function Camera:ScreenToWorldRay(p1) end
 
+--[[
+Transforms a 3D world coordinate (Vec3) to a 2D screen space percentage coordinate(range 0-1), useful for positioning ui elements like text above a 3D object on the screen.
+
+[View Documentation](https://docs.atomontage.com/api/Camera#Vec2-WorldToScreen-Vec3)
+]]
 --- @param p1 Vec3
 --- @return Vec2
 function Camera:WorldToScreen(p1) end
@@ -757,6 +772,17 @@ function Client:CancelLoadMontageByURL() end
 --- @return nil
 function Client:ConnectToMontage(p1) end
 
+--[[
+Unknown,
+Connecting,
+FailedToConnect,
+StatusMessage,
+ReadyToAcknowledge,
+Connected,
+Disconnected
+
+[View Documentation](https://docs.atomontage.com/api/Client#string-GetConnectionStatus)
+]]
 --- @return string
 function Client:GetConnectionStatus() end
 
@@ -1136,6 +1162,11 @@ function Client:SetUpdateSyncMessageString(p1) end
 --- @return nil
 function Client:CopyToClipboard(p1) end
 
+--[[
+may not work on all platforms
+
+[View Documentation](https://docs.atomontage.com/api/Client#string-GetClipboardText)
+]]
 --- @return string
 function Client:GetClipboardText() end
 
@@ -1484,6 +1515,12 @@ function Filter(p1, p2) end
 --- @return Filter
 function Filter(p1, p2) end
 
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Gamepad)
+]]
 --- @class Gamepad
 Gamepad = {}
 
@@ -1529,6 +1566,24 @@ function Gamepad:RumbleTriggers(p1, p2, p3) end
 --- @field distance number
 --- @field type HitType
 Hit = {}
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Image)
+]]
+--- @class Image
+--- @field pixelFormat PixelFormat
+--- @field mipMaps userdata
+--- @field isCubeMap boolean
+Image = {}
+
+--- @return boolean
+function Image:IsValid() end
+
+--- @return boolean
+function Image:IsManaged() end
 
 --[[
 `Client`
@@ -2199,11 +2254,6 @@ function Mat4:__mul(p1, p2) end
 --- @return Mat4
 function Mat4:__mul(p1, p2) end
 
---- @param p1 Vec4
---- @param p2 Mat4
---- @return Vec4
-function Mat4:__mul(p1, p2) end
-
 --- @param p1 Mat4
 --- @param p2 Mat4
 --- @return Mat4
@@ -2475,8 +2525,16 @@ function MeshRenderer:__eq(p1, p2) end
 --- @field isPrefabObject boolean
 --- @field components table
 --- @field componentsCount integer
-Object = {}
+Object = {
+	isDestroyed = nil, ---True if the object was destroyed. Note that references to this object will still be valid 
+	save = nil, ---Save this object in the hierachy. If not saved it will be deleted after lua reset or server restart
+}
 
+--[[
+Get child object by name
+
+[View Documentation](https://docs.atomontage.com/api/Object#Object-GetChild-string)
+]]
 --- @param p1 string
 --- @return Object
 function Object:GetChild(p1) end
@@ -2529,6 +2587,11 @@ function Object:GetComponentByType(p1) end
 --- @return table
 function Object:GetComponentsByType(p1) end
 
+--[[
+Find attached script component lua table by name
+
+[View Documentation](https://docs.atomontage.com/api/Object#userdata-FindScript-string)
+]]
 --- @param p1 string
 --- @return userdata
 function Object:FindScript(p1) end
@@ -2846,6 +2909,19 @@ Scene = {}
 --- @return number
 function Scene:GetTime() end
 
+--[[
+Time passed since the last Update() call. Since time between updates is not constant use this to adjust changes such as movement according to the amount of time that has passed
+```lua
+function self:Update()
+    local speed = 10
+    local move = Vec3.right
+    --remember to multiply by delta time, since the time passed between each Update() is not constant
+    self.transform.pos = self.transform.pos + move * speed * Scene:GetDeltaTime() 
+end
+```
+
+[View Documentation](https://docs.atomontage.com/api/Scene#double-GetDeltaTime)
+]]
 --- @return number
 function Scene:GetDeltaTime() end
 
@@ -2880,6 +2956,22 @@ function Scene:CreateObject(p1, p2) end
 --- @return Object
 function Scene:CreateObject(p1) end
 
+--[[
+Create an object on server or client. The object is not automatically synced to clients unless its set to.
+For naming we recommend to: 
+* Use capital case 
+* Use spaces between words
+* If the object only holds a script component, name the object after the script
+* Avoid creating multiple objects with the same name (i.e. by numbering them)
+* If the object somehow belongs to a player include the user ID in the name
+```lua
+local ob = Scene:CreateObject("Player Controller 1")
+```
+
+Also see [`Scene:MakeNameValid`](#string-MakeNameValid-string)
+
+[View Documentation](https://docs.atomontage.com/api/Scene#Object-CreateObject-string)
+]]
 --- @param p1 string
 --- @return Object
 function Scene:CreateObject(p1) end
@@ -3061,8 +3153,19 @@ function Script:GetScriptUpdateTime() end
 --- @field transform Transform
 --- @field onServer boolean
 --- @field onClient boolean
-ScriptInstance = {}
+ScriptInstance = {
+	component = nil, ---The script component, seperate from the lua table
+	object = nil, ---The object this script is attached to
+	transform = nil, ---The transform of the object this script is attached to
+	onServer = nil, ---Use this to run part of the code only on server or client```lua if self.onServer then    -- do something only on serverend```
+	onClient = nil, ---Use this to run part of the code only on server or client```lua if self.onClient then    -- do something only on clientend```
+}
 
+--[[
+Called once on object creation after Attach()
+
+[View Documentation](https://docs.atomontage.com/api/ScriptInstance#nil-Start)
+]]
 --- @return nil
 function ScriptInstance:Start() end
 
@@ -3070,17 +3173,37 @@ function ScriptInstance:Start() end
 --- @return nil
 function ScriptInstance:Update(deltaTime) end
 
+--[[
+Called once on object creation before Start()
+
+[View Documentation](https://docs.atomontage.com/api/ScriptInstance#nil-Attach)
+]]
 --- @return nil
 function ScriptInstance:Attach() end
 
+--[[
+Called when script component or obejct is destroyed
+
+[View Documentation](https://docs.atomontage.com/api/ScriptInstance#nil-Detach)
+]]
 --- @return nil
 function ScriptInstance:Detach() end
 
+--[[
+Call a lua function by name from server to all clients or from one client to server
+
+[View Documentation](https://docs.atomontage.com/api/ScriptInstance#nil-RPC-string)
+]]
 --- @param p1 string
 --- @vararg any
 --- @return nil
 function ScriptInstance:RPC(p1, ...) end
 
+--[[
+From server call a lua function by name on one specific client
+
+[View Documentation](https://docs.atomontage.com/api/ScriptInstance#nil-RPC-int-string)
+]]
 --- @param p1 integer
 --- @param p2 string
 --- @vararg any
@@ -3462,6 +3585,8 @@ StaticVoxelData = {}
 `Client`
 `Server`
 
+Holds position, rotation, and scale 
+
 [View Documentation](https://docs.atomontage.com/api/Transform)
 ]]
 --- @class Transform
@@ -3479,17 +3604,39 @@ StaticVoxelData = {}
 --- @field right Vec3
 --- @field up Vec3
 --- @field forward Vec3
-Transform = {}
+Transform = {
+	localPos = nil, ---The local position of the object relative to its parent
+	localScale = nil, ---The local scale of the object relative to its parent
+	localRot = nil, ---The local rotation of the object represented as a quaternion.
+	localEulerRot = nil, ---The local rotation of the object represented as Euler angles.
+	pos = nil, ---The global (world) position of the object
+	rot = nil, ---The global (world) rotation of the object as a quaternion
+	eulerRot = nil, ---The global (world) rotation of the object represented as Euler angles.
+	scale = nil, ---The global (world) scale of the object.
+	right = nil, ---The right direction vector of the object in world space.
+	up = nil, ---The right direction vector of the object in world space.
+	forward = nil, ---The forward direction vector of the object in world space.
+}
 
 --- @param p1 Transform
 --- @param p2 Transform
 --- @return boolean
 function Transform:__eq(p1, p2) end
 
+--[[
+Transforms a local position to world space, allowing you to convert coordinates relative to an object into global coordinates.
+
+[View Documentation](https://docs.atomontage.com/api/Transform#Vec3-LocalToWorld-Vec3)
+]]
 --- @param p1 Vec3
 --- @return Vec3
 function Transform:LocalToWorld(p1) end
 
+--[[
+Converts a world position to local space, making it useful for determining an object's position relative to another object.
+
+[View Documentation](https://docs.atomontage.com/api/Transform#Vec3-WorldToLocal-Vec3)
+]]
 --- @param p1 Vec3
 --- @return Vec3
 function Transform:WorldToLocal(p1) end
@@ -3502,10 +3649,20 @@ function Transform:LocalToWorldVec(p1) end
 --- @return Vec3
 function Transform:WorldToLocalVec(p1) end
 
+--[[
+Adjusts the object's rotation to look at a specified point in the world, aligning it with the target position.
+
+[View Documentation](https://docs.atomontage.com/api/Transform#nil-LookAt-Vec3)
+]]
 --- @param p1 Vec3
 --- @return nil
 function Transform:LookAt(p1) end
 
+--[[
+A more customizable version of LookAt, allowing you to specify both the target point and an up direction for the object's orientation.
+
+[View Documentation](https://docs.atomontage.com/api/Transform#nil-LookAt-Vec3-Vec3)
+]]
 --- @param p1 Vec3
 --- @param p2 Vec3
 --- @return nil
@@ -5106,6 +5263,7 @@ function Vec3i:__tostring(p1) end
 --- @operator sub(number):Vec4
 --- @operator mul(Vec4):Vec4
 --- @operator mul(Vec4i):Vec4
+--- @operator mul(Mat4):Vec4
 --- @operator mul(number):Vec4
 --- @operator div(Vec4):Vec4
 --- @operator div(Vec4i):Vec4
@@ -5527,6 +5685,11 @@ function Vec4:__mul(p1, p2) end
 function Vec4:__mul(p1, p2) end
 
 --- @param p1 Vec4
+--- @param p2 Mat4
+--- @return Vec4
+function Vec4:__mul(p1, p2) end
+
+--- @param p1 Vec4
 --- @param p2 number
 --- @return Vec4
 function Vec4:__mul(p1, p2) end
@@ -5721,6 +5884,7 @@ function Vec4:__tostring(p1) end
 --- @operator sub(integer):Vec4i
 --- @operator mul(Vec4i):Vec4i
 --- @operator mul(Vec4):Vec4
+--- @operator mul(classTMatrix4<integer>):Vec4i
 --- @operator mul(integer):Vec4i
 --- @operator div(Vec4i):Vec4i
 --- @operator div(Vec4):Vec4
@@ -6153,6 +6317,11 @@ function Vec4i:__mul(p1, p2) end
 function Vec4i:__mul(p1, p2) end
 
 --- @param p1 Vec4i
+--- @param p2 classTMatrix4<integer>
+--- @return Vec4i
+function Vec4i:__mul(p1, p2) end
+
+--- @param p1 Vec4i
 --- @param p2 integer
 --- @return Vec4i
 function Vec4i:__mul(p1, p2) end
@@ -6383,7 +6552,7 @@ VoxelDB = {}
 function VoxelDB:Clear() end
 
 --[[
-Flush() adds special operation in queue, which waits for all running ops to finish.
+Flush() adds a special operation in the queue, which waits for all running ops to finish.
 If we had flush after each op, it would eliminate all multithreaded processing.
 
 [View Documentation](https://docs.atomontage.com/api/VoxelDB#nil-Flush)
@@ -6884,6 +7053,11 @@ second parameter controls if file will be overwritten
 --- @return string
 function VoxelDataResource:Save(p1, p2) end
 
+--[[
+get center (in local space) and dimensions of the voxel data
+
+[View Documentation](https://docs.atomontage.com/api/VoxelDataResource#float-float-GetBounds)
+]]
 --- @return number, number
 function VoxelDataResource:GetBounds() end
 
@@ -6921,6 +7095,10 @@ function VoxelDataResource:RebuildLighting() end
 --- @field copyRemove boolean
 --- @field copyColor boolean
 --- @field kernelType integer
+--- @field imageColor userdata
+--- @field imageNormal userdata
+--- @field imageUVTm Mat4
+--- @field imageUVClamp boolean
 --- @field onProgress userdata
 --- @field onFinished userdata
 --- @field onError userdata
@@ -6928,6 +7106,7 @@ VoxelEdit = {
 	shape = nil, ---if shape is nil the operation will match all targets 
 	onProgress = nil, ---callback function. progress from 0-1. May not be called every frame. Is called after script updates 
 	onFinished = nil, ---callback function. onFinished is called after onProgress if it was last part
+	onError = nil, ---callback function
 }
 
 --- @return VoxelEdit
@@ -6942,6 +7121,12 @@ function VoxelEdit(p1, p2) end
 --- @return VoxelEdit
 function VoxelEdit(p1) end
 
+--[[
+Flush() adds a special operation in the queue, which waits for all running ops to finish.
+If we had flush after each op, it would eliminate all multithreaded processing.
+
+[View Documentation](https://docs.atomontage.com/api/VoxelEdit#nil-Flush)
+]]
 --- @return nil
 function VoxelEdit:Flush() end
 
@@ -6959,6 +7144,15 @@ function VoxelEdit:Copy() end
 
 --- @return nil
 function VoxelEdit:Kernel() end
+
+--- @param p1 Mat4
+--- @param p2 number
+--- @return Image
+function VoxelEdit:CaptureImage(p1, p2) end
+
+--- @param p1 string
+--- @return Image
+function VoxelEdit:GetImageResource(p1) end
 
 --[[
 It projects cone on voxel geometry and everything inside will be copies to tmp
@@ -7022,7 +7216,12 @@ function VoxelInspectData:GetColors() end
 --- @field outline boolean
 --- @field tintColor Vec4
 --- @field receiveTransform boolean
-VoxelRenderer = {}
+VoxelRenderer = {
+	prioritizeLod = nil, ---Try to load higher LODs faster than those of other objects
+	outline = nil, ---Draw an outline around this object
+	tintColor = nil, ---Render with a tint color
+	receiveTransform = nil, ---Receive transform(pos, rot scale) from server. By default this is true. If you set this to false, you will need to manually set the transform of the object on the client side.This is useful for making objects respond immediately if something happened on the client side i.e. input
+}
 
 --- @param p1 VoxelRenderer
 --- @param p2 VoxelRenderer
@@ -7110,6 +7309,7 @@ BlendOp = {
 ClientMode = {
 	View = 0,
 	Edit = 1,
+	DevDebug = 2,
 }
 
 --- @enum CpuArch

@@ -10,6 +10,15 @@ id: Scene
 ### double GetTime() {#double-GetTime}
 
 ### double GetDeltaTime() {#double-GetDeltaTime}
+Time passed since the last Update() call. Since time between updates is not constant use this to adjust changes such as movement according to the amount of time that has passed
+```lua
+function self:Update()
+    local speed = 10
+    local move = Vec3.right
+    --remember to multiply by delta time, since the time passed between each Update() is not constant
+    self.transform.pos = self.transform.pos + move * speed * Scene:GetDeltaTime() 
+end
+```
 
 ### double GetDebugTime() {#double-GetDebugTime}
 
@@ -26,6 +35,18 @@ id: Scene
 ### Object CreateObject(Object) {#Object-CreateObject-Object}
 
 ### Object CreateObject(string) {#Object-CreateObject-string}
+Create an object on server or client. The object is not automatically synced to clients unless its set to.
+For naming we recommend to: 
+* Use capital case 
+* Use spaces between words
+* If the object only holds a script component, name the object after the script
+* Avoid creating multiple objects with the same name (i.e. by numbering them)
+* If the object somehow belongs to a player include the user ID in the name
+```lua
+local ob = Scene:CreateObject("Player Controller 1")
+```
+
+Also see [`Scene:MakeNameValid`](#string-MakeNameValid-string)
 
 ### nil DestroyObject(Object) {#nil-DestroyObject-Object}
 

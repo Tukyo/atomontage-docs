@@ -1,0 +1,57 @@
+# RPCs
+
+
+```lua
+
+local self = {}
+
+function self:Start()
+    self.component.syncToClients = true
+
+    self.cam = Scene:GetActiveCamera()
+
+    events.mouseButtonDown.addListener(self, function (button, from)
+        if self.onServer then return end
+        if button == 1 then
+            --if left mouse button pressed create a ray from mouse position and direction
+            local mpos = Input:MousePosPerc()
+            local tf = self.cam.object.transform
+            local pos = tf.pos + tf.forward * 1.5
+
+            self:RPC("serverCreateObject", pos, tf.forward*1000)
+        end
+    end)
+
+end
+
+function self:Update(deltaTime)
+
+end
+
+function self:serverCreateObject(origin, ray)
+    assert(self.onServer)
+    deb:line(origin, origin + ray)
+    local hit = Collision():Raycast(origin, ray)[1]
+    if hit then
+        self:createVoxelObject(hit.pos, hit.normal)
+    else
+        self:createVoxelObject(origin + ray, Vec3.up)
+    end
+end
+
+function self:createVoxelObject(pos, up)
+    assert(self.onServer)
+    if not self.ob then
+        local ob = Scene:CreateObject("Spawned Object")
+        local vd = ob:AddComponent('VoxelData')
+        ob:AddComponent('VoxelRenderer')
+        vd.path = "Emoji_Blank_Face.am"
+        self.ob = ob
+    end
+    self.ob.transform.pos = pos
+    self.ob.transform.rot = Quat.LookAt(Vec3.forward, up)
+end
+
+return self
+
+```
