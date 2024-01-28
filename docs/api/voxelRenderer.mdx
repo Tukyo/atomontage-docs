@@ -7,35 +7,34 @@ id: VoxelRenderer
 
 ## Metamethods
 
-### bool __eq(VoxelRenderer, VoxelRenderer) {#bool-eq-VoxelRenderer-VoxelRenderer}
+### boolean __eq(VoxelRenderer, VoxelRenderer) {#boolean-eq-VoxelRenderer-VoxelRenderer}
 
 ## Methods
 
-### float, float GetBounds() {#float-float-GetBounds}
+### number, number GetBounds() {#number-number-GetBounds}
 
 ## Properties
 
 ### Object object {#Object-object}
 
-### bool isDestroyed {#bool-isDestroyed}
+### boolean isDestroyed {#boolean-isDestroyed}
 
 ### string type {#string-type}
 
-### bool syncToClients {#bool-syncToClients}
+### boolean syncToClients {#boolean-syncToClients}
 
-### bool enabled {#bool-enabled}
+### boolean enabled {#boolean-enabled}
 
-### bool prioritizeLod {#bool-prioritizeLod}
+### boolean prioritizeLod {#boolean-prioritizeLod}
 Try to load higher LODs faster than those of other objects
 
-### bool outline {#bool-outline}
+### boolean outline {#boolean-outline}
 Draw an outline around this object
 
 ### Vec4 tintColor {#Vec4-tintColor}
 Render with a tint color
 
-### bool receiveTransform {#bool-receiveTransform}
+### boolean receiveTransform {#boolean-receiveTransform}
 Receive transform(pos, rot scale) from server. By default this is true. 
 If you set this to false, you will need to manually set the transform of the object on the client side.
 This is useful for making objects respond immediately if something happened on the client side i.e. input
-

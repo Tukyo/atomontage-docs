@@ -19,7 +19,7 @@ id: VoxelEdit
 Flush() adds a special operation in the queue, which waits for all running ops to finish.
 If we had flush after each op, it would eliminate all multithreaded processing.
 
-### nil Paint() {#nil-Paint}
+### nil Painteger() {#nil-Painteger}
 
 ### nil Add() {#nil-Add}
 
@@ -29,28 +29,28 @@ If we had flush after each op, it would eliminate all multithreaded processing.
 
 ### nil Kernel() {#nil-Kernel}
 
-### Image CaptureImage(Mat4, float) {#Image-CaptureImage-Mat4-float}
+### Image CaptureImage(Mat4, number) {#Image-CaptureImage-Mat4-number}
 
 ### Image GetImageResource(string) {#Image-GetImageResource-string}
 
-### nil FreeTmpLayers(int) {#nil-FreeTmpLayers-int}
+### nil FreeTmpLayers(integer) {#nil-FreeTmpLayers-integer}
 It projects cone on voxel geometry and everything inside will be copies to tmp
 all raycasts will collide with this tmp layer instead until FreeTmpLayers
 
-### nil FillTmpLayers(int, Vec3, table, float, int) {#nil-FillTmpLayers-int-Vec3-table-float-int}
+### nil FillTmpLayers(integer, Vec3, table, number, integer) {#nil-FillTmpLayers-integer-Vec3-table-number-integer}
 It projects cone on voxel geometry and everything inside will be copies to tmp
 all raycasts will collide with this tmp layer instead until FreeTmpLayers
 parameters specify "cone" - two positions and end radius
 
 ## Properties
 
-### bool blendEnable {#bool-blendEnable}
+### boolean blendEnable {#boolean-blendEnable}
 
 ### BlendMode blendMode {#BlendMode-blendMode}
 
-### float blendOpacity {#float-blendOpacity}
+### number blendOpacity {#number-blendOpacity}
 
-### float blendRadiusRatio {#float-blendRadiusRatio}
+### number blendRadiusRatio {#number-blendRadiusRatio}
 
 ### Vec3 color {#Vec3-color}
 
@@ -59,7 +59,7 @@ parameters specify "cone" - two positions and end radius
 ### userdata shape {#userdata-shape}
 if shape is nil the operation will match all targets 
 
-### bool clampToMinVoxelSize {#bool-clampToMinVoxelSize}
+### boolean clampToMinVoxelSize {#boolean-clampToMinVoxelSize}
 
 ### Transform copySourceTr {#Transform-copySourceTr}
 
@@ -69,23 +69,23 @@ if shape is nil the operation will match all targets
 
 ### Quat copyDestinationRot {#Quat-copyDestinationRot}
 
-### float copyDestinationScale {#float-copyDestinationScale}
+### number copyDestinationScale {#number-copyDestinationScale}
 
 ### Vec3 copySourcePos {#Vec3-copySourcePos}
 
 ### Quat copySourceRot {#Quat-copySourceRot}
 
-### float copySourceScale {#float-copySourceScale}
+### number copySourceScale {#number-copySourceScale}
 
 ### userdata copyResource {#userdata-copyResource}
 
-### bool copyInsert {#bool-copyInsert}
+### boolean copyInsert {#boolean-copyInsert}
 
-### bool copyRemove {#bool-copyRemove}
+### boolean copyRemove {#boolean-copyRemove}
 
-### bool copyColor {#bool-copyColor}
+### boolean copyColor {#boolean-copyColor}
 
-### int kernelType {#int-kernelType}
+### integer kernelType {#integer-kernelType}
 
 ### userdata imageColor {#userdata-imageColor}
 
@@ -93,7 +93,7 @@ if shape is nil the operation will match all targets
 
 ### Mat4 imageUVTm {#Mat4-imageUVTm}
 
-### bool imageUVClamp {#bool-imageUVClamp}
+### boolean imageUVClamp {#boolean-imageUVClamp}
 
 ### userdata onProgress {#userdata-onProgress}
 callback function. progress from 0-1. May not be called every frame. Is called after script updates 

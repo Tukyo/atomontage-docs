@@ -10,9 +10,9 @@ id: Object
 ### Object GetChild(string) {#Object-GetChild-string}
 Get child object by name
 
-### bool RemoveParent() {#bool-RemoveParent}
+### boolean RemoveParent() {#boolean-RemoveParent}
 
-### Script AddScript(string, bool) {#Script-AddScript-string-bool}
+### Script AddScript(string, boolean) {#Script-AddScript-string-boolean}
 
 ### MeshData AddMeshData() {#MeshData-AddMeshData}
 
@@ -28,9 +28,9 @@ Get child object by name
 
 ### userdata AddComponent(string) {#userdata-AddComponent-string}
 
-### bool RemoveComponent(string) {#bool-RemoveComponent-string}
+### boolean RemoveComponent(string) {#boolean-RemoveComponent-string}
 
-### bool RemoveComponent(userdata) {#bool-RemoveComponent-userdata}
+### boolean RemoveComponent(userdata) {#boolean-RemoveComponent-userdata}
 
 ### userdata GetComponentByType(string) {#userdata-GetComponentByType-string}
 
@@ -45,24 +45,24 @@ Find attached script component lua table by name
 
 ### string GetScriptUpdateTime() {#string-GetScriptUpdateTime}
 
-### int GetRefCount() {#int-GetRefCount}
+### integer GetRefCount() {#integer-GetRefCount}
 
 ## Properties
 
-### int id {#int-id}
+### integer id {#integer-id}
 
 ### Transform transform {#Transform-transform}
 
-### bool isDestroyed {#bool-isDestroyed}
+### boolean isDestroyed {#boolean-isDestroyed}
 True if the object was destroyed. Note that references to this object will still be valid 
 
 ### string name {#string-name}
 
-### bool active {#bool-active}
+### boolean active {#boolean-active}
 
-### bool activeInHierarchy {#bool-activeInHierarchy}
+### boolean activeInHierarchy {#boolean-activeInHierarchy}
 
-### bool save {#bool-save}
+### boolean save {#boolean-save}
 Save this object in the hierachy. If not saved it will be deleted after lua reset or server restart
 
 ### string tag {#string-tag}
@@ -71,13 +71,13 @@ Save this object in the hierachy. If not saved it will be deleted after lua rese
 
 ### table children {#table-children}
 
-### int childCount {#int-childCount}
+### integer childCount {#integer-childCount}
 
-### int siblingIndex {#int-siblingIndex}
+### integer siblingIndex {#integer-siblingIndex}
 
-### bool isPrefabObject {#bool-isPrefabObject}
+### boolean isPrefabObject {#boolean-isPrefabObject}
 
 ### table components {#table-components}
 
-### int componentsCount {#int-componentsCount}
+### integer componentsCount {#integer-componentsCount}
 

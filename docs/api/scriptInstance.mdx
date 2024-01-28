@@ -10,7 +10,7 @@ id: ScriptInstance
 ### nil Start() {#nil-Start}
 Called once on object creation after Attach()
 
-### nil Update(float deltaTime) {#nil-Update-float-deltaTime}
+### nil Update(number deltaTime) {#nil-Update-number-deltaTime}
 
 ### nil Attach() {#nil-Attach}
 Called once on object creation before Start()
@@ -21,7 +21,7 @@ Called when script component or obejct is destroyed
 ### nil RPC(string, ...) {#nil-RPC-string}
 Call a lua function by name from server to all clients or from one client to server
 
-### nil RPC(int, string, ...) {#nil-RPC-int-string}
+### nil RPC(integer, string, ...) {#nil-RPC-integer-string}
 From server call a lua function by name on one specific client
 
 ## Properties
@@ -35,7 +35,7 @@ The object this script is attached to
 ### Transform transform {#Transform-transform}
 The transform of the object this script is attached to
 
-### bool onServer {#bool-onServer}
+### boolean onServer {#boolean-onServer}
 Use this to run part of the code only on server or client
 ```lua 
 if self.onServer then
@@ -43,7 +43,7 @@ if self.onServer then
 end
 ```
 
-### bool onClient {#bool-onClient}
+### boolean onClient {#boolean-onClient}
 Use this to run part of the code only on server or client
 ```lua 
 if self.onClient then

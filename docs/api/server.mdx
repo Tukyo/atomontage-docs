@@ -13,11 +13,11 @@ This class is only available on server
 
 ### table GetUsersID() {#table-GetUsersID}
 
-### string GetUserID(int) {#string-GetUserID-int}
+### string GetUserID(integer) {#string-GetUserID-integer}
 
-### nil DisconnectClient(int) {#nil-DisconnectClient-int}
+### nil DisconnectClient(integer) {#nil-DisconnectClient-integer}
 
-### int GetScriptsVersion() {#int-GetScriptsVersion}
+### integer GetScriptsVersion() {#integer-GetScriptsVersion}
 
 ### string GetScript(string) {#string-GetScript-string}
 
@@ -41,33 +41,33 @@ Common scenes
 
 ### table GetPrefabsList() {#table-GetPrefabsList}
 
-### Object InsertPrefab(int) {#Object-InsertPrefab-int}
+### Object InsertPrefab(integer) {#Object-InsertPrefab-integer}
 
-### bool MakePrefab(Object) {#bool-MakePrefab-Object}
+### boolean MakePrefab(Object) {#boolean-MakePrefab-Object}
 
 ### nil SaveScene() {#nil-SaveScene}
 
 ### nil SaveSceneHierarchy() {#nil-SaveSceneHierarchy}
 
-### nil SetBackupSceneOnSave(bool) {#nil-SetBackupSceneOnSave-bool}
+### nil SetBackupSceneOnSave(boolean) {#nil-SetBackupSceneOnSave-boolean}
 
-### bool GetBackupSceneOnSave() {#bool-GetBackupSceneOnSave}
+### boolean GetBackupSceneOnSave() {#boolean-GetBackupSceneOnSave}
 
 ### nil ReloadScene() {#nil-ReloadScene}
 
 ### nil OnLuaLog() {#nil-OnLuaLog}
 
-### bool IsClient() {#bool-IsClient}
+### boolean IsClient() {#boolean-IsClient}
 
-### bool IsServer() {#bool-IsServer}
+### boolean IsServer() {#boolean-IsServer}
 
-### bool DevMode() {#bool-DevMode}
+### boolean DevMode() {#boolean-DevMode}
 
 ### string GetSystemConsole() {#string-GetSystemConsole}
 
 ### string GetSystemOutput() {#string-GetSystemOutput}
 
-### int GetCurrentUIActionID() {#int-GetCurrentUIActionID}
+### integer GetCurrentUIActionID() {#integer-GetCurrentUIActionID}
 
 ### nil ScrollToLastestLuaLog() {#nil-ScrollToLastestLuaLog}
 
@@ -79,17 +79,17 @@ Common scenes
 
 ### string GetDateTime() {#string-GetDateTime}
 
-### int GetMemoryUsage() {#int-GetMemoryUsage}
+### integer GetMemoryUsage() {#integer-GetMemoryUsage}
 
 ### table GetErrors() {#table-GetErrors}
 
-### int GetMaxConnections() {#int-GetMaxConnections}
+### integer GetMaxConnections() {#integer-GetMaxConnections}
 
-### bool GetStartedWithOriginalScripts() {#bool-GetStartedWithOriginalScripts}
+### boolean GetStartedWithOriginalScripts() {#boolean-GetStartedWithOriginalScripts}
 
 ### nil OverwriteWithOriginalScripts() {#nil-OverwriteWithOriginalScripts}
 
-### bool GetOriginalScriptsWereSet() {#bool-GetOriginalScriptsWereSet}
+### boolean GetOriginalScriptsWereSet() {#boolean-GetOriginalScriptsWereSet}
 
 ### nil HttpPost(string, table, string, userdata) {#nil-HttpPost-string-table-string-userdata}
 
@@ -97,7 +97,7 @@ Common scenes
 
 ### nil HttpDownload(string, table, userdata) {#nil-HttpDownload-string-table-userdata}
 
-### bool MoveFileToMontageVoxelsFolder(File, string) {#bool-MoveFileToMontageVoxelsFolder-File-string}
+### boolean MoveFileToMontageVoxelsFolder(File, string) {#boolean-MoveFileToMontageVoxelsFolder-File-string}
 
 ### nil MakeUrlForFile(File, userdata, userdata) {#nil-MakeUrlForFile-File-userdata-userdata}
 
@@ -107,7 +107,7 @@ Common scenes
 
 ### AssetManager GetResourceManSettings() {#AssetManager-GetResourceManSettings}
 
-### double GetLogTime(string) {#double-GetLogTime-string}
+### number GetLogTime(string) {#number-GetLogTime-string}
 
 ### table GetLogTimers(string) {#table-GetLogTimers-string}
 
@@ -125,19 +125,19 @@ Common scenes
 
 ### nil AnalyticsServer(string, table) {#nil-AnalyticsServer-string-table}
 
-### nil AnalyticsClient(int, string, table) {#nil-AnalyticsClient-int-string-table}
+### nil AnalyticsClient(integer, string, table) {#nil-AnalyticsClient-integer-string-table}
 
 ### nil TeamcityApiTest() {#nil-TeamcityApiTest}
 
-### nil TeamcityApiTest2(int) {#nil-TeamcityApiTest2-int}
+### nil TeamcityApiTest2(integer) {#nil-TeamcityApiTest2-integer}
 
 ### table GetTeamcityBuilds() {#table-GetTeamcityBuilds}
 
-### table GetTeamcityBuild(int) {#table-GetTeamcityBuild-int}
+### table GetTeamcityBuild(integer) {#table-GetTeamcityBuild-integer}
 
-### int GetCollectionPreferredLoad(int) {#int-GetCollectionPreferredLoad-int}
+### integer GetCollectionPreferredLoad(integer) {#integer-GetCollectionPreferredLoad-integer}
 
-### nil SetCollectionPreferredLoad(int, int) {#nil-SetCollectionPreferredLoad-int-int}
+### nil SetCollectionPreferredLoad(integer, integer) {#nil-SetCollectionPreferredLoad-integer-integer}
 
 ### nil GenTestVoxelScene() {#nil-GenTestVoxelScene}
 
@@ -145,23 +145,23 @@ Common scenes
 
 ### nil GenTestVoxelScene3() {#nil-GenTestVoxelScene3}
 
-### nil MakeVoxelScene(int, int, int, int) {#nil-MakeVoxelScene-int-int-int-int}
+### nil MakeVoxelScene(integer, integer, integer, integer) {#nil-MakeVoxelScene-integer-integer-integer-integer}
 
 ### nil RebuildLODsBrightnessMethod() {#nil-RebuildLODsBrightnessMethod}
 
 ### nil RebuildLODsBrightnessMethod(Vec3i, Vec3i) {#nil-RebuildLODsBrightnessMethod-Vec3i-Vec3i}
 
-### bool RebuildLODsGradientMethod() {#bool-RebuildLODsGradientMethod}
+### boolean RebuildLODsGradientMethod() {#boolean-RebuildLODsGradientMethod}
 
-### bool RebuildLODsGradientMethod(Vec3i, Vec3i) {#bool-RebuildLODsGradientMethod-Vec3i-Vec3i}
+### boolean RebuildLODsGradientMethod(Vec3i, Vec3i) {#boolean-RebuildLODsGradientMethod-Vec3i-Vec3i}
 
-### bool ShowAllNormalsPerVoxel(int) {#bool-ShowAllNormalsPerVoxel-int}
+### boolean ShowAllNormalsPerVoxel(integer) {#boolean-ShowAllNormalsPerVoxel-integer}
 
-### bool ShowAllNormalsPerBT(int) {#bool-ShowAllNormalsPerBT-int}
+### boolean ShowAllNormalsPerBT(integer) {#boolean-ShowAllNormalsPerBT-integer}
 
 ### nil PBRTranscodeToPBR0Ver1() {#nil-PBRTranscodeToPBR0Ver1}
 
 ## Properties
 
-### int clientID {#int-clientID}
+### integer clientID {#integer-clientID}
 

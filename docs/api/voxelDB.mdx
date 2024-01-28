@@ -15,38 +15,38 @@ If we had flush after each op, it would eliminate all multithreaded processing.
 
 ### Vec3i FromWorld(Vec3) {#Vec3i-FromWorld-Vec3}
 
-### int FromWorld(float) {#int-FromWorld-float}
+### integer FromWorld(number) {#integer-FromWorld-number}
 
 ### Vec3 ToWorld(Vec3i) {#Vec3-ToWorld-Vec3i}
 
-### float ToWorld(float) {#float-ToWorld-float}
+### number ToWorld(number) {#number-ToWorld-number}
 
-### bool SetUnitVoxelDim(bool) {#bool-SetUnitVoxelDim-bool}
+### boolean SetUnitVoxelDim(boolean) {#boolean-SetUnitVoxelDim-boolean}
 
-### nil SetMask_deprecated(Vec3i, bool) {#nil-SetMaskdeprecated-Vec3i-bool}
+### nil SetMask_deprecated(Vec3i, boolean) {#nil-SetMaskdeprecated-Vec3i-boolean}
 
-### bool GetMask(Vec3i) {#bool-GetMask-Vec3i}
+### boolean GetMask(Vec3i) {#boolean-GetMask-Vec3i}
 
-### bool GetMask(double, double, double) {#bool-GetMask-double-double-double}
+### boolean GetMask(number, number, number) {#boolean-GetMask-number-number-number}
 
-### int GetMaskNeighbours(Vec3i, int) {#int-GetMaskNeighbours-Vec3i-int}
+### integer GetMaskNeighbours(Vec3i, integer) {#integer-GetMaskNeighbours-Vec3i-integer}
 int is the neighbourhood radius, 1 means it's from pos - 1 to pos + 1, 
 sum of voxles in 3x3 square without center (0-26)
 it should be in range 1-8
 
-### int GetMaskNeighbours(double, double, double, int) {#int-GetMaskNeighbours-double-double-double-int}
+### integer GetMaskNeighbours(number, number, number, integer) {#integer-GetMaskNeighbours-number-number-number-integer}
 
-### int GetMaskNeighboursVN(Vec3i, int) {#int-GetMaskNeighboursVN-Vec3i-int}
+### integer GetMaskNeighboursVN(Vec3i, integer) {#integer-GetMaskNeighboursVN-Vec3i-integer}
 
-### int GetMaskNeighboursVN(double, double, double, int) {#int-GetMaskNeighboursVN-double-double-double-int}
+### integer GetMaskNeighboursVN(number, number, number, integer) {#integer-GetMaskNeighboursVN-number-number-number-integer}
 
 ### nil ClearVoxel(Vec3i) {#nil-ClearVoxel-Vec3i}
 
-### nil ClearVoxel(double, double, double) {#nil-ClearVoxel-double-double-double}
+### nil ClearVoxel(number, number, number) {#nil-ClearVoxel-number-number-number}
 
 ### nil SetColor(Vec3i, Vec3) {#nil-SetColor-Vec3i-Vec3}
 
-### nil SetColor(double, double, double, Vec3) {#nil-SetColor-double-double-double-Vec3}
+### nil SetColor(number, number, number, Vec3) {#nil-SetColor-number-number-number-Vec3}
 
 ### userdata GetColor(Vec3i) {#userdata-GetColor-Vec3i}
 
@@ -54,95 +54,95 @@ it should be in range 1-8
 
 ### Vec3 GetFilteredNormalV(Vec3i) {#Vec3-GetFilteredNormalV-Vec3i}
 
-### nil PaintSphereV(Vec3i, int, Vec3) {#nil-PaintSphereV-Vec3i-int-Vec3}
+### nil PaintSphereV(Vec3i, integer, Vec3) {#nil-PaintSphereV-Vec3i-integer-Vec3}
 
 ### nil PaintBoxV(Vec3i, Vec3i, Vec3) {#nil-PaintBoxV-Vec3i-Vec3i-Vec3}
 
 ### nil PaintBoxV(Vec3i, Vec3i, Quat, Vec3) {#nil-PaintBoxV-Vec3i-Vec3i-Quat-Vec3}
 
-### nil PaintCapsuleV(Vec3i, Vec3i, int, Vec3) {#nil-PaintCapsuleV-Vec3i-Vec3i-int-Vec3}
+### nil PaintCapsuleV(Vec3i, Vec3i, integer, Vec3) {#nil-PaintCapsuleV-Vec3i-Vec3i-integer-Vec3}
 
-### nil PaintCapsuleV(Vec3i, Vec3i, int, int, Vec3) {#nil-PaintCapsuleV-Vec3i-Vec3i-int-int-Vec3}
+### nil PaintCapsuleV(Vec3i, Vec3i, integer, integer, Vec3) {#nil-PaintCapsuleV-Vec3i-Vec3i-integer-integer-Vec3}
 
-### nil ClearSphereV(Vec3i, int) {#nil-ClearSphereV-Vec3i-int}
+### nil ClearSphereV(Vec3i, integer) {#nil-ClearSphereV-Vec3i-integer}
 
 ### nil ClearBoxV(Vec3i, Vec3i) {#nil-ClearBoxV-Vec3i-Vec3i}
 
 ### nil ClearBoxV(Vec3i, Vec3i, Quat) {#nil-ClearBoxV-Vec3i-Vec3i-Quat}
 
-### nil ClearCapsuleV(Vec3i, Vec3i, int) {#nil-ClearCapsuleV-Vec3i-Vec3i-int}
+### nil ClearCapsuleV(Vec3i, Vec3i, integer) {#nil-ClearCapsuleV-Vec3i-Vec3i-integer}
 
-### nil ClearCapsuleV(Vec3i, Vec3i, int, int) {#nil-ClearCapsuleV-Vec3i-Vec3i-int-int}
+### nil ClearCapsuleV(Vec3i, Vec3i, integer, integer) {#nil-ClearCapsuleV-Vec3i-Vec3i-integer-integer}
 
-### nil MakeSphereV(Vec3i, int, Vec3) {#nil-MakeSphereV-Vec3i-int-Vec3}
+### nil MakeSphereV(Vec3i, integer, Vec3) {#nil-MakeSphereV-Vec3i-integer-Vec3}
 
 ### nil MakeBoxV(Vec3i, Vec3i, Vec3) {#nil-MakeBoxV-Vec3i-Vec3i-Vec3}
 
 ### nil MakeBoxV(Vec3i, Vec3i, Quat, Vec3) {#nil-MakeBoxV-Vec3i-Vec3i-Quat-Vec3}
 
-### nil MakeCapsuleV(Vec3i, Vec3i, int, Vec3) {#nil-MakeCapsuleV-Vec3i-Vec3i-int-Vec3}
+### nil MakeCapsuleV(Vec3i, Vec3i, integer, Vec3) {#nil-MakeCapsuleV-Vec3i-Vec3i-integer-Vec3}
 
-### nil MakeCapsuleV(Vec3i, Vec3i, int, int, Vec3) {#nil-MakeCapsuleV-Vec3i-Vec3i-int-int-Vec3}
+### nil MakeCapsuleV(Vec3i, Vec3i, integer, integer, Vec3) {#nil-MakeCapsuleV-Vec3i-Vec3i-integer-integer-Vec3}
 
-### nil PaintSphereBlendV(Vec3i, int, Vec3, float, float, float) {#nil-PaintSphereBlendV-Vec3i-int-Vec3-float-float-float}
+### nil PaintSphereBlendV(Vec3i, integer, Vec3, number, number, number) {#nil-PaintSphereBlendV-Vec3i-integer-Vec3-number-number-number}
 
 ### Vec3 GetNormal(Vec3) {#Vec3-GetNormal-Vec3}
 
 ### Vec3 GetFilteredNormal(Vec3) {#Vec3-GetFilteredNormal-Vec3}
 
-### userdata TraceRay(Vec3, Vec3, float) {#userdata-TraceRay-Vec3-Vec3-float}
+### userdata TraceRay(Vec3, Vec3, number) {#userdata-TraceRay-Vec3-Vec3-number}
 
-### bool CheckSphere(Vec3, float) {#bool-CheckSphere-Vec3-float}
+### boolean CheckSphere(Vec3, number) {#boolean-CheckSphere-Vec3-number}
 
-### bool CheckBox(Vec3, Vec3, Quat) {#bool-CheckBox-Vec3-Vec3-Quat}
+### boolean CheckBox(Vec3, Vec3, Quat) {#boolean-CheckBox-Vec3-Vec3-Quat}
 
-### bool CheckBox(Vec3, Vec3) {#bool-CheckBox-Vec3-Vec3}
+### boolean CheckBox(Vec3, Vec3) {#boolean-CheckBox-Vec3-Vec3}
 
-### bool CheckCapsule(Vec3, Vec3, float, float) {#bool-CheckCapsule-Vec3-Vec3-float-float}
+### boolean CheckCapsule(Vec3, Vec3, number, number) {#boolean-CheckCapsule-Vec3-Vec3-number-number}
 
-### bool CheckCapsule(Vec3, Vec3, float) {#bool-CheckCapsule-Vec3-Vec3-float}
+### boolean CheckCapsule(Vec3, Vec3, number) {#boolean-CheckCapsule-Vec3-Vec3-number}
 
-### nil PaintSphere(Vec3, float) {#nil-PaintSphere-Vec3-float}
+### nil PaintSphere(Vec3, number) {#nil-PaintSphere-Vec3-number}
 
 ### nil PaintBox(Vec3, Vec3, Quat) {#nil-PaintBox-Vec3-Vec3-Quat}
 
 ### nil PaintBox(Vec3, Vec3) {#nil-PaintBox-Vec3-Vec3}
 
-### nil PaintCapsule(Vec3, Vec3, float, float) {#nil-PaintCapsule-Vec3-Vec3-float-float}
+### nil PaintCapsule(Vec3, Vec3, number, number) {#nil-PaintCapsule-Vec3-Vec3-number-number}
 
-### nil PaintCapsule(Vec3, Vec3, float) {#nil-PaintCapsule-Vec3-Vec3-float}
+### nil PaintCapsule(Vec3, Vec3, number) {#nil-PaintCapsule-Vec3-Vec3-number}
 
-### nil ClearSphere(Vec3, float) {#nil-ClearSphere-Vec3-float}
+### nil ClearSphere(Vec3, number) {#nil-ClearSphere-Vec3-number}
 
 ### nil ClearBox(Vec3, Vec3, Quat) {#nil-ClearBox-Vec3-Vec3-Quat}
 
 ### nil ClearBox(Vec3, Vec3) {#nil-ClearBox-Vec3-Vec3}
 
-### nil ClearCapsule(Vec3, Vec3, float, float) {#nil-ClearCapsule-Vec3-Vec3-float-float}
+### nil ClearCapsule(Vec3, Vec3, number, number) {#nil-ClearCapsule-Vec3-Vec3-number-number}
 
-### nil ClearCapsule(Vec3, Vec3, float) {#nil-ClearCapsule-Vec3-Vec3-float}
+### nil ClearCapsule(Vec3, Vec3, number) {#nil-ClearCapsule-Vec3-Vec3-number}
 
-### nil MakeSphere(Vec3, float) {#nil-MakeSphere-Vec3-float}
+### nil MakeSphere(Vec3, number) {#nil-MakeSphere-Vec3-number}
 
 ### nil MakeBox(Vec3, Vec3, Quat) {#nil-MakeBox-Vec3-Vec3-Quat}
 
 ### nil MakeBox(Vec3, Vec3) {#nil-MakeBox-Vec3-Vec3}
 
-### nil MakeCapsule(Vec3, Vec3, float, float) {#nil-MakeCapsule-Vec3-Vec3-float-float}
+### nil MakeCapsule(Vec3, Vec3, number, number) {#nil-MakeCapsule-Vec3-Vec3-number-number}
 
-### nil MakeCapsule(Vec3, Vec3, float) {#nil-MakeCapsule-Vec3-Vec3-float}
+### nil MakeCapsule(Vec3, Vec3, number) {#nil-MakeCapsule-Vec3-Vec3-number}
 
 ### nil SetMaterial(Vec3) {#nil-SetMaterial-Vec3}
 
-### nil InstantiateIE(Vec3, Quat, float) {#nil-InstantiateIE-Vec3-Quat-float}
+### nil InstantiateIE(Vec3, Quat, number) {#nil-InstantiateIE-Vec3-Quat-number}
 
 ### nil ClearContent() {#nil-ClearContent}
 
-### nil RebuildLods(bool) {#nil-RebuildLods-bool}
+### nil RebuildLods(boolean) {#nil-RebuildLods-boolean}
 
-### bool CopyLayer(string, string) {#bool-CopyLayer-string-string}
+### boolean CopyLayer(string, string) {#boolean-CopyLayer-string-string}
 
-### bool ClearLayer(string) {#bool-ClearLayer-string}
+### boolean ClearLayer(string) {#boolean-ClearLayer-string}
 
 ### nil RemoveHiddenVoxelsC32() {#nil-RemoveHiddenVoxelsC32}
 
@@ -152,31 +152,31 @@ it should be in range 1-8
 
 ### nil CopyTo(VoxelDB) {#nil-CopyTo-VoxelDB}
 
-### bool Save(string, string, int) {#bool-Save-string-string-int}
+### boolean Save(string, string, integer) {#boolean-Save-string-string-integer}
 
-### userdata InspectNormals(Vec3, int, int) {#userdata-InspectNormals-Vec3-int-int}
+### userdata InspectNormals(Vec3, integer, integer) {#userdata-InspectNormals-Vec3-integer-integer}
 
-### userdata Inspect(Vec3, int, int, table, int) {#userdata-Inspect-Vec3-int-int-table-int}
+### userdata Inspect(Vec3, integer, integer, table, integer) {#userdata-Inspect-Vec3-integer-integer-table-integer}
 
-### int GetLODsCount() {#int-GetLODsCount}
+### integer GetLODsCount() {#integer-GetLODsCount}
 
 ### table GetLayerStats(string) {#table-GetLayerStats-string}
 
 ### table GetUsedLayers() {#table-GetUsedLayers}
 
-### float, float GetBounds() {#float-float-GetBounds}
+### number, number GetBounds() {#number-number-GetBounds}
 
 ## Properties
 
-### bool autoLightingUpdate {#bool-autoLightingUpdate}
+### boolean autoLightingUpdate {#boolean-autoLightingUpdate}
 
-### int voxelDim {#int-voxelDim}
+### integer voxelDim {#integer-voxelDim}
 
-### bool BlendEnabled {#bool-BlendEnabled}
+### boolean BlendEnabled {#boolean-BlendEnabled}
 
 ### BlendMode BlendMode {#BlendMode-BlendMode}
 
-### float BlendOpacity {#float-BlendOpacity}
+### number BlendOpacity {#number-BlendOpacity}
 
-### float BlendRadiusRatio {#float-BlendRadiusRatio}
+### number BlendRadiusRatio {#number-BlendRadiusRatio}
 

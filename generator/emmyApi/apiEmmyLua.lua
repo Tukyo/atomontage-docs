@@ -499,12 +499,12 @@ function AssetManager:Get(p1) end
 
 --- @param p1 type
 --- @param p2 string
---- @return boolean
+--- @return booleanean
 function AssetManager:AddAsset(p1, p2) end
 
 --- @param p1 string
 --- @param p2 string
---- @return boolean
+--- @return booleanean
 function AssetManager:AddAsset(p1, p2) end
 
 --- @param p1 ResResource
@@ -512,7 +512,7 @@ function AssetManager:AddAsset(p1, p2) end
 function AssetManager:GetResourceType(p1) end
 
 --- @param p1 type
---- @return boolean
+--- @return booleanean
 function AssetManager:IsAssetType(p1) end
 
 --- @param p1 AssetManager
@@ -556,7 +556,7 @@ function Box(p1) end
 ]]
 --- @class Camera
 --- @field object Object
---- @field isDestroyed boolean
+--- @field isDestroyed booleanean
 --- @field type string
 --- @field fovY number
 Camera = {
@@ -621,21 +621,21 @@ This class is only available on client
 [View Documentation](https://docs.atomontage.com/api/Client)
 ]]
 --- @class Client
---- @field clientID integer
+--- @field clientID integereger
 --- @field userID Guid
 --- @field mode ClientMode
---- @field isMaker boolean
+--- @field isMaker booleanean
 --- @field platform string
 --- @field sysInfo string
 Client = {}
 
---- @return integer
+--- @return integereger
 function Client:GetID() end
 
 --- @return Guid
 function Client:GetUserID() end
 
---- @param actionID integer
+--- @param actionID integereger
 --- @param item UIItem
 --- @param value userdata
 --- @return string
@@ -657,26 +657,26 @@ function Client:ToggleMainMenuVisibility() end
 --- @return nil
 function Client:SetToClientUI() end
 
---- @param p1 boolean
+--- @param p1 booleanean
 --- @return nil
 function Client:SetShowWindows(p1) end
 
---- @return boolean
+--- @return booleanean
 function Client:GetShowWindows() end
 
---- @return boolean
+--- @return booleanean
 function Client:GetUICapturesMouseOrKeyboard() end
 
---- @return boolean
+--- @return booleanean
 function Client:GetUICapturesMouse() end
 
---- @return boolean
+--- @return booleanean
 function Client:GetUICapturesKeyboard() end
 
---- @return boolean
+--- @return booleanean
 function Client:GetUICapturesTextInput() end
 
---- @return boolean
+--- @return booleanean
 function Client:GetUIIsInEditMode() end
 
 --- @param windowID string
@@ -688,7 +688,7 @@ function Client:OpenUIWindow(windowID) end
 function Client:CloseUIWindow(windowID) end
 
 --- @param windowID string
---- @param open boolean
+--- @param open booleanean
 --- @return nil
 function Client:SetUIWindowOpen(windowID, open) end
 
@@ -697,7 +697,7 @@ function Client:SetUIWindowOpen(windowID, open) end
 function Client:ToggleUIWindow(windowID) end
 
 --- @param windowID string
---- @return boolean
+--- @return booleanean
 function Client:IsWindowOpen(windowID) end
 
 --- @param windowID string
@@ -711,7 +711,7 @@ function Client:OpenUI() end
 --- @return nil
 function Client:CloseUI() end
 
---- @return boolean
+--- @return booleanean
 function Client:IsUIOpen() end
 
 --- @param p1 Quat
@@ -727,7 +727,7 @@ function Client:GetUIPose() end
 function Client:OpenScriptFile(p1) end
 
 --- @param p1 string
---- @param p2 integer
+--- @param p2 integereger
 --- @return nil
 function Client:OpenScriptFile(p1, p2) end
 
@@ -742,10 +742,10 @@ function Client:SetUIScale(scale) end
 --- @return number
 function Client:GetUIScale() end
 
---- @return boolean
+--- @return booleanean
 function Client:GetUIScaleAuto() end
 
---- @param autoScale boolean
+--- @param autoScale booleanean
 --- @return nil
 function Client:SetUIScaleAuto(autoScale) end
 
@@ -806,23 +806,23 @@ function Client:SetLogValue(p1, p2) end
 --- @return nil
 function Client:SetStrLogValue(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return number
 function Client:GetLogIValue(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return string
 function Client:GetLogIValueName(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return string
 function Client:GetLogIValueOutputName(p1) end
 
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Client:GetLogIsValue(p1) end
 
---- @return integer
+--- @return integereger
 function Client:GetLogValuesCount() end
 
 --- @param p1 string
@@ -833,23 +833,23 @@ function Client:GetLogValueForPlot(p1) end
 --- @return string
 function Client:GetLogStrValue(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return string
 function Client:GetLogStrIValue(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return string
 function Client:GetLogStrIValueName(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return string
 function Client:GetLogStrIValueOutputName(p1) end
 
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Client:GetLogStrIsValue(p1) end
 
---- @return integer
+--- @return integereger
 function Client:GetLogStrValuesCount() end
 
 --- @param p1 string
@@ -877,19 +877,19 @@ function Client:ConnectToServer() end
 function Client:Disconnect(p1) end
 
 --- @param folder string
---- @return boolean
+--- @return booleanean
 function Client:OpenFolder(folder) end
 
---- @return integer
+--- @return integereger
 function Client:GetScriptsVersion() end
 
---- @return integer
+--- @return integereger
 function Client:GetLoadedScriptsVersion() end
 
 --- @return nil
 function Client:LuaOpenDebugger() end
 
---- @param enable boolean
+--- @param enable booleanean
 --- @return nil
 function Client:LuaEnableDebugging(enable) end
 
@@ -900,47 +900,47 @@ function Client:OnLuaLog() end
 function Client:ScrollToLastestLuaLog() end
 
 --- @param uiItem UIItem
---- @return boolean
+--- @return booleanean
 function Client:IsContainerEnabledAndVisible(uiItem) end
 
 --- @param p1 string
 --- @return nil
 function Client:Log(p1) end
 
---- @return boolean
+--- @return booleanean
 function Client:IsClient() end
 
---- @return boolean
+--- @return booleanean
 function Client:IsServer() end
 
---- @return boolean
+--- @return booleanean
 function Client:DevMode() end
 
---- @return boolean
+--- @return booleanean
 function Client:GetNetworkThrottlingNow() end
 
 --- @param uiItem UIItem
 --- @return nil
 function Client:SelectItemInUICreator(uiItem) end
 
---- @param uiActionID integer
+--- @param uiActionID integereger
 --- @return UIItem
 function Client:GetUIItemByUIActionID(uiActionID) end
 
---- @param uiActionID integer
+--- @param uiActionID integereger
 --- @return string
 function Client:GetUIActionType(uiActionID) end
 
---- @param uiActionID integer
+--- @param uiActionID integereger
 --- @return string
 function Client:GetUIActionScript(uiActionID) end
 
---- @return integer
+--- @return integereger
 function Client:GetCurrentUIActionID() end
 
 --- @param p1 Vec4
 --- @return nil
-function Client:SetIntersectionTint(p1) end
+function Client:SetIntersectionTinteger(p1) end
 
 --- @param p1 Vec3
 --- @param p2 Quat
@@ -957,7 +957,7 @@ function Client:SetIntersectionSphere(p1, p2) end
 --- @param p2 Vec2
 --- @param p3 Vec2
 --- @param p4 Vec4
---- @param p5 integer
+--- @param p5 integereger
 --- @param p6 Vec4
 --- @param p7 number
 --- @return nil
@@ -967,7 +967,7 @@ function Client:WriteToScreen(p1, p2, p3, p4, p5, p6, p7) end
 --- @param p2 Vec2
 --- @param p3 Vec2
 --- @param p4 Vec4
---- @param p5 integer
+--- @param p5 integereger
 --- @return nil
 function Client:WriteToScreen(p1, p2, p3, p4, p5) end
 
@@ -975,7 +975,7 @@ function Client:WriteToScreen(p1, p2, p3, p4, p5) end
 --- @param p2 Vec2
 --- @param p3 Vec2
 --- @param p4 Vec4
---- @param p5 integer
+--- @param p5 integereger
 --- @param p6 Vec4
 --- @return nil
 function Client:WriteToScreen(p1, p2, p3, p4, p5, p6) end
@@ -1007,10 +1007,10 @@ function Client:GetBGColor() end
 --- @return nil
 function Client:SetBGColor(p1) end
 
---- @return boolean
+--- @return booleanean
 function Client:GetVREnabled() end
 
---- @param p1 boolean
+--- @param p1 booleanean
 --- @param p2 string
 --- @return nil
 function Client:SetVREnabled(p1, p2) end
@@ -1019,7 +1019,7 @@ function Client:SetVREnabled(p1, p2) end
 --- @return nil
 function Client:ToggleVREnabled(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Space
 --- @return Vec3, Quat
 function Client:GetVREyeTransform(p1, p2) end
@@ -1028,14 +1028,14 @@ function Client:GetVREyeTransform(p1, p2) end
 --- @return Vec3, Quat
 function Client:GetVRHeadsetTransform(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @param p3 number
 --- @param p4 number
 --- @return nil
 function Client:ApplyVRHapticFeedback(p1, p2, p3, p4) end
 
---- @return boolean
+--- @return booleanean
 function Client:GetVREyeTrackingSupported() end
 
 --- @param p1 number
@@ -1052,11 +1052,11 @@ function Client:GetVRUserScaleMin() end
 function Client:GetVRUserScaleMax() end
 
 --- @param p1 File
---- @return boolean
+--- @return booleanean
 function Client:SendFile(p1) end
 
 --- @param p1 table
---- @return boolean
+--- @return booleanean
 function Client:SendFiles(p1) end
 
 --- @return nil
@@ -1086,14 +1086,14 @@ function Client:GetResourceManSettings() end
 --- @return nil
 function Client:ToggleChannelRendering() end
 
---- @return integer
+--- @return integereger
 function Client:GetRenderChannelsCount() end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return number
 function Client:GetRenderChannelOpacity(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @return nil
 function Client:SetRenderChannelOpacity(p1, p2) end
@@ -1111,10 +1111,10 @@ function Client:PlayEntityPath() end
 function Client:ClearEntityPath() end
 
 --- @return nil
-function Client:AddEntityPathWaypoint() end
+function Client:AddEntityPathWaypointeger() end
 
 --- @param p1 string
---- @param p2 boolean
+--- @param p2 booleanean
 --- @return nil
 function Client:TakeScreenshot(p1, p2) end
 
@@ -1127,7 +1127,7 @@ function Client:GetSystem() end
 --- @return Device
 function Client:GetDevice() end
 
---- @return integer
+--- @return integereger
 function Client:GetMemoryUsage() end
 
 --- @return string
@@ -1151,10 +1151,10 @@ function Client:GetLastSyncMessageRecv() end
 --- @return string
 function Client:GetLastSyncMessageSent() end
 
---- @return boolean
+--- @return booleanean
 function Client:GetUpdateSyncMessageString() end
 
---- @param p1 boolean
+--- @param p1 booleanean
 --- @return nil
 function Client:SetUpdateSyncMessageString(p1) end
 
@@ -1174,7 +1174,7 @@ function Client:GetClipboardText() end
 --- @return nil
 function Client:OpenBrowserWithURL(p1) end
 
---- @param p1 boolean
+--- @param p1 booleanean
 --- @return nil
 function Client:ReloadPage(p1) end
 
@@ -1185,29 +1185,29 @@ function Client:__tostring() end
 function Client:EnumerateTestRenderObjects() end
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function Client:IsTestRenderObjectEnabled(p1) end
 
 --- @param p1 string
---- @param p2 boolean
---- @return boolean
+--- @param p2 booleanean
+--- @return booleanean
 function Client:SetTestRenderObjectEnabled(p1, p2) end
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function Client:ToggleTestRenderObjectEnabled(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @return nil
 function Client:EnableRenderingWithFadeEffect(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @return nil
 function Client:DisableRenderingWithFadeEffect(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @return nil
 function Client:ToggleRenderingWithFadeEffect(p1, p2) end
@@ -1220,9 +1220,9 @@ function Client:ToggleRenderingWithFadeEffect(p1, p2) end
 ]]
 --- @class Collision
 --- @field filter Filter
---- @field maxHitCount integer
+--- @field maxHitCount integereger
 --- @field shape Shape
---- @field precise boolean
+--- @field precise booleanean
 --- @field rayPos Vec3
 --- @field rayDir Vec3
 Collision = {
@@ -1280,7 +1280,7 @@ function Collision:GetOverlap(p1) end
 CommandLine = {}
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function CommandLine:HasOption(p1) end
 
 --- @param p1 string
@@ -1289,8 +1289,8 @@ function CommandLine:HasOption(p1) end
 function CommandLine:GetOptionFloat(p1, p2) end
 
 --- @param p1 string
---- @param p2 integer
---- @return integer
+--- @param p2 integereger
+--- @return integereger
 function CommandLine:GetOptionInt(p1, p2) end
 
 --- @param p1 string
@@ -1315,7 +1315,7 @@ function CommandLine:GetAll(p1) end
 ]]
 --- @class Component
 --- @field object Object
---- @field isDestroyed boolean
+--- @field isDestroyed booleanean
 --- @field type string
 Component = {}
 
@@ -1329,7 +1329,7 @@ Component = {}
 Config = {}
 
 --- @param p1 string
---- @param p2 integer
+--- @param p2 integereger
 --- @return nil
 function Config:SetInt(p1, p2) end
 
@@ -1339,7 +1339,7 @@ function Config:SetInt(p1, p2) end
 function Config:SetFloat(p1, p2) end
 
 --- @param p1 string
---- @param p2 boolean
+--- @param p2 booleanean
 --- @return nil
 function Config:SetBool(p1, p2) end
 
@@ -1368,7 +1368,7 @@ function Config:SetVec4(p1, p2) end
 function Config:Del(p1) end
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function Config:Exists(p1) end
 
 --[[
@@ -1380,12 +1380,12 @@ force saving Config
 function Config:EmitChangeSignal() end
 
 --- @param p1 string
---- @return integer
+--- @return integereger
 function Config:GetInt(p1) end
 
 --- @param p1 string
---- @param p2 integer
---- @return integer
+--- @param p2 integereger
+--- @return integereger
 function Config:GetInt(p1, p2) end
 
 --- @param p1 string
@@ -1398,12 +1398,12 @@ function Config:GetFloat(p1) end
 function Config:GetFloat(p1, p2) end
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function Config:GetBool(p1) end
 
 --- @param p1 string
---- @param p2 boolean
---- @return boolean
+--- @param p2 booleanean
+--- @return booleanean
 function Config:GetBool(p1, p2) end
 
 --- @param p1 string
@@ -1480,7 +1480,7 @@ function Cylinder(p1, p2) end
 --- @field filename string
 --- @field type string
 --- @field url string
---- @field available boolean
+--- @field available booleanean
 File = {}
 
 --[[
@@ -1490,10 +1490,10 @@ File = {}
 [View Documentation](https://docs.atomontage.com/api/Filter)
 ]]
 --- @class Filter
---- @field useStatic boolean
---- @field useNotStatic boolean
---- @field useTmpStatic boolean
---- @field useTmpNotStatic boolean
+--- @field useStatic booleanean
+--- @field useNotStatic booleanean
+--- @field useTmpStatic booleanean
+--- @field useTmpNotStatic booleanean
 --- @field ignoreList table
 --- @field forceList table
 Filter = {
@@ -1505,8 +1505,8 @@ Filter = {
 --- @return Filter
 function Filter() end
 
---- @param p1 boolean
---- @param p2 boolean
+--- @param p1 booleanean
+--- @param p2 booleanean
 --- @return Filter
 function Filter(p1, p2) end
 
@@ -1524,32 +1524,32 @@ function Filter(p1, p2) end
 --- @class Gamepad
 Gamepad = {}
 
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Gamepad:ButtonDown(p1) end
 
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Gamepad:Button(p1) end
 
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Gamepad:ButtonUp(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return number
 function Gamepad:Axis(p1) end
 
---- @param p1 integer
---- @param p2 integer
---- @param p3 integer
---- @return integer
+--- @param p1 integereger
+--- @param p2 integereger
+--- @param p3 integereger
+--- @return integereger
 function Gamepad:Rumble(p1, p2, p3) end
 
---- @param p1 integer
---- @param p2 integer
---- @param p3 integer
---- @return integer
+--- @param p1 integereger
+--- @param p2 integereger
+--- @param p3 integereger
+--- @return integereger
 function Gamepad:RumbleTriggers(p1, p2, p3) end
 
 --[[
@@ -1576,13 +1576,13 @@ Hit = {}
 --- @class Image
 --- @field pixelFormat PixelFormat
 --- @field mipMaps userdata
---- @field isCubeMap boolean
+--- @field isCubeMap booleanean
 Image = {}
 
---- @return boolean
+--- @return booleanean
 function Image:IsValid() end
 
---- @return boolean
+--- @return booleanean
 function Image:IsManaged() end
 
 --[[
@@ -1598,72 +1598,72 @@ Input = {}
 function Input:GetEvents() end
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function Input:KeyDown(p1) end
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function Input:Key(p1) end
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function Input:KeyUp(p1) end
 
 --- @return table
 function Input:KeyCombosDown() end
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function Input:KeyComboDown(p1) end
 
 --- @param p1 string
 --- @param p2 string
 --- @param p3 string
---- @return boolean
+--- @return booleanean
 function Input:KeyComboDown(p1, p2, p3) end
 
 --- @param p1 string
 --- @param p2 string
---- @return boolean
+--- @return booleanean
 function Input:KeyComboDown(p1, p2) end
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function Input:KeyCombo(p1) end
 
 --- @param p1 string
 --- @param p2 string
 --- @param p3 string
---- @return boolean
+--- @return booleanean
 function Input:KeyCombo(p1, p2, p3) end
 
 --- @param p1 string
 --- @param p2 string
---- @return boolean
+--- @return booleanean
 function Input:KeyCombo(p1, p2) end
 
---- @return boolean
+--- @return booleanean
 function Input:ShiftKey() end
 
---- @return boolean
+--- @return booleanean
 function Input:CtrlKey() end
 
---- @return boolean
+--- @return booleanean
 function Input:AltKey() end
 
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Input:MouseButtonDown(p1) end
 
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Input:MouseButton(p1) end
 
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Input:MouseButtonUp(p1) end
 
---- @return integer
+--- @return integereger
 function Input:MouseWheel() end
 
 --- @return Vec2
@@ -1684,24 +1684,24 @@ function Input:MousePosPercLast() end
 --- @return Vec2
 function Input:MouseMovePerc() end
 
---- @return boolean
+--- @return booleanean
 function Input:GetRelativeMouseMode() end
 
---- @param p1 boolean
+--- @param p1 booleanean
 --- @return nil
 function Input:SetRelativeMouseMode(p1) end
 
---- @return boolean
+--- @return booleanean
 function Input:GetEmulateMouseWithTouch() end
 
---- @param p1 boolean
+--- @param p1 booleanean
 --- @return nil
 function Input:SetEmulateMouseWithTouch(p1) end
 
---- @return boolean
+--- @return booleanean
 function Input:GetEmulateTouchWithMouse() end
 
---- @param p1 boolean
+--- @param p1 booleanean
 --- @return nil
 function Input:SetEmulateTouchWithMouse(p1) end
 
@@ -1714,73 +1714,73 @@ function Input:GestureRotate() end
 --- @return Vec2
 function Input:GestureMove() end
 
---- @return integer
+--- @return integereger
 function Input:NumFingers() end
 
 --[[
 int passed is the unique ID of that touch obtained i.e. from Input:Fingers() or Input:GetEvents()
 
-[View Documentation](https://docs.atomontage.com/api/Input#bool-FingerDown-int)
+[View Documentation](https://docs.atomontage.com/api/Input#boolean-FingerDown-integer)
 ]]
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Input:FingerDown(p1) end
 
 --- @return userdata
 function Input:Fingers() end
 
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Input:FingerUp(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return Vec2
 function Input:FingerPos(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 VRControllerButton
---- @return boolean
+--- @return booleanean
 function Input:VRButtonDown(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 VRControllerButton
---- @return boolean
+--- @return booleanean
 function Input:VRButton(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 VRControllerButton
---- @return boolean
+--- @return booleanean
 function Input:VRButtonUp(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return number
 function Input:VRHandTrigger(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return number
 function Input:VRIndexTrigger(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return Vec2
 function Input:VRThumbStick(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return Vec2
 function Input:VRTrackpad(p1) end
 
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Input:VRIsControllerValid(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return Vec3
 function Input:VRControllerPos(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return Vec3
 function Input:VRControllerDir(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Space
 --- @return Vec3, Quat
 function Input:VRControllerTransform(p1, p2) end
@@ -1905,12 +1905,12 @@ function Mat3(p1) end
 function Mat3(p1) end
 
 --- @param p1 Mat3
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3
 function Mat3:__index(p1, p2) end
 
 --- @param p1 Mat3
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 Vec3
 --- @return nil
 function Mat3:__newindex(p1, p2, p3) end
@@ -1991,7 +1991,7 @@ function Mat3:__unm(p1) end
 
 --- @param p1 Mat3
 --- @param p2 Mat3
---- @return boolean
+--- @return booleanean
 function Mat3:__eq(p1, p2) end
 
 --- @return number
@@ -2010,16 +2010,16 @@ function Mat3:Invert() end
 function Mat3:GetInverted() end
 
 --- @param p1 number
---- @return boolean
+--- @return booleanean
 function Mat3:IsIdentity(p1) end
 
---- @return boolean
+--- @return booleanean
 function Mat3:IsZero() end
 
---- @return boolean
+--- @return booleanean
 function Mat3:IsSingular() end
 
---- @return boolean
+--- @return booleanean
 function Mat3:IsAnyNaN() end
 
 --[[
@@ -2199,12 +2199,12 @@ function Mat4(p1) end
 function Mat4(p1) end
 
 --- @param p1 Mat4
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4
 function Mat4:__index(p1, p2) end
 
 --- @param p1 Mat4
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 Vec4
 --- @return nil
 function Mat4:__newindex(p1, p2, p3) end
@@ -2280,7 +2280,7 @@ function Mat4:__unm(p1) end
 
 --- @param p1 Mat4
 --- @param p2 Mat4
---- @return boolean
+--- @return booleanean
 function Mat4:__eq(p1, p2) end
 
 --- @return number
@@ -2299,16 +2299,16 @@ function Mat4:Invert() end
 function Mat4:GetInverted() end
 
 --- @param p1 number
---- @return boolean
+--- @return booleanean
 function Mat4:IsIdentity(p1) end
 
---- @return boolean
+--- @return booleanean
 function Mat4:IsZero() end
 
---- @return boolean
+--- @return booleanean
 function Mat4:IsSingular() end
 
---- @return boolean
+--- @return booleanean
 function Mat4:IsAnyNaN() end
 
 --- @param p1 number
@@ -2386,15 +2386,15 @@ Material = {}
 --- @return Material
 function Material(p1) end
 
---- @return boolean
+--- @return booleanean
 function Material:IsValid() end
 
---- @return boolean
+--- @return booleanean
 function Material:IsManaged() end
 
 --- @param p1 Material
 --- @param p2 string
---- @return boolean
+--- @return booleanean
 function Material:HasProperty(p1, p2) end
 
 --- @param p1 Material
@@ -2427,7 +2427,7 @@ function Material:SetProperty(p1, p2, p3) end
 ]]
 --- @class MeshData
 --- @field object Object
---- @field isDestroyed boolean
+--- @field isDestroyed booleanean
 --- @field type string
 --- @field resourceUsageMode ResourceUsage
 --- @field topology PrimitiveTopology
@@ -2435,7 +2435,7 @@ MeshData = {}
 
 --- @param p1 MeshData
 --- @param p2 MeshData
---- @return boolean
+--- @return booleanean
 function MeshData:__eq(p1, p2) end
 
 --- @return nil
@@ -2446,37 +2446,37 @@ function MeshData:ClearShape() end
 function MeshData:ClearShape(p1) end
 
 --- @param p1 Vec3
---- @return integer
+--- @return integereger
 function MeshData:AddVertex(p1) end
 
 --- @param p1 Vec3
 --- @param p2 Vec4
---- @return integer
+--- @return integereger
 function MeshData:AddVertex(p1, p2) end
 
 --- @param p1 Vec3
 --- @param p2 Vec2
 --- @param p3 Vec4
---- @return integer
+--- @return integereger
 function MeshData:AddVertex(p1, p2, p3) end
 
 --- @param p1 Vec3
 --- @param p2 Vec2
---- @return integer
+--- @return integereger
 function MeshData:AddVertex(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return nil
 function MeshData:AddIndex(p1) end
 
---- @param p1 integer
---- @param p2 integer
---- @param p3 integer
+--- @param p1 integereger
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return nil
 function MeshData:AddIndex(p1, p2, p3) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @return nil
 function MeshData:AddIndex(p1, p2) end
 
@@ -2493,14 +2493,14 @@ function MeshData:AddShape(p1, p2) end
 ]]
 --- @class MeshRenderer
 --- @field object Object
---- @field isDestroyed boolean
+--- @field isDestroyed booleanean
 --- @field type string
 --- @field material Material
 MeshRenderer = {}
 
 --- @param p1 MeshRenderer
 --- @param p2 MeshRenderer
---- @return boolean
+--- @return booleanean
 function MeshRenderer:__eq(p1, p2) end
 
 --[[
@@ -2510,21 +2510,21 @@ function MeshRenderer:__eq(p1, p2) end
 [View Documentation](https://docs.atomontage.com/api/Object)
 ]]
 --- @class Object
---- @field id integer
+--- @field id integereger
 --- @field transform Transform
---- @field isDestroyed boolean
+--- @field isDestroyed booleanean
 --- @field name string
---- @field active boolean
---- @field activeInHierarchy boolean
---- @field save boolean
+--- @field active booleanean
+--- @field activeInHierarchy booleanean
+--- @field save booleanean
 --- @field tag string
 --- @field parent Object
 --- @field children table
---- @field childCount integer
---- @field siblingIndex integer
---- @field isPrefabObject boolean
+--- @field childCount integereger
+--- @field siblingIndex integereger
+--- @field isPrefabObject booleanean
 --- @field components table
---- @field componentsCount integer
+--- @field componentsCount integereger
 Object = {
 	isDestroyed = nil, ---True if the object was destroyed. Note that references to this object will still be valid 
 	save = nil, ---Save this object in the hierachy. If not saved it will be deleted after lua reset or server restart
@@ -2539,11 +2539,11 @@ Get child object by name
 --- @return Object
 function Object:GetChild(p1) end
 
---- @return boolean
+--- @return booleanean
 function Object:RemoveParent() end
 
 --- @param p1 string
---- @param p2 boolean
+--- @param p2 booleanean
 --- @return Script
 function Object:AddScript(p1, p2) end
 
@@ -2572,11 +2572,11 @@ function Object:AddSkybox() end
 function Object:AddComponent(p1) end
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function Object:RemoveComponent(p1) end
 
 --- @param p1 userdata
---- @return boolean
+--- @return booleanean
 function Object:RemoveComponent(p1) end
 
 --- @param p1 string
@@ -2605,7 +2605,7 @@ function Object:GetNetworkFlow() end
 --- @return string
 function Object:GetScriptUpdateTime() end
 
---- @return integer
+--- @return integereger
 function Object:GetRefCount() end
 
 --[[
@@ -2735,7 +2735,7 @@ function Quat:__unm(p1) end
 
 --- @param p1 Quat
 --- @param p2 Quat
---- @return boolean
+--- @return booleanean
 function Quat:__eq(p1, p2) end
 
 --- @return number
@@ -2747,7 +2747,7 @@ function Quat:Length() end
 --- @return number
 function Quat:SqrLength() end
 
---- @return boolean
+--- @return booleanean
 function Quat:IsZero() end
 
 --- @param p1 Quat
@@ -2870,20 +2870,20 @@ function Quat:__tostring(p1) end
 ]]
 --- @class RealtimeLightingInfo
 --- @field diffuseColor Vec3
---- @field directionalLight boolean
+--- @field directionalLight booleanean
 --- @field direction Vec3
 --- @field diffuseRayLen number
 --- @field diffuseDirSpread number
---- @field diffuseSamples integer
+--- @field diffuseSamples integereger
 --- @field shadowsIntensity number
---- @field shadows boolean
---- @field ambientOcclusion boolean
+--- @field shadows booleanean
+--- @field ambientOcclusion booleanean
 --- @field ambientColor Vec3
 --- @field ambientRayLen number
---- @field ambientSamples integer
+--- @field ambientSamples integereger
 --- @field skyAmbientIntensity number
 --- @field ambientOcclusionFactor number
---- @field taskBoxScale integer
+--- @field taskBoxScale integereger
 RealtimeLightingInfo = {}
 
 --[[
@@ -2910,6 +2910,7 @@ Scene = {}
 function Scene:GetTime() end
 
 --[[
+
 Time passed since the last Update() call. Since time between updates is not constant use this to adjust changes such as movement according to the amount of time that has passed
 ```lua
 function self:Update()
@@ -2919,8 +2920,7 @@ function self:Update()
     self.transform.pos = self.transform.pos + move * speed * Scene:GetDeltaTime() 
 end
 ```
-
-[View Documentation](https://docs.atomontage.com/api/Scene#double-GetDeltaTime)
+[View Documentation](https://docs.atomontage.com/api/Scene#number-GetDeltaTime)
 ]]
 --- @return number
 function Scene:GetDeltaTime() end
@@ -2928,22 +2928,22 @@ function Scene:GetDeltaTime() end
 --- @return number
 function Scene:GetDebugTime() end
 
---- @return integer
+--- @return integereger
 function Scene:GetCurrentFrame() end
 
 --- @return Object
 function Scene:CreateObject() end
 
 --- @param p1 string
---- @param p2 boolean
---- @param p3 boolean
+--- @param p2 booleanean
+--- @param p3 booleanean
 --- @return Object
 function Scene:CreateObject(p1, p2, p3) end
 
 --- @param p1 string
 --- @param p2 Object
---- @param p3 boolean
---- @param p4 boolean
+--- @param p3 booleanean
+--- @param p4 booleanean
 --- @return Object
 function Scene:CreateObject(p1, p2, p3, p4) end
 
@@ -3000,12 +3000,12 @@ function Scene:CloneObject(p1) end
 
 --- @param p1 Object
 --- @param p2 string
---- @param p3 boolean
+--- @param p3 booleanean
 --- @return Object
 function Scene:CloneObject(p1, p2, p3) end
 
 --- @param p1 Object
---- @param p2 boolean
+--- @param p2 booleanean
 --- @return Object
 function Scene:CloneObject(p1, p2) end
 
@@ -3016,26 +3016,26 @@ function Scene:CloneObject(p1, p2) end
 
 --- @param p1 Object
 --- @param p2 Object
---- @return boolean
+--- @return booleanean
 function Scene:MoveObject(p1, p2) end
 
 --- @param p1 Object
 --- @param p2 Object
---- @return boolean
+--- @return booleanean
 function Scene:MoveObjectAfter(p1, p2) end
 
 --- @param p1 Object
 --- @param p2 Object
---- @return boolean
+--- @return booleanean
 function Scene:MoveObjectBefore(p1, p2) end
 
 --- @param p1 Object
---- @return boolean
+--- @return booleanean
 function Scene:MoveObjectToRoot(p1) end
 
 --- @param p1 Object
 --- @param p2 Object
---- @return boolean
+--- @return booleanean
 function Scene:CanMoveObject(p1, p2) end
 
 --- @param p1 string
@@ -3079,7 +3079,7 @@ function Scene:ConvertDcToWc(p1, p2) end
 function Scene:ConvertDcToWc(p1, p2) end
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function Scene:IsNameValid(p1) end
 
 --- @param p1 string
@@ -3087,11 +3087,11 @@ function Scene:IsNameValid(p1) end
 function Scene:MakeNameValid(p1) end
 
 --- @param p1 Object
---- @return boolean
+--- @return booleanean
 function Scene:UpdatePrefab(p1) end
 
 --- @param p1 Object
---- @return boolean
+--- @return booleanean
 function Scene:ResetPrefab(p1) end
 
 --- @return nil
@@ -3102,10 +3102,10 @@ function Scene:RebuildLighting() end
 --- @return LightingUpdate
 function Scene:CreateLighting(p1, p2) end
 
---- @return boolean
+--- @return booleanean
 function Scene:GetProfileScriptsUpdate() end
 
---- @param p1 boolean
+--- @param p1 booleanean
 --- @return nil
 function Scene:SetProfileScriptsUpdate(p1) end
 
@@ -3123,16 +3123,16 @@ function Scene:GetVDRStats() end
 ]]
 --- @class Script
 --- @field object Object
---- @field isDestroyed boolean
+--- @field isDestroyed booleanean
 --- @field type string
 --- @field instance table
 --- @field name string
 --- @field file string
---- @field syncToClients boolean
+--- @field syncToClients booleanean
 Script = {}
 
 --- @vararg any
---- @return integer
+--- @return integereger
 function Script:RPC(...) end
 
 --- @return string
@@ -3151,8 +3151,8 @@ function Script:GetScriptUpdateTime() end
 --- @field component Script
 --- @field object Object
 --- @field transform Transform
---- @field onServer boolean
---- @field onClient boolean
+--- @field onServer booleanean
+--- @field onClient booleanean
 ScriptInstance = {
 	component = nil, ---The script component, seperate from the lua table
 	object = nil, ---The object this script is attached to
@@ -3202,9 +3202,9 @@ function ScriptInstance:RPC(p1, ...) end
 --[[
 From server call a lua function by name on one specific client
 
-[View Documentation](https://docs.atomontage.com/api/ScriptInstance#nil-RPC-int-string)
+[View Documentation](https://docs.atomontage.com/api/ScriptInstance#nil-RPC-integer-string)
 ]]
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 string
 --- @vararg any
 --- @return nil
@@ -3219,7 +3219,7 @@ This class is only available on server
 [View Documentation](https://docs.atomontage.com/api/Server)
 ]]
 --- @class Server
---- @field clientID integer
+--- @field clientID integereger
 Server = {}
 
 --- @return table
@@ -3228,15 +3228,15 @@ function Server:GetClients() end
 --- @return table
 function Server:GetUsersID() end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return string
 function Server:GetUserID(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return nil
 function Server:DisconnectClient(p1) end
 
---- @return integer
+--- @return integereger
 function Server:GetScriptsVersion() end
 
 --- @param p1 string
@@ -3287,12 +3287,12 @@ function Server:GetCommonScenesList() end
 --- @return table
 function Server:GetPrefabsList() end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return Object
 function Server:InsertPrefab(p1) end
 
 --- @param p1 Object
---- @return boolean
+--- @return booleanean
 function Server:MakePrefab(p1) end
 
 --- @return nil
@@ -3301,11 +3301,11 @@ function Server:SaveScene() end
 --- @return nil
 function Server:SaveSceneHierarchy() end
 
---- @param p1 boolean
+--- @param p1 booleanean
 --- @return nil
 function Server:SetBackupSceneOnSave(p1) end
 
---- @return boolean
+--- @return booleanean
 function Server:GetBackupSceneOnSave() end
 
 --- @return nil
@@ -3314,13 +3314,13 @@ function Server:ReloadScene() end
 --- @return nil
 function Server:OnLuaLog() end
 
---- @return boolean
+--- @return booleanean
 function Server:IsClient() end
 
---- @return boolean
+--- @return booleanean
 function Server:IsServer() end
 
---- @return boolean
+--- @return booleanean
 function Server:DevMode() end
 
 --- @return string
@@ -3329,7 +3329,7 @@ function Server:GetSystemConsole() end
 --- @return string
 function Server:GetSystemOutput() end
 
---- @return integer
+--- @return integereger
 function Server:GetCurrentUIActionID() end
 
 --- @return nil
@@ -3347,22 +3347,22 @@ function Server:GetSystem() end
 --- @return string
 function Server:GetDateTime() end
 
---- @return integer
+--- @return integereger
 function Server:GetMemoryUsage() end
 
 --- @return table
 function Server:GetErrors() end
 
---- @return integer
+--- @return integereger
 function Server:GetMaxConnections() end
 
---- @return boolean
+--- @return booleanean
 function Server:GetStartedWithOriginalScripts() end
 
 --- @return nil
 function Server:OverwriteWithOriginalScripts() end
 
---- @return boolean
+--- @return booleanean
 function Server:GetOriginalScriptsWereSet() end
 
 --- @param p1 string
@@ -3386,7 +3386,7 @@ function Server:HttpDownload(p1, p2, p3) end
 
 --- @param p1 File
 --- @param p2 string
---- @return boolean
+--- @return booleanean
 function Server:MoveFileToMontageVoxelsFolder(p1, p2) end
 
 --- @param p1 File
@@ -3435,7 +3435,7 @@ function Server:Restart() end
 --- @return nil
 function Server:AnalyticsServer(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 string
 --- @param p3 table
 --- @return nil
@@ -3444,23 +3444,23 @@ function Server:AnalyticsClient(p1, p2, p3) end
 --- @return nil
 function Server:TeamcityApiTest() end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return nil
 function Server:TeamcityApiTest2(p1) end
 
 --- @return table
 function Server:GetTeamcityBuilds() end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return table
 function Server:GetTeamcityBuild(p1) end
 
---- @param p1 integer
---- @return integer
+--- @param p1 integereger
+--- @return integereger
 function Server:GetCollectionPreferredLoad(p1) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @return nil
 function Server:SetCollectionPreferredLoad(p1, p2) end
 
@@ -3473,10 +3473,10 @@ function Server:GenTestVoxelScene2() end
 --- @return nil
 function Server:GenTestVoxelScene3() end
 
---- @param p1 integer
---- @param p2 integer
---- @param p3 integer
---- @param p4 integer
+--- @param p1 integereger
+--- @param p2 integereger
+--- @param p3 integereger
+--- @param p4 integereger
 --- @return nil
 function Server:MakeVoxelScene(p1, p2, p3, p4) end
 
@@ -3488,20 +3488,20 @@ function Server:RebuildLODsBrightnessMethod() end
 --- @return nil
 function Server:RebuildLODsBrightnessMethod(p1, p2) end
 
---- @return boolean
+--- @return booleanean
 function Server:RebuildLODsGradientMethod() end
 
 --- @param p1 Vec3i
 --- @param p2 Vec3i
---- @return boolean
+--- @return booleanean
 function Server:RebuildLODsGradientMethod(p1, p2) end
 
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Server:ShowAllNormalsPerVoxel(p1) end
 
---- @param p1 integer
---- @return boolean
+--- @param p1 integereger
+--- @return booleanean
 function Server:ShowAllNormalsPerBT(p1) end
 
 --- @return nil
@@ -3523,7 +3523,7 @@ function Server:PBRTranscodeToPBR0Ver1() end
 --- @field radius2 number
 --- @field diameter2 number
 --- @field points table
---- @field useShellPositions boolean
+--- @field useShellPositions booleanean
 Shape = {}
 
 --[[
@@ -3534,7 +3534,7 @@ Shape = {}
 ]]
 --- @class Sky
 --- @field object Object
---- @field isDestroyed boolean
+--- @field isDestroyed booleanean
 --- @field type string
 --- @field cloudScale number
 --- @field cloudOffset number
@@ -3543,7 +3543,7 @@ Shape = {}
 --- @field sunAltitude number
 --- @field rayleighCoeff Vec3
 --- @field mieCoeff number
---- @field render boolean
+--- @field render booleanean
 Sky = {}
 
 --[[
@@ -3575,10 +3575,10 @@ function Sphere(p1) end
 ]]
 --- @class StaticVoxelData
 --- @field object Object
---- @field isDestroyed boolean
+--- @field isDestroyed booleanean
 --- @field type string
 --- @field path string
---- @field isLoaded boolean
+--- @field isLoaded booleanean
 StaticVoxelData = {}
 
 --[[
@@ -3591,7 +3591,7 @@ Holds position, rotation, and scale
 ]]
 --- @class Transform
 --- @field object Object
---- @field isDestroyed boolean
+--- @field isDestroyed booleanean
 --- @field type string
 --- @field localPos Vec3
 --- @field localScale number
@@ -3620,7 +3620,7 @@ Transform = {
 
 --- @param p1 Transform
 --- @param p2 Transform
---- @return boolean
+--- @return booleanean
 function Transform:__eq(p1, p2) end
 
 --[[
@@ -3724,7 +3724,7 @@ function Vec2() end
 --- @return Vec2
 function Vec2(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return Vec2
 function Vec2(p1) end
 
@@ -3734,17 +3734,17 @@ function Vec2(p1) end
 function Vec2(p1, p2) end
 
 --- @param p1 number
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2
 function Vec2(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @return Vec2
 function Vec2(p1, p2) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @return Vec2
 function Vec2(p1, p2) end
 
@@ -3773,12 +3773,12 @@ function Vec2(p1) end
 function Vec2(p1) end
 
 --- @param p1 Vec2
---- @param p2 integer
+--- @param p2 integereger
 --- @return number
 function Vec2:__index(p1, p2) end
 
 --- @param p1 Vec2
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 number
 --- @return nil
 function Vec2:__newindex(p1, p2, p3) end
@@ -3909,12 +3909,12 @@ function Vec2:__unm(p1) end
 
 --- @param p1 Vec2
 --- @param p2 Vec2
---- @return boolean
+--- @return booleanean
 function Vec2:__eq(p1, p2) end
 
 --- @param p1 Vec2
 --- @param p2 Vec2i
---- @return boolean
+--- @return booleanean
 function Vec2:__eq(p1, p2) end
 
 --- @return number
@@ -3926,7 +3926,7 @@ function Vec2:Length() end
 --- @return number
 function Vec2:SqrLength() end
 
---- @return boolean
+--- @return booleanean
 function Vec2:IsZero() end
 
 --- @return Vec2
@@ -3966,7 +3966,7 @@ function Vec2:Dot(p1, p2) end
 --- @return number
 function Vec2:Dot(p1, p2) end
 
---- @return boolean
+--- @return booleanean
 function Vec2:IsAnyNaN() end
 
 --- @param p1 Vec2
@@ -4036,43 +4036,43 @@ function Vec2:__tostring(p1) end
 --- @class Vec2i
 --- @operator add(Vec2i):Vec2i
 --- @operator add(Vec2):Vec2
---- @operator add(integer):Vec2i
+--- @operator add(integereger):Vec2i
 --- @operator sub(Vec2i):Vec2i
 --- @operator sub(Vec2):Vec2
---- @operator sub(integer):Vec2i
+--- @operator sub(integereger):Vec2i
 --- @operator mul(Vec2i):Vec2i
 --- @operator mul(Vec2):Vec2
---- @operator mul(integer):Vec2i
+--- @operator mul(integereger):Vec2i
 --- @operator div(Vec2i):Vec2i
 --- @operator div(Vec2):Vec2
---- @operator div(integer):Vec2i
+--- @operator div(integereger):Vec2i
 --- @operator mod(Vec2i):Vec2i
 --- @operator mod(Vec2):Vec2
---- @operator mod(integer):Vec2i
+--- @operator mod(integereger):Vec2i
 --- @operator pow(Vec2i):Vec2i
 --- @operator pow(Vec2):Vec2
---- @operator pow(integer):Vec2i
+--- @operator pow(integereger):Vec2i
 --- @operator unm(Vec2i):Vec2i
 --- @operator band(Vec2i):Vec2i
---- @operator band(integer):Vec2i
+--- @operator band(integereger):Vec2i
 --- @operator bor(Vec2i):Vec2i
---- @operator bor(integer):Vec2i
+--- @operator bor(integereger):Vec2i
 --- @operator bxor(Vec2i):Vec2i
---- @operator bxor(integer):Vec2i
+--- @operator bxor(integereger):Vec2i
 --- @operator bnot(Vec2i):Vec2i
 --- @operator shl(Vec2i):Vec2i
---- @operator shl(integer):Vec2i
+--- @operator shl(integereger):Vec2i
 --- @operator shr(Vec2i):Vec2i
---- @operator shr(integer):Vec2i
---- @field x integer
---- @field y integer
+--- @operator shr(integereger):Vec2i
+--- @field x integereger
+--- @field y integereger
 --- @field zero Vec2i
 Vec2i = {}
 
 --- @return Vec2i
 function Vec2i() end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return Vec2i
 function Vec2i(p1) end
 
@@ -4080,18 +4080,18 @@ function Vec2i(p1) end
 --- @return Vec2i
 function Vec2i(p1) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @return Vec2i
 function Vec2i(p1, p2) end
 
 --- @param p1 number
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i(p1, p2) end
 
@@ -4125,13 +4125,13 @@ function Vec2i(p1) end
 function Vec2i(p1) end
 
 --- @param p1 Vec2i
---- @param p2 integer
---- @return integer
+--- @param p2 integereger
+--- @return integereger
 function Vec2i:__index(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return nil
 function Vec2i:__newindex(p1, p2, p3) end
 
@@ -4146,11 +4146,11 @@ function Vec2i:__add(p1, p2) end
 function Vec2i:__add(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i:__add(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec2i
 function Vec2i:__add(p1, p2) end
@@ -4166,11 +4166,11 @@ function Vec2i:__sub(p1, p2) end
 function Vec2i:__sub(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i:__sub(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec2i
 function Vec2i:__sub(p1, p2) end
@@ -4186,11 +4186,11 @@ function Vec2i:__mul(p1, p2) end
 function Vec2i:__mul(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i:__mul(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec2i
 function Vec2i:__mul(p1, p2) end
@@ -4206,11 +4206,11 @@ function Vec2i:__div(p1, p2) end
 function Vec2i:__div(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i:__div(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec2i
 function Vec2i:__div(p1, p2) end
@@ -4226,11 +4226,11 @@ function Vec2i:__mod(p1, p2) end
 function Vec2i:__mod(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i:__mod(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec2i
 function Vec2i:__mod(p1, p2) end
@@ -4246,11 +4246,11 @@ function Vec2i:__pow(p1, p2) end
 function Vec2i:__pow(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i:__pow(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec2i
 function Vec2i:__pow(p1, p2) end
@@ -4261,32 +4261,32 @@ function Vec2i:__unm(p1) end
 
 --- @param p1 Vec2i
 --- @param p2 Vec2i
---- @return boolean
+--- @return booleanean
 function Vec2i:__eq(p1, p2) end
 
 --- @param p1 Vec2i
 --- @param p2 Vec2
---- @return boolean
+--- @return booleanean
 function Vec2i:__eq(p1, p2) end
 
---- @return integer
+--- @return integereger
 function Vec2i:Len() end
 
---- @return integer
+--- @return integereger
 function Vec2i:Length() end
 
---- @return integer
+--- @return integereger
 function Vec2i:SqrLength() end
 
---- @return boolean
+--- @return booleanean
 function Vec2i:IsZero() end
 
 --- @return Vec2i
 function Vec2i:GetAbs() end
 
 --- @param p1 Vec2i
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return nil
 function Vec2i:Clamp(p1, p2, p3) end
 
@@ -4297,8 +4297,8 @@ function Vec2i:Clamp(p1, p2, p3) end
 function Vec2i:Clamp(p1, p2, p3) end
 
 --- @param p1 Vec2i
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return Vec2i
 function Vec2i:GetClamped(p1, p2, p3) end
 
@@ -4310,7 +4310,7 @@ function Vec2i:GetClamped(p1, p2, p3) end
 
 --- @param p1 Vec2i
 --- @param p2 Vec2i
---- @return integer
+--- @return integereger
 function Vec2i:Dot(p1, p2) end
 
 --- @param p1 Vec2i
@@ -4323,13 +4323,13 @@ function Vec2i:Dot(p1, p2) end
 --- @return Vec2i
 function Vec2i:__band(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec2i
 function Vec2i:__band(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i:__band(p1, p2) end
 
@@ -4338,13 +4338,13 @@ function Vec2i:__band(p1, p2) end
 --- @return Vec2i
 function Vec2i:__bor(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec2i
 function Vec2i:__bor(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i:__bor(p1, p2) end
 
@@ -4353,13 +4353,13 @@ function Vec2i:__bor(p1, p2) end
 --- @return Vec2i
 function Vec2i:__bxor(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec2i
 function Vec2i:__bxor(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i:__bxor(p1, p2) end
 
@@ -4372,13 +4372,13 @@ function Vec2i:__bnot(p1) end
 --- @return Vec2i
 function Vec2i:__shl(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec2i
 function Vec2i:__shl(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i:__shl(p1, p2) end
 
@@ -4387,13 +4387,13 @@ function Vec2i:__shl(p1, p2) end
 --- @return Vec2i
 function Vec2i:__shr(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec2i
 function Vec2i:__shr(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec2i
 function Vec2i:__shr(p1, p2) end
 
@@ -4448,7 +4448,7 @@ function Vec3() end
 --- @return Vec3
 function Vec3(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return Vec3
 function Vec3(p1) end
 
@@ -4460,43 +4460,43 @@ function Vec3(p1, p2, p3) end
 
 --- @param p1 number
 --- @param p2 number
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec3
 function Vec3(p1, p2, p3) end
 
 --- @param p1 number
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 number
 --- @return Vec3
 function Vec3(p1, p2, p3) end
 
 --- @param p1 number
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return Vec3
 function Vec3(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @param p3 number
 --- @return Vec3
 function Vec3(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec3
 function Vec3(p1, p2, p3) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @param p3 number
 --- @return Vec3
 function Vec3(p1, p2, p3) end
 
---- @param p1 integer
---- @param p2 integer
---- @param p3 integer
+--- @param p1 integereger
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return Vec3
 function Vec3(p1, p2, p3) end
 
@@ -4506,7 +4506,7 @@ function Vec3(p1, p2, p3) end
 function Vec3(p1, p2) end
 
 --- @param p1 Vec2
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3
 function Vec3(p1, p2) end
 
@@ -4516,7 +4516,7 @@ function Vec3(p1, p2) end
 function Vec3(p1, p2) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3
 function Vec3(p1, p2) end
 
@@ -4530,12 +4530,12 @@ function Vec3(p1, p2) end
 --- @return Vec3
 function Vec3(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2
 --- @return Vec3
 function Vec3(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec3
 function Vec3(p1, p2) end
@@ -4557,12 +4557,12 @@ function Vec3(p1) end
 function Vec3(p1) end
 
 --- @param p1 Vec3
---- @param p2 integer
+--- @param p2 integereger
 --- @return number
 function Vec3:__index(p1, p2) end
 
 --- @param p1 Vec3
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 number
 --- @return nil
 function Vec3:__newindex(p1, p2, p3) end
@@ -4693,12 +4693,12 @@ function Vec3:__unm(p1) end
 
 --- @param p1 Vec3
 --- @param p2 Vec3
---- @return boolean
+--- @return booleanean
 function Vec3:__eq(p1, p2) end
 
 --- @param p1 Vec3
 --- @param p2 Vec3i
---- @return boolean
+--- @return booleanean
 function Vec3:__eq(p1, p2) end
 
 --- @return number
@@ -4710,7 +4710,7 @@ function Vec3:Length() end
 --- @return number
 function Vec3:SqrLength() end
 
---- @return boolean
+--- @return booleanean
 function Vec3:IsZero() end
 
 --- @return Vec3
@@ -4750,7 +4750,7 @@ function Vec3:Dot(p1, p2) end
 --- @return number
 function Vec3:Dot(p1, p2) end
 
---- @return boolean
+--- @return booleanean
 function Vec3:IsAnyNaN() end
 
 --- @param p1 Vec3
@@ -4816,37 +4816,37 @@ function Vec3:__tostring(p1) end
 --- @class Vec3i
 --- @operator add(Vec3i):Vec3i
 --- @operator add(Vec3):Vec3
---- @operator add(integer):Vec3i
+--- @operator add(integereger):Vec3i
 --- @operator sub(Vec3i):Vec3i
 --- @operator sub(Vec3):Vec3
---- @operator sub(integer):Vec3i
+--- @operator sub(integereger):Vec3i
 --- @operator mul(Vec3i):Vec3i
 --- @operator mul(Vec3):Vec3
---- @operator mul(integer):Vec3i
+--- @operator mul(integereger):Vec3i
 --- @operator div(Vec3i):Vec3i
 --- @operator div(Vec3):Vec3
---- @operator div(integer):Vec3i
+--- @operator div(integereger):Vec3i
 --- @operator mod(Vec3i):Vec3i
 --- @operator mod(Vec3):Vec3
---- @operator mod(integer):Vec3i
+--- @operator mod(integereger):Vec3i
 --- @operator pow(Vec3i):Vec3i
 --- @operator pow(Vec3):Vec3
---- @operator pow(integer):Vec3i
+--- @operator pow(integereger):Vec3i
 --- @operator unm(Vec3i):Vec3i
 --- @operator band(Vec3i):Vec3i
---- @operator band(integer):Vec3i
+--- @operator band(integereger):Vec3i
 --- @operator bor(Vec3i):Vec3i
---- @operator bor(integer):Vec3i
+--- @operator bor(integereger):Vec3i
 --- @operator bxor(Vec3i):Vec3i
---- @operator bxor(integer):Vec3i
+--- @operator bxor(integereger):Vec3i
 --- @operator bnot(Vec3i):Vec3i
 --- @operator shl(Vec3i):Vec3i
---- @operator shl(integer):Vec3i
+--- @operator shl(integereger):Vec3i
 --- @operator shr(Vec3i):Vec3i
---- @operator shr(integer):Vec3i
---- @field x integer
---- @field y integer
---- @field z integer
+--- @operator shr(integereger):Vec3i
+--- @field x integereger
+--- @field y integereger
+--- @field z integereger
 --- @field zero Vec3i
 --- @field up Vec3i
 --- @field right Vec3i
@@ -4859,7 +4859,7 @@ Vec3i = {}
 --- @return Vec3i
 function Vec3i() end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return Vec3i
 function Vec3i(p1) end
 
@@ -4867,45 +4867,45 @@ function Vec3i(p1) end
 --- @return Vec3i
 function Vec3i(p1) end
 
---- @param p1 integer
---- @param p2 integer
---- @param p3 integer
+--- @param p1 integereger
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return Vec3i
 function Vec3i(p1, p2, p3) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @param p3 number
 --- @return Vec3i
 function Vec3i(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec3i
 function Vec3i(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
---- @param p3 number
---- @return Vec3i
-function Vec3i(p1, p2, p3) end
-
---- @param p1 number
---- @param p2 integer
---- @param p3 integer
---- @return Vec3i
-function Vec3i(p1, p2, p3) end
-
---- @param p1 number
---- @param p2 integer
 --- @param p3 number
 --- @return Vec3i
 function Vec3i(p1, p2, p3) end
 
 --- @param p1 number
+--- @param p2 integereger
+--- @param p3 integereger
+--- @return Vec3i
+function Vec3i(p1, p2, p3) end
+
+--- @param p1 number
+--- @param p2 integereger
+--- @param p3 number
+--- @return Vec3i
+function Vec3i(p1, p2, p3) end
+
+--- @param p1 number
 --- @param p2 number
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec3i
 function Vec3i(p1, p2, p3) end
 
@@ -4916,7 +4916,7 @@ function Vec3i(p1, p2, p3) end
 function Vec3i(p1, p2, p3) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i(p1, p2) end
 
@@ -4926,7 +4926,7 @@ function Vec3i(p1, p2) end
 function Vec3i(p1, p2) end
 
 --- @param p1 Vec2
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i(p1, p2) end
 
@@ -4935,12 +4935,12 @@ function Vec3i(p1, p2) end
 --- @return Vec3i
 function Vec3i(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @return Vec3i
 function Vec3i(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2
 --- @return Vec3i
 function Vec3i(p1, p2) end
@@ -4972,13 +4972,13 @@ function Vec3i(p1) end
 function Vec3i(p1) end
 
 --- @param p1 Vec3i
---- @param p2 integer
---- @return integer
+--- @param p2 integereger
+--- @return integereger
 function Vec3i:__index(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return nil
 function Vec3i:__newindex(p1, p2, p3) end
 
@@ -4993,11 +4993,11 @@ function Vec3i:__add(p1, p2) end
 function Vec3i:__add(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i:__add(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec3i
 function Vec3i:__add(p1, p2) end
@@ -5013,11 +5013,11 @@ function Vec3i:__sub(p1, p2) end
 function Vec3i:__sub(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i:__sub(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec3i
 function Vec3i:__sub(p1, p2) end
@@ -5033,11 +5033,11 @@ function Vec3i:__mul(p1, p2) end
 function Vec3i:__mul(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i:__mul(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec3i
 function Vec3i:__mul(p1, p2) end
@@ -5053,11 +5053,11 @@ function Vec3i:__div(p1, p2) end
 function Vec3i:__div(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i:__div(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec3i
 function Vec3i:__div(p1, p2) end
@@ -5073,11 +5073,11 @@ function Vec3i:__mod(p1, p2) end
 function Vec3i:__mod(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i:__mod(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec3i
 function Vec3i:__mod(p1, p2) end
@@ -5093,11 +5093,11 @@ function Vec3i:__pow(p1, p2) end
 function Vec3i:__pow(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i:__pow(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec3i
 function Vec3i:__pow(p1, p2) end
@@ -5108,32 +5108,32 @@ function Vec3i:__unm(p1) end
 
 --- @param p1 Vec3i
 --- @param p2 Vec3i
---- @return boolean
+--- @return booleanean
 function Vec3i:__eq(p1, p2) end
 
 --- @param p1 Vec3i
 --- @param p2 Vec3
---- @return boolean
+--- @return booleanean
 function Vec3i:__eq(p1, p2) end
 
---- @return integer
+--- @return integereger
 function Vec3i:Len() end
 
---- @return integer
+--- @return integereger
 function Vec3i:Length() end
 
---- @return integer
+--- @return integereger
 function Vec3i:SqrLength() end
 
---- @return boolean
+--- @return booleanean
 function Vec3i:IsZero() end
 
 --- @return Vec3i
 function Vec3i:GetAbs() end
 
 --- @param p1 Vec3i
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return nil
 function Vec3i:Clamp(p1, p2, p3) end
 
@@ -5144,8 +5144,8 @@ function Vec3i:Clamp(p1, p2, p3) end
 function Vec3i:Clamp(p1, p2, p3) end
 
 --- @param p1 Vec3i
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return Vec3i
 function Vec3i:GetClamped(p1, p2, p3) end
 
@@ -5157,7 +5157,7 @@ function Vec3i:GetClamped(p1, p2, p3) end
 
 --- @param p1 Vec3i
 --- @param p2 Vec3i
---- @return integer
+--- @return integereger
 function Vec3i:Dot(p1, p2) end
 
 --- @param p1 Vec3i
@@ -5170,13 +5170,13 @@ function Vec3i:Dot(p1, p2) end
 --- @return Vec3i
 function Vec3i:__band(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec3i
 function Vec3i:__band(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i:__band(p1, p2) end
 
@@ -5185,13 +5185,13 @@ function Vec3i:__band(p1, p2) end
 --- @return Vec3i
 function Vec3i:__bor(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec3i
 function Vec3i:__bor(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i:__bor(p1, p2) end
 
@@ -5200,13 +5200,13 @@ function Vec3i:__bor(p1, p2) end
 --- @return Vec3i
 function Vec3i:__bxor(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec3i
 function Vec3i:__bxor(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i:__bxor(p1, p2) end
 
@@ -5219,13 +5219,13 @@ function Vec3i:__bnot(p1) end
 --- @return Vec3i
 function Vec3i:__shl(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec3i
 function Vec3i:__shl(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i:__shl(p1, p2) end
 
@@ -5234,13 +5234,13 @@ function Vec3i:__shl(p1, p2) end
 --- @return Vec3i
 function Vec3i:__shr(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec3i
 function Vec3i:__shr(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec3i
 function Vec3i:__shr(p1, p2) end
 
@@ -5295,7 +5295,7 @@ function Vec4() end
 --- @return Vec4
 function Vec4(p1) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return Vec4
 function Vec4(p1) end
 
@@ -5309,105 +5309,105 @@ function Vec4(p1, p2, p3, p4) end
 --- @param p1 number
 --- @param p2 number
 --- @param p3 number
---- @param p4 integer
+--- @param p4 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
 --- @param p1 number
 --- @param p2 number
---- @param p3 integer
+--- @param p3 integereger
 --- @param p4 number
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
 --- @param p1 number
 --- @param p2 number
---- @param p3 integer
---- @param p4 integer
+--- @param p3 integereger
+--- @param p4 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
 --- @param p1 number
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 number
 --- @param p4 number
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
 --- @param p1 number
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 number
---- @param p4 integer
+--- @param p4 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
 --- @param p1 number
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @param p4 number
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
 --- @param p1 number
---- @param p2 integer
---- @param p3 integer
---- @param p4 integer
+--- @param p2 integereger
+--- @param p3 integereger
+--- @param p4 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @param p3 number
 --- @param p4 number
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @param p3 number
---- @param p4 integer
+--- @param p4 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
---- @param p3 integer
+--- @param p3 integereger
 --- @param p4 number
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
---- @param p3 integer
---- @param p4 integer
+--- @param p3 integereger
+--- @param p4 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @param p3 number
 --- @param p4 number
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @param p3 number
---- @param p4 integer
+--- @param p4 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
---- @param p1 integer
---- @param p2 integer
---- @param p3 integer
+--- @param p1 integereger
+--- @param p2 integereger
+--- @param p3 integereger
 --- @param p4 number
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
---- @param p1 integer
---- @param p2 integer
---- @param p3 integer
---- @param p4 integer
+--- @param p1 integereger
+--- @param p2 integereger
+--- @param p3 integereger
+--- @param p4 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3, p4) end
 
@@ -5419,19 +5419,19 @@ function Vec4(p1, p2, p3) end
 
 --- @param p1 Vec2
 --- @param p2 number
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
 --- @param p1 Vec2
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 number
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
 --- @param p1 Vec2
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
@@ -5443,19 +5443,19 @@ function Vec4(p1, p2, p3) end
 
 --- @param p1 Vec2i
 --- @param p2 number
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 number
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
 --- @param p1 Vec2i
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
@@ -5467,7 +5467,7 @@ function Vec4(p1, p2, p3) end
 
 --- @param p1 number
 --- @param p2 Vec2
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
@@ -5479,31 +5479,31 @@ function Vec4(p1, p2, p3) end
 
 --- @param p1 number
 --- @param p2 Vec2i
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2
 --- @param p3 number
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @param p3 number
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
@@ -5520,37 +5520,37 @@ function Vec4(p1, p2, p3) end
 function Vec4(p1, p2, p3) end
 
 --- @param p1 number
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 Vec2
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
 --- @param p1 number
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 Vec2i
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @param p3 Vec2
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @param p3 Vec2i
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @param p3 Vec2
 --- @return Vec4
 function Vec4(p1, p2, p3) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @param p3 Vec2i
 --- @return Vec4
 function Vec4(p1, p2, p3) end
@@ -5581,7 +5581,7 @@ function Vec4(p1, p2) end
 function Vec4(p1, p2) end
 
 --- @param p1 Vec3
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4
 function Vec4(p1, p2) end
 
@@ -5591,7 +5591,7 @@ function Vec4(p1, p2) end
 function Vec4(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4
 function Vec4(p1, p2) end
 
@@ -5605,12 +5605,12 @@ function Vec4(p1, p2) end
 --- @return Vec4
 function Vec4(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3
 --- @return Vec4
 function Vec4(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec4
 function Vec4(p1, p2) end
@@ -5624,12 +5624,12 @@ function Vec4(p1) end
 function Vec4(p1) end
 
 --- @param p1 Vec4
---- @param p2 integer
+--- @param p2 integereger
 --- @return number
 function Vec4:__index(p1, p2) end
 
 --- @param p1 Vec4
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 number
 --- @return nil
 function Vec4:__newindex(p1, p2, p3) end
@@ -5765,12 +5765,12 @@ function Vec4:__unm(p1) end
 
 --- @param p1 Vec4
 --- @param p2 Vec4
---- @return boolean
+--- @return booleanean
 function Vec4:__eq(p1, p2) end
 
 --- @param p1 Vec4
 --- @param p2 Vec4i
---- @return boolean
+--- @return booleanean
 function Vec4:__eq(p1, p2) end
 
 --- @return number
@@ -5782,7 +5782,7 @@ function Vec4:Length() end
 --- @return number
 function Vec4:SqrLength() end
 
---- @return boolean
+--- @return booleanean
 function Vec4:IsZero() end
 
 --- @return Vec4
@@ -5822,7 +5822,7 @@ function Vec4:Dot(p1, p2) end
 --- @return number
 function Vec4:Dot(p1, p2) end
 
---- @return boolean
+--- @return booleanean
 function Vec4:IsAnyNaN() end
 
 --- @param p1 Vec4
@@ -5878,39 +5878,39 @@ function Vec4:__tostring(p1) end
 --- @class Vec4i
 --- @operator add(Vec4i):Vec4i
 --- @operator add(Vec4):Vec4
---- @operator add(integer):Vec4i
+--- @operator add(integereger):Vec4i
 --- @operator sub(Vec4i):Vec4i
 --- @operator sub(Vec4):Vec4
---- @operator sub(integer):Vec4i
+--- @operator sub(integereger):Vec4i
 --- @operator mul(Vec4i):Vec4i
 --- @operator mul(Vec4):Vec4
 --- @operator mul(classTMatrix4<integer>):Vec4i
---- @operator mul(integer):Vec4i
+--- @operator mul(integereger):Vec4i
 --- @operator div(Vec4i):Vec4i
 --- @operator div(Vec4):Vec4
---- @operator div(integer):Vec4i
+--- @operator div(integereger):Vec4i
 --- @operator mod(Vec4i):Vec4i
 --- @operator mod(Vec4):Vec4
---- @operator mod(integer):Vec4i
+--- @operator mod(integereger):Vec4i
 --- @operator pow(Vec4i):Vec4i
 --- @operator pow(Vec4):Vec4
---- @operator pow(integer):Vec4i
+--- @operator pow(integereger):Vec4i
 --- @operator unm(Vec4i):Vec4i
 --- @operator band(Vec4i):Vec4i
---- @operator band(integer):Vec4i
+--- @operator band(integereger):Vec4i
 --- @operator bor(Vec4i):Vec4i
---- @operator bor(integer):Vec4i
+--- @operator bor(integereger):Vec4i
 --- @operator bxor(Vec4i):Vec4i
---- @operator bxor(integer):Vec4i
+--- @operator bxor(integereger):Vec4i
 --- @operator bnot(Vec4i):Vec4i
 --- @operator shl(Vec4i):Vec4i
---- @operator shl(integer):Vec4i
+--- @operator shl(integereger):Vec4i
 --- @operator shr(Vec4i):Vec4i
---- @operator shr(integer):Vec4i
---- @field x integer
---- @field y integer
---- @field z integer
---- @field w integer
+--- @operator shr(integereger):Vec4i
+--- @field x integereger
+--- @field y integereger
+--- @field z integereger
+--- @field w integereger
 --- @field zero Vec4i
 --- @field up Vec4i
 --- @field right Vec4i
@@ -5923,7 +5923,7 @@ Vec4i = {}
 --- @return Vec4i
 function Vec4i() end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @return Vec4i
 function Vec4i(p1) end
 
@@ -5931,100 +5931,100 @@ function Vec4i(p1) end
 --- @return Vec4i
 function Vec4i(p1) end
 
---- @param p1 integer
---- @param p2 integer
---- @param p3 integer
---- @param p4 integer
+--- @param p1 integereger
+--- @param p2 integereger
+--- @param p3 integereger
+--- @param p4 integereger
 --- @return Vec4i
 function Vec4i(p1, p2, p3, p4) end
 
---- @param p1 integer
---- @param p2 integer
---- @param p3 integer
+--- @param p1 integereger
+--- @param p2 integereger
+--- @param p3 integereger
 --- @param p4 number
 --- @return Vec4i
 function Vec4i(p1, p2, p3, p4) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @param p3 number
---- @param p4 integer
+--- @param p4 integereger
 --- @return Vec4i
 function Vec4i(p1, p2, p3, p4) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @param p3 number
 --- @param p4 number
 --- @return Vec4i
 function Vec4i(p1, p2, p3, p4) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
---- @param p3 integer
---- @param p4 integer
+--- @param p3 integereger
+--- @param p4 integereger
 --- @return Vec4i
 function Vec4i(p1, p2, p3, p4) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
---- @param p3 integer
+--- @param p3 integereger
 --- @param p4 number
 --- @return Vec4i
 function Vec4i(p1, p2, p3, p4) end
 
---- @param p1 integer
---- @param p2 number
---- @param p3 number
---- @param p4 integer
---- @return Vec4i
-function Vec4i(p1, p2, p3, p4) end
-
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @param p3 number
---- @param p4 number
+--- @param p4 integereger
 --- @return Vec4i
 function Vec4i(p1, p2, p3, p4) end
 
---- @param p1 number
---- @param p2 integer
---- @param p3 integer
---- @param p4 integer
---- @return Vec4i
-function Vec4i(p1, p2, p3, p4) end
-
---- @param p1 number
---- @param p2 integer
---- @param p3 integer
---- @param p4 number
---- @return Vec4i
-function Vec4i(p1, p2, p3, p4) end
-
---- @param p1 number
---- @param p2 integer
---- @param p3 number
---- @param p4 integer
---- @return Vec4i
-function Vec4i(p1, p2, p3, p4) end
-
---- @param p1 number
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 number
 --- @param p3 number
 --- @param p4 number
 --- @return Vec4i
 function Vec4i(p1, p2, p3, p4) end
 
 --- @param p1 number
---- @param p2 number
---- @param p3 integer
---- @param p4 integer
+--- @param p2 integereger
+--- @param p3 integereger
+--- @param p4 integereger
+--- @return Vec4i
+function Vec4i(p1, p2, p3, p4) end
+
+--- @param p1 number
+--- @param p2 integereger
+--- @param p3 integereger
+--- @param p4 number
+--- @return Vec4i
+function Vec4i(p1, p2, p3, p4) end
+
+--- @param p1 number
+--- @param p2 integereger
+--- @param p3 number
+--- @param p4 integereger
+--- @return Vec4i
+function Vec4i(p1, p2, p3, p4) end
+
+--- @param p1 number
+--- @param p2 integereger
+--- @param p3 number
+--- @param p4 number
 --- @return Vec4i
 function Vec4i(p1, p2, p3, p4) end
 
 --- @param p1 number
 --- @param p2 number
---- @param p3 integer
+--- @param p3 integereger
+--- @param p4 integereger
+--- @return Vec4i
+function Vec4i(p1, p2, p3, p4) end
+
+--- @param p1 number
+--- @param p2 number
+--- @param p3 integereger
 --- @param p4 number
 --- @return Vec4i
 function Vec4i(p1, p2, p3, p4) end
@@ -6032,7 +6032,7 @@ function Vec4i(p1, p2, p3, p4) end
 --- @param p1 number
 --- @param p2 number
 --- @param p3 number
---- @param p4 integer
+--- @param p4 integereger
 --- @return Vec4i
 function Vec4i(p1, p2, p3, p4) end
 
@@ -6044,44 +6044,44 @@ function Vec4i(p1, p2, p3, p4) end
 function Vec4i(p1, p2, p3, p4) end
 
 --- @param p1 Vec2i
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
 --- @param p1 Vec2i
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 number
---- @return Vec4i
-function Vec4i(p1, p2, p3) end
-
---- @param p1 Vec2i
---- @param p2 number
---- @param p3 integer
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
 --- @param p1 Vec2i
 --- @param p2 number
+--- @param p3 integereger
+--- @return Vec4i
+function Vec4i(p1, p2, p3) end
+
+--- @param p1 Vec2i
+--- @param p2 number
 --- @param p3 number
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
 --- @param p1 Vec2
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
 --- @param p1 Vec2
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 number
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
 --- @param p1 Vec2
 --- @param p2 number
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
@@ -6091,25 +6091,25 @@ function Vec4i(p1, p2, p3) end
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2i
 --- @param p3 number
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec2
 --- @param p3 number
 --- @return Vec4i
@@ -6117,7 +6117,7 @@ function Vec4i(p1, p2, p3) end
 
 --- @param p1 number
 --- @param p2 Vec2i
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
@@ -6129,7 +6129,7 @@ function Vec4i(p1, p2, p3) end
 
 --- @param p1 number
 --- @param p2 Vec2
---- @param p3 integer
+--- @param p3 integereger
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
@@ -6139,38 +6139,38 @@ function Vec4i(p1, p2, p3) end
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @param p3 Vec2i
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
---- @param p1 integer
---- @param p2 integer
+--- @param p1 integereger
+--- @param p2 integereger
 --- @param p3 Vec2
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @param p3 Vec2i
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 number
 --- @param p3 Vec2
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
 --- @param p1 number
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 Vec2i
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
 
 --- @param p1 number
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 Vec2
 --- @return Vec4i
 function Vec4i(p1, p2, p3) end
@@ -6208,7 +6208,7 @@ function Vec4i(p1, p2) end
 function Vec4i(p1, p2) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i(p1, p2) end
 
@@ -6218,7 +6218,7 @@ function Vec4i(p1, p2) end
 function Vec4i(p1, p2) end
 
 --- @param p1 Vec3
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i(p1, p2) end
 
@@ -6227,12 +6227,12 @@ function Vec4i(p1, p2) end
 --- @return Vec4i
 function Vec4i(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3i
 --- @return Vec4i
 function Vec4i(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3
 --- @return Vec4i
 function Vec4i(p1, p2) end
@@ -6256,13 +6256,13 @@ function Vec4i(p1) end
 function Vec4i(p1) end
 
 --- @param p1 Vec4i
---- @param p2 integer
---- @return integer
+--- @param p2 integereger
+--- @return integereger
 function Vec4i:__index(p1, p2) end
 
 --- @param p1 Vec4i
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return nil
 function Vec4i:__newindex(p1, p2, p3) end
 
@@ -6277,11 +6277,11 @@ function Vec4i:__add(p1, p2) end
 function Vec4i:__add(p1, p2) end
 
 --- @param p1 Vec4i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i:__add(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec4i
 --- @return Vec4i
 function Vec4i:__add(p1, p2) end
@@ -6297,11 +6297,11 @@ function Vec4i:__sub(p1, p2) end
 function Vec4i:__sub(p1, p2) end
 
 --- @param p1 Vec4i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i:__sub(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec4i
 --- @return Vec4i
 function Vec4i:__sub(p1, p2) end
@@ -6322,11 +6322,11 @@ function Vec4i:__mul(p1, p2) end
 function Vec4i:__mul(p1, p2) end
 
 --- @param p1 Vec4i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i:__mul(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec4i
 --- @return Vec4i
 function Vec4i:__mul(p1, p2) end
@@ -6342,11 +6342,11 @@ function Vec4i:__div(p1, p2) end
 function Vec4i:__div(p1, p2) end
 
 --- @param p1 Vec4i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i:__div(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec4i
 --- @return Vec4i
 function Vec4i:__div(p1, p2) end
@@ -6362,11 +6362,11 @@ function Vec4i:__mod(p1, p2) end
 function Vec4i:__mod(p1, p2) end
 
 --- @param p1 Vec4i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i:__mod(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec4i
 --- @return Vec4i
 function Vec4i:__mod(p1, p2) end
@@ -6382,11 +6382,11 @@ function Vec4i:__pow(p1, p2) end
 function Vec4i:__pow(p1, p2) end
 
 --- @param p1 Vec4i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i:__pow(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec4i
 --- @return Vec4i
 function Vec4i:__pow(p1, p2) end
@@ -6397,32 +6397,32 @@ function Vec4i:__unm(p1) end
 
 --- @param p1 Vec4i
 --- @param p2 Vec4i
---- @return boolean
+--- @return booleanean
 function Vec4i:__eq(p1, p2) end
 
 --- @param p1 Vec4i
 --- @param p2 Vec4
---- @return boolean
+--- @return booleanean
 function Vec4i:__eq(p1, p2) end
 
---- @return integer
+--- @return integereger
 function Vec4i:Len() end
 
---- @return integer
+--- @return integereger
 function Vec4i:Length() end
 
---- @return integer
+--- @return integereger
 function Vec4i:SqrLength() end
 
---- @return boolean
+--- @return booleanean
 function Vec4i:IsZero() end
 
 --- @return Vec4i
 function Vec4i:GetAbs() end
 
 --- @param p1 Vec4i
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return nil
 function Vec4i:Clamp(p1, p2, p3) end
 
@@ -6433,8 +6433,8 @@ function Vec4i:Clamp(p1, p2, p3) end
 function Vec4i:Clamp(p1, p2, p3) end
 
 --- @param p1 Vec4i
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return Vec4i
 function Vec4i:GetClamped(p1, p2, p3) end
 
@@ -6446,7 +6446,7 @@ function Vec4i:GetClamped(p1, p2, p3) end
 
 --- @param p1 Vec4i
 --- @param p2 Vec4i
---- @return integer
+--- @return integereger
 function Vec4i:Dot(p1, p2) end
 
 --- @param p1 Vec4i
@@ -6459,13 +6459,13 @@ function Vec4i:Dot(p1, p2) end
 --- @return Vec4i
 function Vec4i:__band(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec4i
 --- @return Vec4i
 function Vec4i:__band(p1, p2) end
 
 --- @param p1 Vec4i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i:__band(p1, p2) end
 
@@ -6474,13 +6474,13 @@ function Vec4i:__band(p1, p2) end
 --- @return Vec4i
 function Vec4i:__bor(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec4i
 --- @return Vec4i
 function Vec4i:__bor(p1, p2) end
 
 --- @param p1 Vec4i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i:__bor(p1, p2) end
 
@@ -6489,13 +6489,13 @@ function Vec4i:__bor(p1, p2) end
 --- @return Vec4i
 function Vec4i:__bxor(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec4i
 --- @return Vec4i
 function Vec4i:__bxor(p1, p2) end
 
 --- @param p1 Vec4i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i:__bxor(p1, p2) end
 
@@ -6508,13 +6508,13 @@ function Vec4i:__bnot(p1) end
 --- @return Vec4i
 function Vec4i:__shl(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec4i
 --- @return Vec4i
 function Vec4i:__shl(p1, p2) end
 
 --- @param p1 Vec4i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i:__shl(p1, p2) end
 
@@ -6523,13 +6523,13 @@ function Vec4i:__shl(p1, p2) end
 --- @return Vec4i
 function Vec4i:__shr(p1, p2) end
 
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec4i
 --- @return Vec4i
 function Vec4i:__shr(p1, p2) end
 
 --- @param p1 Vec4i
---- @param p2 integer
+--- @param p2 integereger
 --- @return Vec4i
 function Vec4i:__shr(p1, p2) end
 
@@ -6540,9 +6540,9 @@ function Vec4i:__shr(p1, p2) end
 [View Documentation](https://docs.atomontage.com/api/VoxelDB)
 ]]
 --- @class VoxelDB
---- @field autoLightingUpdate boolean
---- @field voxelDim integer
---- @field BlendEnabled boolean
+--- @field autoLightingUpdate booleanean
+--- @field voxelDim integereger
+--- @field BlendEnabled booleanean
 --- @field BlendMode BlendMode
 --- @field BlendOpacity number
 --- @field BlendRadiusRatio number
@@ -6565,7 +6565,7 @@ function VoxelDB:Flush() end
 function VoxelDB:FromWorld(p1) end
 
 --- @param p1 number
---- @return integer
+--- @return integereger
 function VoxelDB:FromWorld(p1) end
 
 --- @param p1 Vec3i
@@ -6576,23 +6576,23 @@ function VoxelDB:ToWorld(p1) end
 --- @return number
 function VoxelDB:ToWorld(p1) end
 
---- @param p1 boolean
---- @return boolean
+--- @param p1 booleanean
+--- @return booleanean
 function VoxelDB:SetUnitVoxelDim(p1) end
 
 --- @param p1 Vec3i
---- @param p2 boolean
+--- @param p2 booleanean
 --- @return nil
 function VoxelDB:SetMask_deprecated(p1, p2) end
 
 --- @param p1 Vec3i
---- @return boolean
+--- @return booleanean
 function VoxelDB:GetMask(p1) end
 
 --- @param p1 number
 --- @param p2 number
 --- @param p3 number
---- @return boolean
+--- @return booleanean
 function VoxelDB:GetMask(p1, p2, p3) end
 
 --[[
@@ -6600,30 +6600,30 @@ int is the neighbourhood radius, 1 means it's from pos - 1 to pos + 1,
 sum of voxles in 3x3 square without center (0-26)
 it should be in range 1-8
 
-[View Documentation](https://docs.atomontage.com/api/VoxelDB#int-GetMaskNeighbours-Vec3i-int)
+[View Documentation](https://docs.atomontage.com/api/VoxelDB#integer-GetMaskNeighbours-Vec3i-integer)
 ]]
 --- @param p1 Vec3i
---- @param p2 integer
---- @return integer
+--- @param p2 integereger
+--- @return integereger
 function VoxelDB:GetMaskNeighbours(p1, p2) end
 
 --- @param p1 number
 --- @param p2 number
 --- @param p3 number
---- @param p4 integer
---- @return integer
+--- @param p4 integereger
+--- @return integereger
 function VoxelDB:GetMaskNeighbours(p1, p2, p3, p4) end
 
 --- @param p1 Vec3i
---- @param p2 integer
---- @return integer
+--- @param p2 integereger
+--- @return integereger
 function VoxelDB:GetMaskNeighboursVN(p1, p2) end
 
 --- @param p1 number
 --- @param p2 number
 --- @param p3 number
---- @param p4 integer
---- @return integer
+--- @param p4 integereger
+--- @return integereger
 function VoxelDB:GetMaskNeighboursVN(p1, p2, p3, p4) end
 
 --- @param p1 Vec3i
@@ -6661,7 +6661,7 @@ function VoxelDB:GetNormalV(p1) end
 function VoxelDB:GetFilteredNormalV(p1) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 Vec3
 --- @return nil
 function VoxelDB:PaintSphereV(p1, p2, p3) end
@@ -6681,21 +6681,21 @@ function VoxelDB:PaintBoxV(p1, p2, p3, p4) end
 
 --- @param p1 Vec3i
 --- @param p2 Vec3i
---- @param p3 integer
+--- @param p3 integereger
 --- @param p4 Vec3
 --- @return nil
 function VoxelDB:PaintCapsuleV(p1, p2, p3, p4) end
 
 --- @param p1 Vec3i
 --- @param p2 Vec3i
---- @param p3 integer
---- @param p4 integer
+--- @param p3 integereger
+--- @param p4 integereger
 --- @param p5 Vec3
 --- @return nil
 function VoxelDB:PaintCapsuleV(p1, p2, p3, p4, p5) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @return nil
 function VoxelDB:ClearSphereV(p1, p2) end
 
@@ -6712,19 +6712,19 @@ function VoxelDB:ClearBoxV(p1, p2, p3) end
 
 --- @param p1 Vec3i
 --- @param p2 Vec3i
---- @param p3 integer
+--- @param p3 integereger
 --- @return nil
 function VoxelDB:ClearCapsuleV(p1, p2, p3) end
 
 --- @param p1 Vec3i
 --- @param p2 Vec3i
---- @param p3 integer
---- @param p4 integer
+--- @param p3 integereger
+--- @param p4 integereger
 --- @return nil
 function VoxelDB:ClearCapsuleV(p1, p2, p3, p4) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 Vec3
 --- @return nil
 function VoxelDB:MakeSphereV(p1, p2, p3) end
@@ -6744,21 +6744,21 @@ function VoxelDB:MakeBoxV(p1, p2, p3, p4) end
 
 --- @param p1 Vec3i
 --- @param p2 Vec3i
---- @param p3 integer
+--- @param p3 integereger
 --- @param p4 Vec3
 --- @return nil
 function VoxelDB:MakeCapsuleV(p1, p2, p3, p4) end
 
 --- @param p1 Vec3i
 --- @param p2 Vec3i
---- @param p3 integer
---- @param p4 integer
+--- @param p3 integereger
+--- @param p4 integereger
 --- @param p5 Vec3
 --- @return nil
 function VoxelDB:MakeCapsuleV(p1, p2, p3, p4, p5) end
 
 --- @param p1 Vec3i
---- @param p2 integer
+--- @param p2 integereger
 --- @param p3 Vec3
 --- @param p4 number
 --- @param p5 number
@@ -6782,31 +6782,31 @@ function VoxelDB:TraceRay(p1, p2, p3) end
 
 --- @param p1 Vec3
 --- @param p2 number
---- @return boolean
+--- @return booleanean
 function VoxelDB:CheckSphere(p1, p2) end
 
 --- @param p1 Vec3
 --- @param p2 Vec3
 --- @param p3 Quat
---- @return boolean
+--- @return booleanean
 function VoxelDB:CheckBox(p1, p2, p3) end
 
 --- @param p1 Vec3
 --- @param p2 Vec3
---- @return boolean
+--- @return booleanean
 function VoxelDB:CheckBox(p1, p2) end
 
 --- @param p1 Vec3
 --- @param p2 Vec3
 --- @param p3 number
 --- @param p4 number
---- @return boolean
+--- @return booleanean
 function VoxelDB:CheckCapsule(p1, p2, p3, p4) end
 
 --- @param p1 Vec3
 --- @param p2 Vec3
 --- @param p3 number
---- @return boolean
+--- @return booleanean
 function VoxelDB:CheckCapsule(p1, p2, p3) end
 
 --- @param p1 Vec3
@@ -6909,17 +6909,17 @@ function VoxelDB:InstantiateIE(p1, p2, p3) end
 --- @return nil
 function VoxelDB:ClearContent() end
 
---- @param p1 boolean
+--- @param p1 booleanean
 --- @return nil
 function VoxelDB:RebuildLods(p1) end
 
 --- @param p1 string
 --- @param p2 string
---- @return boolean
+--- @return booleanean
 function VoxelDB:CopyLayer(p1, p2) end
 
 --- @param p1 string
---- @return boolean
+--- @return booleanean
 function VoxelDB:ClearLayer(p1) end
 
 --- @return nil
@@ -6937,25 +6937,25 @@ function VoxelDB:CopyTo(p1) end
 
 --- @param p1 string
 --- @param p2 string
---- @param p3 integer
---- @return boolean
+--- @param p3 integereger
+--- @return booleanean
 function VoxelDB:Save(p1, p2, p3) end
 
 --- @param p1 Vec3
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @return userdata
 function VoxelDB:InspectNormals(p1, p2, p3) end
 
 --- @param p1 Vec3
---- @param p2 integer
---- @param p3 integer
+--- @param p2 integereger
+--- @param p3 integereger
 --- @param p4 table
---- @param p5 integer
+--- @param p5 integereger
 --- @return userdata
 function VoxelDB:Inspect(p1, p2, p3, p4, p5) end
 
---- @return integer
+--- @return integereger
 function VoxelDB:GetLODsCount() end
 
 --- @param p1 string
@@ -6976,19 +6976,19 @@ function VoxelDB:GetBounds() end
 ]]
 --- @class VoxelData
 --- @field object Object
---- @field isDestroyed boolean
+--- @field isDestroyed booleanean
 --- @field type string
 --- @field path string
 --- @field data VoxelDataResource
---- @field copyOnWrite boolean
---- @field save boolean
---- @field unpackOnLoad boolean
---- @field releaseResources boolean
---- @field enforceReplaceRendSourceAndEntity boolean
---- @field ramCopy boolean
---- @field potScale integer
---- @field paused boolean
---- @field startAtMs integer
+--- @field copyOnWrite booleanean
+--- @field save booleanean
+--- @field unpackOnLoad booleanean
+--- @field releaseResources booleanean
+--- @field enforceReplaceRendSourceAndEntity booleanean
+--- @field ramCopy booleanean
+--- @field potScale integereger
+--- @field paused booleanean
+--- @field startAtMs integereger
 --- @field startAtFrame number
 --- @field playbackSpeed number
 VoxelData = {
@@ -7004,12 +7004,12 @@ function VoxelData() end
 function VoxelData:Mirror(p1, p2) end
 
 --- @param p1 string
---- @return boolean, string
+--- @return booleanean, string
 function VoxelData:SetPath(p1) end
 
 --- @param p1 VoxelData
 --- @param p2 VoxelData
---- @return boolean
+--- @return booleanean
 function VoxelData:__eq(p1, p2) end
 
 --[[
@@ -7019,9 +7019,9 @@ function VoxelData:__eq(p1, p2) end
 [View Documentation](https://docs.atomontage.com/api/VoxelDataResource)
 ]]
 --- @class VoxelDataResource
---- @field isEditable boolean
---- @field isSaved boolean
---- @field hasAnyVoxels boolean
+--- @field isEditable booleanean
+--- @field isSaved booleanean
+--- @field hasAnyVoxels booleanean
 --- @field volumePerc number
 --- @field scaleToStatic number
 VoxelDataResource = {
@@ -7031,7 +7031,7 @@ VoxelDataResource = {
 }
 
 --- @param p1 string
---- @param p2 boolean
+--- @param p2 booleanean
 --- @return VoxelDataResource
 function VoxelDataResource(p1, p2) end
 
@@ -7046,17 +7046,17 @@ function VoxelDataResource(p1) end
 save voxel data in AM file
 second parameter controls if file will be overwritten
 
-[View Documentation](https://docs.atomontage.com/api/VoxelDataResource#string-Save-string-bool)
+[View Documentation](https://docs.atomontage.com/api/VoxelDataResource#string-Save-string-boolean)
 ]]
 --- @param p1 string
---- @param p2 boolean
+--- @param p2 booleanean
 --- @return string
 function VoxelDataResource:Save(p1, p2) end
 
 --[[
 get center (in local space) and dimensions of the voxel data
 
-[View Documentation](https://docs.atomontage.com/api/VoxelDataResource#float-float-GetBounds)
+[View Documentation](https://docs.atomontage.com/api/VoxelDataResource#number-number-GetBounds)
 ]]
 --- @return number, number
 function VoxelDataResource:GetBounds() end
@@ -7074,14 +7074,14 @@ function VoxelDataResource:RebuildLighting() end
 [View Documentation](https://docs.atomontage.com/api/VoxelEdit)
 ]]
 --- @class VoxelEdit
---- @field blendEnable boolean
+--- @field blendEnable booleanean
 --- @field blendMode BlendMode
 --- @field blendOpacity number
 --- @field blendRadiusRatio number
 --- @field color Vec3
 --- @field filter userdata
 --- @field shape userdata
---- @field clampToMinVoxelSize boolean
+--- @field clampToMinVoxelSize booleanean
 --- @field copySourceTr Transform
 --- @field copyDestinationTr Transform
 --- @field copyDestinationPos Vec3
@@ -7091,14 +7091,14 @@ function VoxelDataResource:RebuildLighting() end
 --- @field copySourceRot Quat
 --- @field copySourceScale number
 --- @field copyResource userdata
---- @field copyInsert boolean
---- @field copyRemove boolean
---- @field copyColor boolean
---- @field kernelType integer
+--- @field copyInsert booleanean
+--- @field copyRemove booleanean
+--- @field copyColor booleanean
+--- @field kernelType integereger
 --- @field imageColor userdata
 --- @field imageNormal userdata
 --- @field imageUVTm Mat4
---- @field imageUVClamp boolean
+--- @field imageUVClamp booleanean
 --- @field onProgress userdata
 --- @field onFinished userdata
 --- @field onError userdata
@@ -7131,7 +7131,7 @@ If we had flush after each op, it would eliminate all multithreaded processing.
 function VoxelEdit:Flush() end
 
 --- @return nil
-function VoxelEdit:Paint() end
+function VoxelEdit:Painteger() end
 
 --- @return nil
 function VoxelEdit:Add() end
@@ -7158,9 +7158,9 @@ function VoxelEdit:GetImageResource(p1) end
 It projects cone on voxel geometry and everything inside will be copies to tmp
 all raycasts will collide with this tmp layer instead until FreeTmpLayers
 
-[View Documentation](https://docs.atomontage.com/api/VoxelEdit#nil-FreeTmpLayers-int)
+[View Documentation](https://docs.atomontage.com/api/VoxelEdit#nil-FreeTmpLayers-integer)
 ]]
---- @param p1 integer
+--- @param p1 integereger
 --- @return nil
 function VoxelEdit:FreeTmpLayers(p1) end
 
@@ -7169,13 +7169,13 @@ It projects cone on voxel geometry and everything inside will be copies to tmp
 all raycasts will collide with this tmp layer instead until FreeTmpLayers
 parameters specify "cone" - two positions and end radius
 
-[View Documentation](https://docs.atomontage.com/api/VoxelEdit#nil-FillTmpLayers-int-Vec3-table-float-int)
+[View Documentation](https://docs.atomontage.com/api/VoxelEdit#nil-FillTmpLayers-integer-Vec3-table-number-integer)
 ]]
---- @param p1 integer
+--- @param p1 integereger
 --- @param p2 Vec3
 --- @param p3 table
 --- @param p4 number
---- @param p5 integer
+--- @param p5 integereger
 --- @return nil
 function VoxelEdit:FillTmpLayers(p1, p2, p3, p4, p5) end
 
@@ -7208,14 +7208,14 @@ function VoxelInspectData:GetColors() end
 ]]
 --- @class VoxelRenderer
 --- @field object Object
---- @field isDestroyed boolean
+--- @field isDestroyed booleanean
 --- @field type string
---- @field syncToClients boolean
---- @field enabled boolean
---- @field prioritizeLod boolean
---- @field outline boolean
+--- @field syncToClients booleanean
+--- @field enabled booleanean
+--- @field prioritizeLod booleanean
+--- @field outline booleanean
 --- @field tintColor Vec4
---- @field receiveTransform boolean
+--- @field receiveTransform booleanean
 VoxelRenderer = {
 	prioritizeLod = nil, ---Try to load higher LODs faster than those of other objects
 	outline = nil, ---Draw an outline around this object
@@ -7225,7 +7225,7 @@ VoxelRenderer = {
 
 --- @param p1 VoxelRenderer
 --- @param p2 VoxelRenderer
---- @return boolean
+--- @return booleanean
 function VoxelRenderer:__eq(p1, p2) end
 
 --- @return number, number

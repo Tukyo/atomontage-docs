@@ -9,39 +9,39 @@ id: Input
 
 ### table GetEvents() {#table-GetEvents}
 
-### bool KeyDown(string) {#bool-KeyDown-string}
+### boolean KeyDown(string) {#boolean-KeyDown-string}
 
-### bool Key(string) {#bool-Key-string}
+### boolean Key(string) {#boolean-Key-string}
 
-### bool KeyUp(string) {#bool-KeyUp-string}
+### boolean KeyUp(string) {#boolean-KeyUp-string}
 
 ### table KeyCombosDown() {#table-KeyCombosDown}
 
-### bool KeyComboDown(string) {#bool-KeyComboDown-string}
+### boolean KeyComboDown(string) {#boolean-KeyComboDown-string}
 
-### bool KeyComboDown(string, string, string) {#bool-KeyComboDown-string-string-string}
+### boolean KeyComboDown(string, string, string) {#boolean-KeyComboDown-string-string-string}
 
-### bool KeyComboDown(string, string) {#bool-KeyComboDown-string-string}
+### boolean KeyComboDown(string, string) {#boolean-KeyComboDown-string-string}
 
-### bool KeyCombo(string) {#bool-KeyCombo-string}
+### boolean KeyCombo(string) {#boolean-KeyCombo-string}
 
-### bool KeyCombo(string, string, string) {#bool-KeyCombo-string-string-string}
+### boolean KeyCombo(string, string, string) {#boolean-KeyCombo-string-string-string}
 
-### bool KeyCombo(string, string) {#bool-KeyCombo-string-string}
+### boolean KeyCombo(string, string) {#boolean-KeyCombo-string-string}
 
-### bool ShiftKey() {#bool-ShiftKey}
+### boolean ShiftKey() {#boolean-ShiftKey}
 
-### bool CtrlKey() {#bool-CtrlKey}
+### boolean CtrlKey() {#boolean-CtrlKey}
 
-### bool AltKey() {#bool-AltKey}
+### boolean AltKey() {#boolean-AltKey}
 
-### bool MouseButtonDown(int) {#bool-MouseButtonDown-int}
+### boolean MouseButtonDown(integer) {#boolean-MouseButtonDown-integer}
 
-### bool MouseButton(int) {#bool-MouseButton-int}
+### boolean MouseButton(integer) {#boolean-MouseButton-integer}
 
-### bool MouseButtonUp(int) {#bool-MouseButtonUp-int}
+### boolean MouseButtonUp(integer) {#boolean-MouseButtonUp-integer}
 
-### int MouseWheel() {#int-MouseWheel}
+### integer MouseWheel() {#integer-MouseWheel}
 
 ### Vec2 MousePos() {#Vec2-MousePos}
 
@@ -55,56 +55,56 @@ id: Input
 
 ### Vec2 MouseMovePerc() {#Vec2-MouseMovePerc}
 
-### bool GetRelativeMouseMode() {#bool-GetRelativeMouseMode}
+### boolean GetRelativeMouseMode() {#boolean-GetRelativeMouseMode}
 
-### nil SetRelativeMouseMode(bool) {#nil-SetRelativeMouseMode-bool}
+### nil SetRelativeMouseMode(boolean) {#nil-SetRelativeMouseMode-boolean}
 
-### bool GetEmulateMouseWithTouch() {#bool-GetEmulateMouseWithTouch}
+### boolean GetEmulateMouseWithTouch() {#boolean-GetEmulateMouseWithTouch}
 
-### nil SetEmulateMouseWithTouch(bool) {#nil-SetEmulateMouseWithTouch-bool}
+### nil SetEmulateMouseWithTouch(boolean) {#nil-SetEmulateMouseWithTouch-boolean}
 
-### bool GetEmulateTouchWithMouse() {#bool-GetEmulateTouchWithMouse}
+### boolean GetEmulateTouchWithMouse() {#boolean-GetEmulateTouchWithMouse}
 
-### nil SetEmulateTouchWithMouse(bool) {#nil-SetEmulateTouchWithMouse-bool}
+### nil SetEmulateTouchWithMouse(boolean) {#nil-SetEmulateTouchWithMouse-boolean}
 
-### float GesturePinch() {#float-GesturePinch}
+### number GesturePinch() {#number-GesturePinch}
 
-### float GestureRotate() {#float-GestureRotate}
+### number GestureRotate() {#number-GestureRotate}
 
 ### Vec2 GestureMove() {#Vec2-GestureMove}
 
-### int NumFingers() {#int-NumFingers}
+### integer NumFingers() {#integer-NumFingers}
 
-### bool FingerDown(int) {#bool-FingerDown-int}
+### boolean FingerDown(integer) {#boolean-FingerDown-integer}
 int passed is the unique ID of that touch obtained i.e. from Input:Fingers() or Input:GetEvents()
 
 ### userdata Fingers() {#userdata-Fingers}
 
-### bool FingerUp(int) {#bool-FingerUp-int}
+### boolean FingerUp(integer) {#boolean-FingerUp-integer}
 
-### Vec2 FingerPos(int) {#Vec2-FingerPos-int}
+### Vec2 FingerPos(integer) {#Vec2-FingerPos-integer}
 
-### bool VRButtonDown(int, VRControllerButton) {#bool-VRButtonDown-int-VRControllerButton}
+### boolean VRButtonDown(integer, VRControllerButton) {#boolean-VRButtonDown-integer-VRControllerButton}
 
-### bool VRButton(int, VRControllerButton) {#bool-VRButton-int-VRControllerButton}
+### boolean VRButton(integer, VRControllerButton) {#boolean-VRButton-integer-VRControllerButton}
 
-### bool VRButtonUp(int, VRControllerButton) {#bool-VRButtonUp-int-VRControllerButton}
+### boolean VRButtonUp(integer, VRControllerButton) {#boolean-VRButtonUp-integer-VRControllerButton}
 
-### float VRHandTrigger(int) {#float-VRHandTrigger-int}
+### number VRHandTrigger(integer) {#number-VRHandTrigger-integer}
 
-### float VRIndexTrigger(int) {#float-VRIndexTrigger-int}
+### number VRIndexTrigger(integer) {#number-VRIndexTrigger-integer}
 
-### Vec2 VRThumbStick(int) {#Vec2-VRThumbStick-int}
+### Vec2 VRThumbStick(integer) {#Vec2-VRThumbStick-integer}
 
-### Vec2 VRTrackpad(int) {#Vec2-VRTrackpad-int}
+### Vec2 VRTrackpad(integer) {#Vec2-VRTrackpad-integer}
 
-### bool VRIsControllerValid(int) {#bool-VRIsControllerValid-int}
+### boolean VRIsControllerValid(integer) {#boolean-VRIsControllerValid-integer}
 
-### Vec3 VRControllerPos(int) {#Vec3-VRControllerPos-int}
+### Vec3 VRControllerPos(integer) {#Vec3-VRControllerPos-integer}
 
-### Vec3 VRControllerDir(int) {#Vec3-VRControllerDir-int}
+### Vec3 VRControllerDir(integer) {#Vec3-VRControllerDir-integer}
 
-### Vec3, Quat VRControllerTransform(int, Space) {#Vec3-Quat-VRControllerTransform-int-Space}
+### Vec3, Quat VRControllerTransform(integer, Space) {#Vec3-Quat-VRControllerTransform-integer-Space}
 
 ### userdata Gamepads() {#userdata-Gamepads}
 

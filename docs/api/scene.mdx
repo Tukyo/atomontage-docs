@@ -7,9 +7,10 @@ id: Scene
 
 ## Methods
 
-### double GetTime() {#double-GetTime}
+### number GetTime() {#number-GetTime}
 
-### double GetDeltaTime() {#double-GetDeltaTime}
+### number GetDeltaTime() {#number-GetDeltaTime}
+
 Time passed since the last Update() call. Since time between updates is not constant use this to adjust changes such as movement according to the amount of time that has passed
 ```lua
 function self:Update()
@@ -19,16 +20,15 @@ function self:Update()
     self.transform.pos = self.transform.pos + move * speed * Scene:GetDeltaTime() 
 end
 ```
+### number GetDebugTime() {#number-GetDebugTime}
 
-### double GetDebugTime() {#double-GetDebugTime}
-
-### int GetCurrentFrame() {#int-GetCurrentFrame}
+### integer GetCurrentFrame() {#integer-GetCurrentFrame}
 
 ### Object CreateObject() {#Object-CreateObject}
 
-### Object CreateObject(string, bool, bool) {#Object-CreateObject-string-bool-bool}
+### Object CreateObject(string, boolean, boolean) {#Object-CreateObject-string-boolean-boolean}
 
-### Object CreateObject(string, Object, bool, bool) {#Object-CreateObject-string-Object-bool-bool}
+### Object CreateObject(string, Object, boolean, boolean) {#Object-CreateObject-string-Object-boolean-boolean}
 
 ### Object CreateObject(string, Object) {#Object-CreateObject-string-Object}
 
@@ -60,21 +60,21 @@ Also see [`Scene:MakeNameValid`](#string-MakeNameValid-string)
 
 ### Object CloneObject(Object) {#Object-CloneObject-Object}
 
-### Object CloneObject(Object, string, bool) {#Object-CloneObject-Object-string-bool}
+### Object CloneObject(Object, string, boolean) {#Object-CloneObject-Object-string-boolean}
 
-### Object CloneObject(Object, bool) {#Object-CloneObject-Object-bool}
+### Object CloneObject(Object, boolean) {#Object-CloneObject-Object-boolean}
 
 ### Object CloneObject(Object, string) {#Object-CloneObject-Object-string}
 
-### bool MoveObject(Object, Object) {#bool-MoveObject-Object-Object}
+### boolean MoveObject(Object, Object) {#boolean-MoveObject-Object-Object}
 
-### bool MoveObjectAfter(Object, Object) {#bool-MoveObjectAfter-Object-Object}
+### boolean MoveObjectAfter(Object, Object) {#boolean-MoveObjectAfter-Object-Object}
 
-### bool MoveObjectBefore(Object, Object) {#bool-MoveObjectBefore-Object-Object}
+### boolean MoveObjectBefore(Object, Object) {#boolean-MoveObjectBefore-Object-Object}
 
-### bool MoveObjectToRoot(Object) {#bool-MoveObjectToRoot-Object}
+### boolean MoveObjectToRoot(Object) {#boolean-MoveObjectToRoot-Object}
 
-### bool CanMoveObject(Object, Object) {#bool-CanMoveObject-Object-Object}
+### boolean CanMoveObject(Object, Object) {#boolean-CanMoveObject-Object-Object}
 
 ### userdata CreateMaterial(string) {#userdata-CreateMaterial-string}
 
@@ -94,21 +94,21 @@ Also see [`Scene:MakeNameValid`](#string-MakeNameValid-string)
 
 ### table ConvertDcToWc(VoxelRenderer, table) {#table-ConvertDcToWc-VoxelRenderer-table}
 
-### bool IsNameValid(string) {#bool-IsNameValid-string}
+### boolean IsNameValid(string) {#boolean-IsNameValid-string}
 
 ### string MakeNameValid(string) {#string-MakeNameValid-string}
 
-### bool UpdatePrefab(Object) {#bool-UpdatePrefab-Object}
+### boolean UpdatePrefab(Object) {#boolean-UpdatePrefab-Object}
 
-### bool ResetPrefab(Object) {#bool-ResetPrefab-Object}
+### boolean ResetPrefab(Object) {#boolean-ResetPrefab-Object}
 
 ### nil RebuildLighting() {#nil-RebuildLighting}
 
 ### LightingUpdate CreateLighting(string, string) {#LightingUpdate-CreateLighting-string-string}
 
-### bool GetProfileScriptsUpdate() {#bool-GetProfileScriptsUpdate}
+### boolean GetProfileScriptsUpdate() {#boolean-GetProfileScriptsUpdate}
 
-### nil SetProfileScriptsUpdate(bool) {#nil-SetProfileScriptsUpdate-bool}
+### nil SetProfileScriptsUpdate(boolean) {#nil-SetProfileScriptsUpdate-boolean}
 
 ### table GetSimpleStats() {#table-GetSimpleStats}
 

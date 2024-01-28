@@ -627,13 +627,13 @@ function genDocs:getSections(filename)
     return intro, methods, properties
 end
 
-function genDocs:generateHeading(name)
-    local name = genDocs:cleanUpName(name)
-    local id = genDocs:getHeadingID(name)
+function genDocs:generateHeading(header)
+    local header = genDocs:cleanUpName(header)
+    local id = genDocs:getHeadingID(header)
 
     --add link if this is a class
     --[[
-    name = name:gsub("%(?(%S+)", function(word) 
+    headers = header:gsub("%(?(%S+)", function(word) 
         print(word, _Bindings.Classes[word])
         if _Bindings.Classes[word] then
             word = "["..word.."](.\\"..word..".mdx)" 
@@ -643,7 +643,7 @@ function genDocs:generateHeading(name)
     end)
     ]]
 
-    return "### "..name.." {#"..id.."}"
+    return "### "..header.." {#"..id.."}"
 end
 
 function genEmmy:cleanUpClassName(name)
@@ -694,13 +694,13 @@ function genDocs:cleanUpName(name)
     --this works inccorectly finding a match that is too short when there is a longer match
     --TODO sort by key length
     local replacements = {
-        {"uint8_t", "int"},
-        {"uint16_t", "int"},
-        {"uint32_t", "int"},
-        {"uint64_t", "int"},
-        {"int16_t", "int"},
-        {"int32_t", "int"},
-        {"int64_t", "int"},
+        {"uint8_t", "integer"},
+        {"uint16_t", "integer"},
+        {"uint32_t", "integer"},
+        {"uint64_t", "integer"},
+        {"int16_t", "integer"},
+        {"int32_t", "integer"},
+        {"int64_t", "integer"},
         {"basic_table_core<0,classsol::basic_reference<0> >", "table"},
         {"basic_object<classsol::basic_reference<0> >", "userdata"}, --??this could be many things
         {"shared_ptr<classae::scene::Object>", "Object"},
@@ -765,13 +765,12 @@ function genDocs:cleanUpName(name)
         {"shared_ptr<classae::scene::ScriptComponent>", "ScriptComponent"},
         {"variadic_args", "..."},
         {"shared_ptr<classae::scene::Component>", "Component"},
-        {"void", "nil"},
         {"shared_ptr<classae::scene::LuaShape>", "Shape" }, --various shapes, is Shape ok?
         {"shared_ptr<classae::scene::Filter>", "Filter"},
         {"Res<classae::renderer::Material>", "Material" }, --correct?
         {"shared_ptr<structae::scene::VoxelDataResource>", "VoxelDataResource" },
         {"shared_ptr<classae::scene::CameraComponent>", "CameraComponent"},
-        {"tuple<classTVector3<float>,classTVector3<float> >", "float, float"}, --this is two
+        {"tuple<classTVector3<float>,classTVector3<float> >", "number, number"}, --this is two
         {"tuple<classsol::basic_table_core<0,classsol::basic_reference<0>>,classsol::basic_table_core<0,classsol::basic_reference<0>> >", "table, table"}, --this is two
         {"tuple<classTVector3<float>,classae::core::TQuaternion<float> >", "Vec3, Quat" }, --this is two
         {"tuple<bool,classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>> >", "bool, string" }, --this is two
@@ -779,7 +778,15 @@ function genDocs:cleanUpName(name)
         {"const char", "string"}, --correct?
         {"pair<classae::core::TQuaternion<float>,classTVector3<float> >", "Quat, Vec3"},
         {"shared_ptr<classae::studio::FileLua>", "File"},
-        {"shared_ptr<classae::core::Image>", "Image" }
+        {"shared_ptr<classae::core::Image>", "Image" },
+        
+        --make sure they are last
+        {"bool", "boolean"},
+        {"int ", "integer "}, --space is quickfix foe something like tintColor where int is replaced
+        {"float", "number"},
+        {"double", "number"},
+        {"char", "string"},
+        {"void", "nil"},
     }
 
     --auto find tuple
