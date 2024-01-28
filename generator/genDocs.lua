@@ -191,7 +191,6 @@ function genDocs:gen()
         "VoxelData",
         "VoxelRenderer",
         "Angle",
-        "Mat4",
         "Frustum",
         "Object3D",
         "LightingUpdate",
@@ -201,10 +200,12 @@ function genDocs:gen()
         "Rotation",
         "CommandLine",
         "ResourceReference",
-        "Matrix3f",
+        "Matrix3f", --do we really need those in lua?
         "Matrix4f",
         "Mat3f",
         "Mat4f",
+        "Mat3", 
+        "Mat4",
         "AssetManager",
         "Server",
         "FilePath",
@@ -694,13 +695,13 @@ function genDocs:cleanUpName(name)
     --this works inccorectly finding a match that is too short when there is a longer match
     --TODO sort by key length
     local replacements = {
-        {"uint8_t", "integer"},
-        {"uint16_t", "integer"},
-        {"uint32_t", "integer"},
-        {"uint64_t", "integer"},
-        {"int16_t", "integer"},
-        {"int32_t", "integer"},
-        {"int64_t", "integer"},
+        {"uint8_t", "int"},
+        {"uint16_t", "int"},
+        {"uint32_t", "int"},
+        {"uint64_t", "int"},
+        {"int16_t", "int"},
+        {"int32_t", "int"},
+        {"int64_t", "int"},
         {"basic_table_core<0,classsol::basic_reference<0> >", "table"},
         {"basic_object<classsol::basic_reference<0> >", "userdata"}, --??this could be many things
         {"shared_ptr<classae::scene::Object>", "Object"},
@@ -779,10 +780,13 @@ function genDocs:cleanUpName(name)
         {"pair<classae::core::TQuaternion<float>,classTVector3<float> >", "Quat, Vec3"},
         {"shared_ptr<classae::studio::FileLua>", "File"},
         {"shared_ptr<classae::core::Image>", "Image" },
+        {"classTMatrix4<int>", "Mat4"},
         
         --make sure they are last
         {"bool", "boolean"},
         {"int ", "integer "}, --space is quickfix foe something like tintColor where int is replaced
+        {"int%)", "integer)"},
+        {"int,", "integer,"},
         {"float", "number"},
         {"double", "number"},
         {"char", "string"},

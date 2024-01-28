@@ -726,14 +726,16 @@ function genEmmy:dissectMethodEntry(lines)
     return header, returnType, name, params
 end
 
---TODO maybe docs should use samd names?
 function genEmmy:convertToEmmyLuaType(strType)
+    --already done in docs now
+    --[[
     strType = strType:gsub("bool", "boolean")
     strType = strType:gsub("int", "integer")
     strType = strType:gsub("float", "number")
     strType = strType:gsub("double", "number")
     strType = strType:gsub("char", "string")
     strType = strType:gsub("void", "nil")
+    ]]
     return strType
 end
 
