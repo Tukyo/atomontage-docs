@@ -940,7 +940,7 @@ function Client:GetCurrentUIActionID() end
 
 --- @param p1 Vec4
 --- @return nil
-function Client:SetIntersectionTinteger(p1) end
+function Client:SetIntersectionTint(p1) end
 
 --- @param p1 Vec3
 --- @param p2 Quat
@@ -1111,7 +1111,7 @@ function Client:PlayEntityPath() end
 function Client:ClearEntityPath() end
 
 --- @return nil
-function Client:AddEntityPathWaypointeger() end
+function Client:AddEntityPathWaypoint() end
 
 --- @param p1 string
 --- @param p2 boolean
@@ -7174,7 +7174,7 @@ If we had flush after each op, it would eliminate all multithreaded processing.
 function VoxelEdit:Flush() end
 
 --- @return nil
-function VoxelEdit:Painteger() end
+function VoxelEdit:Paint() end
 
 --- @return nil
 function VoxelEdit:Add() end

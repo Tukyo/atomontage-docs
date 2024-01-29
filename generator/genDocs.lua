@@ -695,13 +695,13 @@ function genDocs:cleanUpName(name)
     --this works inccorectly finding a match that is too short when there is a longer match
     --TODO sort by key length
     local replacements = {
-        {"uint8_t", "int"},
-        {"uint16_t", "int"},
-        {"uint32_t", "int"},
-        {"uint64_t", "int"},
-        {"int16_t", "int"},
-        {"int32_t", "int"},
-        {"int64_t", "int"},
+        {"uint8_t", "integer"},
+        {"uint16_t", "integer"},
+        {"uint32_t", "integer"},
+        {"uint64_t", "integer"},
+        {"int16_t", "integer"},
+        {"int32_t", "integer"},
+        {"int64_t", "integer"},
         {"basic_table_core<0,classsol::basic_reference<0> >", "table"},
         {"basic_object<classsol::basic_reference<0> >", "userdata"}, --??this could be many things
         {"shared_ptr<classae::scene::Object>", "Object"},
@@ -784,9 +784,9 @@ function genDocs:cleanUpName(name)
         
         --make sure they are last
         {"bool", "boolean"},
-        {"int ", "integer "}, --space is quickfix foe something like tintColor where int is replaced
-        {"int%)", "integer)"},
-        {"int,", "integer,"},
+        {"%,int%)", ",integer)"},
+        {"%(int%)", "(integer)"},
+        {"int%,", "integer,"},
         {"float", "number"},
         {"double", "number"},
         {"char", "string"},
