@@ -274,7 +274,7 @@ function genDocs:gen()
             --name = name:gsub("::", " ") --remove this?
             if not string.find(name, "::") then --just skip these weird internal things for now
                 local location = classLocations[nameOrig]
-                name = genEmmy:cleanUpClassName(name)
+                name = genDocs:cleanUpClassName(name)
                 fileNamesClasses[name] = nil
                 genDocs:generateClassFile(name, class, location.client, location.server)
             end
@@ -647,7 +647,7 @@ function genDocs:generateHeading(header)
     return "### "..header.." {#"..id.."}"
 end
 
-function genEmmy:cleanUpClassName(name)
+function genDocs:cleanUpClassName(name)
     name = name:gsub("v2i", "vec2i")
     name = name:gsub("v3i", "vec3i")
     name = name:gsub("v4i", "vec4i")

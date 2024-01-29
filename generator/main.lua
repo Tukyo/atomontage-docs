@@ -1,3 +1,4 @@
+require("os")
 
 local util = require("generator.util")
 local genEmmy = require("generator.genEmmy")
@@ -6,5 +7,20 @@ local serpent = require("generator.serpent")
 
 print("start")
 genDocs:gen()
-print("done")
 
+--only works on windows
+local function copyFile(fromFolder, toFolder)
+    local ok = os.execute('start xcopy /E /S /y "' .. fromFolder .. '" "' .. toFolder .. '"')
+    assert(ok)
+end
+
+--change on other computer, api files are copied here
+local apiFrom = "C:\\Users\\maxkr\\Documents\\Code\\Atomontage\\atomontage-docs\\generator\\emmyApi"
+local apiTo = "D:\\atomontage\\Resources\\Sdk\\LuaApi\\Atomontage\\library"
+copyFile(apiFrom, apiTo)
+
+local systemFrom = "D:\\atomontage\\Build\\win64_vs2022\\Studio\\RelWithDebInfo\\Data\\Studio\\Script\\ae"
+local systemTo = "D:\\atomontage\\Resources\\Sdk\\LuaApi\\Atomontage\\library\\systemScripts\\ae"
+copyFile(systemFrom, systemTo)
+
+print("done")

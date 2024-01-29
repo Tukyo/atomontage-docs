@@ -1236,7 +1236,7 @@ function Collision() end
 function Collision() end
 
 --[[
-use rayPos, rayDir, returns table of Hit values or empty table for no hit
+Use rayPos, rayDir, returns table of Hit values or empty table for no hit
 
 [View Documentation](https://docs.atomontage.com/api/Collision#table-Raycast)
 ]]
@@ -1244,7 +1244,7 @@ use rayPos, rayDir, returns table of Hit values or empty table for no hit
 function Collision:Raycast() end
 
 --[[
-use rayPos, rayDir, returns table of Hit values or empty table for no hit
+Use rayPos, rayDir, returns table of Hit values or empty table for no hit
 
 [View Documentation](https://docs.atomontage.com/api/Collision#table-Raycast-Vec3-Vec3)
 ]]
@@ -1254,7 +1254,7 @@ use rayPos, rayDir, returns table of Hit values or empty table for no hit
 function Collision:Raycast(p1, p2) end
 
 --[[
-checks collision between shape and geometry passed by filter
+Checks collision between shape and geometry passed by filter
 
 [View Documentation](https://docs.atomontage.com/api/Collision#table-GetOverlap)
 ]]
@@ -1262,7 +1262,7 @@ checks collision between shape and geometry passed by filter
 function Collision:GetOverlap() end
 
 --[[
-checks collision between shape and geometry passed by filter
+Checks collision between shape and geometry passed by filter
 
 [View Documentation](https://docs.atomontage.com/api/Collision#table-GetOverlap-Shape)
 ]]
@@ -3145,6 +3145,8 @@ function Script:GetScriptUpdateTime() end
 `Client`
 `Server`
 
+The lua table referred to in a script with `self`
+
 [View Documentation](https://docs.atomontage.com/api/ScriptInstance)
 ]]
 --- @class ScriptInstance
@@ -3182,7 +3184,7 @@ Called once on object creation before Start()
 function ScriptInstance:Attach() end
 
 --[[
-Called when script component or obejct is destroyed
+Called when script component or object is destroyed
 
 [View Documentation](https://docs.atomontage.com/api/ScriptInstance#nil-Detach)
 ]]
@@ -3190,7 +3192,40 @@ Called when script component or obejct is destroyed
 function ScriptInstance:Detach() end
 
 --[[
-Call a lua function by name from server to all clients or from one client to server
+Call a lua function by name from server to all clients or from one client to server. You may pass parameters
+
+```lua
+function self:Start()
+    --remember to sync the script component to clients otherwise there is noone to receieve the RPCs
+    self.component.syncToClients = true
+    self.cam = Scene:GetActiveCamera()
+
+    events.mouseButtonDown.addListener(self, function (button, from)
+        if self.onServer then return end
+        --if left mouse button pressed create a ray from mouse position and direction
+        if button == 1 then
+            local mpos = Input:MousePosPerc()
+            local tf = self.cam.object.transform
+            local pos = tf.pos + tf.forward * 1.5
+
+            --call this function on all clients with these two parameters
+            self:RPC("serverRaycast", pos, tf.forward*1000)
+        end
+    end)
+
+end
+
+function self:serverRaycast(origin, ray)
+    assert(self.onServer)
+    local hit = Collision():Raycast(origin, ray)[1]
+    if hit then
+        --make a cross at hit
+        deb:cross(hit.pos)
+        print("hit")
+    end
+end
+```
+
 
 [View Documentation](https://docs.atomontage.com/api/ScriptInstance#nil-RPC-string)
 ]]
@@ -3510,6 +3545,14 @@ function Server:PBRTranscodeToPBR0Ver1() end
 --[[
 `Client`
 `Server`
+
+Shapes for collisions and voxel operations
+
+* [Box](Box)
+* [Sphere](Sphere)
+* [Capsule](Capsule)
+* [Cylinder](Cylinder)
+* [Polygon](Polygon)
 
 [View Documentation](https://docs.atomontage.com/api/Shape)
 ]]
@@ -7220,7 +7263,7 @@ VoxelRenderer = {
 	prioritizeLod = nil, ---Try to load higher LODs faster than those of other objects
 	outline = nil, ---Draw an outline around this object
 	tintColor = nil, ---Render with a tint color
-	receiveTransform = nil, ---Receive transform(pos, rot scale) from server. By default this is true. If you set this to false, you will need to manually set the transform of the object on the client side.This is useful for making objects respond immediately if something happened on the client side i.e. input
+	receiveTransform = nil, ---Receive transform(pos, rot scale) to render with from server. By default this is true. If you set this to false, you will need to manually set the transform of the object on the client side.This is useful for making objects respond immediately if something happened on the client side i.e. input
 }
 
 --- @param p1 VoxelRenderer

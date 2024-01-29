@@ -5,6 +5,8 @@ id: ScriptInstance
 `Client`
 `Server`
 
+The lua table referred to in a script with `self`
+
 ## Methods
 
 ### nil Start() {#nil-Start}
@@ -16,10 +18,43 @@ Called once on object creation after Attach()
 Called once on object creation before Start()
 
 ### nil Detach() {#nil-Detach}
-Called when script component or obejct is destroyed
+Called when script component or object is destroyed
 
 ### nil RPC(string, ...) {#nil-RPC-string}
-Call a lua function by name from server to all clients or from one client to server
+Call a lua function by name from server to all clients or from one client to server. You may pass parameters
+
+```lua
+function self:Start()
+    --remember to sync the script component to clients otherwise there is noone to receieve the RPCs
+    self.component.syncToClients = true
+    self.cam = Scene:GetActiveCamera()
+
+    events.mouseButtonDown.addListener(self, function (button, from)
+        if self.onServer then return end
+        --if left mouse button pressed create a ray from mouse position and direction
+        if button == 1 then
+            local mpos = Input:MousePosPerc()
+            local tf = self.cam.object.transform
+            local pos = tf.pos + tf.forward * 1.5
+
+            --call this function on all clients with these two parameters
+            self:RPC("serverRaycast", pos, tf.forward*1000)
+        end
+    end)
+
+end
+
+function self:serverRaycast(origin, ray)
+    assert(self.onServer)
+    local hit = Collision():Raycast(origin, ray)[1]
+    if hit then
+        --make a cross at hit
+        deb:cross(hit.pos)
+        print("hit")
+    end
+end
+```
+
 
 ### nil RPC(integer, string, ...) {#nil-RPC-integer-string}
 From server call a lua function by name on one specific client

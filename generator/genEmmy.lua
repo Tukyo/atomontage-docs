@@ -490,7 +490,7 @@ function Client:ApplyVRHapticFeedback(hand, duration, frequency, amplitude) end
 ]]
 
 function genEmmy:createFile(bindingsServer, bindingsClient)
-    local file = io.open("generator\\emmyApi\\apiEmmyLua.lua", "w")
+    local file = io.open("generator\\emmyApi\\apiEmmyAtomontage.lua", "w")
     
     --default lines
     file:write(emmyDefaultLines, "\n")

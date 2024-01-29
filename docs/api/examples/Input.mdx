@@ -1,10 +1,10 @@
 # Input
 
-A short example of how to use the event driven input system to move an object around with arrow keys. In this example any user connected can move the objecct. 
+A short example of how to use the event driven input system to move an object around with arrow keys. In this example any user connected can move the object. 
 
-The object transform for rendering is streamed from server to clients. Because of this the movement delayed on the client side.
+The object transform for rendering is streamed from server to clients. Because of this the movement is delayed on the client side.
 A more advanced script would assign a single owner to the script
-who can move the object and not receieve the rendered position from the server via `VoxelRenderer.receiveTransform = false`
+who can move the object and not receive the rendered position from the server via [`VoxelRenderer.receiveTransform = false`](..\voxelRenderer)
 
 ```lua
 local self = {}

@@ -5,5 +5,14 @@
 		}
 	],
 	"settings": {
+		"cSpell.enabled": true,
+		"cSpell.enableFiletypes": [
+			"mdx"
+		],
+		"cSpell.words": [
+			"Perc",
+			"Raycast",
+			"voxel"
+		]
 	}
 }
