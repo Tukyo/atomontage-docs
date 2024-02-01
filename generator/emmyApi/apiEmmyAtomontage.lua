@@ -484,53 +484,6 @@ function Client:ApplyVRHapticFeedback(hand, duration, frequency, amplitude) end
 `Client`
 `Server`
 
-[View Documentation](https://docs.atomontage.com/api/AssetManager)
-]]
---- @class AssetManager
-AssetManager = {}
-
---- @param p1 AssetManager
---- @return userdata
-function AssetManager:GetAssets(p1) end
-
---- @param p1 string
---- @return ResResource
-function AssetManager:Get(p1) end
-
---- @param p1 type
---- @param p2 string
---- @return boolean
-function AssetManager:AddAsset(p1, p2) end
-
---- @param p1 string
---- @param p2 string
---- @return boolean
-function AssetManager:AddAsset(p1, p2) end
-
---- @param p1 ResResource
---- @return type
-function AssetManager:GetResourceType(p1) end
-
---- @param p1 type
---- @return boolean
-function AssetManager:IsAssetType(p1) end
-
---- @param p1 AssetManager
---- @return table
-function AssetManager:GetAssetTypes(p1) end
-
---- @param p1 AssetManager
---- @return string
-function AssetManager:GetAssetsPath(p1) end
-
---- @param p1 AssetManager
---- @return string
-function AssetManager:GetFilePath(p1) end
-
---[[
-`Client`
-`Server`
-
 [View Documentation](https://docs.atomontage.com/api/Box)
 ]]
 --- @class Box
@@ -606,6 +559,12 @@ function Capsule() end
 --- @param p4 number
 --- @return Capsule
 function Capsule(p1, p2, p3, p4) end
+
+--- @param p1 Vec3
+--- @param p2 Vec3
+--- @param p3 number
+--- @return Capsule
+function Capsule(p1, p2, p3) end
 
 --- @param p1 Vec3
 --- @param p2 Vec3
@@ -1197,21 +1156,6 @@ function Client:SetTestRenderObjectEnabled(p1, p2) end
 --- @return boolean
 function Client:ToggleTestRenderObjectEnabled(p1) end
 
---- @param p1 integer
---- @param p2 number
---- @return nil
-function Client:EnableRenderingWithFadeEffect(p1, p2) end
-
---- @param p1 integer
---- @param p2 number
---- @return nil
-function Client:DisableRenderingWithFadeEffect(p1, p2) end
-
---- @param p1 integer
---- @param p2 number
---- @return nil
-function Client:ToggleRenderingWithFadeEffect(p1, p2) end
-
 --[[
 `Client`
 `Server`
@@ -1467,6 +1411,12 @@ function Cylinder(p1, p2, p3, p4) end
 
 --- @param p1 Vec3
 --- @param p2 Vec3
+--- @param p3 number
+--- @return Cylinder
+function Cylinder(p1, p2, p3) end
+
+--- @param p1 Vec3
+--- @param p2 Vec3
 --- @return Cylinder
 function Cylinder(p1, p2) end
 
@@ -1566,24 +1516,6 @@ function Gamepad:RumbleTriggers(p1, p2, p3) end
 --- @field distance number
 --- @field type HitType
 Hit = {}
-
---[[
-`Client`
-`Server`
-
-[View Documentation](https://docs.atomontage.com/api/Image)
-]]
---- @class Image
---- @field pixelFormat PixelFormat
---- @field mipMaps userdata
---- @field isCubeMap boolean
-Image = {}
-
---- @return boolean
-function Image:IsValid() end
-
---- @return boolean
-function Image:IsManaged() end
 
 --[[
 `Client`
@@ -2386,12 +2318,6 @@ Material = {}
 --- @return Material
 function Material(p1) end
 
---- @return boolean
-function Material:IsValid() end
-
---- @return boolean
-function Material:IsManaged() end
-
 --- @param p1 Material
 --- @param p2 string
 --- @return boolean
@@ -2885,15 +2811,6 @@ function Quat:__tostring(p1) end
 --- @field ambientOcclusionFactor number
 --- @field taskBoxScale integer
 RealtimeLightingInfo = {}
-
---[[
-`Client`
-`Server`
-
-[View Documentation](https://docs.atomontage.com/api/ResResource)
-]]
---- @class ResResource
-ResResource = {}
 
 --[[
 `Client`
@@ -7274,41 +7191,6 @@ function VoxelRenderer:__eq(p1, p2) end
 --- @return number, number
 function VoxelRenderer:GetBounds() end
 
---- @enum AttachmentFlags
-AttachmentFlags = {
-	-- test
-	Depth = 0,
-	DepthAndStencil = 1,
-	-- bladdddla
-	Color0 = 2,
-	Color1 = 3,
-	Color2 = 4,
-	Color3 = 5,
-}
-
---- @enum BlendFactor
-BlendFactor = {
-	Zero = 0,
-	SrcColor = 1,
-	DstColor = 2,
-	OneMinusDstColor = 3,
-	SrcAlpha = 4,
-	OneMinusSrcAlpha = 5,
-	DstAlpha = 6,
-	OneMinusDstAlpha = 7,
-	One = 8,
-	OneMinusSrcColor = 9,
-	ConstantColor = 10,
-	OneMinusConstantColor = 11,
-	ConstantAlpha = 12,
-	OneMinusConstantAlpha = 13,
-	SrcAlphaSaturate = 14,
-	Src1Color = 15,
-	OneMinusSrc1Color = 16,
-	Src1Alpha = 17,
-	OneMinusSrc1Alpha = 18,
-}
-
 --- @enum BlendMode
 BlendMode = {
 	Normal = 0,
@@ -7339,15 +7221,6 @@ BlendMode = {
 	Luminosity = 25,
 }
 
---- @enum BlendOp
-BlendOp = {
-	Add = 0,
-	Subtract = 1,
-	ReverseSubtract = 2,
-	Min = 3,
-	Max = 4,
-}
-
 --- @enum ClientMode
 ClientMode = {
 	View = 0,
@@ -7355,64 +7228,11 @@ ClientMode = {
 	DevDebug = 2,
 }
 
---- @enum CpuArch
-CpuArch = {
-	Unknown = 0,
-	X86 = 1,
-	X86_64 = 2,
-	Arm = 3,
-	Arm64 = 4,
-	Wasm = 5,
-}
-
---- @enum CullMode
-CullMode = {
-	None = 0,
-	Front = 1,
-	Back = 2,
-	FrontAndBack = 3,
-}
-
---- @enum DepthBufferMode
-DepthBufferMode = {
-	None = 0,
-	DepthOnly = 1,
-	DepthAndStencil = 2,
-}
-
 --- @enum Device
 Device = {
 	Generic = 0,
 	Quest = 1,
 	MagicLeap2 = 2,
-}
-
---- @enum DrawingCommandsFlags
-DrawingCommandsFlags = {
-	BaseVertex = 0,
-	BaseInstance = 1,
-	BaseVertexBaseInstance = 2,
-	MultiBaseVertex = 3,
-	MultiBaseInstance = 4,
-	MultiBaseVertexBaseInstance = 5,
-}
-
---- @enum FrontFaceWinding
-FrontFaceWinding = {
-	Clockwise = 0,
-	CounterClockwise = 1,
-}
-
---- @enum Function
-Function = {
-	Never = 0,
-	Less = 1,
-	Equal = 2,
-	Greater = 3,
-	Notequal = 4,
-	Gequal = 5,
-	Always = 6,
-	Lequal = 7,
 }
 
 --- @enum HitType
@@ -7429,18 +7249,6 @@ LuaErrorType = {
 	DoFile = 1,
 	Runtime = 2,
 	UIAction = 3,
-}
-
---- @enum Operation
-Operation = {
-	Keep = 0,
-	Zero = 1,
-	Replace = 2,
-	Increment = 3,
-	IncrementWrap = 4,
-	Decrement = 5,
-	DecrementWrap = 6,
-	Invert = 7,
 }
 
 --- @enum PixelFormat
@@ -7493,13 +7301,6 @@ PixelFormat = {
 	SRGB888A8 = 45,
 }
 
---- @enum PolygonMode
-PolygonMode = {
-	Fill = 0,
-	Line = 1,
-	Point = 2,
-}
-
 --- @enum PrimitiveTopology
 PrimitiveTopology = {
 	Points = 0,
@@ -7547,53 +7348,6 @@ ShaderPrecisionType = {
 	HighInt = 5,
 }
 
---- @enum ShaderResourceType
-ShaderResourceType = {
-	Unknown = 0,
-	Bool = 1,
-	BoolVec2 = 2,
-	BoolVec3 = 3,
-	BoolVec4 = 4,
-	Int = 5,
-	IntVec2 = 6,
-	IntVec3 = 7,
-	IntVec4 = 8,
-	UInt = 9,
-	UIntVec2 = 10,
-	UIntVec3 = 11,
-	UIntVec4 = 12,
-	Float = 13,
-	FloatVec2 = 14,
-	FloatVec3 = 15,
-	FloatVec4 = 16,
-	FloatMat2x2 = 17,
-	FloatMat2x3 = 18,
-	FloatMat2x4 = 19,
-	FloatMat3x2 = 20,
-	FloatMat3x3 = 21,
-	FloatMat3x4 = 22,
-	FloatMat4x2 = 23,
-	FloatMat4x3 = 24,
-	FloatMat4x4 = 25,
-	Double = 26,
-	DoubleVec2 = 27,
-	DoubleVec3 = 28,
-	DoubleVec4 = 29,
-	DoubleMat2x2 = 30,
-	DoubleMat2x3 = 31,
-	DoubleMat2x4 = 32,
-	DoubleMat3x2 = 33,
-	DoubleMat3x3 = 34,
-	DoubleMat3x4 = 35,
-	DoubleMat4x2 = 36,
-	DoubleMat4x3 = 37,
-	DoubleMat4x4 = 38,
-	Image = 39,
-	Texture = 40,
-	Buffer = 41,
-	AccelerationStructure = 42,
-}
-
 --- @enum Side
 Side = {
 	Left = 0,
@@ -7617,39 +7371,11 @@ System = {
 	Android = 6,
 }
 
---- @enum TextureFiltering
-TextureFiltering = {
-	None = 0,
-	Linear = 1,
-	Bilinear = 2,
-	Trilinear = 3,
-	Anisotropic = 4,
-}
-
---- @enum TextureWrappingMode
-TextureWrappingMode = {
-	ClampToEdge = 0,
-	Repeat = 1,
-	MirroredRepeat = 2,
-}
-
 --- @enum TmpLayerFlags
 TmpLayerFlags = {
 	None = 0,
 	Common = 1,
 	Atlas = 2,
-}
-
---- @enum Type
-Type = {
-	Unknown = 0,
-	Texture1D = 1,
-	Texture1DArray = 2,
-	Texture2D = 3,
-	Texture2DArray = 4,
-	Texture3D = 5,
-	TextureCube = 6,
-	TextureCubeArray = 7,
 }
 
 --- @enum UIActionsPlace
@@ -7686,28 +7412,6 @@ UIItemType = {
 	Count = 22,
 }
 
---- @enum UpdateFrequency
-UpdateFrequency = {
-	Once = 0,
-	Frame = 1,
-	ObjectFrame = 2,
-	ObjectDraw = 3,
-}
-
---- @enum UsageFlagBits
-UsageFlagBits = {
-	UsageTransferSrcBIT = 0,
-	UsageTransferDstBIT = 1,
-	UsageSampledBIT = 2,
-	UsageStorageBIT = 3,
-	UsageColorAttachmentBIT = 4,
-	UsageDepthStencilAttachmentBIT = 5,
-	UsageTransientAttachmentBIT = 6,
-	UsageInputAttachmentBIT = 7,
-	UsageShadingRateImageBIT = 8,
-	UsageFragmentDensityMapBIT = 9,
-}
-
 --- @enum VRControllerButton
 VRControllerButton = {
 	A = 0,
@@ -7717,96 +7421,5 @@ VRControllerButton = {
 	Trigger = 4,
 	Grip = 5,
 	Shoulder = 6,
-}
-
---- @enum VSyncMode
-VSyncMode = {
-	Default = 0,
-	Enabled = 1,
-	Disabled = 2,
-	Adaptive = 3,
-}
-
---- @enum VertexComponent
-VertexComponent = {
-	Position0 = 0,
-	Position1 = 1,
-	Position2 = 2,
-	Position3 = 3,
-	TexCoord0 = 4,
-	TexCoord1 = 5,
-	TexCoord2 = 6,
-	TexCoord3 = 7,
-	TexCoord4 = 8,
-	Color0 = 9,
-	Color1 = 10,
-	Index0 = 11,
-	Index1 = 12,
-	Normal0 = 13,
-	Normal1 = 14,
-	Tangent = 15,
-	Bitangent = 16,
-	Index = 17,
-	Unknown = 18,
-	Data0 = 19,
-	Data1 = 20,
-	Data2 = 21,
-	Data3 = 22,
-	Data4 = 23,
-}
-
---- @enum VertexComponentFormat
-VertexComponentFormat = {
-	Unknown = 0,
-	Int8 = 1,
-	Int8Vec2 = 2,
-	Int8Vec3 = 3,
-	Int8Vec4 = 4,
-	Int16 = 5,
-	Int16Vec2 = 6,
-	Int16Vec3 = 7,
-	Int16Vec4 = 8,
-	Int32 = 9,
-	Int32Vec2 = 10,
-	Int32Vec3 = 11,
-	Int32Vec4 = 12,
-	UInt8 = 13,
-	UInt8Vec2 = 14,
-	UInt8Vec3 = 15,
-	UInt8Vec4 = 16,
-	UInt16 = 17,
-	UInt16Vec2 = 18,
-	UInt16Vec3 = 19,
-	UInt16Vec4 = 20,
-	UInt32 = 21,
-	UInt32Vec2 = 22,
-	UInt32Vec3 = 23,
-	UInt32Vec4 = 24,
-	Float = 25,
-	FloatVec2 = 26,
-	FloatVec3 = 27,
-	FloatVec4 = 28,
-	FloatMat2x2 = 29,
-	FloatMat2x3 = 30,
-	FloatMat2x4 = 31,
-	FloatMat3x2 = 32,
-	FloatMat3x3 = 33,
-	FloatMat3x4 = 34,
-	FloatMat4x2 = 35,
-	FloatMat4x3 = 36,
-	FloatMat4x4 = 37,
-	Double = 38,
-	DoubleVec2 = 39,
-	DoubleVec3 = 40,
-	DoubleVec4 = 41,
-	DoubleMat2x2 = 42,
-	DoubleMat2x3 = 43,
-	DoubleMat2x4 = 44,
-	DoubleMat3x2 = 45,
-	DoubleMat3x3 = 46,
-	DoubleMat3x4 = 47,
-	DoubleMat4x2 = 48,
-	DoubleMat4x3 = 49,
-	DoubleMat4x4 = 50,
 }
 

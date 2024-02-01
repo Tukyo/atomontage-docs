@@ -6,6 +6,8 @@ slug: /
 
 # Getting started
 
+![Panel](/img/editor-basics/banner.png)
+
 * [ScriptInstance](api/ScriptInstance)
 * [Client](api/Client)
 * [Server](api/Server)
