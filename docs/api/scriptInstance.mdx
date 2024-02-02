@@ -7,6 +7,55 @@ id: ScriptInstance
 
 The lua table referred to in a script with `self`
 
+
+```lua
+local self = {}
+
+function self:Attach()
+end
+
+function self:Start()
+end
+
+function self:Update(dt)
+end
+
+function self:OnActivate()
+end
+
+function self:OnDeactivate()
+end
+
+function self:Detach()
+end
+
+return self
+```
+
+```mermaid
+---
+title: Script Lifecycle
+---
+graph TD;
+    C([Script component loaded on start or created at runtime])-->A
+    A["Attach()"]-- if active -->S;
+    A["Attach()"]-- if started inactive and activated -->OA2;
+    S["Start()"]-->U;
+
+
+    OA["OnActivate()"]-->U;
+    OA2["OnActivate()"]-->S;
+
+    U["Update()"]-->U;
+    U["Update()"]-->OD;
+    U["Update()"]-->D;
+
+    OD["OnDeactivate()"]-->D;
+    OD["OnDeactivate()"]-->OA;
+
+    D["Detach()"] --> *([Destroy Script Component]);
+```
+
 ## Methods
 
 ### nil Start() {#nil-Start}

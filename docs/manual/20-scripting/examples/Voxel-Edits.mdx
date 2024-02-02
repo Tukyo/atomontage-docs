@@ -30,7 +30,7 @@ end
 function self:makeLine(p1, p2)
     --multiply thickness by transform scale
     local thickness = 0.1 * self.transform.scale
-    local s = Capsule(p1, p2, thickness, thickness)
+    local s = Capsule(p1, p2, thickness)
     local col = self:randomColor()
     VoxelEdit(s, col):Add()
 end
