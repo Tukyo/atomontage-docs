@@ -38,20 +38,24 @@ title: Script Lifecycle
 ---
 graph TD;
     C([Script component loaded on start or created at runtime])-->A
+    
+subgraph lifecycle
     A["Attach()"]-- if active -->S;
     A["Attach()"]-- if started inactive and activated -->OA2;
     S["Start()"]-->U;
 
-
-    OA["OnActivate()"]-->U;
     OA2["OnActivate()"]-->S;
 
-    U["Update()"]-->U;
-    U["Update()"]-->OD;
-    U["Update()"]-->D;
+    OA["OnActivate()"]-->U;
 
-    OD["OnDeactivate()"]-->D;
-    OD["OnDeactivate()"]-->OA;
+    U["Update()"]--every frame-->U;
+    U["Update()"]--deactivated-->OD;
+
+    OD["OnDeactivate()"]--activated-->OA;
+end
+
+    lifecycle-->DEL;
+    DEL([Flagged for deletion at any step])-->D
 
     D["Detach()"] --> *([Destroy Script Component]);
 ```
@@ -74,7 +78,7 @@ Call a lua function by name from server to all clients or from one client to ser
 
 ```lua
 function self:Start()
-    --remember to sync the script component to clients otherwise there is noone to receieve the RPCs
+    --remember to sync the script component to clients otherwise there is no one to receive the RPCs
     self.component.syncToClients = true
     self.cam = Scene:GetActiveCamera()
 
@@ -111,7 +115,7 @@ From server call a lua function by name on one specific client
 ## Properties
 
 ### Script component {#Script-component}
-The script component, seperate from the lua table
+The script component, separate from the lua table
 
 ### Object object {#Object-object}
 The object this script is attached to
