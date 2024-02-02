@@ -12,6 +12,10 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'AtomontageInc', // Usually your GitHub org/user name.
   projectName: 'atomontage-docs', // Usually your repo name.
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   themeConfig: {
     colorMode: {
       defaultMode: 'dark',
@@ -77,6 +81,10 @@ module.exports = {
             {
               label: 'YouTube',
               href: 'https://www.youtube.com/channel/UClzSvcwdGx9v66YRza5u_Mg',
+            },
+            {
+              label: 'Discord',
+              href: 'https://discord.gg/JpaAnchqcw',
             },
           ],
         },
