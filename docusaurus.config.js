@@ -71,8 +71,8 @@ module.exports = {
           title: 'Social',
           items: [
             {
-              label: 'Atomontage',
-              href: 'https://www.atomontage.com/',
+              label: 'Discord',
+              href: 'https://discord.gg/JpaAnchqcw',
             },
             {
               label: 'Twitter',
@@ -82,10 +82,7 @@ module.exports = {
               label: 'YouTube',
               href: 'https://www.youtube.com/channel/UClzSvcwdGx9v66YRza5u_Mg',
             },
-            {
-              label: 'Discord',
-              href: 'https://discord.gg/JpaAnchqcw',
-            },
+           
           ],
         },
         {
@@ -97,6 +94,10 @@ module.exports = {
               to: '/blog',
             },
             */
+            {
+              label: 'Atomontage',
+              href: 'https://www.atomontage.com/',
+            },
             {
               label: 'GitHub',
               href: 'https://github.com/AtomontageInc/atomontage-docs/tree/master/',
@@ -132,6 +133,10 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
+        },
+        gtag: {
+          trackingID: 'G-EK6ZYTTL2R',
+          anonymizeIP: true,
         },
       },
     ],

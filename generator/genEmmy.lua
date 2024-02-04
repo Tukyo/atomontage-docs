@@ -259,6 +259,14 @@ local emmyDefaultLines = [[
 ---| '"Y"'
 ---| '"Z"'
 
+
+--- @class Box:Shape
+--- @class Sphere:Shape
+--- @class Capsule:Shape
+--- @class Cylinder:Shape
+--- @class Polygon:Shape
+
+
 --- @class Object
 --- @field children Object[]
 --- @field components Component[]
@@ -284,16 +292,6 @@ function ScriptInstance:OnActivate() end
 function ScriptInstance:OnDeactivate() end
 
 
---- @return Filter
-function Filter.new() end
-
---- @return Collision
-function Collision.new() end
-
---- @return VoxelEdit
-function VoxelEdit.new() end
-
-
 --- @return Hit[]
 function Collision:Raycast() end
 
@@ -301,6 +299,14 @@ function Collision:Raycast() end
 --- @param p2 Vec3
 --- @return Hit[]
 function Collision:Raycast(p1, p2) end
+
+
+--- @return Overlap[]
+function Collision:GetOverlap() end
+
+--- @param shape Shape
+--- @return Overlap[]
+function Collision:GetOverlap(shape) end
 
 
 --- @generic T:Component
