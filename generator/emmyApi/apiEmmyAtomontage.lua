@@ -239,6 +239,14 @@
 ---| '"Y"'
 ---| '"Z"'
 
+
+--- @class Box:Shape
+--- @class Sphere:Shape
+--- @class Capsule:Shape
+--- @class Cylinder:Shape
+--- @class Polygon:Shape
+
+
 --- @class Object
 --- @field children Object[]
 --- @field components Component[]
@@ -257,23 +265,6 @@
 function Scene:TraceRay(p1) end
 
 
---- @return nil
-function ScriptInstance:OnActivate() end
-
---- @return nil
-function ScriptInstance:OnDeactivate() end
-
-
---- @return Filter
-function Filter.new() end
-
---- @return Collision
-function Collision.new() end
-
---- @return VoxelEdit
-function VoxelEdit.new() end
-
-
 --- @return Hit[]
 function Collision:Raycast() end
 
@@ -281,6 +272,14 @@ function Collision:Raycast() end
 --- @param p2 Vec3
 --- @return Hit[]
 function Collision:Raycast(p1, p2) end
+
+
+--- @return Overlap[]
+function Collision:GetOverlap() end
+
+--- @param shape Shape
+--- @return Overlap[]
+function Collision:GetOverlap(shape) end
 
 
 --- @generic T:Component
@@ -952,7 +951,7 @@ function Client:GetWindowSize() end
 function Client:GetViewportSize() end
 
 --[[
-Returns [`CommandLine`](/api/commandLine)
+Returns [`CommandLine`](./commandLine.mdx)
 
 [View Documentation](https://docs.atomontage.com/api/Client#CommandLine-GetCommandLine)
 ]]
@@ -1243,9 +1242,19 @@ function CommandLine:GetOptionInt(p1, p2) end
 function CommandLine:GetOption(p1, p2) end
 
 --- @param p1 string
+--- @param p2 Vec2
+--- @return Vec2
+function CommandLine:GetOptionVec2(p1, p2) end
+
+--- @param p1 string
 --- @param p2 Vec3
 --- @return Vec3
 function CommandLine:GetOptionVec3(p1, p2) end
+
+--- @param p1 string
+--- @param p2 Vec4
+--- @return Vec4
+function CommandLine:GetOptionVec4(p1, p2) end
 
 --- @param p1 CommandLine
 --- @return table
@@ -1254,6 +1263,17 @@ function CommandLine:GetAll(p1) end
 --[[
 `Client`
 `Server`
+
+All components inherit from this class. It is not meant to be instantiated directly.
+* [Transform](Transform)
+* [Script](Script)
+* [Camera](Camera)
+* [VoxelData](VoxelData)
+* [StaticVoxelData](StaticVoxelData)
+* [VoxelRenderer](VoxelRenderer)
+* [MeshData](MeshRenderer)
+* [MeshRenderer](MeshRenderer)
+* [Sky](Sky)
 
 [View Documentation](https://docs.atomontage.com/api/Component)
 ]]
@@ -1266,6 +1286,8 @@ Component = {}
 --[[
 `Client`
 `Server`
+
+Save and load values for this client
 
 [View Documentation](https://docs.atomontage.com/api/Config)
 ]]
@@ -2541,7 +2563,6 @@ function Object:GetRefCount() end
 [View Documentation](https://docs.atomontage.com/api/Overlap)
 ]]
 --- @class Overlap
---- @field bounds Box3f
 --- @field center Vec3
 --- @field radius number
 --- @field object Object
@@ -3064,6 +3085,63 @@ function Script:GetScriptUpdateTime() end
 
 The lua table referred to in a script with `self`
 
+
+```lua
+local self = {}
+
+--Called once on object creation before Start()
+function self:Attach()
+end
+
+--Called once on object creation after Attach()
+function self:Start()
+end
+
+--Called once a frame after Start() if the object is active
+function self:Update(dt)
+end
+
+function self:OnActivate()
+end
+
+function self:OnDeactivate()
+end
+
+--Called when script component or object is destroyed
+function self:Detach()
+end
+
+return self
+```
+
+```mermaid
+---
+title: Script Lifecycle
+---
+graph TD;
+    C([Script component loaded on start or created at runtime])-->A
+    
+subgraph lifecycle
+    A["Attach()"]-- if active -->S;
+    A["Attach()"]-- if started inactive and activated -->OA2;
+    S["Start()"]-->U;
+
+    OA2["OnActivate()"]-->S;
+
+    OA["OnActivate()"]-->U;
+
+    U["Update()"]--every frame-->U;
+    U["Update()"]--deactivated-->OD;
+
+    OD["OnDeactivate()"]--activated-->OA;
+end
+
+    lifecycle-->DEL;
+    DEL([Flagged for deletion at any step])-->D
+
+    D["Detach()"] --> *([Destroy Script Component]);
+```
+
 [View Documentation](https://docs.atomontage.com/api/ScriptInstance)
 ]]
 --- @class ScriptInstance
@@ -3073,7 +3151,7 @@ The lua table referred to in a script with `self`
 --- @field onServer boolean
 --- @field onClient boolean
 ScriptInstance = {
-	component = nil, ---The script component, seperate from the lua table
+	component = nil, ---The script component, separate from the lua table
 	object = nil, ---The object this script is attached to
 	transform = nil, ---The transform of the object this script is attached to
 	onServer = nil, ---Use this to run part of the code only on server or client```lua if self.onServer then    -- do something only on serverend```
@@ -3088,6 +3166,11 @@ Called once on object creation after Attach()
 --- @return nil
 function ScriptInstance:Start() end
 
+--[[
+Called once a frame after Start() if the object is active 
+
+[View Documentation](https://docs.atomontage.com/api/ScriptInstance#nil-Update-number-deltaTime)
+]]
 --- @param deltaTime number
 --- @return nil
 function ScriptInstance:Update(deltaTime) end
@@ -3108,12 +3191,19 @@ Called when script component or object is destroyed
 --- @return nil
 function ScriptInstance:Detach() end
 
+--- @return nil
+function ScriptInstance:OnActivate() end
+
+--- @return nil
+function ScriptInstance:OnDeactivate() end
+
 --[[
-Call a lua function by name from server to all clients or from one client to server. You may pass parameters
+Call a lua function by name from server to all clients or from one client to server. You may pass parameters. 
+You may send tables and basic math types such as `Vec3` or `Quat` but other classes may not be supported.
 
 ```lua
 function self:Start()
-    --remember to sync the script component to clients otherwise there is noone to receieve the RPCs
+    --remember to sync the script component to clients otherwise there is no one to receive the RPCs
     self.component.syncToClients = true
     self.cam = Scene:GetActiveCamera()
 
@@ -3463,8 +3553,9 @@ function Server:PBRTranscodeToPBR0Ver1() end
 `Client`
 `Server`
 
-Shapes for collisions and voxel operations
+For [voxel edits](VoxelEdit#userdata-shape), [collisions](Collision#Shape-shape) and [rendering](MeshData#nil-AddShape-Shape-Vec4)
 
+All shapes inherit from this class. It is not meant to be instantiated directly.
 * [Box](Box)
 * [Sphere](Sphere)
 * [Capsule](Capsule)
@@ -3503,8 +3594,16 @@ Shape = {}
 --- @field sunAltitude number
 --- @field rayleighCoeff Vec3
 --- @field mieCoeff number
+--- @field yRotationAngle number
 --- @field render boolean
 Sky = {}
+
+--- @param p1 string
+--- @param p2 TextureType
+--- @param p3 Vec4
+--- @param p4 number
+--- @return nil
+function Sky:LoadSkyTexture(p1, p2, p3, p4) end
 
 --[[
 `Client`
@@ -6925,7 +7024,12 @@ function VoxelDB:GetLayerStats(p1) end
 --- @return table
 function VoxelDB:GetUsedLayers() end
 
---- @return number, number
+--[[
+World position and size of AABB (axis-aligned bounding box) of the static voxel data
+
+[View Documentation](https://docs.atomontage.com/api/VoxelDB#Vec3-Vec3-GetBounds)
+]]
+--- @return Vec3, Vec3
 function VoxelDB:GetBounds() end
 
 --[[
@@ -7016,10 +7120,10 @@ function VoxelDataResource:Save(p1, p2) end
 --[[
 get center (in local space) and dimensions of the voxel data
 
-[View Documentation](https://docs.atomontage.com/api/VoxelDataResource#number-number-GetBounds)
+[View Documentation](https://docs.atomontage.com/api/VoxelDataResource#Vec3-Vec3-GetLocalBounds)
 ]]
---- @return number, number
-function VoxelDataResource:GetBounds() end
+--- @return Vec3, Vec3
+function VoxelDataResource:GetLocalBounds() end
 
 --- @return userdata
 function VoxelDataResource:Duplicate() end
@@ -7188,9 +7292,22 @@ VoxelRenderer = {
 --- @return boolean
 function VoxelRenderer:__eq(p1, p2) end
 
---- @return number, number
+--[[
+World position and size of AABB (axis-aligned bounding box) of the object
+
+[View Documentation](https://docs.atomontage.com/api/VoxelRenderer#Vec3-Vec3-GetBounds)
+]]
+--- @return Vec3, Vec3
 function VoxelRenderer:GetBounds() end
 
+--[[
+
+
+Used by [VoxelEdit](../VoxelEdit#BlendMode-blendMode)
+
+
+[View Documentation](https://docs.atomontage.com/api/BlendMode)
+]]
 --- @enum BlendMode
 BlendMode = {
 	Normal = 0,
@@ -7299,6 +7416,7 @@ PixelFormat = {
 	RGBA16U = 43,
 	SRGB888 = 44,
 	SRGB888A8 = 45,
+	RGB10A2 = 46,
 }
 
 --- @enum PrimitiveTopology
@@ -7320,6 +7438,7 @@ RendererStateFlags = {
 	DepthPass = 4,
 	VR = 5,
 	PBR = 6,
+	IBL = 7,
 }
 
 --[[
@@ -7369,6 +7488,14 @@ System = {
 	MacOS = 4,
 	iOS = 5,
 	Android = 6,
+}
+
+--- @enum TextureType
+TextureType = {
+	Unknown = 0,
+	Cube = 1,
+	Dome = 2,
+	Sphere = 3,
 }
 
 --- @enum TmpLayerFlags

@@ -285,13 +285,6 @@ local emmyDefaultLines = [[
 function Scene:TraceRay(p1) end
 
 
---- @return nil
-function ScriptInstance:OnActivate() end
-
---- @return nil
-function ScriptInstance:OnDeactivate() end
-
-
 --- @return Hit[]
 function Collision:Raycast() end
 

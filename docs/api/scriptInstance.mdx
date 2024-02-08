@@ -11,12 +11,15 @@ The lua table referred to in a script with `self`
 ```lua
 local self = {}
 
+--Called once on object creation before Start()
 function self:Attach()
 end
 
+--Called once on object creation after Attach()
 function self:Start()
 end
 
+--Called once a frame after Start() if the object is active
 function self:Update(dt)
 end
 
@@ -26,6 +29,7 @@ end
 function self:OnDeactivate()
 end
 
+--Called when script component or object is destroyed
 function self:Detach()
 end
 
@@ -66,6 +70,7 @@ end
 Called once on object creation after Attach()
 
 ### nil Update(number deltaTime) {#nil-Update-number-deltaTime}
+Called once a frame after Start() if the object is active 
 
 ### nil Attach() {#nil-Attach}
 Called once on object creation before Start()
@@ -73,8 +78,13 @@ Called once on object creation before Start()
 ### nil Detach() {#nil-Detach}
 Called when script component or object is destroyed
 
+### nil OnActivate() {#nil-OnActivate}
+
+### nil OnDeactivate() {#nil-OnDeactivate}
+
 ### nil RPC(string, ...) {#nil-RPC-string}
-Call a lua function by name from server to all clients or from one client to server. You may pass parameters
+Call a lua function by name from server to all clients or from one client to server. You may pass parameters. 
+You may send tables and basic math types such as `Vec3` or `Quat` but other classes may not be supported.
 
 ```lua
 function self:Start()

@@ -34,86 +34,6 @@ local fun, err = load(bindingsSerialized)
 if err then error(err) end
 local _BindingsClient = fun()
 
-local testBindings = {
-    ["Classes"] = {
-        ["Vec3"] = {
-            ["Methods"] = {
-                "vec3 ()",
-                "vec3 (float, float, float)",
-                "vec3 (uint32_t, int32_t, uint32_t)", --test
-                "vec3 (float)",
-                "vec4 __mul (Mat4, vec3)",
-                "vec3 __mul (vec3, float)",
-                "vec3 __mul (float, vec3)",
-                "vec3 __mul (vec3, vec3)",
-                "vec3 __div (vec3, float)",
-                "float Dot (vec3, vec3)",
-                "vec3 Lerp (vec3, vec3, float)",
-                "vec3 Mix (vec3, vec3, float)",
-                "void Normalize (vec3)",
-                "vec3 GetNormalized (vec3)",
-                "void Clamp (vec3, float, float)",
-                "float Length (vec3)"
-            },
-            ["Properties"] = {
-                "float x",
-                "float y",
-                "float z",
-                "vec3 zero",
-                "vec3 up",
-                "vec3 right",
-                "vec3 forward",
-                "float length",
-                "vec3 normalized",
-            }
-        },
-        ["Client"] = {
-            ["Methods"] = {
-                "void SendMessage (basic_table_core<0,classsol::basic_reference<0> >)",
-                "void SendMessages (basic_table_core<0,classsol::basic_reference<0> >)",
-                "basic_table_core<0,classsol::basic_reference<0> > ReceiveMessages (this_state)",
-                "string UIItemUpdate (uint32_t, UIItem, basic_object<classsol::basic_reference<0> >)",
-                "void OpenKeyboardShortcutInput (string key)",
-                "void ToggleUICreatorWindow ()",
-                "Camera GetCamera ()",
-                "bool IsClient ()",
-                "bool IsServer ()",
-            }
-        },
-        ["Camera"] = {
-            ["Methods"] = {
-                "Camera (string)",
-                "Transformation GetTransformation (Object3D)",
-                "void SetTransformation (Transformation)",
-            },
-            ["Properties"] = {
-                "Transformation transformation",
-                "Transformation transform"
-            }
-        }
-    },
-    ["Enums"] = {
-        ["AttachmentFlags"] ={
-            [2] = "Depth",
-            [4] = "DepthAndStencil",
-            [8] = "Color0",
-        },
-        ["BlendFactor"] = {
-            "Zero",
-            "SrcColor",
-            "DstColor",
-            "OneMinusDstColor",
-            "SrcAlpha",
-            "OneMinusSrcAlpha",
-            "DstAlpha",
-            "OneMinusDstAlpha",
-        }
-    }
-}
-
---_BindingsServer = testBindings
-
-
 
 local fileEmmyLua = genEmmy:createFile(_BindingsServer, _BindingsClient)
 
@@ -296,7 +216,8 @@ function genDocs:gen()
     end
 
     for key, value in pairs(fileNamesClasses) do
-        if value then
+        --skip files starting with number(s) and dash i.e 1-intro
+        if value and not key:find("%d+%-") then
             os.remove(docsLocation..key..".mdx")
             print("Old class file:", key..".mdx, deleted")
         end
@@ -771,7 +692,7 @@ function genDocs:cleanUpName(name)
         {"Res<classae::renderer::Material>", "Material" }, --correct?
         {"shared_ptr<structae::scene::VoxelDataResource>", "VoxelDataResource" },
         {"shared_ptr<classae::scene::CameraComponent>", "CameraComponent"},
-        {"tuple<classTVector3<float>,classTVector3<float> >", "number, number"}, --this is two
+        {"tuple<classTVector3<float>,classTVector3<float> >", "Vec3, Vec3"}, --this is two
         {"tuple<classsol::basic_table_core<0,classsol::basic_reference<0>>,classsol::basic_table_core<0,classsol::basic_reference<0>> >", "table, table"}, --this is two
         {"tuple<classTVector3<float>,classae::core::TQuaternion<float> >", "Vec3, Quat" }, --this is two
         {"tuple<bool,classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>> >", "bool, string" }, --this is two
