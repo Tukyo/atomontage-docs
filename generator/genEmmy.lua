@@ -272,6 +272,15 @@ local emmyDefaultLines = [[
 --- @field components Component[]
 
 
+--- @class VoxelEdit
+--- @field filter Filter
+--- @field shape Shape
+--- @field onProgress fun(progress:number) --progress 0-100
+--- @field onFinished fun()
+--- @field onError fun()
+--- @field copyResource VoxelDataResource
+
+
 --- @class TraceRayParams:table
 --- @field Origin Vec3
 --- @field Dir Vec3

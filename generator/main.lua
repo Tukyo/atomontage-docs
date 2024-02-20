@@ -10,7 +10,7 @@ genDocs:gen()
 
 --only works on windows
 local function copyFile(fromFolder, toFolder)
-    local ok = os.execute('start xcopy /E /S /y /q "' .. fromFolder .. '" "' .. toFolder .. '"')
+    local ok = os.execute('xcopy /E /S /y /q "' .. fromFolder .. '" "' .. toFolder .. '"')
     assert(ok)
 end
 
