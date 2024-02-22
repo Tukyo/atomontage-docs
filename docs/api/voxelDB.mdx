@@ -5,6 +5,10 @@ id: VoxelDB
 `Client`
 `Server`
 
+:::info
+The voxel edit functions in this class are old and may not correctly work. Instead use [VoxelEdit](VoxelEdit).
+:::
+
 ## Methods
 
 ### nil Clear() {#nil-Clear}
@@ -30,8 +34,8 @@ If we had flush after each op, it would eliminate all multithreaded processing.
 ### boolean GetMask(number, number, number) {#boolean-GetMask-number-number-number}
 
 ### integer GetMaskNeighbours(Vec3i, integer) {#integer-GetMaskNeighbours-Vec3i-integer}
-int is the neighbourhood radius, 1 means it's from pos - 1 to pos + 1, 
-sum of voxles in 3x3 square without center (0-26)
+int is the neighborhood radius, 1 means it's from pos - 1 to pos + 1, 
+sum of voxels in 3x3 square without center (0-26)
 it should be in range 1-8
 
 ### integer GetMaskNeighbours(number, number, number, integer) {#integer-GetMaskNeighbours-number-number-number-integer}

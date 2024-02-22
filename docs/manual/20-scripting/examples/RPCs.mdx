@@ -22,7 +22,7 @@ function self:Start()
             local tf = self.cam.object.transform
             local pos = tf.pos + -tf.forward * 3
 
-            --call serverCreateObject without camera position and ray on server
+            --call serverCreateObject with camera position and ray on server
             self:RPC("serverCreateObject", pos, -tf.forward * 100)
         end
     end)

@@ -5,7 +5,29 @@ id: Config
 `Client`
 `Server`
 
-Save and load values for this client
+Save and load values for this client. 
+These values are stored clients local storage and will be available on all montages he visits.
+This is useful for saving settings, last player position, etc.
+
+To avoid naming conflicts with other montages, use a unique prefix for each game. For example, if your game is called "MyGame", you can use "MyGame/" as a prefix for all your keys.
+
+```lua title="Save position"
+Config:SetVec3("MyGame/PlayerPosition", player.transform.pos)
+```
+
+```lua title="Load saved position"
+local defaultPos = Vec3(0,0,0)
+local pos = Config:GetVec3("MyGame/PlayerPosition", defaultPos)
+player.transform.pos = pos
+```
+
+If you want to save a setting only for this montage include the montage id in the setting
+```lua
+--extract id from url
+local url = Client:GetMontageURL()
+local id, params = string.match(url, "/view%?m=([%w%-%_]*)(.*)")
+Config:SetFloat(id.."/MyGame/Highscore", highscore)
+```
 
 ## Methods
 
