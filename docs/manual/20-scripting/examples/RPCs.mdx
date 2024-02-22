@@ -1,46 +1,57 @@
 # RPCs
 
+Use RPCs to communicate between server and clients. 
+In this example when a button is pressed on the client the function `serverCreateObject` is called on the server with a position in front of the camera.
+
+:::info
+`-tf.forward` is temporarily negative as a workaround because the camera points backwards, we are fixing this soon 
+:::
 
 ```lua
-
 local self = {}
 
 function self:Start()
     self.component.syncToClients = true
-
     self.cam = Scene:GetActiveCamera()
 
-    events.mouseButtonDown.addListener(self, function (button, from)
+    events.mouseButtonDown.addListener(self, function(button, from)
+        --run the following code only on clients
         if self.onServer then return end
         if button == 1 then
-            --if left mouse button pressed create a ray from mouse position and direction
-            local mpos = Input:MousePosPerc()
+            --if left mouse button pressed create a ray from camera position pointing straight forward
             local tf = self.cam.object.transform
-            local pos = tf.pos + tf.forward * 1.5
+            local pos = tf.pos + -tf.forward * 3
 
-            self:RPC("serverCreateObject", pos, tf.forward*1000)
+            --call serverCreateObject without camera position and ray on server
+            self:RPC("serverCreateObject", pos, -tf.forward * 100)
         end
     end)
-
 end
 
 function self:Update(deltaTime)
 
 end
 
+--this function is called by the RPC
 function self:serverCreateObject(origin, ray)
     assert(self.onServer)
-    deb:line(origin, origin + ray)
+    
+    --do a raycast and also draw a line to visualize the ray
     local hit = Collision():Raycast(origin, ray)[1]
-    if hit then
-        self:createVoxelObject(hit.pos, hit.normal)
-    else
-        self:createVoxelObject(origin + ray, Vec3.up)
+    deb:line(origin, origin + ray)
+    
+    local pos = origin + ray
+    if hit then 
+        pos = hit.pos
+        deb:cross(pos) --draw a cross at the hit position
     end
+    self:createVoxelObject(pos, Vec3.up)
 end
 
+--place a voxel object at pos
 function self:createVoxelObject(pos, up)
     assert(self.onServer)
+    --if there is no object yet create it
     if not self.ob then
         local ob = Scene:CreateObject("Spawned Object")
         local vd = ob:AddComponent('VoxelData')
@@ -48,10 +59,13 @@ function self:createVoxelObject(pos, up)
         vd.path = "Emoji_Blank_Face.am"
         self.ob = ob
     end
+
+    --place the object
     self.ob.transform.pos = pos
     self.ob.transform.rot = Quat.LookAt(Vec3.forward, up)
 end
 
 return self
+
 
 ```
