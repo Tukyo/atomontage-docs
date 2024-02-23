@@ -14,23 +14,23 @@ id: Collision
 ## Methods
 
 ### table Raycast() {#table-Raycast}
-Use rayPos, rayDir, returns table of Hit values or empty table for no hit
+Use rayPos, rayDir, returns table of Hit values or empty table for no hit.
+Returns [Hit](Hit).
 
 ### table Raycast(Vec3, Vec3) {#table-Raycast-Vec3-Vec3}
-Use rayPos, rayDir, returns table of Hit values or empty table for no hit
 
 ### table GetOverlap() {#table-GetOverlap}
-Checks collision between shape and geometry passed by filter
+Checks collision between shape and geometry passed by filter.
+Returns [Overlap](Overlap).
 
 ### table GetOverlap(Shape) {#table-GetOverlap-Shape}
-Checks collision between shape and geometry passed by filter
 
 ## Properties
 
 ### Filter filter {#Filter-filter}
 
 ### integer maxHitCount {#integer-maxHitCount}
-doesn't influence result, just limits returned hits table size
+Doesn't influence result, just limits returned hits table size
 
 ### Shape shape {#Shape-shape}
 

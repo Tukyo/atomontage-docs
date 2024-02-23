@@ -5,6 +5,9 @@ id: VoxelData
 `Client`
 `Server`
 
+Component that holds voxel data. The actual data itself is in the `data` property.
+The data will only render if the object also has a `VoxelRender` component.
+
 ## Constructors
 
 ### VoxelData() {#VoxelData}
@@ -30,6 +33,7 @@ id: VoxelData
 ### string path {#string-path}
 
 ### VoxelDataResource data {#VoxelDataResource-data}
+The voxel data resource that this voxel data is using
 
 ### boolean copyOnWrite {#boolean-copyOnWrite}
 make local copy of voxel data resource if edited 
