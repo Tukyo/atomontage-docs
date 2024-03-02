@@ -36,29 +36,41 @@ end
 return self
 ```
 
+## Script Lifecycle
+The rules:
+* The script is loaded and `Attach()` is called right away, even if the object is inactive
+* If the object is active `Start()` etc is called one frame later. Currently only on server this may change in the future  
+* Each step is done for all applicable objects in a row i.e load all scripts, `Attach()` all objects, `Start()` all active objects
+* Never call `OnActivate()` `OnDeactivate()` before `Start()`
+* Never call `OnDeactivate()` if `OnActivate()` has not been called
+
 ```mermaid
 ---
 title: Script Lifecycle
 ---
 graph TD;
-    C([Script component loaded on start or created at runtime])-->A
+    C([Script component loaded via scene or created at runtime])-->L
     
-subgraph lifecycle
+subgraph Immediately
+    L["Load scripts"]-->A;
+end
+subgraph NextFrame
+
     A["Attach()"]-- if active -->S;
-    A["Attach()"]-- if started inactive and activated -->OA2;
-    S["Start()"]-->U;
+    S["Start()"]-- if active -->OA;
 
-    OA2["OnActivate()"]-->S;
+    OA["OnActivate()"]-- if active -->U;
+    OA["OnActivate()"]-- if inactive, next frame -->OD;
 
-    OA["OnActivate()"]-->U;
 
     U["Update()"]--every frame-->U;
-    U["Update()"]--deactivated-->OD;
+    U["Update()"]--deactivated, next frame-->OD;
 
-    OD["OnDeactivate()"]--activated-->OA;
+    OD["OnDeactivate()"]--activated, next frame-->OA;
 end
 
-    lifecycle-->DEL;
+    NextFrame -->DEL;
+
     DEL([Flagged for deletion at any step])-->D
 
     D["Detach()"] --> *([Destroy Script Component]);

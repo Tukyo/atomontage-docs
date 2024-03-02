@@ -5,6 +5,8 @@ id: Object
 `Client`
 `Server`
 
+The object visible in the hierarchy. Every object has a transform and can have additional components attached to it.
+
 ## Methods
 
 ### Object GetChild(string) {#Object-GetChild-string}
@@ -33,8 +35,10 @@ Get child object by name
 ### boolean RemoveComponent(userdata) {#boolean-RemoveComponent-userdata}
 
 ### userdata GetComponentByType(string) {#userdata-GetComponentByType-string}
+Find a component by type name. Returns the first component found
 
 ### table GetComponentsByType(string) {#table-GetComponentsByType-string}
+Find all components by type name
 
 ### userdata FindScript(string) {#userdata-FindScript-string}
 Find attached script component lua table by name
@@ -50,8 +54,10 @@ Find attached script component lua table by name
 ## Properties
 
 ### integer id {#integer-id}
+This is id is unique across clients and server
 
 ### Transform transform {#Transform-transform}
+Get the transform to modify the position, rotation and scale of the object
 
 ### boolean isDestroyed {#boolean-isDestroyed}
 True if the object was destroyed. Note that references to this object will still be valid 
@@ -59,13 +65,14 @@ True if the object was destroyed. Note that references to this object will still
 ### string name {#string-name}
 
 ### boolean active {#boolean-active}
+Set the object to be active or inactive. Inactive objects are not updated or rendered. 
+All its children also become inactive.
 
 ### boolean activeInHierarchy {#boolean-activeInHierarchy}
+Readonly. Check if the object is active in the scene. It may be inactive because a parent is inactive.
 
 ### boolean save {#boolean-save}
-Save this object in the hierachy. If not saved it will be deleted after lua reset or server restart
-
-### string tag {#string-tag}
+Save this object in the hierarchy. If not saved it will be deleted after lua reset or server restart
 
 ### Object parent {#Object-parent}
 

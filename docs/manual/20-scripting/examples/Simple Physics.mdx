@@ -1,0 +1,126 @@
+
+A very simple physics script. If attached to an object it will have gravity, velocity, angular velocity and land on static voxel data. 
+When its something it will always stop moving the object.
+
+You can affect it via `setVelocity(velocity, ?angularVelocityDegrees)` and `setEnabled(bool)`. You can also change `.gravity` and `.height` to affect the physics.
+The collision body is always a sphere with a diameter of 0.5 by default.
+
+This is a simple example. Physics will later be handled by the engine.
+
+```lua
+local self = {}
+
+local enabled = true
+self.vel = Vec3()
+self.angVel = Vec3()
+self.gravity = 20
+self.sleeping = false
+
+--everything is handled as a sphere with this diameter
+self.height = 0.5
+
+
+function self:Attach()
+    self.component.syncToClients = true
+
+    self.vr = self.object:GetComponentByType("VoxelRenderer")
+    local vd = self.object:GetComponentByType("VoxelData")
+    self.vd = vd and vd.data
+
+    --fires when hit the ground or other
+    ---@class onHit:event
+    ---@field addListener fun(script:ScriptInstance, listener:fun())
+    self.onHit, self.onHitTrigger = events:makeLocalEvent(self)
+end
+
+function self:Update(deltaTime)
+    if self.onClient then return end 
+    if not enabled then return end
+    self:updateSleeping()
+    if self.sleeping then return end
+    self:updatePhysics()
+end
+
+function self:OnActivate()
+    --always wake up
+    self.sleeping = false
+end
+
+---@param velocity Vec3
+---@param angularVelocityDegree ?Vec3
+function self:setVelocity(velocity, angularVelocityDegrees)
+    self.vel = velocity
+    self.angVel = angularVelocityDegree or self.angVel
+    self.sleeping = false
+end
+
+function self:setEnabled(en)
+    enabled = en
+    --also wake up
+    if en then
+        self.sleeping = false
+    end
+end
+
+function self:updatePhysics()
+    if self.onClient then
+        return
+    end
+
+    local tf = self.transform
+    local dt = Scene:GetDeltaTime()
+
+    --add gravity 
+    self.vel.y = self.vel.y - self.gravity * dt
+    
+    --update pos, rot
+    --quick fix: limit dt to avoid falling through floor on lag
+    local dt = math.min(dt, 0.1)
+    tf.pos = tf.pos + self.vel * dt
+    tf.rot = Quat.Euler(self.angVel * dt) * tf.rot
+    
+    self:checkCollisionsSimple()
+end
+
+--simple raycast down
+function self:checkCollisionsSimple()
+    if self:getGrounded() then
+        local tf = self.transform
+        local dist = self:getDistToGround()
+        local underground = self.height * 0.5 - dist --dist is 0-0.5
+        tf.pos = tf.pos + underground * Vec3.up
+        self.sleeping = true
+        self.onHitTrigger()
+    end
+end
+
+function self:updateSleeping()
+    if not self.sleeping then return end
+    local p = self.transform.pos
+    local lp = self.lastPos or Vec3()
+    if (p-lp):SqrLength() > 0.1 then
+        self.sleeping = false
+        self.vel = Vec3()
+        self.lastPos = self.transform.pos
+    end 
+end
+
+function self:getGrounded()
+    local grounded = self:getDistToGround() <= self.height * 0.5
+    return grounded
+end
+
+--should cache for this frame
+function self:getDistToGround()
+    local pos = self.transform.pos -- Vec3.up * self.height * 0.5
+    local c = Collision()
+    c.filter = Filter()
+    c.filter.useNotStatic = false
+    local hit = c:Raycast(pos, Vec3.down * self.height)[1]
+    if not hit then return math.huge end
+    local dist = (hit.pos - pos):Len()
+    return dist
+end
+
+return self
+```
