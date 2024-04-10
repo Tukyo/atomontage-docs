@@ -12,6 +12,8 @@ The object visible in the hierarchy. Every object has a transform and can have a
 ### Object GetChild(string) {#Object-GetChild-string}
 Get child object by name
 
+### Object GetChildById(Guid) {#Object-GetChildById-Guid}
+
 ### boolean RemoveParent() {#boolean-RemoveParent}
 
 ### Script AddScript(string, boolean) {#Script-AddScript-string-boolean}
@@ -53,14 +55,14 @@ Find attached script component lua table by name
 
 ## Properties
 
-### integer id {#integer-id}
-This is id is unique across clients and server
-
 ### Transform transform {#Transform-transform}
 Get the transform to modify the position, rotation and scale of the object
 
 ### boolean isDestroyed {#boolean-isDestroyed}
 True if the object was destroyed. Note that references to this object will still be valid 
+
+### string id {#string-id}
+This is id is unique across clients and server
 
 ### string name {#string-name}
 

@@ -1,0 +1,46 @@
+---
+title: VVCollision
+id: VVCollision
+---
+`Client`
+`Server`
+
+## Constructors
+
+### VVCollision() {#VVCollision}
+
+### VVCollision() {#VVCollision}
+
+## Methods
+
+### table Raycast() {#table-Raycast}
+
+### table Raycast(Vec3, Vec3) {#table-Raycast-Vec3-Vec3}
+
+### table CapsuleOverlap(Vec3, Vec3, number) {#table-CapsuleOverlap-Vec3-Vec3-number}
+
+## Properties
+
+### Filter filter {#Filter-filter}
+
+### number traversalStopVxSize {#number-traversalStopVxSize}
+this parameter will be set to smallest voxel that should be traversed (unless it is SUPERNODE - in that case traversal will go deeper)
+- it can be calculated even for a stretched transformed entity once before its node graph traversal
+- if a voxel in a node is larger than this, children of the node will be traversed
+- in top level CD routine(s) the size is in the same coords scale as prim (ie in the provided world (WC) size scale)
+- in deep CD routines the size is in DC coords scale (it was calculated such if entity has transform)
+
+### number detectionGeometryDetail {#number-detectionGeometryDetail}
+
+### boolean globalVisibleLocalVisible {#boolean-globalVisibleLocalVisible}
+
+### boolean globalInvisibleLocalVisible {#boolean-globalInvisibleLocalVisible}
+
+### boolean globalVisibleLocalInvisible {#boolean-globalVisibleLocalInvisible}
+
+### boolean globalInvisibleLocalInvisible {#boolean-globalInvisibleLocalInvisible}
+
+### Vec3 rayPos {#Vec3-rayPos}
+
+### Vec3 rayDir {#Vec3-rayDir}
+

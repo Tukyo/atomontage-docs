@@ -24,6 +24,9 @@ end
 
 ### integer GetCurrentFrame() {#integer-GetCurrentFrame}
 
+### string GetProcessState() {#string-GetProcessState}
+What is currently being processed i.e Start, Update, LateUpdate etc.
+
 ### Object CreateObject() {#Object-CreateObject}
 
 ### Object CreateObject(string, boolean, boolean) {#Object-CreateObject-string-boolean-boolean}
@@ -54,6 +57,8 @@ Also see [`Scene:MakeNameValid`](#string-MakeNameValid-string)
 
 ### Object GetObjectByName(string) {#Object-GetObjectByName-string}
 
+### Object GetObjectById(string) {#Object-GetObjectById-string}
+
 ### table GetRootObjects() {#table-GetRootObjects}
 
 ### table GetAllObjects() {#table-GetAllObjects}
@@ -79,6 +84,8 @@ Also see [`Scene:MakeNameValid`](#string-MakeNameValid-string)
 ### userdata CreateMaterial(string) {#userdata-CreateMaterial-string}
 
 ### Camera GetActiveCamera() {#Camera-GetActiveCamera}
+
+### nil SetActiveCamera(Camera) {#nil-SetActiveCamera-Camera}
 
 ### string AddNewScriptFile(string, Object) {#string-AddNewScriptFile-string-Object}
 

@@ -14,7 +14,7 @@ Use this class to create voxel edits.
 Use this class by first creating a `VoxelEdit` object, then setting the properties such as `shape` and `color` and finally calling one of the edit methods:
 * `Paint()`
 * `Add()`
-* `Erase()`
+* `Remove()`
 * `Copy()`
 * `Kernel()`
 
@@ -105,7 +105,7 @@ Change the color of voxels
 ### nil Add() {#nil-Add}
 Add voxels
 
-### nil Erase() {#nil-Erase}
+### nil Remove() {#nil-Remove}
 Remove voxels
 
 ### nil Copy() {#nil-Copy}
@@ -187,6 +187,10 @@ if shape is nil the operation will match all targets
 ### Mat4 imageUVTm {#Mat4-imageUVTm}
 
 ### boolean imageUVClamp {#boolean-imageUVClamp}
+
+### boolean imageNormalBlendEnable {#boolean-imageNormalBlendEnable}
+
+### number imageNormalBlendPower {#number-imageNormalBlendPower}
 
 ### userdata onProgress {#userdata-onProgress}
 callback function. progress from 0-1. May not be called every frame. Is called after script updates 

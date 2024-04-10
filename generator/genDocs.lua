@@ -153,6 +153,7 @@ function genDocs:gen()
         "File",
         "Gamepad",
         "Image",
+        "VVCollision",
     }
 
     local show = {}
@@ -522,7 +523,7 @@ function genDocs:getSections(filename)
 
     for i,line in ipairs(lines) do
         --group by headers
-        if util:stringStartsWith(line, "### ") then
+        if currentGroup ~= entry and util:stringStartsWith(line, "### ") then
             addEntry(line)
         end
         --group by sections
@@ -616,13 +617,19 @@ function genDocs:cleanUpName(name)
     --this works inccorectly finding a match that is too short when there is a longer match
     --TODO sort by key length
     local replacements = {
-        {"uint8_t", "integer"},
-        {"uint16_t", "integer"},
-        {"uint32_t", "integer"},
         {"uint64_t", "integer"},
-        {"int16_t", "integer"},
-        {"int32_t", "integer"},
+        {"uint32_t", "integer"},
+        {"uint16_t", "integer"},
+        {"uint8_t", "integer"},
         {"int64_t", "integer"},
+        {"int32_t", "integer"},
+        {"int16_t", "integer"},
+        {"uint64", "integer"},
+        {"uint32", "integer"},
+        {"uint16", "integer"},
+        {"int64", "integer"},
+        {"int32", "integer"},
+        {"int16", "integer"},
         {"basic_table_core<0,classsol::basic_reference<0> >", "table"},
         {"basic_object<classsol::basic_reference<0> >", "userdata"}, --??this could be many things
         {"shared_ptr<classae::scene::Object>", "Object"},

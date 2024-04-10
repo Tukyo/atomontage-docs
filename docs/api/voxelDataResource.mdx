@@ -20,6 +20,9 @@ save voxel data in AM file
 second parameter controls if file will be overwritten
 
 ### Vec3, Vec3 GetLocalBounds() {#Vec3-Vec3-GetLocalBounds}
+get center (in local space) and approximate dimensions of the voxel data
+
+### Vec3, Vec3 GetPreciseLocalBounds() {#Vec3-Vec3-GetPreciseLocalBounds}
 get center (in local space) and dimensions of the voxel data
 
 ### userdata Duplicate() {#userdata-Duplicate}
@@ -38,6 +41,8 @@ returns true if data was modified
 
 ### number volumePerc {#number-volumePerc}
 Approximate. Quickly count non-zero blocks of voxel object. Block size is 8x8x8. Block can be fully filled or just 1 voxel
+
+### number volume {#number-volume}
 
 ### number scaleToStatic {#number-scaleToStatic}
 

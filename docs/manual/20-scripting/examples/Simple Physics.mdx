@@ -1,9 +1,9 @@
 
 A very simple physics script. If attached to an object it will have gravity, velocity, angular velocity and land on static voxel data. 
-When its something it will always stop moving the object.
+When it hits something it will always stop moving the object.
 
 You can affect it via `setVelocity(velocity, ?angularVelocityDegrees)` and `setEnabled(bool)`. You can also change `.gravity` and `.height` to affect the physics.
-The collision body is always a sphere with a diameter of 0.5 by default.
+The collision body is always a sphere with a diameter of 0.5 by default. Other scripts can add a listener to `onHit` to do something when it hits the ground.
 
 This is a simple example. Physics will later be handled by the engine.
 
@@ -110,9 +110,8 @@ function self:getGrounded()
     return grounded
 end
 
---should cache for this frame
 function self:getDistToGround()
-    local pos = self.transform.pos -- Vec3.up * self.height * 0.5
+    local pos = self.transform.pos
     local c = Collision()
     c.filter = Filter()
     c.filter.useNotStatic = false

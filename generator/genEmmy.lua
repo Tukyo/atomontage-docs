@@ -346,6 +346,14 @@ function Scene:GetRootObjects() end
 --- @return Object[]
 function Scene:GetObjectsByTag(p1) end
 
+--- @param capsuleStart Vec3
+--- @param capsuleEnd Vec3
+--- @param capsuleRadius number
+--- @param velocity Vec3
+--- @param size number
+--- @return nil
+function Client:AddPlayerLODPriorityBubbleShape(capsuleStart, capsuleEnd, capsuleRadius, velocity, size) end
+
 
 --- @return number[]
 function Server:GetClients() end

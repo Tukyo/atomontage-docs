@@ -36,7 +36,7 @@ end
 return self
 ```
 
-## Script Lifecycle
+### Script Lifecycle
 The rules:
 * The script is loaded and `Attach()` is called right away, even if the object is inactive
 * If the object is active `Start()` etc is called one frame later. Currently only on server this may change in the future  
@@ -79,20 +79,22 @@ end
 ## Methods
 
 ### nil Start() {#nil-Start}
-Called once on object creation after Attach()
+Called once on object creation after Attach() once the script becomes active
 
 ### nil Update(number deltaTime) {#nil-Update-number-deltaTime}
 Called once a frame after Start() if the object is active 
 
 ### nil Attach() {#nil-Attach}
-Called once on object creation before Start()
+Called once on object creation before Start() even if the script is not active
 
 ### nil Detach() {#nil-Detach}
 Called when script component or object is destroyed
 
 ### nil OnActivate() {#nil-OnActivate}
+Script active state changed through object or component. Never called before Start() 
 
 ### nil OnDeactivate() {#nil-OnDeactivate}
+Script active state changed through object or component. Never called before Start() and OnActivate() 
 
 ### nil RPC(string, ...) {#nil-RPC-string}
 Call a lua function by name from server to all clients or from one client to server. You may pass parameters. 

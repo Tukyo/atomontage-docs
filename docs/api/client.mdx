@@ -102,6 +102,9 @@ Disconnected
 
 ### nil Disconnect() {#nil-Disconnect}
 
+### number GetPing() {#number-GetPing}
+Time for a network message to travel from client to server and back
+
 ### number GetLogValue(string) {#number-GetLogValue-string}
 
 ### nil SetLogValue(string, number) {#nil-SetLogValue-string-number}
@@ -119,6 +122,8 @@ Disconnected
 ### integer GetLogValuesCount() {#integer-GetLogValuesCount}
 
 ### userdata GetLogValueForPlot(string) {#userdata-GetLogValueForPlot-string}
+
+### nil ResetTracy() {#nil-ResetTracy}
 
 ### string GetLogStrValue(string) {#string-GetLogStrValue-string}
 
@@ -231,6 +236,14 @@ Returns [`CommandLine`](./commandLine.mdx)
 
 ### number GetVRUserScaleMax() {#number-GetVRUserScaleMax}
 
+### nil StartVRPassthrough() {#nil-StartVRPassthrough}
+
+### nil StopVRPassthrough() {#nil-StopVRPassthrough}
+
+### boolean IsVRPassthroughEnabled() {#boolean-IsVRPassthroughEnabled}
+
+### boolean IsVRPassthroughSupported() {#boolean-IsVRPassthroughSupported}
+
 ### boolean SendFile(File) {#boolean-SendFile-File}
 
 ### boolean SendFiles(table) {#boolean-SendFiles-table}
@@ -317,6 +330,17 @@ may not work on all platforms
 ### boolean SetTestRenderObjectEnabled(string, boolean) {#boolean-SetTestRenderObjectEnabled-string-boolean}
 
 ### boolean ToggleTestRenderObjectEnabled(string) {#boolean-ToggleTestRenderObjectEnabled-string}
+
+### nil ResetPlayerLODPriorityBubble() {#nil-ResetPlayerLODPriorityBubble}
+
+### nil AddPlayerLODPriorityBubbleShape(Vec3, Vec3, number, Vec3, number) {#nil-AddPlayerLODPriorityBubbleShape-Vec3-Vec3-number-Vec3-number}
+LODs in this bubble are prioritized, should be placed around the player or camera
+params: capsuleStart, capsuleEnd, capsuleRadius, velocity, size
+
+### nil SetScreenColor(Vec4) {#nil-SetScreenColor-Vec4}
+
+### nil SetScreenColor(Vec4, boolean) {#nil-SetScreenColor-Vec4-boolean}
+Tint the view for this frame or permanently
 
 ## Properties
 
