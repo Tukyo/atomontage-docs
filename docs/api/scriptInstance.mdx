@@ -63,8 +63,9 @@ subgraph NextFrame
     OA["OnActivate()"]-- if inactive, next frame -->OD;
 
 
-    U["Update()"]--every frame-->U;
-    U["Update()"]--deactivated, next frame-->OD;
+    U["Update()"]-->LU;
+    LU["LateUpdate()"]--every frame-->U;
+    LU["LateUpdate()"]--deactivated, next frame-->OD;
 
     OD["OnDeactivate()"]--activated, next frame-->OA;
 end
