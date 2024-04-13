@@ -3,10 +3,6 @@
 Use RPCs to communicate between server and clients. 
 In this example when a button is pressed on the client the function `serverCreateObject` is called on the server with a position in front of the camera.
 
-:::info
-`-tf.forward` is temporarily negative as a workaround because the camera points backwards, we are fixing this soon 
-:::
-
 ```lua
 local self = {}
 
@@ -20,10 +16,10 @@ function self:Start()
         if button == 1 then
             --if left mouse button pressed create a ray from camera position pointing straight forward
             local tf = self.cam.object.transform
-            local pos = tf.pos + -tf.forward * 3
+            local pos = tf.pos + tf.forward * 3
 
             --call serverCreateObject with camera position and ray on server
-            self:RPC("serverCreateObject", pos, -tf.forward * 100)
+            self:RPC("serverCreateObject", pos, tf.forward * 100)
         end
     end)
 end
