@@ -267,6 +267,34 @@ local emmyDefaultLines = [[
 --- @class Polygon:Shape
 
 
+--- @param pos Vec3
+--- @param rot Quat
+--- @param scale Vec3
+--- @return Box
+function Box(pos, rot, scale) end
+
+--- @param pos Vec3
+--- @param scale Vec3?
+--- @return Box
+function Box(pos, scale) end
+
+
+--- @param pos1 Vec3
+--- @param pos2 Vec3
+--- @param radius number?
+--- @param radius2 number?
+--- @return Capsule
+function Capsule(pos1, pos2, radius, radius2) end
+
+
+--- @param pos1 Vec3
+--- @param pos2 Vec3
+--- @param radius number?
+--- @param radius2 number?
+--- @return Cylinder
+function Cylinder(pos1, pos2, radius, radius2) end
+
+
 --- @class Object
 --- @field children Object[]
 --- @field components Component[]

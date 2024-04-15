@@ -617,6 +617,17 @@ function genDocs:cleanUpName(name)
     --this works inccorectly finding a match that is too short when there is a longer match
     --TODO sort by key length
     local replacements = {
+        {"pair<classae::core::TQuaternion<float>,classTVector3<float> >", "Quat, Vec3"},
+        {"tuple<classTVector3<float>,classTVector3<float>,classTVector3<float> >", "Vec3, Vec3, Vec3"},
+        {"tuple<classTVector3<float>,classae::core::TQuaternion<float>,classTVector3<float> >", "Vec3, Quat, Vec3"},
+        {"tuple<classTVector3<float>,classTVector3<float> >", "Vec3, Vec3"},
+        {"tuple<classTVector3<float>,classae::core::TQuaternion<float> >", "Vec3, Quat" },
+        {"tuple<bool,classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>> >", "bool, string" },
+        {"tuple<classTVector3<float>,classTVector3<float> >", "Vec3, Vec3"}, --this is two
+        {"tuple<classsol::basic_table_core<0,classsol::basic_reference<0>>,classsol::basic_table_core<0,classsol::basic_reference<0>> >", "table, table"}, --this is two
+        {"tuple<classTVector3<float>,classae::core::TQuaternion<float> >", "Vec3, Quat" }, --this is two
+        {"tuple<bool,classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>> >", "bool, string" }, --this is two
+        --{"pair<classae::core::TQuaternion<number>,classTVector3<number>", "Quat, Vec3"},
         {"uint64_t", "integer"},
         {"uint32_t", "integer"},
         {"uint16_t", "integer"},
@@ -699,16 +710,11 @@ function genDocs:cleanUpName(name)
         {"Res<classae::renderer::Material>", "Material" }, --correct?
         {"shared_ptr<structae::scene::VoxelDataResource>", "VoxelDataResource" },
         {"shared_ptr<classae::scene::CameraComponent>", "CameraComponent"},
-        {"tuple<classTVector3<float>,classTVector3<float> >", "Vec3, Vec3"}, --this is two
-        {"tuple<classsol::basic_table_core<0,classsol::basic_reference<0>>,classsol::basic_table_core<0,classsol::basic_reference<0>> >", "table, table"}, --this is two
-        {"tuple<classTVector3<float>,classae::core::TQuaternion<float> >", "Vec3, Quat" }, --this is two
-        {"tuple<bool,classstd::basic_string<char,structstd::char_traits<char>,classstd::allocator<char>> >", "bool, string" }, --this is two
-        {"shared_ptr<classae::scene::Script>", "Script"}, --correct?
-        {"const char", "string"}, --correct?
-        {"pair<classae::core::TQuaternion<float>,classTVector3<float> >", "Quat, Vec3"},
+        {"shared_ptr<classae::scene::Script>", "Script"},
         {"shared_ptr<classae::studio::FileLua>", "File"},
         {"shared_ptr<classae::core::Image>", "Image" },
         {"classTMatrix4<int>", "Mat4"},
+        {"const char", "string"}, --correct?
         
         --make sure they are last
         {"bool", "boolean"},

@@ -6,7 +6,7 @@ id: ScriptInstance
 `Server`
 
 The lua table referred to in a script with `self`
-The [`Script` component](Script) attached to the object can be found via `self.component`.
+The [`Script`](Script) component attached to the object can be found via `self.component`.
 
 ```lua
 local self = {}
@@ -21,6 +21,10 @@ end
 
 --Called once a frame after Start() if the object is active
 function self:Update(dt)
+end
+
+--Called after Update(), before rendering
+function self:LateUpdate()
 end
 
 function self:OnActivate()
@@ -97,6 +101,9 @@ Script active state changed through object or component. Never called before Sta
 ### nil OnDeactivate() {#nil-OnDeactivate}
 Script active state changed through object or component. Never called before Start() and OnActivate() 
 
+### nil LateUpdate() {#nil-LateUpdate}
+Called after Update(), before rendering
+
 ### nil RPC(string, ...) {#nil-RPC-string}
 Call a lua function by name from server to all clients or from one client to server. You may pass parameters. 
 You may send tables and basic math types such as `Vec3` or `Quat` but other classes may not be supported.
@@ -163,4 +170,6 @@ if self.onClient then
     -- do something only on client
 end
 ```
+
+import { render } from "react-dom"
 

@@ -118,7 +118,7 @@ module.exports = {
       appId: '94CJLR6WWS',
 
       // Public API key: it is safe to commit it
-      apiKey: 'fde7ef01b2bcbbe49d77a45133814e7e',
+      apiKey: '296c76061413034455fb1ec84a5550c3',
 
       indexName: 'atomontage',
 

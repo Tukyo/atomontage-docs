@@ -247,6 +247,34 @@
 --- @class Polygon:Shape
 
 
+--- @param pos Vec3
+--- @param rot Quat
+--- @param scale Vec3
+--- @return Box
+function Box(pos, rot, scale) end
+
+--- @param pos Vec3
+--- @param scale Vec3?
+--- @return Box
+function Box(pos, scale) end
+
+
+--- @param pos1 Vec3
+--- @param pos2 Vec3
+--- @param radius number?
+--- @param radius2 number?
+--- @return Capsule
+function Capsule(pos1, pos2, radius, radius2) end
+
+
+--- @param pos1 Vec3
+--- @param pos2 Vec3
+--- @param radius number?
+--- @param radius2 number?
+--- @return Cylinder
+function Cylinder(pos1, pos2, radius, radius2) end
+
+
 --- @class Object
 --- @field children Object[]
 --- @field components Component[]
@@ -508,6 +536,17 @@ Box = {}
 --- @return Box
 function Box() end
 
+--[[
+Centered box
+
+[View Documentation](https://docs.atomontage.com/api/Box#Box-Vec3-Quat-Vec3)
+]]
+--- @param p1 Vec3
+--- @param p2 Quat
+--- @param p3 Vec3
+--- @return Box
+function Box(p1, p2, p3) end
+
 --- @param p1 Vec3
 --- @param p2 Vec3
 --- @return Box
@@ -575,6 +614,11 @@ Capsule = {}
 --- @return Capsule
 function Capsule() end
 
+--[[
+Capsule between two points
+
+[View Documentation](https://docs.atomontage.com/api/Capsule#Capsule-Vec3-Vec3-number-number)
+]]
 --- @param p1 Vec3
 --- @param p2 Vec3
 --- @param p3 number
@@ -1520,6 +1564,11 @@ Cylinder = {}
 --- @return Cylinder
 function Cylinder() end
 
+--[[
+Cylinder between two points
+
+[View Documentation](https://docs.atomontage.com/api/Cylinder#Cylinder-Vec3-Vec3-number-number)
+]]
 --- @param p1 Vec3
 --- @param p2 Vec3
 --- @param p3 number
@@ -2614,6 +2663,13 @@ function Object:GetChildById(p1) end
 --- @return boolean
 function Object:RemoveParent() end
 
+--- @return boolean
+function Object:IsPrefab() end
+
+--- @param p1 string
+--- @return boolean
+function Object:IsPrefab(p1) end
+
 --- @param p1 string
 --- @param p2 boolean
 --- @return Script
@@ -3005,6 +3061,11 @@ function Scene:GetDebugTime() end
 --- @return integer
 function Scene:GetCurrentFrame() end
 
+--[[
+What is currently being processed i.e Start, Update, LateUpdate etc.
+
+[View Documentation](https://docs.atomontage.com/api/Scene#string-GetProcessState)
+]]
 --- @return string
 function Scene:GetProcessState() end
 
@@ -3238,7 +3299,7 @@ function Script:GetScriptUpdateTime() end
 `Server`
 
 The lua table referred to in a script with `self`
-The [`Script` component](Script) attached to the object can be found via `self.component`.
+The [`Script`](Script) component attached to the object can be found via `self.component`.
 
 ```lua
 local self = {}
@@ -3253,6 +3314,10 @@ end
 
 --Called once a frame after Start() if the object is active
 function self:Update(dt)
+end
+
+--Called after Update(), before rendering
+function self:LateUpdate()
 end
 
 function self:OnActivate()
@@ -3295,8 +3360,9 @@ subgraph NextFrame
     OA["OnActivate()"]-- if inactive, next frame -->OD;
 
 
-    U["Update()"]--every frame-->U;
-    U["Update()"]--deactivated, next frame-->OD;
+    U["Update()"]-->LU;
+    LU["LateUpdate()"]--every frame-->U;
+    LU["LateUpdate()"]--deactivated, next frame-->OD;
 
     OD["OnDeactivate()"]--activated, next frame-->OA;
 end
@@ -3321,7 +3387,7 @@ ScriptInstance = {
 	object = nil, ---The object this script is attached to
 	transform = nil, ---The transform of the object this script is attached to
 	onServer = nil, ---Use this to run part of the code only on server or client```lua if self.onServer then    -- do something only on serverend```
-	onClient = nil, ---Use this to run part of the code only on server or client```lua if self.onClient then    -- do something only on clientend```
+	onClient = nil, ---Use this to run part of the code only on server or client```lua if self.onClient then    -- do something only on clientend```import { render } from "react-dom"
 }
 
 --[[
@@ -3372,6 +3438,14 @@ Script active state changed through object or component. Never called before Sta
 ]]
 --- @return nil
 function ScriptInstance:OnDeactivate() end
+
+--[[
+Called after Update(), before rendering
+
+[View Documentation](https://docs.atomontage.com/api/ScriptInstance#nil-LateUpdate)
+]]
+--- @return nil
+function ScriptInstance:LateUpdate() end
 
 --[[
 Call a lua function by name from server to all clients or from one client to server. You may pass parameters. 
@@ -3506,6 +3580,10 @@ function Server:GetCommonScenesList() end
 function Server:GetPrefabsList() end
 
 --- @param p1 integer
+--- @return Object
+function Server:InsertPrefab(p1) end
+
+--- @param p1 string
 --- @return Object
 function Server:InsertPrefab(p1) end
 
@@ -3805,6 +3883,11 @@ Sphere = {}
 --- @return Sphere
 function Sphere() end
 
+--[[
+Centered sphere
+
+[View Documentation](https://docs.atomontage.com/api/Sphere#Sphere-Vec3-number)
+]]
 --- @param p1 Vec3
 --- @param p2 number
 --- @return Sphere
@@ -7271,10 +7354,10 @@ function VoxelDB:GetUsedLayers() end
 --[[
 World position and size of AABB (axis-aligned bounding box) of the static voxel data
 
-[View Documentation](https://docs.atomontage.com/api/VoxelDB#Vec3-Vec3-GetBounds)
+[View Documentation](https://docs.atomontage.com/api/VoxelDB#Vec3-Vec3-GetAABounds)
 ]]
 --- @return Vec3, Vec3
-function VoxelDB:GetBounds() end
+function VoxelDB:GetAABounds() end
 
 --[[
 `Client`
@@ -7299,15 +7382,6 @@ The data will only render if the object also has a `VoxelRender` component.
 --- @field copyOnWrite boolean
 --- @field save boolean
 --- @field editable boolean
---- @field unpackOnLoad boolean
---- @field releaseResources boolean
---- @field enforceReplaceRendSourceAndEntity boolean
---- @field ramCopy boolean
---- @field potScale integer
---- @field paused boolean
---- @field startAtMs integer
---- @field startAtFrame number
---- @field playbackSpeed number
 VoxelData = {
 	data = nil, ---The voxel data resource that this voxel data is using
 	copyOnWrite = nil, ---make local copy of voxel data resource if edited 
@@ -7373,13 +7447,18 @@ second parameter controls if file will be overwritten
 function VoxelDataResource:Save(p1, p2) end
 
 --[[
-get center (in local space) and dimensions of the voxel data
+get center (in local space) and approximate dimensions of the voxel data
 
 [View Documentation](https://docs.atomontage.com/api/VoxelDataResource#Vec3-Vec3-GetLocalBounds)
 ]]
 --- @return Vec3, Vec3
 function VoxelDataResource:GetLocalBounds() end
 
+--[[
+get center (in local space) and dimensions of the voxel data
+
+[View Documentation](https://docs.atomontage.com/api/VoxelDataResource#Vec3-Vec3-GetPreciseLocalBounds)
+]]
 --- @return Vec3, Vec3
 function VoxelDataResource:GetPreciseLocalBounds() end
 
@@ -7509,6 +7588,7 @@ See a different example [here](../manual/scripting/examples/Voxel-Edits)
 VoxelEdit = {
 	blendMode = nil, ---Various blend modes which you may know from Photoshop. See a list of explanations [here](https://photoshoptrainingchannel.com/blending-modes-explained/#normal-blending-modes).
 	shape = nil, ---if shape is nil the operation will match all targets 
+	clampToMinVoxelSize = nil, ---if ClampToMinVoxelSize is true (it's default), it sets size of shape to at least size of voxel size of target. This can interfere with your box size if it's too small.
 	kernelType = nil, ---0 = Smooth 7x5x71 = Smooth 3x3x32 = Smooth 5x5x53 = Inflate4 = Deflate5 = Normals smooth6 = Normals sharp
 	onProgress = nil, ---callback function. progress from 0-1. May not be called every frame. Is called after script updates 
 	onFinished = nil, ---callback function. onFinished is called after onProgress if it was last part
@@ -7669,9 +7749,12 @@ function VoxelRenderer:__eq(p1, p2) end
 --[[
 World position and size of AABB (axis-aligned bounding box) of the object
 
-[View Documentation](https://docs.atomontage.com/api/VoxelRenderer#Vec3-Vec3-GetBounds)
+[View Documentation](https://docs.atomontage.com/api/VoxelRenderer#Vec3-Vec3-GetAABounds)
 ]]
 --- @return Vec3, Vec3
+function VoxelRenderer:GetAABounds() end
+
+--- @return Vec3, Quat, Vec3
 function VoxelRenderer:GetBounds() end
 
 --[[
