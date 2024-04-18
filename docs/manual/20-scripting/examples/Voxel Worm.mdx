@@ -1,0 +1,101 @@
+
+
+A flying worm that draws a voxel trail behind it. The worm is controlled by a simple physics script that makes it move in a random direction and bounce off the ground.
+
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/B7bFbBRM3IM?si=PujfCIhl8M_SMQnQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" fullscreen></iframe>
+
+
+```lua
+local self = {}
+
+function self:Start()
+    --self.transform.pos = Vec3(0, 50, 8)
+    self.startTime = Scene:GetTime()
+
+    self.physics = self.object:FindScript("Simple Physics")
+    assert(self.physics, "Needs Simple Physics script")
+    self.physics.gravity = 10
+end
+
+function self:Update(deltaTime)
+    self:checkCollision()
+    self:updateEdit()
+    self:updateMove()
+
+    if self.startTime + 10 < Scene:GetTime() then
+        Scene:DestroyObject(self.object)
+    end
+end
+
+function self:updateMove()
+    local t = Scene:GetTime() * 0.1
+    local x = math.perlinNoise(t)
+    local z = math.perlinNoise(0, t)
+    local y = self.physics.vel.y
+
+    self.physics.vel = Vec3.up * y + Vec3(x, 0, z) * 30
+
+    if self.transform.pos.y < -20 then
+        local pos = self.transform.pos
+        pos.y = 30
+        self.transform.pos = pos
+    end 
+end
+
+function self:checkCollision()
+    local vel = Vec3(self.physics.vel)
+    vel:Normalize()
+    local c = Collision()
+    c.filter.useNotStatic = false
+    local hit = c:Raycast(self.transform.pos, vel)[1]
+    if hit then
+        self.physics.vel = self.physics.vel + Vec3.up * 10
+    end
+end
+
+function self:updateEdit()
+    local vel = Vec3(self.physics.vel)
+    vel:Normalize()
+    
+    --if position has changed since last frame make line
+    if self.lastPos ~= self.transform.pos then
+        if self.lastPos then
+            --deb:line(self.lastPos, self.transform.pos + vel * 1.5)
+            --self:eraseLine(self.lastPos, self.transform.pos + vel * 1.5)
+            self:makeLine(self.lastPos, self.transform.pos)
+        end
+        self.lastPos = self.transform.pos
+    end
+end
+
+--make a capsule from p1, to p2
+function self:makeLine(p1, p2)
+    --multiply thickness by transform scale
+    local thickness = 0.1 * self.transform.scale
+    local s = Capsule(p1, p2, thickness)
+    local col = self:randomColor()
+    local ve = VoxelEdit(s, col)
+    ve.filter.useNotStatic = false
+    ve:Add()
+end
+
+--make a capsule from p1, to p2
+function self:eraseLine(p1, p2)
+    --multiply thickness by transform scale
+    local thickness = self.transform.scale * 0.5
+    local s = Capsule(p1, p2, thickness)
+    local ve = VoxelEdit(s)
+    ve.filter.useNotStatic = false
+    ve:Erase()
+end
+
+function self:randomColor()
+    local t = Scene:GetTime() * 0.1
+    local x = (math.perlinNoise(0, t) + 1)/2
+    local y = (math.perlinNoise(1, t) + 1)/2
+    local z = (math.perlinNoise(2, t) + 1)/2
+    return Vec3(x,y,z)
+end
+
+return self
+```

@@ -1,0 +1,126 @@
+---
+id: fps-demo
+---
+
+# FPS Demo
+
+The first person shooter demo is a multiplayer game example that you can use as a reference and base for your own games.
+
+![](/img/fps/fpsTeaser.gif)
+
+It contains:
+* Player controller with a first person camera
+* Support for keyboard + mouse and mobile touch input via buttons and joysticks
+* A player character dynamically generated from randomized shapes with look and walk animations
+* Simple physics system
+* Health system
+* Building system
+* Inventory system with various items the players can use such as guns, paint, etc
+
+
+## Running the demo
+
+* In server hierachy locate the `FPS Game` prefab set the object active
+* You should now be in first person mode, press F2 to return to the editor
+* Find the `Spawn Points` object in the server hierarchy and position its child to adjust your spawn point
+* You can add multiple spawn points to randomize the spawn location
+
+![](/img/fps/enableFps.png)
+
+
+## Controls
+* `WASD/Space` - Move
+* `L/R Click` - Actions
+* `E` - pickup
+* `RTYUIOP[}GHJKL:"|` - Spawn various items
+* `V` - Teleport up
+* `C` - Teleport to cursor
+* `F2` - Edit mode
+* `Esc` - Disable mouse lock
+
+## Adding a Tool or Weapon
+
+![](/img/fps/addItem.png)
+
+
+* Find the `Item Prefabs` object
+* Select one of the exsiting items and duplicate it (`Ctrl + D`)
+* Replace the item script with your own
+* The script must start with `Item` to be recognized as a usable item i.e. `Item Laser Gun` otherwise it will be a building item
+* After reloading you can now spawn the item using one of the spawn cheat keys mentioned above 
+
+This is an example item script. All function defined in this script are automatically called by the user of the item on client and server.
+Start by making something happen in `self:primaryDown(id)`
+
+```lua title="Item Example.lua"
+--@class ItemExample:Item
+local self = {}
+
+---@type number|nil nil if held by non human player
+self.ownerID = nil
+---@type Object
+self.user = nil
+---@type Object
+self.aimFrom = nil
+
+function self:Attach()
+    self.component.syncToClients = true
+end
+
+function self:Start()
+
+end
+
+function self:Update(deltaTime)
+
+end
+
+
+--this and other item functions are called on server and owner client
+function self:onStartHolding(id, user, aimFrom)
+    self.ownerID = id
+    self.user = user
+    self.aimFrom = aimFrom
+end
+
+function self:onStopHolding()
+    self.ownerID = nil
+    self.user = nil
+    self.aimFrom = nil
+end
+
+function self:primaryDown(id)
+    
+end
+
+function self:primaryHeld(id)
+
+end
+
+function self:primaryUp(id)
+    
+end
+
+function self:secondaryDown(id)
+    
+end
+
+function self:secondaryHeld(id)
+
+end
+
+function self:secondaryUp(id)
+    
+end
+
+
+return self
+```
+
+
+## Updating the Demo
+
+Reload the FPS Game prefab to reset it to its original state. 
+If the prefab was updated by us you have to reload the prefab to receive the latest changes.
+
+![](/img/fps/reloadPrefab.png)
