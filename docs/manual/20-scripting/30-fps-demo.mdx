@@ -21,7 +21,7 @@ It contains:
 ## Running the demo
 
 * In server hierachy locate the `FPS Game` prefab set the object active
-* You should now be in first person mode, press F2 to return to the editor
+* You should now be in first person mode, press `F2` to return to the editor
 * Find the `Spawn Points` object in the server hierarchy and position its child to adjust your spawn point
 * You can add multiple spawn points to randomize the spawn location
 
@@ -117,10 +117,26 @@ end
 return self
 ```
 
+## Adding a Voxel Scene
+
+You can add some voxel scenes such as the various Islands you will find in your assets. 
+You can also [voxelize your own](../getting-started/importing-meshes) or use the shape tools to build your own scene.
+
+:::info
+Due to a bug rotated voxel objects dont collide correctly with the player at the moment.
+So they should not be rotated for now
+:::
+
+* Use the `Add Asset` button to add a voxel scene
+* Disable `Copy on Write` to avoid the voxel scene loading on first edit, if you have the scene more than once edits will be shared however
+
+![](/img/fps/addScene.png)
+
 
 ## Updating the Demo
 
 Reload the FPS Game prefab to reset it to its original state. 
 If the prefab was updated by us you have to reload the prefab to receive the latest changes.
+Click the blue symbol to open this menu.
 
 ![](/img/fps/reloadPrefab.png)
