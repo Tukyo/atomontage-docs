@@ -71,135 +71,23 @@ function genDocs:gen()
         end
     end
 
-    --filter out all the other weird stuff
-    local classNames = {
-        "Quat",
-        "quat",
-        "Quatf",
-        "V2i",
-        "V3i",
-        "V2f",
-        "V3f",
-        "V4f",
-        "vec2",
-        "vec3",
-        "vec4",
-        "Vec2i",
-        "Vec3i",
-        "Vec4i",
-        "Vec2f",
-        "Vec3f",
-        "Vec4f",
-        "Camera",
-        "Config",
-        "ConfigMap",
-        "Component",
-        "Client",
-        "Input",
-        "Material",
-        "MeshData",
-        "MeshDataBuilder",
-        "MeshRenderer",
-        "Object",
-        "Scene",
-        "Script",
-        "ScriptInstance",
-        "Studio",
-        "Transform",
-        "Transformation",
-        "VoxelDB",
-        "VoxelData",
-        "VoxelRenderer",
-        "Angle",
-        "Frustum",
-        "Object3D",
-        "LightingUpdate",
-        "RealtimeLightingInfo",
-        "UIItem",
-        "VoxelInspectData",
-        "Rotation",
-        "CommandLine",
-        "ResourceReference",
-        "Matrix3f", --do we really need those in lua?
-        "Matrix4f",
-        "Mat3f",
-        "Mat4f",
-        "Mat3", 
-        "Mat4",
-        "AssetManager",
-        "Server",
-        "FilePath",
-        "ResResource",
-        "ConnectionInfo",
-        "NetworkStat",
-        "VoxelInspectComponent",
-        "MontageComponent",
-        "StaticVoxelData",
-        "Sky",
-        "NativeComponent",
-        "VoxelDataResource",
-        "VoxelEdit", 
-        "Filter", 
-        "Shape",
-        "Box", 
-        "Sphere", 
-        "Capsule", 
-        "Cylinder",
-        "Polygon",
-        "Collision", 
-        "Hit", 
-        "HitType",
-        "Overlap",
-        "File",
-        "Gamepad",
-        "Image",
-        "VVCollision",
-    }
-
-    local show = {}
-    for index, name in ipairs(classNames) do
-        show[name] = true
-    end
-
-    --find out whats on client and server
-    local classLocations = {}
-    for k in pairs(_BindingsServer.Classes) do 
-        classLocations[k] = {client=false, server=true}
-    end
-    for k in pairs(_BindingsClient.Classes) do 
-        if (classLocations[k]) then 
-            classLocations[k] = {client=true, server=true}
-        else
-            classLocations[k] = {client=true, server=false}
-        end
-    end
-
+ 
     --itterate sorted by ABC for emmy order
     local tkeys = {}
-    for k in pairs(classLocations) do table.insert(tkeys, k) end
+    for k, v in pairs(_BindingsServer) do
+        --TEMP filtering out the old stuff here
+        if k ~= "Classes" and k ~= "Enums" and k ~= "Global Functions" and k ~= "Namespaces" and k ~= "Pointers" then
+            table.insert(tkeys, k)
+        end
+    end
     table.sort(tkeys)
+
+
     for _, nameOrig in ipairs(tkeys) do
-        local serverClass = _BindingsServer.Classes[nameOrig]
-        local clientClass = _BindingsClient.Classes[nameOrig]
-        local class = serverClass or clientClass
-        if serverClass and clientClass then
-            --TODO doesnt pass in both classes so if they are different something is missing, so warning here for now
-            local sm = serverClass.Methods and #serverClass.Methods or 0
-            local cm = clientClass.Methods and #clientClass.Methods or 0
-            local sp = serverClass.Properties and #serverClass.Properties or 0
-            local cp = clientClass.Properties and #clientClass.Properties or 0
-            assert(sm == cm and sp == cp, nameOrig..": Server/Client is different")
-        end
-        if (show[nameOrig]) then
-            local name = util:firstToLower(nameOrig)
-            --name = name:gsub("::", " ") --remove this?
-            if not string.find(name, "::") then --just skip these weird internal things for now
-                local location = classLocations[nameOrig]
-                name = genDocs:cleanUpClassName(name)
-                fileNamesClasses[name] = nil
-                genDocs:generateClassFile(name, class, location.client, location.server)
-            end
-        end
+        local class = _BindingsServer[nameOrig]
+        local name = util:firstToLower(nameOrig)
+        fileNamesClasses[name] = nil
+        genDocs:generateClassFile(name, class)
     end
 
     --itterate sorted by ABC
@@ -233,9 +121,10 @@ function genDocs:gen()
     fileEmmyLua:close()
 end
 
-function genDocs:generateClassFile(name, class, onClient, onServer)
+function genDocs:generateClassFile(name, class)
+    local onClient, onServer = class.onClient, class.onServer
     local filename = docsLocation..name..".mdx"
-    if (not util:file_exists(filename)) then
+    if not util:file_exists(filename) then
         local fileW = io.open(filename, "w") --add the file if it was missing
         genDocs:addFrontMatter(name, fileW)
         fileW:close()
@@ -243,8 +132,8 @@ function genDocs:generateClassFile(name, class, onClient, onServer)
 
     --get current sections
     local intro, currentMethods, currentProperties = self:getSections(filename)
-    local finalMethods = self:getFinalEntries(currentMethods, class.Methods, name)
-    local finalProperties = self:getFinalEntries(currentProperties, class.Properties, name)
+    local finalMethods = self:getFinalFunctionEntries(currentMethods, class.functions, name)
+    local finalProperties = self:getFinalPropEntries(currentProperties, class.props, name)
 
     --TODO if adding new class auto generated info is not there yet and not included in emmy file
     --use final entries for emmy generator
@@ -275,7 +164,7 @@ function genDocs:generateClassFile(name, class, onClient, onServer)
     local wroteMetamethods = false
     local wroteConstructors = false
     local wroteMethods = false
-    if (class.Methods) then
+    if (class.functions) then
         for i, v in ipairs(finalMethods) do
             local lines = v.entry
             --make all kinds of function type headers
@@ -297,7 +186,7 @@ function genDocs:generateClassFile(name, class, onClient, onServer)
             end
         end
     end
-    if (class.Properties) then
+    if (class.props) then
         file:write("## Properties", "\n\n")
         for i, v in ipairs(finalProperties) do
             local lines = v.entry
@@ -310,30 +199,107 @@ function genDocs:generateClassFile(name, class, onClient, onServer)
     file:close()
 end
 
-
 --return final entries from current entires and new entries 
-function genDocs:getFinalEntries(currentEntries, newEntries, name)
-    local finalEntries = {}
-    newEntries = newEntries or {}
-
-    local currentEntiesKeys = {}
+function genDocs:getFinalFunctionEntries(currentEntriesInfo, newEntriesInfo, className)
+    newEntriesInfo = newEntriesInfo or {}
+    local newEntriesStr = {}
     
     --get values, conert to this table
     local updatedMethods = {}
-    for i, val in ipairs(newEntries) do
-        local name = genDocs:generateHeading(val)
+    for i, info in ipairs(newEntriesInfo) do
+        local name = genDocs:genFunctionEntry(info)
+        table.insert(newEntriesStr, name)
         updatedMethods[name] = true
     end
 
-    --readd current rows in same order if still existing 
-    local i=1
+    local finalEntries = genDocs:getFinalEntries(currentEntriesInfo, newEntriesStr, className, updatedMethods)
+    return finalEntries
+end
+
+function genDocs:getFinalPropEntries(currentEntriesInfo, newEntriesInfo, className)
+    newEntriesInfo = newEntriesInfo or {}
+    local newEntriesStr = {}
+
+    --get values, conert to this table
+    local updatedProps = {}
+    for i, info in ipairs(newEntriesInfo) do
+        local name = genDocs:genPropEntry(info)
+        table.insert(newEntriesStr, name)
+        updatedProps[name] = true
+    end
+
+    local finalEntries = genDocs:getFinalEntries(currentEntriesInfo, newEntriesStr, className, updatedProps)
+    return finalEntries
+end
+
+function genDocs:genFunctionEntry(info)
+    local name = info.name
+    local returns = info.returns
+    local params = info.params
+    local isDeprecated = info.isDeprecated
+    local entry = {}
+
+    --returns
+    if next(returns) then
+        for index, v in ipairs(returns) do
+            local t = v.type
+            local name = v.name
+            table.insert(entry, t)
+            if name then
+                table.insert(entry, " ")
+                table.insert(entry, name)
+            end
+            table.insert(entry, ", ")
+        end
+        table.remove(entry) --comma
+        table.insert(entry, " ")
+    end
+
+    --name
+    table.insert(entry, name)
+    table.insert(entry, "(")
+
+    --parms
+    if next(params) then
+        for index, v in ipairs(params) do
+            local t = v.type
+            local name = v.name
+            table.insert(entry, t)
+            table.insert(entry, " ")
+            table.insert(entry, name)
+            table.insert(entry, ", ")
+        end
+        table.remove(entry) --comma
+    end
+    table.insert(entry, ")")
+
+    local entryStr = table.concat(entry)
+    local name = genDocs:generateHeading(entryStr)
+    return name
+end
+
+function genDocs:genPropEntry(info)
+    local name = info.name
+    local type = info.type
+    local readOnly = info.readonly
+    local entry = type.." "..name 
+    local name = genDocs:generateHeading(entry)
+    return name
+end
+
+function genDocs:getFinalEntries(currentEntries, newEntries, className, updatedMethods)
+    local currentEntiesKeys = {}
+    local finalEntries = {}
+
+    --readd current rows in same order if still existing
+    local i = 1
     while i <= #currentEntries do
         local methodInfo = currentEntries[i]
-        local name = methodInfo.entry[1] 
+        local name = methodInfo.entry[1]
         if updatedMethods[name] ~= nil then
             local info = methodInfo
             local hasDocumentation = util:hasDocumentation(info.entry)
-            --ignore without docs cause that would set incorrect info in currentEntiesKeys for duplicate bindings 
+            --ignore without docs cause that would set incorrect info in currentEntiesKeys for duplicate bindings
             if hasDocumentation then
                 updatedMethods[name] = false --not nil cause there can be duplicates
                 table.remove(currentEntries, i)
@@ -354,7 +320,7 @@ function genDocs:getFinalEntries(currentEntries, newEntries, name)
         if (not hasDocumentation) then
             --print(name, header.." is old, deleted")
         else
-            print(name, header.." is old but has documentation, delete manually")
+            print(className, header .. " is old but has documentation, delete manually")
             table.insert(finalEntries, methodInfo)
         end
     end
@@ -364,11 +330,11 @@ function genDocs:getFinalEntries(currentEntries, newEntries, name)
     for k in ipairs(newEntries) do table.insert(tkeys, k) end
     table.sort(tkeys)
     for _, k in ipairs(tkeys) do
-        local v = newEntries[k]
-        local header = genDocs:generateHeading(v)
+        local header = newEntries[k]
+        --local header = genDocs:generateHeading(v)
         if (updatedMethods[header]) then
-            local entry = {header , ""}
-            table.insert(finalEntries, {entry = entry})
+            local entry = { header, "" }
+            table.insert(finalEntries, { entry = entry })
         else
             local info = currentEntiesKeys[header]
             table.insert(finalEntries, info)
@@ -551,7 +517,6 @@ function genDocs:getSections(filename)
 end
 
 function genDocs:generateHeading(header)
-    local header = genDocs:cleanUpName(header)
     local id = genDocs:getHeadingID(header)
 
     --add link if this is a class
@@ -567,24 +532,6 @@ function genDocs:generateHeading(header)
     ]]
 
     return "### "..header.." {#"..id.."}"
-end
-
-function genDocs:cleanUpClassName(name)
-    name = name:gsub("v2i", "vec2i")
-    name = name:gsub("v3i", "vec3i")
-    name = name:gsub("v4i", "vec4i")
-    name = name:gsub("v2f", "vec2")
-    name = name:gsub("v3f", "vec3")
-    name = name:gsub("v4f", "vec4")
-    name = name:gsub("vec2f", "vec2")
-    name = name:gsub("vec3f", "vec3")
-    name = name:gsub("vec4f", "vec4")
-    name = name:gsub("mat3f", "mat3")
-    name = name:gsub("mat4f", "mat4")
-    name = name:gsub("quatf", "quat")
-
-    name = name:gsub("configMap", "config")
-    return name
 end
 
 -- i.e. Angle(float, float) -> {#Angle-float-float}

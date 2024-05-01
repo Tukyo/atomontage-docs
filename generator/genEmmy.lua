@@ -544,7 +544,7 @@ function genEmmy:createFile(bindingsServer, bindingsClient)
     table.sort(comps) --sort ABC
     file:write("--- @alias componentType", "\n")
     for i, comp in ipairs(comps) do
-        file:write([[---| "']], comp, [['"]], "\n")
+        file:write([[---| '"]], comp, [["']], "\n")
     end
     file:write("\n")
 
@@ -756,7 +756,7 @@ end
 function genEmmy:dissectMethodEntry(lines)
     local header = lines[1]
     header = header:gsub("const ", "") --for now just remove that
-    local _, _, returnType, name, paramsStr = string.find(header, "### ([%w%s%,]-)%s?(%S*)%((.*)%).+")
+    local _, _, returnType, name, paramsStr = string.find(header, "### ([%w%s%,%[%]]-)%s?(%S*)%((.*)%).+")
     local params = {}
     assert(paramsStr, "header contains illegal characters: " .. header)
     for word in string.gmatch(paramsStr, '%s?([^,]+)') do

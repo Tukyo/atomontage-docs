@@ -3,10 +3,12 @@ require("os")
 local util = require("generator.util")
 local genEmmy = require("generator.genEmmy")
 local genDocs = require("generator.genDocs")
+local genDocsNew = require("generator.genDocsNew")
 local serpent = require("generator.serpent")
 
 print("start")
 genDocs:gen()
+--genDocsNew:gen()
 
 --only works on windows
 local function copyFile(fromFolder, toFolder)
