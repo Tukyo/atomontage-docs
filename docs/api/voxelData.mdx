@@ -18,6 +18,11 @@ The data will only render if the object also has a `VoxelRender` component.
 
 ### boolean, string SetPath(string) {#boolean-string-SetPath-string}
 
+### nil SetPathAsync(string, userdata)
+Async version of SetPath. Function returns immediately and voxel data loading is performed on background. After it finishes (or fails), supplied callback is called. Callback has parameters `bool success` and `string errStr`.
+
+If load is already running when new SetPathAsync is called, the new load is queued and performed after the current one finishes (SetPathAsync still exists immediatelly). In the future we may have more advanced strategy for handling concurrent loads.
+
 ## Metamethods
 
 ### boolean __eq(VoxelData, VoxelData) {#boolean-eq-VoxelData-VoxelData}
