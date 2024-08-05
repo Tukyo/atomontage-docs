@@ -127,6 +127,16 @@ It projects cone on voxel geometry and everything inside will be copies to tmp
 all raycasts will collide with this tmp layer instead until FreeTmpLayers
 parameters specify "cone" - two positions and end radius
 
+### table GetMaterialNames() {#table-GetMaterialNames}
+
+### table GetMaterial(string) {#table-GetMaterial-string}
+
+### nil SetMaterial(string, table) {#nil-SetMaterial-string-table}
+
+### nil SetStaticSceneMaterial(string) {#nil-SetStaticSceneMaterial-string}
+
+### nil SetVoxelDataResourceMaterial(VoxelDataResource, string) {#nil-SetVoxelDataResourceMaterial-VoxelDataResource-string}
+
 ## Properties
 
 ### boolean blendEnable {#boolean-blendEnable}
@@ -166,11 +176,29 @@ if ClampToMinVoxelSize is true (it's default), it sets size of shape to at least
 
 ### userdata copyResource {#userdata-copyResource}
 
-### boolean copyInsert {#boolean-copyInsert}
+### number roughness {#number-roughness}
 
-### boolean copyRemove {#boolean-copyRemove}
+### boolean roughnessEnable {#boolean-roughnessEnable}
 
-### boolean copyColor {#boolean-copyColor}
+### number metallicity {#number-metallicity}
+
+### boolean metallicityEnable {#boolean-metallicityEnable}
+
+### RemoveType removeType {#RemoveType-removeType}
+
+### number removeHardness {#number-removeHardness}
+
+### boolean useMaterialColor {#boolean-useMaterialColor}
+
+### string material {#string-material}
+
+### table removeList {#table-removeList}
+
+### boolean removeStats {#boolean-removeStats}
+
+### boolean usesPbr {#boolean-usesPbr}
+
+### CopyOperation copyOperation {#CopyOperation-copyOperation}
 
 ### integer kernelType {#integer-kernelType}
 0 = Smooth 7x5x7

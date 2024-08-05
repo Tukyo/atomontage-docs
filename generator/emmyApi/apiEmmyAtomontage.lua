@@ -650,6 +650,7 @@ This class is only available on client
 --- @field userID Guid
 --- @field mode ClientMode
 --- @field isMaker boolean
+--- @field EditMode boolean
 --- @field platform string
 --- @field sysInfo string
 Client = {}
@@ -785,6 +786,9 @@ function Client:GetMontageURLBase() end
 
 --- @return userdata
 function Client:GetMontageURLParameters() end
+
+--- @return string
+function Client:GetMontageURLParametersRaw() end
 
 --- @param p1 userdata
 --- @return string
@@ -1107,6 +1111,12 @@ function Client:SendFile(p1) end
 --- @return boolean
 function Client:SendFiles(p1) end
 
+--- @return boolean
+function Client:IsUploadingFiles() end
+
+--- @return boolean
+function Client:IsDownloadingFiles() end
+
 --- @return nil
 function Client:Restart() end
 
@@ -1124,12 +1134,6 @@ function Client:TriggerCriticalError() end
 
 --- @return AssetManager
 function Client:GetResourceManScene() end
-
---- @return AssetManager
-function Client:GetResourceManUI() end
-
---- @return AssetManager
-function Client:GetResourceManSettings() end
 
 --- @return nil
 function Client:ToggleChannelRendering() end
@@ -1916,6 +1920,15 @@ LightingUpdate = {}
 [View Documentation](https://docs.atomontage.com/api/Mat3)
 ]]
 --- @class Mat3
+Mat3 = {}
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Mat3)
+]]
+--- @class Mat3
 --- @operator add(Mat3):Mat3
 --- @operator add(number):Mat3
 --- @operator sub(Mat3):Mat3
@@ -2129,6 +2142,15 @@ function Mat3:IsSingular() end
 
 --- @return boolean
 function Mat3:IsAnyNaN() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Mat4)
+]]
+--- @class Mat4
+Mat4 = {}
 
 --[[
 `Client`
@@ -2649,6 +2671,15 @@ function Polygon() end
 [View Documentation](https://docs.atomontage.com/api/Quat)
 ]]
 --- @class Quat
+Quat = {}
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Quat)
+]]
+--- @class Quat
 --- @operator add(Quat):Quat
 --- @operator sub(Quat):Quat
 --- @operator mul(Quat):Quat
@@ -3151,6 +3182,10 @@ Script component. Not to be confused with the actual [lua table instance](Script
 --- @field name string
 --- @field file string
 --- @field syncToClients boolean
+--- @field Instance table
+--- @field Name string
+--- @field File string
+--- @field SyncToClients boolean
 Script = {}
 
 --- @vararg any
@@ -3251,6 +3286,11 @@ end
 --- @field transform Transform
 --- @field onServer boolean
 --- @field onClient boolean
+--- @field Component Script
+--- @field Object Object
+--- @field Transform Transform
+--- @field OnServer boolean
+--- @field OnClient boolean
 ScriptInstance = {
 	component = nil, ---The script component, separate from the lua table
 	object = nil, ---The object this script is attached to
@@ -3381,6 +3421,7 @@ This class is only available on server
 ]]
 --- @class Server
 --- @field clientID integer
+--- @field EditMode boolean
 Server = {}
 
 --- @return table
@@ -3529,15 +3570,6 @@ function Server:GetMaxConnections() end
 --- @return nil
 function Server:ResetTracy() end
 
---- @return boolean
-function Server:GetStartedWithOriginalScripts() end
-
---- @return nil
-function Server:OverwriteWithOriginalScripts() end
-
---- @return boolean
-function Server:GetOriginalScriptsWereSet() end
-
 --- @param p1 string
 --- @param p2 table
 --- @param p3 string
@@ -3574,12 +3606,6 @@ function Server:MakeUrlForFile(p1, p2, p3) end
 
 --- @return AssetManager
 function Server:GetResourceManScene() end
-
---- @return AssetManager
-function Server:GetResourceManUI() end
-
---- @return AssetManager
-function Server:GetResourceManSettings() end
 
 --- @param p1 string
 --- @return number
@@ -4695,7 +4721,15 @@ function Vec2i:__tostring(p1) end
 --- @field down Vec3
 --- @field left Vec3
 --- @field back Vec3
-Vec3 = {}
+Vec3 = {
+	zero = nil, ---Vec3(0,0,0)
+	up = nil, ---Vec3(0,1,0)
+	right = nil, ---Vec3(1,0,0)
+	forward = nil, ---Vec3(0,0,-1)
+	down = nil, ---Vec3(0,-1,0)
+	left = nil, ---Vec3(-1,0,0)
+	back = nil, ---Vec3(0,0,1)
+}
 
 --- @return Vec3
 function Vec3() end
@@ -5045,9 +5079,23 @@ function Vec3:Round(p1) end
 --- @return Vec3
 function Vec3:GetRounded(p1) end
 
+--- @return number
+function Vec3:Min() end
+
+--- @return number
+function Vec3:Max() end
+
 --- @param p1 Vec3
 --- @return number
 function Vec3:DistanceTo(p1) end
+
+--- @param p1 Vec3
+--- @return number
+function Vec3:Dist(p1) end
+
+--- @param p1 Vec3
+--- @return number
+function Vec3:DistSqr(p1) end
 
 --- @param p1 Vec3
 --- @param p2 Vec3
@@ -7446,9 +7494,18 @@ See a different example [here](../manual/scripting/examples/Voxel-Edits)
 --- @field copySourceRot Quat
 --- @field copySourceScale number
 --- @field copyResource userdata
---- @field copyInsert boolean
---- @field copyRemove boolean
---- @field copyColor boolean
+--- @field roughness number
+--- @field roughnessEnable boolean
+--- @field metallicity number
+--- @field metallicityEnable boolean
+--- @field removeType RemoveType
+--- @field removeHardness number
+--- @field useMaterialColor boolean
+--- @field material string
+--- @field removeList table
+--- @field removeStats boolean
+--- @field usesPbr boolean
+--- @field copyOperation CopyOperation
 --- @field kernelType integer
 --- @field imageColor userdata
 --- @field imageNormal userdata
@@ -7564,6 +7621,27 @@ parameters specify "cone" - two positions and end radius
 --- @return nil
 function VoxelEdit:FillTmpLayers(p1, p2, p3, p4, p5) end
 
+--- @return table
+function VoxelEdit:GetMaterialNames() end
+
+--- @param p1 string
+--- @return table
+function VoxelEdit:GetMaterial(p1) end
+
+--- @param p1 string
+--- @param p2 table
+--- @return nil
+function VoxelEdit:SetMaterial(p1, p2) end
+
+--- @param p1 string
+--- @return nil
+function VoxelEdit:SetStaticSceneMaterial(p1) end
+
+--- @param p1 VoxelDataResource
+--- @param p2 string
+--- @return nil
+function VoxelEdit:SetVoxelDataResourceMaterial(p1, p2) end
+
 --[[
 `Client`
 `Server`
@@ -7675,6 +7753,24 @@ ClientMode = {
 	DevDebug = 2,
 }
 
+--- @enum CopyOperation
+CopyOperation = {
+	InsertColor = 0,
+	CopyColor = 1,
+	Carve = 2,
+	CarveColor = 3,
+}
+
+--- @enum CpuArch
+CpuArch = {
+	Unknown = 0,
+	X86 = 1,
+	X86_64 = 2,
+	Arm = 3,
+	Arm64 = 4,
+	Wasm = 5,
+}
+
 --- @enum Device
 Device = {
 	Generic = 0,
@@ -7757,6 +7853,13 @@ PrimitiveTopology = {
 	TriangleStrip = 3,
 	TriangleFan = 4,
 	Triangles = 5,
+}
+
+--- @enum RemoveType
+RemoveType = {
+	All = 0,
+	Hardness = 1,
+	List = 2,
 }
 
 --- @enum RendererStateFlags

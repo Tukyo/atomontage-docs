@@ -83,6 +83,8 @@ This class is only available on client
 
 ### userdata GetMontageURLParameters() {#userdata-GetMontageURLParameters}
 
+### string GetMontageURLParametersRaw() {#string-GetMontageURLParametersRaw}
+
 ### string GetMontageURLWithParameters(userdata) {#string-GetMontageURLWithParameters-userdata}
 
 ### nil CancelLoadMontageByURL() {#nil-CancelLoadMontageByURL}
@@ -248,6 +250,10 @@ Returns [`CommandLine`](./commandLine.mdx)
 
 ### boolean SendFiles(table) {#boolean-SendFiles-table}
 
+### boolean IsUploadingFiles() {#boolean-IsUploadingFiles}
+
+### boolean IsDownloadingFiles() {#boolean-IsDownloadingFiles}
+
 ### nil Restart() {#nil-Restart}
 
 ### nil ChooseImage() {#nil-ChooseImage}
@@ -259,10 +265,6 @@ Returns [`CommandLine`](./commandLine.mdx)
 ### nil TriggerCriticalError() {#nil-TriggerCriticalError}
 
 ### AssetManager GetResourceManScene() {#AssetManager-GetResourceManScene}
-
-### AssetManager GetResourceManUI() {#AssetManager-GetResourceManUI}
-
-### AssetManager GetResourceManSettings() {#AssetManager-GetResourceManSettings}
 
 ### nil ToggleChannelRendering() {#nil-ToggleChannelRendering}
 
@@ -351,6 +353,8 @@ Tint the view for this frame or permanently
 ### ClientMode mode {#ClientMode-mode}
 
 ### boolean isMaker {#boolean-isMaker}
+
+### boolean EditMode {#boolean-EditMode}
 
 ### string platform {#string-platform}
 
