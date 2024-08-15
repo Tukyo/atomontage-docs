@@ -1,0 +1,30 @@
+--
+title: AudioMusic
+id: AudioMusic
+---
+`Client`
+
+## Methods
+
+### nil Play {#nil-Play}
+Play the music. If already playing it will restart from begining. Paused music will resume playback where it was paused.
+
+### nil Pause {#nil-Pause}
+Pause the music
+
+### nil Stop {#nil-Stop}
+Stop the music
+
+## Properties
+
+### boolean Playing {#boolean-Playing}
+
+### boolean Paused {#boolean-Paused}
+
+### boolean Stopped {#boolean-Stopped}
+
+### number Volume {#number-Volume}
+Volume of the music. Number in range 0 - 1
+
+### boolean Loop {#boolean-Loop}
+Set to true for looping.
