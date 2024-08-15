@@ -1,0 +1,33 @@
+--
+title: AudioSource
+id: AudioSource
+---
+`Client`
+
+## Methods
+
+### nil Play
+Play the sound. If already playing it will restart from begining. Paused sound will resume playback where they were paused.
+
+### nil Pause
+Pause the sound
+
+### nil Stop
+Stop the sound
+
+## Properties
+
+### Vec3 Pos {#Vec3-Pos}
+Position of sound in 3D space
+
+### Vec3 Velocity {#Vec3-Velocity}
+Direction of movement. Length of vector determine speed. Units is m/s Important for fast moving object. It affect doppler shift which cause that fast incoming object sounds with higher pitch.
+
+### number Volume {#number-Volume}
+Volume of the sound. Number in range 0 - 1
+
+### boolean Loop {#boolean-Loop}
+Set to true for looping.
+
+### object FollowObject {#object-FollowObject}
+Make position of sound and this object same and keep them synced.
