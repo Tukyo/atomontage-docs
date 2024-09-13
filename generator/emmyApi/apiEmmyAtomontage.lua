@@ -11,6 +11,22 @@
 ---| Vec3i
 ---| Mat4
 ---| Quat
+---| Object
+
+--- @alias materialName
+---| '"none"'
+---| '"gold"'
+---| '"copper"'
+---| '"silver"'
+---| '"bronze"'
+---| '"rock"'
+---| '"sand"'
+---| '"stone"'
+---| '"concrete"'
+---| '"brick"'
+---| '"mortar"'
+---| '"plaster"'
+---| '"wall_paint"'
 
 --- @alias mouseButton
 ---| 1 # left button
@@ -653,7 +669,10 @@ This class is only available on client
 --- @field EditMode boolean
 --- @field platform string
 --- @field sysInfo string
-Client = {}
+--- @field AudioVolume number
+Client = {
+	AudioVolume = nil, ---Audio volume in range 0 - 1.
+}
 
 --- @return integer
 function Client:GetID() end
@@ -832,6 +851,11 @@ function Client:GetPing() end
 --- @param p1 string
 --- @return number
 function Client:GetLogValue(p1) end
+
+--- @param p1 string
+--- @param p2 number
+--- @return number
+function Client:GetLogValue(p1, p2) end
 
 --- @param p1 string
 --- @param p2 number
@@ -1280,6 +1304,55 @@ Tint the view for this frame or permanently
 --- @return nil
 function Client:SetScreenColor(p1, p2) end
 
+--- @param p1 string
+--- @return AudioSource
+function Client:PlaySound(p1) end
+
+--[[
+Play sound with asset name, at position, with volume and loop. Only single channel audio.
+Return [AudioSource](./AudioSource.mdx)
+
+[View Documentation](https://docs.atomontage.com/api/Client#AudioSource-PlaySound-string-Vec3-number-boolean)
+]]
+--- @param p1 string
+--- @param p2 Vec3
+--- @param p3 number
+--- @param p4 boolean
+--- @return AudioSource
+function Client:PlaySound(p1, p2, p3, p4) end
+
+--- @param p1 string
+--- @return AudioMusic
+function Client:PlayMusic(p1) end
+
+--[[
+Play sound with asset name, with volume and loop. This play stereo music without any position just like normal audio player.
+Return [AudioMusic](./AudioMusic.mdx)
+
+[View Documentation](https://docs.atomontage.com/api/Client#AudioMusic-PlayMusic-string-number-boolean)
+]]
+--- @param p1 string
+--- @param p2 number
+--- @param p3 boolean
+--- @return AudioMusic
+function Client:PlayMusic(p1, p2, p3) end
+
+--[[
+Pause all playing sounds and music
+
+[View Documentation](https://docs.atomontage.com/api/Client#nil-PauseAudio)
+]]
+--- @return nil
+function Client:PauseAudio() end
+
+--[[
+Resume all paused sounds and music
+
+[View Documentation](https://docs.atomontage.com/api/Client#nil-ResumeAudio)
+]]
+--- @return nil
+function Client:ResumeAudio() end
+
 --[[
 `Client`
 `Server`
@@ -1677,7 +1750,7 @@ function Gamepad:RumbleTriggers(p1, p2, p3) end
 `Client`
 `Server`
 
-Returned by [raycasts]](Collision#table-Raycast).
+Returned by [raycasts](Collision#table-Raycast).
 
 [View Documentation](https://docs.atomontage.com/api/Hit)
 ]]
@@ -1687,6 +1760,7 @@ Returned by [raycasts]](Collision#table-Raycast).
 --- @field color Vec3
 --- @field object Object
 --- @field distance number
+--- @field material string
 --- @field type HitType
 Hit = {}
 
@@ -1920,15 +1994,6 @@ LightingUpdate = {}
 [View Documentation](https://docs.atomontage.com/api/Mat3)
 ]]
 --- @class Mat3
-Mat3 = {}
-
---[[
-`Client`
-`Server`
-
-[View Documentation](https://docs.atomontage.com/api/Mat3)
-]]
---- @class Mat3
 --- @operator add(Mat3):Mat3
 --- @operator add(number):Mat3
 --- @operator sub(Mat3):Mat3
@@ -2142,15 +2207,6 @@ function Mat3:IsSingular() end
 
 --- @return boolean
 function Mat3:IsAnyNaN() end
-
---[[
-`Client`
-`Server`
-
-[View Documentation](https://docs.atomontage.com/api/Mat4)
-]]
---- @class Mat4
-Mat4 = {}
 
 --[[
 `Client`
@@ -2671,15 +2727,6 @@ function Polygon() end
 [View Documentation](https://docs.atomontage.com/api/Quat)
 ]]
 --- @class Quat
-Quat = {}
-
---[[
-`Client`
-`Server`
-
-[View Documentation](https://docs.atomontage.com/api/Quat)
-]]
---- @class Quat
 --- @operator add(Quat):Quat
 --- @operator sub(Quat):Quat
 --- @operator mul(Quat):Quat
@@ -2934,6 +2981,9 @@ RealtimeLightingInfo = {}
 --- @class Scene
 --- @field lighting LightingUpdate
 --- @field objectLighting LightingUpdate
+--- @field SimulationPaused boolean
+--- @field SimulationSpeed number
+--- @field Gravity number
 Scene = {}
 
 --- @return number
@@ -3139,6 +3189,13 @@ function Scene:UpdatePrefab(p1) end
 --- @param p1 Object
 --- @return boolean
 function Scene:ResetPrefab(p1) end
+
+--- @return nil
+function Scene:ResetAllPrefabs() end
+
+--- @param p1 Object
+--- @return nil
+function Scene:UnpackPrefab(p1) end
 
 --- @return nil
 function Scene:RebuildLighting() end
@@ -3422,6 +3479,7 @@ This class is only available on server
 --- @class Server
 --- @field clientID integer
 --- @field EditMode boolean
+--- @field ModeChangeReloadGeom boolean
 Server = {}
 
 --- @return table
@@ -3521,6 +3579,9 @@ function Server:GetBackupSceneOnSave() end
 
 --- @return nil
 function Server:ReloadScene() end
+
+--- @return nil
+function Server:BackupMontage() end
 
 --- @return nil
 function Server:OnLuaLog() end
@@ -7321,6 +7382,18 @@ function VoxelData:Mirror(p1, p2) end
 --- @return boolean, string
 function VoxelData:SetPath(p1) end
 
+--[[
+Async version of SetPath. Function returns immediately and voxel data loading is performed on background. After it finishes (or fails), supplied callback is called. Callback has parameters `boolean success` and `string errStr`.
+
+If load is already running when new SetPathAsync is called, the new load is queued and performed after the current one finishes (SetPathAsync still exists immediatelly). In the future we may have more advanced strategy for handling concurrent loads.
+
+[View Documentation](https://docs.atomontage.com/api/VoxelData#nil-SetPathAsync-string-userdata)
+]]
+--- @param p1 string
+--- @param p2 userdata
+--- @return nil
+function VoxelData:SetPathAsync(p1, p2) end
+
 --- @param p1 VoxelData
 --- @param p2 VoxelData
 --- @return boolean
@@ -7686,12 +7759,47 @@ The data will only render if the object also has a `VoxelData` component with da
 --- @field outline boolean
 --- @field tintColor Vec4
 --- @field receiveTransform boolean
+--- @field Simulate boolean
+--- @field SimulationPaused boolean
+--- @field Velocity Vec3
+--- @field AngularVelocity Vec3
+--- @field Mass number
+--- @field Inertia Vec3
+--- @field Friction number
+--- @field Restitution number
+--- @field Drag number
+--- @field AngularDrag number
 VoxelRenderer = {
 	prioritizeLod = nil, ---Try to load higher LODs faster than those of other objects
 	outline = nil, ---Draw an outline around this object
 	tintColor = nil, ---Render with a tint color
 	receiveTransform = nil, ---Receive transform(pos, rot scale) to render with from server. By default this is true. If you set this to false, you will need to manually set the transform of the object on the client side.This is useful for making objects respond immediately if something happened on the client side i.e. input
 }
+
+--- @param p1 Vec3
+--- @param p2 Vec3
+--- @return nil
+function VoxelRenderer:AddImpulse(p1, p2) end
+
+--- @param p1 Vec3
+--- @return nil
+function VoxelRenderer:AddAngularImpulse(p1) end
+
+--- @param p1 Vec3
+--- @return nil
+function VoxelRenderer:AddForce(p1) end
+
+--- @param p1 Vec3
+--- @return nil
+function VoxelRenderer:AddTorque(p1) end
+
+--- @param p1 Vec3
+--- @return nil
+function VoxelRenderer:AddAcceleration(p1) end
+
+--- @param p1 Vec3
+--- @return nil
+function VoxelRenderer:AddAngularAcceleration(p1) end
 
 --- @param p1 VoxelRenderer
 --- @param p2 VoxelRenderer

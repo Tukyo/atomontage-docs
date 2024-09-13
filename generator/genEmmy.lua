@@ -31,6 +31,22 @@ local emmyDefaultLines = [[
 ---| Vec3i
 ---| Mat4
 ---| Quat
+---| Object
+
+--- @alias materialName
+---| '"none"'
+---| '"gold"'
+---| '"copper"'
+---| '"silver"'
+---| '"bronze"'
+---| '"rock"'
+---| '"sand"'
+---| '"stone"'
+---| '"concrete"'
+---| '"brick"'
+---| '"mortar"'
+---| '"plaster"'
+---| '"wall_paint"'
 
 --- @alias mouseButton
 ---| 1 # left button
@@ -756,7 +772,7 @@ end
 function genEmmy:dissectMethodEntry(lines)
     local header = lines[1]
     header = header:gsub("const ", "") --for now just remove that
-    local _, _, returnType, name, paramsStr = string.find(header, "### ([%w%s%,%[%]]-)%s?(%S*)%((.*)%).+")
+    local _, _, returnType, name, paramsStr = string.find(header, "### ([%w%s%,%[%]]-)%s?(%S*)%((.*)%)")
     local params = {}
     assert(paramsStr, "header contains illegal characters: " .. header)
     for word in string.gmatch(paramsStr, '%s?([^,]+)') do

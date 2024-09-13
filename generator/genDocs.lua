@@ -154,6 +154,8 @@ function genDocs:gen()
         "Gamepad",
         "Image",
         "VVCollision",
+        "AudioSource",
+        "AudioMusic",
     }
 
     local show = {}
@@ -661,6 +663,8 @@ function genDocs:cleanUpName(name)
         {"shared_ptr<classae::scene::VoxelDB>", "VoxelDB"},
         {"shared_ptr<classae::scene::VoxelDataResource>", "VoxelDataResource"},
         {"shared_ptr<classae::scene::Transform>", "Transform"},
+        {"shared_ptr<classae::audio::AudioSource>", "AudioSource"},
+        {"shared_ptr<classae::audio::AudioMusic>", "AudioMusic"},
         
         ---idk what these are??? need better names relevant for lua 
         {unordered_map, "userdata"},
