@@ -670,6 +670,8 @@ This class is only available on client
 --- @field platform string
 --- @field sysInfo string
 --- @field AudioVolume number
+--- @field SoundVolume number
+--- @field MusicVolume number
 Client = {
 	AudioVolume = nil, ---Audio volume in range 0 - 1.
 }
@@ -1322,6 +1324,17 @@ Return [AudioSource](./AudioSource.mdx)
 function Client:PlaySound(p1, p2, p3, p4) end
 
 --- @param p1 string
+--- @param p2 Vec3
+--- @param p3 number
+--- @return AudioSource
+function Client:PlaySound(p1, p2, p3) end
+
+--- @param p1 string
+--- @param p2 Vec3
+--- @return AudioSource
+function Client:PlaySound(p1, p2) end
+
+--- @param p1 string
 --- @return AudioMusic
 function Client:PlayMusic(p1) end
 
@@ -1971,6 +1984,11 @@ function Input:VRControllerDir(p1) end
 --- @return Vec3, Quat
 function Input:VRControllerTransform(p1, p2) end
 
+--- @param p1 integer
+--- @param p2 Space
+--- @return Vec3, Quat
+function Input:VRPointerTransform(p1, p2) end
+
 --- @return userdata
 function Input:Gamepads() end
 
@@ -1986,6 +2004,15 @@ function Input:GetActiveGamepad() end
 --- @class LightingUpdate
 --- @field realtimeLighting RealtimeLightingInfo
 LightingUpdate = {}
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Mat3)
+]]
+--- @class Mat3
+Mat3 = {}
 
 --[[
 `Client`
@@ -2207,6 +2234,15 @@ function Mat3:IsSingular() end
 
 --- @return boolean
 function Mat3:IsAnyNaN() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Mat4)
+]]
+--- @class Mat4
+Mat4 = {}
 
 --[[
 `Client`
@@ -2719,6 +2755,15 @@ Polygon = {}
 
 --- @return Polygon
 function Polygon() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Quat)
+]]
+--- @class Quat
+Quat = {}
 
 --[[
 `Client`
@@ -3491,6 +3536,10 @@ function Server:GetUsersID() end
 --- @param p1 integer
 --- @return string
 function Server:GetUserID(p1) end
+
+--- @param p1 integer
+--- @return boolean
+function Server:IsVRClient(p1) end
 
 --- @param p1 integer
 --- @return nil
@@ -7579,6 +7628,7 @@ See a different example [here](../manual/scripting/examples/Voxel-Edits)
 --- @field removeStats boolean
 --- @field usesPbr boolean
 --- @field copyOperation CopyOperation
+--- @field insertOperation InsertOperation
 --- @field kernelType integer
 --- @field imageColor userdata
 --- @field imageNormal userdata
@@ -7714,6 +7764,9 @@ function VoxelEdit:SetStaticSceneMaterial(p1) end
 --- @param p2 string
 --- @return nil
 function VoxelEdit:SetVoxelDataResourceMaterial(p1, p2) end
+
+--- @return nil
+function VoxelEdit:BackupSurfaceAttributes() end
 
 --[[
 `Client`
@@ -7894,6 +7947,13 @@ HitType = {
 	ObjectVoxel = 3,
 }
 
+--- @enum InsertOperation
+InsertOperation = {
+	Normal = 0,
+	Empty = 1,
+	Full = 2,
+}
+
 --- @enum LuaErrorType
 LuaErrorType = {
 	None = 0,
@@ -7968,6 +8028,7 @@ RemoveType = {
 	All = 0,
 	Hardness = 1,
 	List = 2,
+	SharpList = 3,
 }
 
 --- @enum RendererStateFlags
