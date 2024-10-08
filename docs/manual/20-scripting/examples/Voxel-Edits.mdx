@@ -1,44 +1,87 @@
 # Voxel Edits
 
-This example script draws a line of voxels as the object its attached to moves around. To try it select the object in the hierarchy and move it with the transformation gizmos.
-Since its not needed on client this script only runs on the server side.
+The `Vox` API replaces the old `VoxelEdit` API.
 
-Currently the script creates voxels in the the global static voxel database. Scripts can also edit individual dynamic voxel data objects.
+```lua title="Add a line"
+Vox:Add(Capsule(pos, pos2, thickness))
+   :Color(1,0,1)
+   :Run()
+```
 
-```lua
-local self = {}
+```lua title="Remove with callback"
+Vox:Remove(Box(pos, Vec3(1)))
+   :OnFinished(function()
+      print("done")
+   end)
+   :Draw()
+   :Run()
+```
 
-function self:Start()
-end
+```lua title="Paint with alpha"
+Vox:Paint(Box(pos, Vec3(1)))
+   :Color(1,0,0,0.3)
+   :Metalicty(1)
+   :Roughness(0)
+   :StrokeHardness(1)
+   :Run()
+```
 
---do this every frame
-function self:Update(deltaTime)
-    self:updateEdit()
-end
+```lua title="Paint texture"
+Vox:Paint(Box(pos, Vec3(1)))
+   :Texture(tex, dir, scale)
+   :Run()
+```
 
-function self:updateEdit()
-    --if position has changed since last frame make line
-    if self.lastPos ~= self.transform.pos then
-        if self.lastPos then
-            self:makeLine(self.lastPos, self.transform.pos)
-        end
-        self.lastPos = self.transform.pos
-    end
-end
+```lua title="Copy from ob to pos in ob"
+Vox:Copy(copyFromObject)
+   :To(targetObject, pos, rot, scale)
+   :Run()
+```
 
---make a capsule from p1, to p2
-function self:makeLine(p1, p2)
-    --multiply thickness by transform scale
-    local thickness = 0.1 * self.transform.scale
-    local s = Capsule(p1, p2, thickness)
-    local col = self:randomColor()
-    VoxelEdit(s, col):Add()
-end
+```lua title="All at area to ob"
+Vox:Copy(Box(pos, Vec3(1)))
+   :Ignore(target)
+   :To(target)
+   :Run()
+```
 
---generate random color
-function self:randomColor()
-    return Vec3(math.random(), math.random(), math.random())
-end
+```lua title="To static"
+Vox:Copy(Box(pos, Vec3(1)))
+   :ToStatic()
+   :Run()
+```
 
-return self
+```lua title="Subtract"
+Vox:Subtract(obs)
+   :UseColor()
+   :Run()
+```
+
+```lua title="Subtact from static only"
+Vox:Subtact(gun)
+   :ForceStatic()
+   :Run()
+```
+
+Every scene has only **one** static voxel data and can have multiple dynamic voxel data. The static voxel data is used for the world and can not be moved.
+However both can be edited. To choose whether to edit the static or dynamic voxel data, use the `Force` and `Ignore` functions.
+ 
+```lua title="Creating dynamic voxel data attached to an object"
+--create an object with voxel data and renderer
+local ob = Scene:CreateObject("Voxel Sphere")
+local vd = ob:AddComponent("VoxelData")
+local vr = ob:AddComponent("VoxelRenderer")
+local vres = VoxelDataResource() --new empty voxel data
+vd.data = vres
+ob.transform.pos = Vec3(0, 30, 0)
+
+--add sphere
+local col = Vec3(0,0.5,1)
+local s = Sphere(ob.transform.pos, 1)
+
+--using Force() to target the object only
+Vox:Add(s)
+   :Force(ob)
+   :Color(col)
+   :Run()
 ```
