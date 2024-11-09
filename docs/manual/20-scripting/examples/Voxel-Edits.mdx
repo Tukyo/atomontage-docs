@@ -1,6 +1,11 @@
-# Voxel Edits
+
+:::info Server Only
+    Currently voxel edits can only be done on the server side.
+:::
 
 The `Vox` API replaces the old `VoxelEdit` API.
+
+Remember to call `Run()` to execute the edit.
 
 ```lua title="Add a line"
 Vox:Add(Capsule(pos, pos2, thickness))
@@ -8,27 +13,24 @@ Vox:Add(Capsule(pos, pos2, thickness))
    :Run()
 ```
 
-```lua title="Remove with callback"
+```lua title="Remove but ignore object and all its children"
 Vox:Remove(Box(pos, Vec3(1)))
-   :OnFinished(function()
-      print("done")
-   end)
-   :Draw()
-   :Run()
-```
-
-```lua title="Paint with alpha"
-Vox:Paint(Box(pos, Vec3(1)))
-   :Color(1,0,0,0.3)
-   :Metalicty(1)
-   :Roughness(0)
-   :StrokeHardness(1)
+   :Ignore(ob:WithChildren())
    :Run()
 ```
 
 ```lua title="Paint texture"
 Vox:Paint(Box(pos, Vec3(1)))
-   :Texture(tex, dir, scale)
+   :Texture(tex, dir)
+   :Run()
+```
+
+```lua title="Paint with transparency"
+Vox:Paint(Box(pos, Vec3(1)))
+   :Color(1,0,0,0.3)
+   :Metalicty(1)
+   :Roughness(0)
+   :StrokeHardness(1)
    :Run()
 ```
 
@@ -60,6 +62,21 @@ Vox:Subtract(obs)
 ```lua title="Subtact from static only"
 Vox:Subtact(gun)
    :ForceStatic()
+   :Run()
+```
+
+```lua title="Remove and draw the edit for debugging."
+Vox:Remove(Box(pos, Vec3(1)))
+   :Draw()
+   :Run()
+```
+
+```lua title="Remove with callback"
+Vox:Remove(Box(pos, Vec3(1)))
+   :OnFinished(function()
+      print("done")
+   end)
+   :Draw()
    :Run()
 ```
 

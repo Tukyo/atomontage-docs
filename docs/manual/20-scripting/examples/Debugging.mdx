@@ -1,0 +1,71 @@
+
+
+The following functions are available for debugging
+
+## Text
+
+Prints will appear in the lua console and the most recent one in the bottom left corner of the screen.
+```lua title="Print 'hello world' into the lua console"
+print("hello world")
+```
+
+Any value can be printed, including tables
+```lua
+local table = {"hello", "world", self.object}
+print(table)
+```
+
+You can print as many values as you want
+```lua
+print(self.object.name, "children:", self.object.children)
+```
+
+## Crosses
+
+All debug draws can be cleaned up with `Tab`
+
+```lua title="Draw a cross at the origin"
+deb:cross(Vec3(0))
+```
+
+You can add a text label to the cross
+```lua
+deb:cross(Vec3(1,2,3), "hello")
+```
+
+You can change the color of the cross
+```lua
+local col = Vec3(1,0,1) --pink
+deb:cross(Vec3(1,2,3), "hello", col)
+```
+
+Use `deb:clear()` to remove all drawings. That way you can also draw only for one frame
+```lua
+deb:clear()
+deb:cross(self.transform.pos)
+```
+
+## Lines
+
+Line from start pos to end pos
+```lua
+local startPos = Vec3(1,2,3)
+local endPos = Vec3(4,5,6)
+deb:line(startPos, endPos)
+```
+
+Ray from start
+```lua
+local start = Vec3(1,2,3)
+local ray = Vec3.forward * 10
+deb:ray(start, ray)
+```
+
+## Shapes
+
+You can draw any shape
+```lua title="Draw a 1m box at the origin"
+local sh = Box(Vec3(0), Vec3(1))
+deb:draw(sh)
+```
+

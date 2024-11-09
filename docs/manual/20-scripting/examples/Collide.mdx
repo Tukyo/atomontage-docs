@@ -1,0 +1,28 @@
+
+:::info Server Only
+    Currently collisions can only be done on the server side.
+:::
+
+The `Collide` API replaces the old `Collision` API.
+
+Remember to call `Run()` to execute the collide.
+
+
+```lua title="Collide a box
+local pos = Vec3()
+local sh = Box(pos, Vec3(1))
+local ovs = Collide(sh):Run()
+for _, ov in ipairs(ovs) do
+    deb:cross(ov.pos, ov.object)
+end
+```
+
+
+```lua title="Collide a sphere, ignore the object and all its children, ignore static terrain"
+local sh = Sphere(pos, r)
+local ovs = Collide(sh):Ignore(self.object:WithChildren()):IgnoreStatic():Run()
+local ov = ovs[1]
+if ov then
+    print("has collided!")
+end
+```

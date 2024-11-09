@@ -528,6 +528,123 @@ function Client:WriteToScreen(text, pos, pivot, color, size, colorOutline, p7) e
 function Client:ApplyVRHapticFeedback(hand, duration, frequency, amplitude) end
 
 
+
+
+
+--`Client`
+--`Server`
+
+--The object visible in the hierarchy. Every object has a transform and can have additional components attached to it.
+
+--[View Documentation](https://docs.atomontage.com/api/Object)
+--- @class Object
+--- @field transform Transform
+--- @field isDestroyed boolean
+--- @field id string
+--- @field name string
+--- @field active boolean
+--- @field activeInHierarchy boolean
+--- @field save boolean
+--- @field parent Object
+--- @field children table
+--- @field childCount integer
+--- @field siblingIndex integer
+--- @field isPrefabObject boolean
+--- @field components table
+--- @field componentsCount integer
+Object = {
+	transform = nil, ---Get the transform to modify the position, rotation and scale of the object
+	isDestroyed = nil, ---True if the object was destroyed. Note that references to this object will still be valid 
+	id = nil, ---This is id is unique across clients and server
+	active = nil, ---Set the object to be active or inactive. Inactive objects are not updated or rendered. All its children also become inactive.
+	activeInHierarchy = nil, ---Readonly. Check if the object is active in the scene. It may be inactive because a parent is inactive.
+	save = nil, ---Save this object in the hierarchy. If not saved it will be deleted after lua reset or server restart
+}
+
+--Get child object by name
+--- @param p1 string
+--- @return Object
+function Object:GetChild(p1) end
+
+--- @param p1 Guid
+--- @return Object
+function Object:GetChildById(p1) end
+
+--- @return boolean
+function Object:RemoveParent() end
+
+--- @return boolean
+function Object:IsPrefab() end
+
+--- @param p1 string
+--- @return boolean
+function Object:IsPrefab(p1) end
+
+--- @param p1 string
+--- @param p2 boolean
+--- @return Script
+function Object:AddScript(p1, p2) end
+
+--- @return MeshData
+function Object:AddMeshData() end
+
+--- @param p1 string
+--- @return VoxelData
+function Object:AddVoxelData(p1) end
+
+--- @param p1 string
+--- @return StaticVoxelData
+function Object:AddStaticVoxelData(p1) end
+
+--- @return VoxelRenderer
+function Object:AddVoxelRenderer() end
+
+--- @return Camera
+function Object:AddCamera() end
+
+--- @return Sky
+function Object:AddSkybox() end
+
+--- @param p1 string
+--- @return userdata
+function Object:AddComponent(p1) end
+
+--- @param p1 string
+--- @return boolean
+function Object:RemoveComponent(p1) end
+
+--- @param p1 userdata
+--- @return boolean
+function Object:RemoveComponent(p1) end
+
+--Find a component by type name. Returns the first component found
+--- @param p1 string
+--- @return userdata
+function Object:GetComponentByType(p1) end
+
+--Find all components by type name
+--- @param p1 string
+--- @return table
+function Object:GetComponentsByType(p1) end
+
+--Find attached script component lua table by name
+--- @param p1 string
+--- @return userdata
+function Object:FindScript(p1) end
+
+--- @return Camera
+function Object:GetCamera() end
+
+--- @return string
+function Object:GetNetworkFlow() end
+
+--- @return string
+function Object:GetScriptUpdateTime() end
+
+--- @return integer
+function Object:GetRefCount() end
+
+
 --- @alias componentType
 ---| '"Camera"'
 ---| '"MeshData"'

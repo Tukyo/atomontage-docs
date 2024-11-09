@@ -1,0 +1,44 @@
+
+:::info Server Only
+    Currently `Cast:Ray()` can only be done on the server side.
+:::
+
+The `Cast:Ray()` API replaces the old `Collision` API.
+
+Remember to call `Run()` to execute the raycast.
+
+```lua title="Cast a ray 10m downwards from the origin"
+local startPos = Vec3(0)
+local ray = Vec3.down * 10
+local hit = Cast:Ray(startPos, ray):Run()
+if hit then
+    deb:cross(hit.pos, hit.object)
+end
+```
+
+```lua title="Cast a ray, only hit static terrain, draw it"
+local startPos = Vec3(0)
+local ray = Vec3.down * 10
+local hit = Cast:Ray(startPos, ray):ForceStatic():Draw():Run()
+if hit then
+    deb:cross(hit.pos, hit.object)
+end
+```
+
+```lua title="Cast a ray from the object's position forward 100m, ignore the object and all its children"
+local startPos = self.transform.pos
+local ray = self.transform.forward * 100
+local hit = Cast:Ray(startPos, ray):Ignore(self.object:WithChildren()):Run()
+if hit then
+    deb:cross(hit.pos)
+end
+```
+
+```lua title="Cast a ray from the object's position forward 100m, ignore static terrain, get all hits not just the first"
+local startPos = self.transform.pos
+local ray = self.transform.forward * 100
+local hits = Cast:Ray(startPos, ray):IgnoreStatic():RunAll()
+for _, hit in ipairs(hits) do
+    deb:cross(hit.pos)
+end
+```
