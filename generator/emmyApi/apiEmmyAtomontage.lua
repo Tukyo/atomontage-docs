@@ -1429,7 +1429,7 @@ function Client:PlaySound(p1) end
 
 --[[
 Play sound with asset name, at position, with volume and loop. Only single channel audio.
-Return [AudioSource](./AudioSource.mdx)
+Returns [AudioSource](./AudioSource.mdx)
 
 [View Documentation](https://docs.atomontage.com/api/Client#AudioSource-PlaySound-string-Vec3-number-boolean)
 ]]
@@ -1457,7 +1457,7 @@ function Client:PlayMusic(p1) end
 
 --[[
 Play sound with asset name, with volume and loop. This play stereo music without any position just like normal audio player.
-Return [AudioMusic](./AudioMusic.mdx)
+Returns [AudioMusic](./AudioMusic.mdx)
 
 [View Documentation](https://docs.atomontage.com/api/Client#AudioMusic-PlayMusic-string-number-boolean)
 ]]
@@ -1486,6 +1486,12 @@ function Client:ResumeAudio() end
 --[[
 `Client`
 `Server`
+
+:::warning Deprecated
+The collision functions in this class are old and may not correctly work.
+Instead use `Cast:Ray()` and `Collide()`
+:::
+
 
 [View Documentation](https://docs.atomontage.com/api/Collision)
 ]]
@@ -7068,8 +7074,8 @@ function Vec4i:__shr(p1, p2) end
 `Client`
 `Server`
 
-:::info
-The voxel edit functions in this class are old and may not correctly work. Instead use [VoxelEdit](VoxelEdit).
+:::warning Deprecated
+The voxel edit functions in this class are old and may not correctly work. Instead use [Vox](/docs/manual/20-scripting/examples/Voxel-Edits.mdx).
 :::
 
 [View Documentation](https://docs.atomontage.com/api/VoxelDB)
@@ -7632,6 +7638,10 @@ function VoxelDataResource:RebuildLighting() end
 --[[
 `Client`
 `Server`
+
+:::warning Deprecated
+The voxel edit functions in this class are old and may not correctly work. Instead use [Vox](/docs/manual/20-scripting/examples/Voxel-Edits.mdx).
+:::
 
 :::info Server Only
  Currently voxel edits can only be done on the server side.
