@@ -156,6 +156,11 @@ function genDocs:gen()
         "VVCollision",
         "AudioSource",
         "AudioMusic",
+        "Polyhedron",
+        "Effect",
+        "Sound",
+        "Asset",
+        "FilePath",
     }
 
     local show = {}
@@ -718,6 +723,7 @@ function genDocs:cleanUpName(name)
         {"shared_ptr<classae::studio::FileLua>", "File"},
         {"shared_ptr<classae::core::Image>", "Image" },
         {"classTMatrix4<int>", "Mat4"},
+        { "Res<classae::renderer::Effect>", "Effect" },
         {"const char", "string"}, --correct?
         
         --make sure they are last

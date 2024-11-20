@@ -661,6 +661,36 @@ function Object:GetRefCount() end
 `Client`
 `Server`
 
+[View Documentation](https://docs.atomontage.com/api/Asset)
+]]
+--- @class Asset
+--- @field Name string
+--- @field Type string
+Asset = {}
+
+--- @return userdata
+function Asset:GetValue() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/AssetManager)
+]]
+--- @class AssetManager
+AssetManager = {}
+
+--- @return table
+function AssetManager:GetAssets() end
+
+--- @param p1 string
+--- @return Asset
+function AssetManager:GetAsset(p1) end
+
+--[[
+`Client`
+`Server`
+
 [View Documentation](https://docs.atomontage.com/api/Box)
 ]]
 --- @class Box
@@ -786,11 +816,13 @@ This class is only available on client
 --- @field EditMode boolean
 --- @field platform string
 --- @field sysInfo string
---- @field AudioVolume number
+--- @field MasterVolume number
 --- @field SoundVolume number
 --- @field MusicVolume number
 Client = {
-	AudioVolume = nil, ---Audio volume in range 0 - 1.
+	MasterVolume = nil, ---Audio volume in range 0 - 1.
+	SoundVolume = nil, ---Audio volume in range 0 - 1.
+	MusicVolume = nil, ---Audio volume in range 0 - 1.
 }
 
 --- @return integer
@@ -1483,6 +1515,9 @@ Resume all paused sounds and music
 --- @return nil
 function Client:ResumeAudio() end
 
+--- @return nil
+function Client:StopAudio() end
+
 --[[
 `Client`
 `Server`
@@ -1799,6 +1834,21 @@ function Cylinder(p1, p2, p3) end
 --- @param p2 Vec3
 --- @return Cylinder
 function Cylinder(p1, p2) end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Effect)
+]]
+--- @class Effect
+--- @field LineWidth number
+Effect = {}
+
+--- @param p1 string
+--- @param p2 FilePath
+--- @return Effect
+function Effect(p1, p2) end
 
 --[[
 `Client`
@@ -2725,6 +2775,7 @@ function Mat4:Ortho(p1, p2, p3, p4, p5, p6) end
 [View Documentation](https://docs.atomontage.com/api/Material)
 ]]
 --- @class Material
+--- @field Effect Effect
 Material = {}
 
 --- @param p1 string
@@ -2878,6 +2929,18 @@ Polygon = {}
 
 --- @return Polygon
 function Polygon() end
+
+--[[
+`Client`
+`Server`
+
+[View Documentation](https://docs.atomontage.com/api/Polyhedron)
+]]
+--- @class Polyhedron
+Polyhedron = {}
+
+--- @return Polyhedron
+function Polyhedron() end
 
 --[[
 `Client`
@@ -3405,12 +3468,12 @@ Script component. Not to be confused with the actual [lua table instance](Script
 --- @field Type string
 --- @field instance table
 --- @field name string
---- @field file string
 --- @field syncToClients boolean
 --- @field Instance table
 --- @field Name string
 --- @field File string
 --- @field SyncToClients boolean
+--- @field LuaFile Asset
 Script = {}
 
 --- @vararg any
@@ -3648,6 +3711,7 @@ This class is only available on server
 --- @field clientID integer
 --- @field EditMode boolean
 --- @field ModeChangeReloadGeom boolean
+--- @field Assets AssetManager
 Server = {}
 
 --- @return table
@@ -3681,7 +3745,7 @@ function Server:LuaReset() end
 --- @return nil
 function Server:ResendScripts() end
 
---- @return table, table
+--- @return table
 function Server:GetLuaFilesList() end
 
 --[[
@@ -3741,13 +3805,6 @@ function Server:SaveScene() end
 
 --- @return nil
 function Server:SaveSceneHierarchy() end
-
---- @param p1 boolean
---- @return nil
-function Server:SetBackupSceneOnSave(p1) end
-
---- @return boolean
-function Server:GetBackupSceneOnSave() end
 
 --- @return nil
 function Server:ReloadScene() end
@@ -3836,9 +3893,6 @@ function Server:MoveFileToMontageVoxelsFolder(p1, p2) end
 --- @param p3 userdata
 --- @return nil
 function Server:MakeUrlForFile(p1, p2, p3) end
-
---- @return AssetManager
-function Server:GetResourceManScene() end
 
 --- @param p1 string
 --- @return number
@@ -3955,6 +4009,7 @@ All shapes inherit from this class. It is not meant to be instantiated directly.
 * [Capsule](Capsule)
 * [Cylinder](Cylinder)
 * [Polygon](Polygon)
+* [Polyhedron](Polyhedron)
 
 [View Documentation](https://docs.atomontage.com/api/Shape)
 ]]
@@ -7584,6 +7639,8 @@ function VoxelData:__eq(p1, p2) end
 --- @field volumePerc number
 --- @field volume number
 --- @field scaleToStatic number
+--- @field loadLodScale number
+--- @field voxelSize number
 VoxelDataResource = {
 	isEditable = nil, ---returns false if loaded as aevv
 	isSaved = nil, ---returns true if data was modified
@@ -7884,8 +7941,10 @@ function VoxelEdit:GetMaterial(p1) end
 function VoxelEdit:SetMaterial(p1, p2) end
 
 --- @param p1 string
+--- @param p2 number
+--- @param p3 number
 --- @return nil
-function VoxelEdit:SetStaticSceneMaterial(p1) end
+function VoxelEdit:SetStaticSceneMaterial(p1, p2, p3) end
 
 --- @param p1 VoxelDataResource
 --- @param p2 string
