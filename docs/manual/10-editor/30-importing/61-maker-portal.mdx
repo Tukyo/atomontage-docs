@@ -1,0 +1,44 @@
+# Maker Portal Uploads
+
+Watch part 2 of the getting started series for a video walkthrough of the process.
+
+<iframe 
+  width="100%" 
+  height="500" 
+  src="https://www.youtube.com/embed/10alFWNO9yY?si=JyeLd0wVt111Cghq" 
+  title="YouTube video player"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  referrerpolicy="strict-origin-when-cross-origin" 
+  allowfullscreen>
+</iframe>
+
+## How to Upload
+1. Open the [Maker Portal](https://makers.atomontage.app/), and navigate to the uploads section.
+2. Drag and drop your file(s) into the drop zone, and review the file specifications.
+3. Process the model with the <button class="btn-r-y-gradient btnrygsize" id="voxelize_26799" title="Voxelize to Asset"><i class="fa-solid fa-cubes"></i> Voxelize</button> button, and determine the settings in the Voxelize Mesh panel.
+
+
+
+
+## File Specifications
+
+### Max File Size
+> 20 GB
+
+### File Types
+| Models                                   | Images                                    | Compressed   |
+|------------------------------------------|-------------------------------------------|--------------|
+| `glb`, `fbx`, `mtl`, `obj`, `ply`        | `jpg`, `jpeg`, `png`, `gif`               | `zip`, `rar` |
+| `pts`, `xyz`, `e57`, `vox`               | `tif`, `tiff`, `psd`, `webp`              | `7z`, `tar`  |
+
+When uploading compressed archives, the files within can only be the file types listed here.
+- Compressed files should not contain additional compressed files. If there are, they are discarded and will not appear in your available files.
+- Compressed files can contain any number of directories and subdirectories. However, all files will end up at the top level when decompressed. Existing files with the same name and extension will be skipped.
+- It is suggested that each upload/zip contains only one <i class="fa-solid fa-key"></i> Key file. However, if it contains more than one, you can move them into their own group below or singly choose the Key file along with accompanying files if any before turning it into an asset.
+
+**Maker Portal Icons**<br />
+<i class="fa-solid fa-key"></i>: Key file for creating asset. You should only have one key file per group.<br />
+<i class="fa-solid fa-pen-to-square"></i>: Edit the displayed name of the file. This does not effect the original name. You can revert the change at any time.<br />
+<i class="fa-solid fa-trash-can"></i>: Delete the file. This is irreversible.<br />
+<i class="fa-solid fa-file-export"></i>: Move the file. You may move the file into an existing group or into a new group.<br />
+<i class="fa-solid fa-copy"></i>: Copy the file. You may create a copy of the file into an existing or new group.
