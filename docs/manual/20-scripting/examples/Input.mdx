@@ -17,7 +17,7 @@ function self:Start()
     local startPos = Vec3(0,20,0)
     self.transform.pos = startPos
 
-    --add VoxelData and VoxelRenderer component to this object and assign a file, you can also do this in the server hierachy UI 
+    --add VoxelData and VoxelRenderer component to this object and assign a file, you can also do this in the server hierarchy UI 
     self.vd = self.object:GetComponentByType("VoxelData") or self.object:AddComponent('VoxelData')
     self.vr = self.object:GetComponentByType("VoxelRenderer") or self.object:AddComponent('VoxelRenderer')
     if self.vd.path == "" then
