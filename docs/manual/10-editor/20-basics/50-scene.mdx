@@ -1,0 +1,34 @@
+# Scene
+The scene contains multiple elements. Most notably, the static and dynamic voxel scenes.
+
+## Voxel Scene Static
+The static voxel scene is composed of non-moving elements. Voxels in this scene can be added directly, or stamped from objects. Objects from the dynamic scene are added to the static scene voxels when they become non-dynamic.
+
+### Components
+- [`Static Voxel Data`](/api/StaticVoxelData) 
+- [`Voxel Renderer`](/api/VoxelRenderer)
+
+## Voxel Scene Dynamic
+The dynamic voxel scene includes moving elements, such as characters, vehicles, and interactive objects. These elements can change position, shape, and appearance during gameplay.
+
+### Components
+- [`Voxel Data`](/api/VoxelData) 
+- [`Voxel Renderer`](/api/VoxelRenderer)
+
+For more info, see the [Voxels](/manual/editor/basics/voxels) page.
+
+## Scene Options
+### Visual
+- `Background Color` - The color that appears behind all other elements in the scene.
+- `FXAA` - Enables Fast Approximate Anti-Aliasing to smooth out jagged edges in the scene.
+- `Static Geom Reloads` - Reloads the [`Static Voxel Data`](/api/StaticVoxelData) when switching between play and edit mode.
+
+### Audio
+- `Master Volume` - Controls the master scene volume.
+- `Sound Volume` - Controls the volume of sound effects.
+- `Music Volume` - Controls the volume of the background music.
+
+## API
+:::note References
+[`Scene`](/api/Scene)
+:::
